@@ -1,0 +1,33 @@
+.section {
+    margin: 0;
+    padding: 16px 8px 0;
+}
+
+.section_header {
+    @include font-is-big;
+    @include first-letter-emph;
+
+    padding-bottom: 16px;
+}
+
+.section_article {
+    @include font-is-normal;
+
+    padding-bottom: 4px;
+    text-align: justify;
+    word-break: keep-all;
+    white-space: normal;
+}
+
+.section_footer {
+    position: relative;
+    min-height: 1px;
+    text-align: center;
+}
+
+.section_footer::after {
+    @include font-is-big;
+
+    display: inline;
+    content: '~';
+}

@@ -1,0 +1,13 @@
+@mixin font-dark {
+    color: var(--var-dark);
+}
+
+@mixin font-darker {
+    color: var(--var-darker);
+}
+
+@mixin first-letter-emph {
+    &::first-letter {
+        color: var(--var-dark-vine);
+    }
+}

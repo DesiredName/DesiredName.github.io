@@ -1,0 +1,10 @@
+name: run-publish
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+    build:
+        steps:
+            run: npm run publish

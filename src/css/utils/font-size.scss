@@ -1,0 +1,23 @@
+@mixin font-is-smallest {
+    font-size: var(--var-font-size-smallest);
+    font-weight: var(--var-responsive-font-weight);
+}
+@mixin font-is-small {
+    font-size: var(--var-font-size-small);
+    font-weight: var(--var-responsive-font-weight);
+}
+
+@mixin font-is-normal {
+    font-size: var(--var-font-size-normal);
+    font-weight: var(--var-responsive-font-weight);
+}
+
+@mixin font-is-big {
+    font-size: var(--var-font-size-big);
+    font-weight: var(--var-responsive-font-weight);
+}
+
+@mixin font-is-biggest {
+    font-size: var(--var-font-size-biggest);
+    font-weight: var(--var-responsive-font-weight);
+}

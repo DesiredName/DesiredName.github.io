@@ -1,0 +1,70 @@
+/* in future, no stick to plain css =)
+@tailwind base;
+@tailwind components;
+@tailwind utilities; */
+@import 'normalize-css';
+
+// font-style<style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100;400;700&family=Roboto:wght@100;400;700&display=swap');
+
+*,
+*::after,
+*::before {
+    font-family: 'Roboto Mono', monospace !important;
+}
+
+// media util
+@import './utils/queuries.scss';
+
+:root {
+    // colors
+    --var-white: #f1f1f1;
+    --var-dark: #ccc;
+    --var-darker: #111;
+
+    // brand
+    --var-dark-vine: #630000;
+
+    // responsive
+    --var-responsive-font-size: 12px;
+    --var-responsive-font-weight: 300;
+
+    // sizes: font
+    --var-font-size-smallest: calc(var(--var-responsive-font-size) * 0.25);
+    --var-font-size-small: calc(var(--var-responsive-font-size) * 0.5);
+    --var-font-size-normal: var(--var-responsive-font-size);
+    --var-font-size-big: calc(var(--var-responsive-font-size) * 1.25);
+    --var-font-size-biggest: calc(var(--var-responsive-font-size) * 1.5);
+}
+
+:root {
+    @include high_res {
+        --var-responsive-font-size: 20px;
+        --var-responsive-font-weight: 700;
+    }
+
+    @include desktop {
+        --var-responsive-font-size: 16px;
+        --var-responsive-font-weight: 400;
+    }
+
+    @include mobile_nad_tablet {
+        --var-responsive-font-size: 12px;
+        --var-responsive-font-weight: 300;
+    }
+}
+
+body {
+    background-color: var(--var-white);
+}
+
+// utils
+@import './utils/font.scss';
+@import './utils/font-size.scss';
+
+// components
+@import './components/content.scss';
+@import './components/link.scss';
+@import './components/navbar.scss';
+@import './components/section.scss';
+@import './components/quote.scss';
