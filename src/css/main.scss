@@ -48,7 +48,7 @@
         --var-responsive-font-weight: 400;
     }
 
-    @include mobile_nad_tablet {
+    @include mobile_and_tablet {
         --var-responsive-font-size: 12px;
         --var-responsive-font-weight: 300;
     }
@@ -68,3 +68,4 @@ body {
 @import './components/navbar.scss';
 @import './components/section.scss';
 @import './components/quote.scss';
+@import './components/list.scss';

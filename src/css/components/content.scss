@@ -1,5 +1,5 @@
 .content {
-    @include mobile_nad_tablet {
+    @include mobile_and_tablet {
         margin: 0;
         width: 100%;
     }

@@ -1,4 +1,4 @@
-@mixin mobile_nad_tablet {
+@mixin mobile_and_tablet {
     @media screen and (max-width: 500px) {
         @content;
     }

@@ -1,43 +1,33 @@
-<script setup lang="ts">
-import TheMain from './pages/TheMain.vue';
-import TheAlgorithms from './pages/TheAlgorithms.vue';
-
-const is_main_page = window.location.pathname === '/';
-const is_algorithms_page = window.location.pathname === '/algorithms';
-const component = (() => {
-    if (is_main_page) {
-        return TheMain;
-    }
-    if (is_algorithms_page) {
-        return TheAlgorithms;
-    }
-    return undefined;
-})();
-</script>
-
 <template>
     <nav class="navbar">
-        <h1 class="navbar_title">DesiredIT Homepage</h1>
+        <h1 class="navbar_title">DesiredIT Blog</h1>
         <ul class="navbar_crumbs">
             <li class="navbar_crumbs_item">Sections: </li>
             <li :class="{
                 'navbar_crumbs_item': true,
-                'is-active': is_main_page
             }">
-                <a class="link" href='/'>Main</a>
+                <RouterLink class="link" active-class="is-active" to='/'>Main</RouterLink>
             </li>
             <li :class="{
                 'navbar_crumbs_item': true,
-                'is-active': is_algorithms_page
             }">
-                <a class="link" href='/algorithms'>Algorithms</a>
+                <RouterLink class="link" active-class="is-active" to='/algorithms'>Algorithms</RouterLink>
             </li>
         </ul>
     </nav>
 
     <article class="content">
-        <KeepAlive>
-            <component :is="component" />
-        </KeepAlive>
+        <RouterView />
     </article>
 </template>
+
+<script lang="ts" setup>
+import { onMounted } from 'vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+
+onMounted(() => {
+    router.push('/')
+});
+</script>

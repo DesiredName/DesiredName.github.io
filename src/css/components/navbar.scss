@@ -26,7 +26,7 @@
 
 .navbar_title,
 .navbar_crumbs {
-    @include mobile_nad_tablet {
+    @include mobile_and_tablet {
         width: 100%;
     }
 
@@ -69,7 +69,7 @@
 }
 
 .navbar_crumbs_item > .link:hover,
-.navbar_crumbs_item.is-active > .link {
+.navbar_crumbs_item > .link:not(:hover).is-active {
     &::before,
     &::after {
         visibility: visible;
