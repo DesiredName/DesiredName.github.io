@@ -20,10 +20,11 @@
         <article class="section_article">
             <ul class="list">
                 <li class="list_entry">
-                    Sorting Algorithms
+                    <RouterLink class="link" active-class="is-active" to='/algorithms/sort'>Sorting Algorithms</RouterLink>
                     <ul class="list">
                         <li class="list-entry">
-                            <a class="link" href="./algorithms/sort/bubble_sort">Bubble Sort</a>
+                            <RouterLink class="link" active-class="is-active" to="/algorithms/sort/bubble_sort">Bubble Sort
+                            </RouterLink>
                         </li>
                     </ul>
                 </li>

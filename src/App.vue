@@ -3,14 +3,10 @@
         <h1 class="navbar_title">DesiredIT Blog</h1>
         <ul class="navbar_crumbs">
             <li class="navbar_crumbs_item">Sections: </li>
-            <li :class="{
-                'navbar_crumbs_item': true,
-            }">
+            <li class="navbar_crumbs_item">
                 <RouterLink class="link" active-class="is-active" to='/'>Main</RouterLink>
             </li>
-            <li :class="{
-                'navbar_crumbs_item': true,
-            }">
+            <li class="navbar_crumbs_item">
                 <RouterLink class="link" active-class="is-active" to='/algorithms'>Algorithms</RouterLink>
             </li>
         </ul>
