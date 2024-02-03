@@ -5,3 +5,12 @@
 @import './utils/reset.scss';
 
 @import './components/the-title.scss';
+@import './components/the-menu.scss';
+
+#the-main-content {
+    // This is a root element of NUXT mount point
+    background-color: red;
+
+    height: 100dvh;
+    width: 100dvw;
+}

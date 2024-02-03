@@ -1,9 +1,9 @@
 <script lang="ts" setup></script>
 
 <template>
-  <TheTitle />
-  <TheMenu />
-  <slot />
+  <div class="the-menu">
+    Component: TheMenu
+  </div>
 </template>
 
 <style scoped></style>

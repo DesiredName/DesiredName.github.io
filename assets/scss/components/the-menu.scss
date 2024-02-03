@@ -1,0 +1,18 @@
+.the-menu {
+    background-color: $darkest;
+    color: $lightest;
+    position: sticky;
+    top: 0;
+
+    @include mobile_and_tablet {
+        padding: 8px 2px;
+    }
+
+    @include desktop {
+        padding: 12px 6px;
+    }
+
+    @include high_res {
+        padding: 16px 10px;
+    }
+}

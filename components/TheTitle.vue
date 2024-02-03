@@ -1,9 +1,9 @@
 <script lang="ts" setup></script>
 
 <template>
-  <div class="the-title font-is-big">
-    <h1 class="the-title_header">
-      Component: TheTitle
+  <div class="the-title">
+    <h1 class="the-title_header font-is-big">
+      DesiredIT Blog
     </h1>
   </div>
 </template>
