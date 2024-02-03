@@ -7,6 +7,7 @@ export default defineNuxtConfig({
     css: ['./assets/scss/index.scss'],
     devtools: { enabled: true },
     modules: [
+        'nuxt-icon',
         '@nuxtjs/color-mode',
         [
             '@nuxtjs/google-fonts',

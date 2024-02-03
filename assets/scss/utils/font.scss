@@ -78,6 +78,22 @@
     font-weight: 100;
 }
 
+.font.smallest {
+    @include mobile_and_tablet {
+        font-size: 6px;
+    }
+
+    @include desktop {
+        font-size: 10px;
+    }
+
+    @include high_res {
+        font-size: 14px;
+    }
+
+    font-weight: 100;
+}
+
 .font.darkest {
     color: $darkest;
 }

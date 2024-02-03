@@ -1,11 +1,8 @@
 .the-title {
-    align-items: center;
-    align-content: center;
     background-color: $darkest;
-    color: $lightest;
     display: flex;
-    justify-content: center;
     flex-flow: row nowrap;
+    justify-content: space-around;
     text-align: center;
 
     @include mobile_and_tablet {
@@ -24,8 +21,12 @@
     }
 }
 
-.the-title > .the-title_header {
-    display: inline-block;
+.the-title > .the-title_container {
+    align-items: center;
+    align-content: center;
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row nowrap;
 
     @include mobile_and_tablet {
         width: 100%;
@@ -38,4 +39,8 @@
     @include high_res {
         width: 800px;
     }
+}
+
+.the-title > .the-title_container > .the-title_header {
+    display: inline-block;
 }
