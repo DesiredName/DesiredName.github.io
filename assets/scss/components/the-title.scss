@@ -24,7 +24,7 @@
     }
 }
 
-.the-title_header {
+.the-title > .the-title_header {
     display: inline-block;
 
     @include mobile_and_tablet {

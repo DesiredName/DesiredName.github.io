@@ -1,6 +1,11 @@
 .the-menu {
+    align-content: center;
+    align-items: center;
     background-color: $darkest;
     color: $lightest;
+    display: flex;
+    justify-content: center;
+    flex-flow: row nowrap;
     position: sticky;
     top: 0;
 
@@ -14,5 +19,35 @@
 
     @include high_res {
         padding: 16px 10px;
+    }
+}
+
+.the-menu > .the-menu_sections {
+    @include mobile_and_tablet {
+        width: 100%;
+    }
+
+    @include desktop {
+        width: 500px;
+    }
+
+    @include high_res {
+        width: 800px;
+    }
+}
+
+.the-menu > .the-menu_sections > .the-menu_sections_item {
+    display: inline-block;
+
+    @include mobile_and_tablet {
+        margin-right: 8px;
+    }
+
+    @include desktop {
+        margin-right: 16px;
+    }
+
+    @include high_res {
+        margin-right: 24px;
     }
 }

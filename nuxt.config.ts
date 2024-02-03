@@ -13,7 +13,7 @@ export default defineNuxtConfig({
             {
                 display: 'swap',
                 families: {
-                    Roboto: { wght: [100, 400, 700] },
+                    Roboto: { wght: [100, 300, 700] },
                 },
                 preload: true,
                 useStylesheet: true,
