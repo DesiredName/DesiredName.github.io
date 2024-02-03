@@ -1,35 +1,18 @@
 {
-    "name": "desiredname.github.io",
-    "version": "1.0.0",
-    "license": "GNU",
-    "description": "DesiredName fun pages",
-    "author": {
-        "name": "Anton",
-        "url": "https://desiredname.github.io"
-    },
-    "scripts": {
-        "c": "git add . && git commit -m 'Update' && git push",
-        "dev": "vite --host ",
-        "preview": "vite preview",
-        "build": "vue-tsc && vite build"
-    },
-    "devDependencies": {
-        "@vitejs/plugin-vue": "^5.0.2",
-        "autoprefixer": "^10.4.17",
-        "lightningcss": "^1.23.0",
-        "postcss": "^8.4.33",
-        "prettier": "^3.2.4",
-        "prettier-plugin-tailwindcss": "^0.5.11",
-        "sass": "^1.70.0",
-        "tailwindcss": "^3.4.1",
-        "terser": "^5.27.0",
-        "typescript": "^5.3.3",
-        "vite": "^5.0.11",
-        "vue-tsc": "^1.8.27"
-    },
-    "type": "module",
-    "dependencies": {
-        "normalize-css": "^2.3.1",
-        "vue-router": "^4.2.5"
-    }
+  "name": "nuxt-app",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "c": "git add . && git commit -m 'update' && git push",
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "devDependencies": {
+    "nuxt": "^3.10.0",
+    "vue": "^3.4.15",
+    "vue-router": "^4.2.5"
+  }
 }
