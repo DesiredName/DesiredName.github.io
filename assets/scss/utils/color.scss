@@ -1,0 +1,7 @@
+@use 'sass:color';
+
+$darkest: #111;
+$dark: color.scale($darkest, $lightness: +20%);
+$normal: color.scale($dark, $lightness: +20%);
+$light: color.scale($normal, $lightness: +20%);
+$lightest: color.scale($light, $lightness: +20%);

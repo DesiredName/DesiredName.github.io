@@ -1,2 +1,7 @@
-@import './reset.scss';
-@import './font.scss';
+@import './utils/queuries.scss';
+
+@import './utils/color.scss';
+@import './utils/font.scss';
+@import './utils/reset.scss';
+
+@import './components/the-title.scss';

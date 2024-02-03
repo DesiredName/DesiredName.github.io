@@ -1,8 +1,10 @@
 <script lang="ts" setup></script>
 
 <template>
-  <div>
-    Component: TheTitle
+  <div class="the-title font-is-big">
+    <h1 class="the-title_header">
+      Component: TheTitle
+    </h1>
   </div>
 </template>
 

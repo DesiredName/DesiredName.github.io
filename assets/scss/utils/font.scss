@@ -1,0 +1,59 @@
+// font-style<style>
+*,
+*::after,
+*::before,
+*:visited,
+*:hover,
+*:active,
+*:focus {
+    // This is loaded via plugin '@nuxtjs/google-fonts'
+    font-family: 'Roboto', monospace !important;
+}
+
+.font-is-big {
+    @include mobile_and_tablet {
+        font-size: 16px;
+    }
+
+    @include desktop {
+        font-size: 20px;
+    }
+
+    @include high_res {
+        font-size: 24px;
+    }
+
+    font-weight: 700;
+}
+
+.font-is-normal {
+    @include mobile_and_tablet {
+        font-size: 12px;
+    }
+
+    @include desktop {
+        font-size: 16px;
+    }
+
+    @include high_res {
+        font-size: 20px;
+    }
+
+    font-weight: 100;
+}
+
+.font-is-small {
+    @include mobile_and_tablet {
+        font-size: 8px;
+    }
+
+    @include desktop {
+        font-size: 12px;
+    }
+
+    @include high_res {
+        font-size: 16px;
+    }
+
+    font-weight: 300;
+}
