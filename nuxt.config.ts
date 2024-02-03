@@ -7,12 +7,14 @@ export default defineNuxtConfig({
         [
             '@nuxtjs/google-fonts',
             {
+                display: 'swap',
                 families: {
                     Roboto: { wght: [100, 400, 700] },
                 },
-                display: 'swap',
-                preconnect: true,
+                preload: true,
+                useStylesheet: true,
             },
         ],
     ],
+    telemetry: true,
 });
