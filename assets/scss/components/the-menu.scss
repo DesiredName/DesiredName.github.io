@@ -51,3 +51,27 @@
         margin-right: 24px;
     }
 }
+
+.the-menu > .the-menu_sections > .the-menu_sections_item {
+    &::before,
+    &::after {
+        display: inline-block;
+        padding: 0 8px;
+        visibility: hidden;
+    }
+
+    &::before {
+        content: '[';
+    }
+
+    &::after {
+        content: ']';
+    }
+}
+.the-menu > .the-menu_sections > .the-menu_sections_item:hover,
+.the-menu > .the-menu_sections > .the-menu_sections_item.router-link-active {
+    &::before,
+    &::after {
+        visibility: visible;
+    }
+}

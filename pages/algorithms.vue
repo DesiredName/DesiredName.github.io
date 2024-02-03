@@ -2,7 +2,7 @@
 
 <template>
   <div>
-    Page: Main
+    Page: Algorithms
   </div>
 </template>
 

@@ -1,6 +1,7 @@
 {
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "emmet.showSuggestionsAsSnippets": true,
-    "editor.snippetSuggestions": "top"
+    "editor.snippetSuggestions": "top",
+    "html.format.wrapAttributes": "force-expand-multiline",
+    "emmet.showSuggestionsAsSnippets": true
 }

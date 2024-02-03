@@ -3,8 +3,14 @@
 <template>
   <nav class="the-menu">
     <ul class="the-menu_sections">
-      <li class="the-menu_sections_item font-is-normal">Main</li>
-      <li class="the-menu_sections_item font-is-normal">Algorithms</li>
+      <RouterLink
+        to="/"
+        class="the-menu_sections_item font normal light"
+      >Main</RouterLink>
+      <RouterLink
+        to="/algorithms"
+        class="the-menu_sections_item font normal light"
+      >Algorithms</RouterLink>
     </ul>
   </nav>
 </template>

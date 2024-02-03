@@ -2,7 +2,7 @@
 
 <template>
   <div class="the-title">
-    <h1 class="the-title_header font-is-big">
+    <h1 class="the-title_header font biggest light">
       DesiredIT Blog
     </h1>
   </div>
