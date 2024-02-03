@@ -10,15 +10,15 @@
     top: 0;
 
     @include mobile_and_tablet {
-        padding: 8px 2px;
+        padding: 0px 8px 0px;
     }
 
     @include desktop {
-        padding: 12px 6px;
+        padding: 0px 12px 0px;
     }
 
     @include high_res {
-        padding: 16px 10px;
+        padding: 0xp 16px 0px;
     }
 }
 
@@ -38,35 +38,21 @@
 
 .the-menu > .the-menu_sections > .the-menu_sections_item {
     display: inline-block;
+    border: 1px solid red;
 
     @include mobile_and_tablet {
-        margin-right: 8px;
+        padding: 4px;
     }
 
     @include desktop {
-        margin-right: 16px;
+        padding: 8px;
     }
 
     @include high_res {
-        margin-right: 24px;
-    }
-}
-
-.the-menu > .the-menu_sections > .the-menu_sections_item {
-    &::after {
-        display: inline-block;
-        visibility: hidden;
-    }
-
-    &::after {
-        content: '<';
-        padding-left: 8px;
+        padding: 16px;
     }
 }
 
 .the-menu > .the-menu_sections > .the-menu_sections_item.router-link-active {
-    &::before,
-    &::after {
-        visibility: visible;
-    }
+    background-color: red;
 }
