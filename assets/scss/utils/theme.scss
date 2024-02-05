@@ -1,0 +1,11 @@
+@mixin dark-mode {
+    :root.dark-mode {
+        @content;
+    }
+}
+
+@mixin light-mode {
+    :root.light-mode {
+        @content;
+    }
+}

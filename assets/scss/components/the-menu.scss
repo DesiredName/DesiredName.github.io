@@ -1,7 +1,6 @@
 .the-menu {
     align-content: center;
     align-items: center;
-    color: $lightest;
     display: flex;
     justify-content: center;
     flex-flow: row nowrap;
@@ -43,14 +42,31 @@
     }
 }
 
-.the-menu > .the-menu_sections > .the-menu_sections_item.router-link-active {
-    background-color: $light;
-    color: $dark;
+@include light-mode {
+    .the-menu {
+        background-color: $lightest;
+    }
+
+    .the-menu > .the-menu_sections > .the-menu_sections_item {
+        border-left: 1px solid $light;
+        border-right: 1px solid $light;
+        border-top: 1px solid $light;
+    }
+
+    .the-menu
+        > .the-menu_sections
+        > .the-menu_sections_item.router-link-active {
+        background-color: $light;
+        border-left: 1px solid $dark;
+        border-right: 1px solid $dark;
+        border-top: 1px solid $dark;
+        color: $dark;
+    }
 }
 
-:root.light-mode {
+@include dark-mode {
     .the-menu {
-        background-color: $light;
+        background-color: $darkest;
     }
 
     .the-menu > .the-menu_sections > .the-menu_sections_item {
@@ -58,16 +74,14 @@
         border-right: 1px solid $dark;
         border-top: 1px solid $dark;
     }
-}
 
-:root.dark-mode {
-    .the-menu {
-        background-color: $darkest;
-    }
-
-    .the-menu > .the-menu_sections > .the-menu_sections_item {
-        border-left: 1px solid $light;
-        border-right: 1px solid $light;
-        border-top: 1px solid $light;
+    .the-menu
+        > .the-menu_sections
+        > .the-menu_sections_item.router-link-active {
+        background-color: $dark;
+        border-left: 1px solid $darkest;
+        border-right: 1px solid $darkest;
+        border-top: 1px solid $darkest;
+        color: $lightest;
     }
 }

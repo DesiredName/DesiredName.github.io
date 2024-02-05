@@ -1,5 +1,4 @@
 .the-title {
-    background-color: $darkest;
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-around;
@@ -41,4 +40,24 @@
 
 .the-title > .the-title_container > .the-title_links > .link:not(:last-child) {
     margin-right: 8px;
+}
+
+@include light-mode {
+    .the-title {
+        background-color: $lightest;
+    }
+
+    .the-title > .the-title_container > .the-title_links > .link > .icon {
+        filter: invert(1);
+    }
+}
+
+@include dark-mode {
+    .the-title {
+        background-color: $darkest;
+    }
+
+    .the-title > .the-title_container > .the-title_links > .link > .icon {
+        filter: invert(0);
+    }
 }

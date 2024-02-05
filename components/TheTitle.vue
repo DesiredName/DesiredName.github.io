@@ -17,7 +17,6 @@
         >
           <Icon
             name="uil:github"
-            color="black"
             size="30px"
           />
         </a>
@@ -28,7 +27,6 @@
         >
           <Icon
             name="uil:linkedin"
-            color="black"
             size="30px"
           />
         </a>

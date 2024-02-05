@@ -2,9 +2,9 @@
     cursor: pointer;
     position: relative;
     max-height: 20px;
-    max-width: 60px;
+    max-width: 80px;
     min-height: 20px;
-    min-width: 60px;
+    min-width: 80px;
     user-select: none;
 }
 
@@ -20,16 +20,16 @@
     will-change: left;
 }
 
-:root.dark-mode {
+@include dark-mode {
     .the-theme-switch > .the-theme-switch_toggle {
-        background-color: $light;
+        background-color: $lightest;
         left: -10px;
     }
 }
 
-:root.light-mode {
+@include light-mode {
     .the-theme-switch > .the-theme-switch_toggle {
-        background-color: $dark;
-        left: 50px;
+        background-color: $darkest;
+        left: 70px;
     }
 }

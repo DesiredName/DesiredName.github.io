@@ -10,10 +10,10 @@ export default function UseTheme() {
     function toggle() {
         if (mode.value === 'dark') {
             mode.preference = 'light';
-            name.value = 'light';
+            name.value = 'to dark';
         } else {
             mode.preference = 'dark';
-            name.value = 'dark';
+            name.value = 'to light';
         }
     }
 
