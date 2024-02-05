@@ -1,9 +1,9 @@
 <script lang="ts" setup></script>
 
 <template>
-  <div style="height: 4000px;">
+  <section style="height: 4000px;">
     Page: Main
-  </div>
+  </section>
 </template>
 
 <style scoped></style>

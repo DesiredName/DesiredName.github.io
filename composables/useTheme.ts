@@ -5,7 +5,12 @@ const name = ref('dark');
 export default function UseTheme() {
     const mode = useColorMode();
 
-    name.value = mode.preference === 'system' ? '' : mode.preference;
+    name.value =
+        mode.preference === 'system'
+            ? ''
+            : mode.preference === 'dark'
+            ? 'to light'
+            : 'to dark';
 
     function toggle() {
         if (mode.value === 'dark') {

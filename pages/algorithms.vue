@@ -1,9 +1,9 @@
 <script lang="ts" setup></script>
 
 <template>
-  <div>
+  <section style="height: 4000px;">
     Page: Algorithms
-  </div>
+  </section>
 </template>
 
 <style scoped></style>

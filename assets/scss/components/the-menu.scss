@@ -1,14 +1,9 @@
 .the-menu {
-    align-content: center;
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    flex-flow: row nowrap;
     position: sticky;
-    top: 0;
+    top: 0px;
 
     @include mobile_and_tablet {
-        padding: 0px 0px 0px;
+        padding: 0px;
     }
 
     @include desktop {

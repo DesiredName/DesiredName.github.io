@@ -33,18 +33,15 @@
 }
 
 // This is a root element of NUXT mount point
-#the-main-content {
-    min-height: 100dvh;
-    width: 100dvw;
-}
-
 @include dark-mode {
+    body,
     #the-main-content {
         background-color: $darkest;
     }
 }
 
 @include light-mode {
+    body,
     #the-main-content {
         background-color: $lightest;
     }

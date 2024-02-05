@@ -1,7 +1,7 @@
 <script lang="ts" setup></script>
 
 <template>
-  <div class="the-title">
+  <aside class="the-title">
     <div class="the-title_container">
       <h1 class="the-title_header font biggest light">
         DesiredIT Blog
@@ -32,7 +32,7 @@
         </a>
       </div>
     </div>
-  </div>
+  </aside>
 </template>
 
 <style scoped></style>

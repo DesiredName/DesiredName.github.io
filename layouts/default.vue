@@ -3,7 +3,7 @@
 <template>
   <TheTitle />
   <TheMenu />
-  <slot />
+  <RouterView />
 </template>
 
 <style scoped></style>
