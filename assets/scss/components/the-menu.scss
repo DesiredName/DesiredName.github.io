@@ -1,7 +1,6 @@
 .the-menu {
     align-content: center;
     align-items: center;
-    background-color: $darkest;
     color: $lightest;
     display: flex;
     justify-content: center;
@@ -29,9 +28,6 @@
 .the-menu > .the-menu_sections > .the-menu_sections_item {
     display: inline-block;
     border-bottom: none;
-    border-left: 1px solid $light;
-    border-right: 1px solid $light;
-    border-top: 1px solid $light;
     text-decoration: none;
 
     @include mobile_and_tablet {
@@ -50,4 +46,28 @@
 .the-menu > .the-menu_sections > .the-menu_sections_item.router-link-active {
     background-color: $light;
     color: $dark;
+}
+
+:root.light-mode {
+    .the-menu {
+        background-color: $light;
+    }
+
+    .the-menu > .the-menu_sections > .the-menu_sections_item {
+        border-left: 1px solid $dark;
+        border-right: 1px solid $dark;
+        border-top: 1px solid $dark;
+    }
+}
+
+:root.dark-mode {
+    .the-menu {
+        background-color: $darkest;
+    }
+
+    .the-menu > .the-menu_sections > .the-menu_sections_item {
+        border-left: 1px solid $light;
+        border-right: 1px solid $light;
+        border-top: 1px solid $light;
+    }
 }

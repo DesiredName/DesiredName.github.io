@@ -1,0 +1,35 @@
+.the-theme-switch {
+    cursor: pointer;
+    position: relative;
+    max-height: 20px;
+    max-width: 60px;
+    min-height: 20px;
+    min-width: 60px;
+    user-select: none;
+}
+
+.the-theme-switch > .the-theme-switch_toggle {
+    display: block;
+    height: 16px;
+    left: 8px;
+    position: absolute;
+    top: 2px;
+    transition-duration: 500ms;
+    transition-property: left;
+    width: 16px;
+    will-change: left;
+}
+
+:root.dark-mode {
+    .the-theme-switch > .the-theme-switch_toggle {
+        background-color: $light;
+        left: -10px;
+    }
+}
+
+:root.light-mode {
+    .the-theme-switch > .the-theme-switch_toggle {
+        background-color: $dark;
+        left: 50px;
+    }
+}

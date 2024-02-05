@@ -34,6 +34,11 @@
     display: inline-block;
 }
 
+.the-title > .the-title_container > .the-title_theme {
+    margin-left: auto;
+    margin-right: 20px;
+}
+
 .the-title > .the-title_container > .the-title_links > .link:not(:last-child) {
     margin-right: 8px;
 }

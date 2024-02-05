@@ -7,6 +7,7 @@
 
 @import './components/the-title.scss';
 @import './components/the-menu.scss';
+@import './components/the-theme-switch.scss';
 
 :root {
     --var-content-width: 100%;
@@ -30,10 +31,20 @@
     }
 }
 
+// This is a root element of NUXT mount point
 #the-main-content {
-    // This is a root element of NUXT mount point
-    background-color: $light;
-
     min-height: 100dvh;
     width: 100dvw;
+}
+
+:root.light-mode {
+    #the-main-content {
+        background-color: $light;
+    }
+}
+
+:root.dark-mode {
+    #the-main-content {
+        background-color: $darkest;
+    }
 }

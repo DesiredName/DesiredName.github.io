@@ -6,6 +6,9 @@
       <h1 class="the-title_header font biggest light">
         DesiredIT Blog
       </h1>
+      <div class="the-title_theme">
+        <TheThemeSwitch />
+      </div>
       <div class="the-title_links">
         <a
           class="link font biggest"
