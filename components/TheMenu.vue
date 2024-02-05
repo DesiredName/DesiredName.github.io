@@ -11,7 +11,6 @@
         to="/algorithms"
         class="the-menu_sections-item font normal light"
       >Algorithms</RouterLink>
-      <span class="the-menu_sections-item_fake-item"></span>
     </ul>
   </nav>
 </template>

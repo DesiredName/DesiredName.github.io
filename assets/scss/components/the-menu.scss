@@ -1,17 +1,22 @@
 .the-menu {
+    border: none;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
     position: sticky;
-    top: 0px;
+    top: 0;
 
     @include mobile_and_tablet {
-        padding: 0px;
+        padding: 0;
+        padding-top: 14px;
     }
 
     @include desktop {
-        padding: 0px 12px 0px;
+        padding: 0 12px 0;
     }
 
     @include high_res {
-        padding: 0xp 16px 0px;
+        padding: 0 16px 0;
     }
 }
 
@@ -23,16 +28,16 @@
 }
 
 .the-menu_sections-item_fake-item {
+    border: none;
     flex: 1;
 }
 
-.the-menu_sections-item_fake-item,
 .the-menu_sections-item {
+    border: none;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
     display: inline-block;
-    border-width: 1px;
-    border-style: solid;
     text-decoration: none;
-    transform: translateY(1px);
 
     @include mobile_and_tablet {
         padding: 4px 6px;
@@ -52,20 +57,13 @@
         background-color: $lightest;
     }
 
-    .the-menu_sections-item_fake-item,
     .the-menu_sections-item {
-        border-bottom-color: $light;
-        border-left-color: $lightest;
-        border-right-color: $lightest;
-        border-top-color: $lightest;
+        border-bottom-color: $normal;
         color: $light;
     }
 
     .the-menu_sections-item.router-link-active {
-        border-bottom-color: $lightest;
-        border-left-color: $light;
-        border-right-color: $light;
-        border-top-color: $light;
+        border-bottom-color: $darkest;
         color: $dark;
     }
 }
@@ -75,20 +73,13 @@
         background-color: $darkest;
     }
 
-    .the-menu_sections-item_fake-item,
     .the-menu_sections-item {
-        border-bottom-color: $dark;
-        border-left-color: $darkest;
-        border-right-color: $darkest;
-        border-top-color: $darkest;
+        border-bottom-color: $normal;
         color: $dark;
     }
 
     .the-menu_sections-item.router-link-active {
-        border-bottom-color: $darkest;
-        border-left-color: $dark;
-        border-right-color: $dark;
-        border-top-color: $dark;
+        border-bottom-color: $lightest;
         color: $light;
     }
 }

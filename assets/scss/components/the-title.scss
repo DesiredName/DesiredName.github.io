@@ -6,7 +6,7 @@
 
     @include mobile_and_tablet {
         height: 40px;
-        padding: 4px 8px;
+        padding: 4px 8px 0 8px;
     }
 
     @include desktop {

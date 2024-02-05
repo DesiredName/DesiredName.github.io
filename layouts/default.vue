@@ -3,7 +3,7 @@
 <template>
   <TheTitle />
   <TheMenu />
-  <RouterView />
+  <NuxtPage />
 </template>
 
 <style scoped></style>

@@ -16,23 +16,27 @@
 
 @include mobile_and_tablet {
     :root {
-        --var-content-width: 100%;
+        --var-content-width: 100vw;
     }
 }
 
 @include desktop {
     :root {
-        --var-content-width: 500px;
+        --var-content-width: max(500px, 800px);
     }
 }
 
 @include high_res {
     :root {
-        --var-content-width: 800px;
+        --var-content-width: 1000px;
     }
 }
 
 // This is a root element of NUXT mount point
+#the-main-content {
+    overflow: visible;
+}
+
 @include dark-mode {
     body,
     #the-main-content {
