@@ -3,7 +3,7 @@
 <template>
   <section class="the-page-main-content">
     <section class="the-page-main-content_section">
-      Page: Algorithms
+      <ContentDoc />
     </section>
   </section>
 </template>

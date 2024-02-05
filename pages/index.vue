@@ -3,7 +3,7 @@
 <template>
   <section class="the-page-main-content">
     <section class="the-page-main-content_section">
-      Page: Main
+      <ContentDoc path="blog" />
     </section>
   </section>
 </template>

@@ -6,7 +6,7 @@
       <RouterLink
         to="/"
         class="the-menu_sections-item font normal light"
-      >Main</RouterLink>
+      >Blog</RouterLink>
       <RouterLink
         to="/algorithms"
         class="the-menu_sections-item font normal light"
