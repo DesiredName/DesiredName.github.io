@@ -23,13 +23,8 @@
 .the-menu_sections {
     display: flex;
     flex-flow: row nowrap;
-    justify-content: flex-start;
+    justify-content: space-evenly;
     width: var(--var-content-width);
-}
-
-.the-menu_sections-item_fake-item {
-    border: none;
-    flex: 1;
 }
 
 .the-menu_sections-item {
@@ -37,6 +32,8 @@
     border-bottom-width: 1px;
     border-bottom-style: solid;
     display: inline-block;
+    flex: 1;
+    text-align: center;
     text-decoration: none;
 
     @include mobile_and_tablet {
@@ -58,7 +55,7 @@
     }
 
     .the-menu_sections-item {
-        border-bottom-color: $normal;
+        border-bottom-color: transparent;
         color: $light;
     }
 
@@ -74,7 +71,7 @@
     }
 
     .the-menu_sections-item {
-        border-bottom-color: $normal;
+        border-bottom-color: transparent;
         color: $dark;
     }
 
