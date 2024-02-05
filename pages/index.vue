@@ -1,7 +1,7 @@
 <script lang="ts" setup></script>
 
 <template>
-  <div>
+  <div style="height: 4000px;">
     Page: Main
   </div>
 </template>

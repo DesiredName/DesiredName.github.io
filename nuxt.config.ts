@@ -8,7 +8,13 @@ export default defineNuxtConfig({
     devtools: { enabled: true },
     modules: [
         'nuxt-icon',
-        '@nuxtjs/color-mode',
+        [
+            '@nuxtjs/color-mode',
+            {
+                preference: 'system',
+                fallback: 'dark',
+            },
+        ],
         [
             '@nuxtjs/google-fonts',
             {

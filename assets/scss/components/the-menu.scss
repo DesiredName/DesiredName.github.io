@@ -10,7 +10,7 @@
     top: 0;
 
     @include mobile_and_tablet {
-        padding: 0px 8px 0px;
+        padding: 0px 0px 0px;
     }
 
     @include desktop {
@@ -23,36 +23,31 @@
 }
 
 .the-menu > .the-menu_sections {
-    @include mobile_and_tablet {
-        width: 100%;
-    }
-
-    @include desktop {
-        width: 500px;
-    }
-
-    @include high_res {
-        width: 800px;
-    }
+    width: var(--var-content-width);
 }
 
 .the-menu > .the-menu_sections > .the-menu_sections_item {
     display: inline-block;
-    border: 1px solid red;
+    border-bottom: none;
+    border-left: 1px solid $light;
+    border-right: 1px solid $light;
+    border-top: 1px solid $light;
+    text-decoration: none;
 
     @include mobile_and_tablet {
-        padding: 4px;
+        padding: 4px 6px;
     }
 
     @include desktop {
-        padding: 8px;
+        padding: 6px 8px;
     }
 
     @include high_res {
-        padding: 16px;
+        padding: 6px 10px;
     }
 }
 
 .the-menu > .the-menu_sections > .the-menu_sections_item.router-link-active {
-    background-color: red;
+    background-color: $light;
+    color: $dark;
 }

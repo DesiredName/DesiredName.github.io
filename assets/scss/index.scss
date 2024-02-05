@@ -8,10 +8,32 @@
 @import './components/the-title.scss';
 @import './components/the-menu.scss';
 
+:root {
+    --var-content-width: 100%;
+}
+
+@include mobile_and_tablet {
+    :root {
+        --var-content-width: 100%;
+    }
+}
+
+@include desktop {
+    :root {
+        --var-content-width: 500px;
+    }
+}
+
+@include high_res {
+    :root {
+        --var-content-width: 800px;
+    }
+}
+
 #the-main-content {
     // This is a root element of NUXT mount point
-    background-color: red;
+    background-color: $light;
 
-    height: 100dvh;
+    min-height: 100dvh;
     width: 100dvw;
 }

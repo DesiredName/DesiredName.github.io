@@ -27,20 +27,13 @@
     display: flex;
     justify-content: space-between;
     flex-flow: row nowrap;
-
-    @include mobile_and_tablet {
-        width: 100%;
-    }
-
-    @include desktop {
-        width: 500px;
-    }
-
-    @include high_res {
-        width: 800px;
-    }
+    width: var(--var-content-width);
 }
 
 .the-title > .the-title_container > .the-title_header {
     display: inline-block;
+}
+
+.the-title > .the-title_container > .the-title_links > .link:not(:last-child) {
+    margin-right: 8px;
 }
