@@ -1,0 +1,21 @@
+.the-page-main-content {
+    display: flex;
+    justify-content: center;
+    padding-top: 12px;
+}
+
+.the-page-main-content_section {
+    width: var(--var-content-width);
+}
+
+@include light-mode {
+    .the-page-main-content_section {
+        color: $darkest;
+    }
+}
+
+@include dark-mode {
+    .the-page-main-content_section {
+        color: $lightest;
+    }
+}

@@ -1,8 +1,10 @@
 <script lang="ts" setup></script>
 
 <template>
-  <section style="height: 4000px;">
-    Page: Main
+  <section class="the-page-main-content">
+    <section class="the-page-main-content_section">
+      Page: Main
+    </section>
   </section>
 </template>
 
