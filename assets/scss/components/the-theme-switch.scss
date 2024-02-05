@@ -8,27 +8,27 @@
     user-select: none;
 }
 
-.the-theme-switch > .the-theme-switch_toggle {
+.the-theme-switch_toggle {
     display: block;
     height: 16px;
     left: 8px;
     position: absolute;
     top: 2px;
-    transition-duration: 500ms;
-    transition-property: left;
+    transition-duration: 1s;
+    transition-property: left, background-color;
     width: 16px;
-    will-change: left;
+    will-change: left, background-color;
 }
 
 @include dark-mode {
-    .the-theme-switch > .the-theme-switch_toggle {
+    .the-theme-switch_toggle {
         background-color: $lightest;
         left: -10px;
     }
 }
 
 @include light-mode {
-    .the-theme-switch > .the-theme-switch_toggle {
+    .the-theme-switch_toggle {
         background-color: $darkest;
         left: 70px;
     }

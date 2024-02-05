@@ -5,12 +5,13 @@
     <ul class="the-menu_sections">
       <RouterLink
         to="/"
-        class="the-menu_sections_item font normal light"
+        class="the-menu_sections-item font normal light"
       >Main</RouterLink>
       <RouterLink
         to="/algorithms"
-        class="the-menu_sections_item font normal light"
+        class="the-menu_sections-item font normal light"
       >Algorithms</RouterLink>
+      <span class="the-menu_sections-item_fake-item"></span>
     </ul>
   </nav>
 </template>
