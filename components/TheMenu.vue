@@ -5,6 +5,10 @@
     <nav class="the-menu">
       <ul class="the-menu_sections">
         <NuxtLink
+          to="/"
+          class="the-menu_sections-item font normal light"
+        >Blog</NuxtLink>
+        <NuxtLink
           v-for="link of navigation"
           :key="link._path"
           :to="link._path"
