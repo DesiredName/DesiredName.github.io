@@ -5,5 +5,3 @@
   <TheMenu />
   <NuxtPage />
 </template>
-
-<style scoped></style>
