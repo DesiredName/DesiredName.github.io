@@ -1,6 +1,7 @@
 ---
 title: 'CSS Logical Properties'
 description: 'Overview of CSS writing-mode property and how to use it on a page'
+tags: ['html', 'css', 'textdirection', 'langauage', 'i18n']
 ---
 
 I stumbled upon an great article by [Adrian Roselli](https://www.linkedin.com/in/adrianroselli/) about CSS logical properties.

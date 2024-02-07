@@ -19,6 +19,7 @@ const articles = navigation.map((navitem) => collect_articles(navitem)).flat(1);
 </script>
 
 <template>
+    Index page
     <section class="the-page-main-content">
         <section class="the-page-main-content_section">
             <TheArticlePreview
