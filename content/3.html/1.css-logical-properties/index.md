@@ -4,7 +4,7 @@ description: 'Overview of CSS writing-mode property and how to use it on a page'
 tags: ['html', 'css', 'textdirection', 'langauage', 'i18n']
 ---
 
-I stumbled upon an great article by [Adrian Roselli](https://www.linkedin.com/in/adrianroselli/) about CSS logical properties.
+I stumbled upon a great article by [Adrian Roselli](https://www.linkedin.com/in/adrianroselli/) about CSS logical properties.
 
 If you want to read a full article, please, follow the [link](https://adrianroselli.com/2019/11/css-logical-properties.html).
 
@@ -24,4 +24,4 @@ one should use this code:
 
 This way we secure text layout in case this text is rendered for RTL or TB languages.
 
-![example_001](./Example_001.png)
+![example_001](/img/html/css-logical-properties/Example_001.png)
