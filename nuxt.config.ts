@@ -8,7 +8,14 @@ export default defineNuxtConfig({
     devtools: { enabled: true },
     modules: [
         'nuxt-icon',
-        '@nuxt/content',
+        [
+            '@nuxt/content',
+            {
+                navigation: {
+                    fields: ['description', 'tags'],
+                },
+            },
+        ],
         [
             '@nuxtjs/color-mode',
             {

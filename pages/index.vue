@@ -14,23 +14,21 @@ function collect_articles(navitem: NavItem): NavItem[] {
     return result;
 }
 
-const navigation = await fetchContentNavigation()
+const navigation = await fetchContentNavigation();
 const articles = navigation.map((navitem) => collect_articles(navitem)).flat(1);
 </script>
 
 <template>
     <section class="the-page-main-content">
         <section class="the-page-main-content_section">
-            <ul>
-                <li
-                    v-for="post in articles"
-                    :key="post._path"
-                >
-                    <NuxtLink :to="post._path">
-                        {{ post.title }}
-                    </NuxtLink>
-                </li>
-            </ul>
+            <TheArticlePreview
+                v-for="post in articles"
+                :key="post._path"
+                :title="post.title"
+                :path="post._path"
+                :description="post.description"
+                :tags="post.tags"
+            />
         </section>
     </section>
 </template>
