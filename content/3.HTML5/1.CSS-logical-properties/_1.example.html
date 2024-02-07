@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+    <title>Writing-Mode usage</title>
+    <style>
+        .content {
+            border: 1px solid red;
+            max-height: 600px;
+            max-width: 600px;
+        }
+
+        .check-flow-content {
+            border: 1px solid green;
+            margin-inline-end: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content">
+        <div dir="ltr">
+            <div
+                class="check-flow-content"
+                style="writing-mode: vertical-lr; text-orientation: upright;"
+            >
+                top-to-bottom
+                <br>
+                left-to-right
+            </div>
+        </div>
+        <div dir="ltr">
+            <div class="check-flow-content">
+                this is a horizontal left-to-right
+                <br>
+                with margin on the right
+            </div>
+        </div>
+        <div dir="rtl">
+            <div class="check-flow-content">
+                this is a horizontal right-to-left
+                <br>
+                with margin on the left
+            </div>
+        </div>
+        <div dir="rtl">
+            <div
+                class="check-flow-content"
+                style="writing-mode: vertical-rl; text-orientation: upright;"
+            >
+                top-to-bottom
+                <br>
+                right-to-left
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
