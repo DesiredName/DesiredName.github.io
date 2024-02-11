@@ -24,7 +24,7 @@
 
 @include desktop {
     :root {
-        --var-content-width: max(500px, 800px);
+        --var-content-width: min(700px, 100vw);
     }
 }
 

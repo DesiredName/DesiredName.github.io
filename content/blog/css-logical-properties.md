@@ -2,6 +2,10 @@
 title: 'CSS Logical Properties'
 description: 'Overview of CSS writing-mode property and how to use it on a page'
 tags: ['html', 'css', 'textdirection', 'langauage', 'i18n']
+year: 2024
+month: 11
+day: 5
+order: 3
 ---
 
 I stumbled upon a great article by [Adrian Roselli](https://www.linkedin.com/in/adrianroselli/) about CSS logical properties.

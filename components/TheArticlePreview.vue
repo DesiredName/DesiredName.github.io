@@ -4,6 +4,7 @@ defineProps<{
     title: string;
     description: string;
     tags: string[];
+    date: string;
 }>();
 </script>
 
@@ -21,6 +22,12 @@ defineProps<{
                 class="font small"
             >
                 #{{ tag }}
+            </span>
+            <span
+                class="font normal"
+                style="float: right;"
+            >
+                {{ date }}
             </span>
         </footer>
     </NuxtLink>

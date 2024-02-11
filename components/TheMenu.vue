@@ -1,22 +1,21 @@
 <script lang="ts" setup></script>
 
 <template>
-  <ContentNavigation v-slot="{ navigation }">
-    <nav class="the-menu">
-      <ul class="the-menu_sections">
-        <NuxtLink
-          to="/"
-          class="the-menu_sections-item font normal light"
-        >Blog</NuxtLink>
-        <NuxtLink
-          v-for="link of navigation"
-          :key="link._path"
-          :to="link._path"
-          class="the-menu_sections-item font normal light"
-        >{{ link.title }}</NuxtLink>
-      </ul>
-    </nav>
-  </ContentNavigation>
+  <nav class="the-menu">
+    <ul class="the-menu_sections">
+      <NuxtLink
+        key="blog"
+        to="/blog"
+        class="the-menu_sections-item font normal light"
+        exact-active-class="a"
+      >Blog</NuxtLink>
+      <NuxtLink
+        key="about"
+        to="/about"
+        class="the-menu_sections-item font normal light"
+      >About</NuxtLink>
+    </ul>
+  </nav>
 </template>
 
 <style scoped></style>

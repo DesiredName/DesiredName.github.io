@@ -12,7 +12,15 @@ export default defineNuxtConfig({
             '@nuxt/content',
             {
                 navigation: {
-                    fields: ['description', 'tags'],
+                    fields: [
+                        'description',
+                        'tags',
+                        'date',
+                        'year',
+                        'month',
+                        'day',
+                        'order',
+                    ],
                 },
             },
         ],
@@ -35,5 +43,8 @@ export default defineNuxtConfig({
             },
         ],
     ],
+    routeRules: {
+        '**': { prerender: true },
+    },
     telemetry: true,
 });

@@ -1,7 +1,7 @@
 <template>
     <section class="the-page-main-content">
         <section class="the-page-main-content_section">
-            <ContentDoc />
+            About page
         </section>
     </section>
 </template>

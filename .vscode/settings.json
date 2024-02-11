@@ -3,5 +3,6 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.snippetSuggestions": "top",
     "html.format.wrapAttributes": "force-expand-multiline",
-    "emmet.showSuggestionsAsSnippets": true
+    "emmet.showSuggestionsAsSnippets": true,
+    "prettier.vueIndentScriptAndStyle": true
 }
