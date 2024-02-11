@@ -1,21 +1,21 @@
-.the-page-main-content {
+.the-page-section {
     display: flex;
     justify-content: center;
     padding-top: 12px;
 }
 
-.the-page-main-content_section {
+.the-page-section_content-box {
     width: var(--var-content-width);
 }
 
 @include light-mode {
-    .the-page-main-content_section {
+    .the-page-section_content-box {
         color: $dark;
     }
 }
 
 @include dark-mode {
-    .the-page-main-content_section {
+    .the-page-section_content-box {
         color: $lightest;
     }
 }

@@ -4,31 +4,31 @@ defineProps<{
     title: string;
     description: string;
     tags: string[];
-    date: string;
+    date: Date;
 }>();
 </script>
 
 <template>
     <NuxtLink
         :to="path"
-        class="the-article"
+        class="the-article-preview"
     >
-        <h3 class="the-article_title font big">{{ title }}</h3>
-        <p class="the-article_description font normal">{{ description }}</p>
-        <footer class="the-article_hashtags">
-            <span
-                v-for="tag in tags"
-                :key="tag"
-                class="font small"
-            >
-                #{{ tag }}
-            </span>
-            <span
-                class="font normal"
-                style="float: right;"
-            >
-                {{ date }}
-            </span>
+        <h3 class="the-article-preview_title font big">{{ title }}</h3>
+        <p class="the-article-preview_description font normal">{{ description }}</p>
+        <footer class="the-article-preview_footer">
+            <div class="the-artivle-preview_footer_hastags">
+                <span
+                    v-for="tag in tags"
+                    :key="tag"
+                    class="font small"
+                    style="margin-right: 10px;"
+                >
+                    #{{ tag }}
+                </span>
+            </div>
+            <div class="the-artivle-preview_footer_date">
+                <span class="font normal"> {{ date.toLocaleDateString() }}</span>
+            </div>
         </footer>
     </NuxtLink>
 </template>

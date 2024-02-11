@@ -1,6 +1,6 @@
 <template>
-    <section class="the-page-main-content">
-        <section class="the-page-main-content_section">
+    <section class="the-page-section">
+        <section class="the-page-section_content-box">
             About page
         </section>
     </section>

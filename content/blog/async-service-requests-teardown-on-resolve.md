@@ -8,4 +8,12 @@ day: 10
 order: 1
 ---
 
-# Working with pool of async requests, when only one response is needed
+::the-article{:year='year' :month='month' :day='day'}
+
+#header
+Working with pool of async requests, when only one response is needed
+
+#content
+This is content
+
+::

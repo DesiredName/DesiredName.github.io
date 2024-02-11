@@ -1,7 +1,8 @@
 <template>
-    <section class="the-page-main-content">
-        <section class="the-page-main-content_section">
-            <ContentDoc />
-        </section>
+    <section class="the-page-section">
+        <ContentDoc
+            tag="article"
+            class="the-page-section_content-box"
+        />
     </section>
 </template>

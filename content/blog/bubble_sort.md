@@ -5,7 +5,7 @@ tags: ['algorithm', 'bubble_sort', 'big_o']
 year: 2024
 month: 2
 day: 1
-order: 4
+order: 2
 ---
 
 # Bubble sort algorithm
