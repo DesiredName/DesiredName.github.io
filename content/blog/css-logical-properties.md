@@ -8,7 +8,13 @@ day: 5
 order: 3
 ---
 
-I stumbled upon a great article by [Adrian Roselli](https://www.linkedin.com/in/adrianroselli/) about CSS logical properties.
+::the-article{:year='year' :month='month' :day='day'}
+
+#header
+CSS Logical Properties
+
+#content
+I stumbled upon a great article by :the-article-link{:title='Adrian Roselli' :href='https://www.linkedin.com/in/adrianroselli'} about CSS logical properties.
 
 If you want to read a full article, please, follow the [link](https://adrianroselli.com/2019/11/css-logical-properties.html).
 
@@ -29,3 +35,5 @@ one should use this code:
 This way we secure text layout in case this text is rendered for RTL or TB languages.
 
 ![example_001](/img/html/css-logical-properties/Example_001.png)
+
+::

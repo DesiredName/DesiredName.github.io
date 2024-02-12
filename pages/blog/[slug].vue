@@ -1,8 +1,10 @@
 <template>
     <section class="the-page-section">
-        <ContentDoc
-            tag="article"
-            class="the-page-section_content-box"
-        />
+        <section class="the-page-section_content-box">
+            <ContentDoc
+                tag="article"
+                class="the-article"
+            />
+        </section>
     </section>
 </template>

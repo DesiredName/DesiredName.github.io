@@ -8,4 +8,9 @@ day: 1
 order: 2
 ---
 
-# Bubble sort algorithm
+::the-article{:year='year' :month='month' :day='day'}
+
+#header
+Bubble sort algorithm
+
+::
