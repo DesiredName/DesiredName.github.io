@@ -8,9 +8,6 @@ day: 1
 order: 2
 ---
 
-::the-article{:year='year' :month='month' :day='day'}
-
-#header
-Bubble sort algorithm
-
-::
+```js
+var a = 10;
+```

@@ -7,10 +7,11 @@
     border: none;
     box-sizing: border-box !important;
     color: #fff;
-    font-size: 16px;
-    font-weight: 100;
+    font-size: inherit;
+    font-weight: inherit;
     margin: 0;
     padding: 0;
+    text-decoration: none;
 }
 
 @supports selector(:focus-visible) {
@@ -28,7 +29,7 @@
     }
 }
 
-@supports selector(:focus-visible) {
+@supports not selector(:focus-visible) {
     *:focus {
         outline: 1px solid #f00;
     }

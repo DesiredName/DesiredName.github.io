@@ -8,6 +8,27 @@
     width: var(--var-content-width);
 }
 
+@include mobile_and_tablet {
+    .the-page-section_content-box {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+}
+
+@include desktop {
+    .the-page-section_content-box {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
+@include high_res {
+    .the-page-section_content-box {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
 @include light-mode {
     .the-page-section_content-box {
         color: $dark;

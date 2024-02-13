@@ -7,7 +7,7 @@ defineProps<{
 
 <template>
     <a
-        class="the-article-link outstand font normal"
+        class="the-article-link font normal"
         :href="href"
     >
         {{ title }}

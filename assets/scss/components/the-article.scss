@@ -34,17 +34,3 @@
         margin-top: 32px;
     }
 }
-
-@include light-mode {
-    .the-article,
-    .the-article * {
-        color: $darkest;
-    }
-}
-
-@include dark-mode {
-    .the-article,
-    .the-article * {
-        color: $lightest;
-    }
-}

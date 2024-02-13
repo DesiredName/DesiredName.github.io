@@ -22,6 +22,10 @@ export default defineNuxtConfig({
                         'order',
                     ],
                 },
+                highlight: {
+                    theme: 'github-light',
+                    preload: ['js'],
+                },
             },
         ],
         [

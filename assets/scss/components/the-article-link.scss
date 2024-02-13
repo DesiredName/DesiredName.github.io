@@ -1,6 +1,23 @@
-.the-article-link {
+.the-article-link.outstand {
+    text-decoration: underline;
 }
 
-.the-article-link.outstand {
-    background-color: red;
+@include light-mode {
+    .the-article-link {
+        color: $dark;
+    }
+
+    .the-article-link.outstand {
+        color: $darkest;
+    }
+}
+
+@include dark-mode {
+    .the-article-link {
+        color: $light;
+    }
+
+    .the-article-link.outstand {
+        color: $lightest;
+    }
 }

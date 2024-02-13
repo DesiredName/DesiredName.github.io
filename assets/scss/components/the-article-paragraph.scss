@@ -1,0 +1,50 @@
+.the-article-paragraph {
+    text-align: justify;
+}
+
+@include mobile_and_tablet {
+    .the-article-paragraph {
+        line-height: 20px;
+        margin-bottom: 8px;
+    }
+}
+
+@include desktop {
+    .the-article-paragraph {
+        line-height: 26px;
+        margin-bottom: 16px;
+    }
+}
+
+@include high_res {
+    .the-article-paragraph {
+        line-height: 32px;
+        margin-bottom: 20px;
+    }
+}
+
+@include light-mode {
+    .the-article,
+    .the-article * {
+        color: $darkest;
+    }
+}
+
+@include dark-mode {
+    .the-article,
+    .the-article * {
+        color: $lightest;
+    }
+}
+
+@include light-mode {
+    .the-article-paragraph {
+        color: $dark;
+    }
+}
+
+@include dark-mode {
+    .the-article-paragraph {
+        color: $light;
+    }
+}
