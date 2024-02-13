@@ -5,7 +5,7 @@ export default defineNuxtConfig({
         rootTag: 'main',
     },
     css: ['./assets/scss/index.scss'],
-    devtools: { enabled: true },
+    devtools: { enabled: false },
     modules: [
         'nuxt-icon',
         [
@@ -23,8 +23,12 @@ export default defineNuxtConfig({
                     ],
                 },
                 highlight: {
-                    theme: 'github-light',
-                    preload: ['js'],
+                    theme: {
+                        default: 'github-light',
+                        dark: 'github-dark',
+                        light: 'github-light',
+                    },
+                    langs: ['js', 'css'],
                 },
             },
         ],
@@ -40,15 +44,12 @@ export default defineNuxtConfig({
             {
                 display: 'swap',
                 families: {
-                    Roboto: { wght: [100, 300, 700] },
+                    'Roboto Slab': { wght: [100, 300, 700] },
                 },
                 preload: true,
                 useStylesheet: true,
             },
         ],
     ],
-    routeRules: {
-        '**': { prerender: true },
-    },
     telemetry: true,
 });

@@ -24,20 +24,6 @@
 }
 
 @include light-mode {
-    .the-article,
-    .the-article * {
-        color: $darkest;
-    }
-}
-
-@include dark-mode {
-    .the-article,
-    .the-article * {
-        color: $lightest;
-    }
-}
-
-@include light-mode {
     .the-article-paragraph {
         color: $dark;
     }

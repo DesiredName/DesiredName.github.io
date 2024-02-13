@@ -9,5 +9,11 @@ order: 2
 ---
 
 ```js
-var a = 10;
+var a = 1;
+```
+
+```css
+.some-var {
+    display: block;
+}
 ```

@@ -23,20 +23,12 @@
 
 @include light-mode {
     .the-article-code {
-        background-color: $darkest;
-    }
-
-    .the-article-code code {
-        color: $lightest;
+        background-color: $dark;
     }
 }
 
 @include dark-mode {
     .the-article-code {
-        background-color: $lightest;
-    }
-
-    .the-article-code code {
-        color: $darkest;
+        background-color: $light;
     }
 }

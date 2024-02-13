@@ -41,15 +41,15 @@ For example, instead of writing the following CSS to add the margin on the left 
 
 one should use this code:
 
-```js
-var a = 10;
-```
+::::the-article-code
 
 ```css
 .some-class {
     margin-inline-end: 20px;
 }
 ```
+
+::::
 
 :::
 
