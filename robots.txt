@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /.vscode/
+Disallow: /assets/
+Disallow: /components/
+Sitemap: https://desiredname.github.io/sitemap.xml

@@ -4,5 +4,8 @@
     "editor.snippetSuggestions": "top",
     "html.format.wrapAttributes": "force-expand-multiline",
     "emmet.showSuggestionsAsSnippets": true,
-    "prettier.vueIndentScriptAndStyle": true
+    "prettier.vueIndentScriptAndStyle": true,
+    "[robots-txt]": {
+        "editor.defaultFormatter": "darian-benam.vscode-robots-dot-txt-support"
+    }
 }
