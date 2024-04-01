@@ -76,6 +76,10 @@
         width: 100vw;
     }
 
+    .layout .title {
+        padding: 2rem 0 1rem;
+    }
+
     .layout .title .main::after {
         display: none;
     }

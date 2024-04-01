@@ -11,6 +11,12 @@
     will-change: background-color, color;
 }
 
+@media screen and (max-width: 720px) {
+    .the-post {
+        padding: 1rem 0 1rem;
+    }
+}
+
 .the-post:hover {
     background-color: var(--bright);
     color: var(--dark);
