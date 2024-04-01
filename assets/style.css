@@ -58,12 +58,20 @@
     justify-content: center;
 }
 
+.layout .title .links .icon {
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    height: 2rem;
+    width: 2rem;
+}
+
 .layout .title .links .icon:not(:last-child) {
-    margin-right: 0.5rem;
+    margin-right: 1rem;
 }
 
 .layout .title .links .icon img {
-    height: 1.4rem;
+    width: 1.4rem;
 }
 
 .layout .content .article {
@@ -73,19 +81,21 @@
 @media screen and (max-width: 720px) {
     .layout {
         margin: 0;
+        padding: 0;
         width: 100vw;
     }
 
-    .layout .title {
-        padding: 2rem 0 1rem;
-    }
-
+    .layout .title .main,
     .layout .title .main::after {
-        display: none;
+        font-size: 1.4rem;
     }
 }
 
 @media screen and (max-width: 400px) {
+    .layout {
+        min-width: 360px;
+    }
+
     .layout .title .main {
         font-size: 1.4rem;
     }

@@ -18,6 +18,10 @@
     ></script>
 
     <!-- SEO -->
+    <link
+        rel="canonical"
+        href="https://desiredname.github.io/"
+    />
     <meta
         name="description"
         content="DesiredName blog, written by senior web developer with expertise in Vue.js/NUXT, JavaScript/TypeScript. Solid knowledge of how to build, integrate and deliver web services. Profound knowledge of application refactoring, UX improvement. Proven ability to lead and mentor junior developers."
@@ -42,6 +46,11 @@
         property="og:url"
         content="https://www.linkedin.com/in/anton-krasnov-in-prague/"
     />
+
+    <meta
+        http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self';"
+    />
 </head>
 
 <body class="layout">
@@ -51,24 +60,39 @@
             <a
                 class="icon"
                 href="https://leetcode.com/DesiredName/"
+                aria-label="link to leetcode profile"
             >
-                <img src="/assets/leetcode.png">
+                <img
+                    src="/assets/leetcode.png"
+                    alt="LeetCode profile"
+                >
             </a>
             <a
                 class="icon"
                 href="https://www.linkedin.com/in/anton-krasnov-in-prague/"
+                aria-label="link to linkedin profile"
             >
-                <img src="/assets/LI-In-Bug.png">
+                <img
+                    src="/assets/LI-In-Bug.png"
+                    alt="LinkedIn profile"
+                >
             </a>
             <a
                 class="icon"
                 href="https://github.com/DesiredName"
+                aria-label="link to github profile"
             >
-                <img src="/assets/github-mark-white.svg">
+                <img
+                    src="/assets/github-mark-white.svg"
+                    alt="GitHub profile"
+                >
             </a>
         </div>
     </h1>
-    <section class="content">
+    <section
+        class="content"
+        aria-label="list of blog posts"
+    >
         <the-post
             title="AI Basics: The Perceptron"
             description="Perceptron is the power of basic classification"
@@ -83,7 +107,7 @@
         ></the-post>
         <the-post
             title="JS Powers: no AXIOS defined"
-            description="If you wish to create a pure-JS networking middleware, just use <code>fetch</code>"
+            description="If you wish to create a pure-JS networking middleware, just use fetch"
             github-link="https://github.com/DesiredName/no-axios-defined"
             demo-link="/demo/no-axios-defined/index.html"
         ></the-post>

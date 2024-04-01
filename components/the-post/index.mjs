@@ -12,14 +12,18 @@ class ThePost extends HTMLElement {
         const el_content = document.createElement('div');
         el_content.className = 'the-post';
 
+        const title = this.getAttribute('title');
         const el_title = document.createElement('div');
         el_title.className = 'title';
-        el_title.textContent = this.getAttribute('title');
+        el_title.textContent = title;
+        el_content.setAttribute('aria-label', `demo example for ${title} post`);
         el_content.appendChild(el_title);
 
+        const description = this.getAttribute('description');
         const el_description = document.createElement('div');
         el_description.className = 'description';
-        el_description.innerHTML = this.getAttribute('description');
+        el_description.textContent = description;
+        el_content.setAttribute('aria-label', description);
         el_content.appendChild(el_description);
 
         const el_links_block = document.createElement('div');
@@ -30,6 +34,8 @@ class ThePost extends HTMLElement {
         if (github_link != null) {
             const el_github_link = document.createElement('a');
             el_github_link.className = 'github-link';
+            el_github_link.setAttribute('alt', 'GitHub project source');
+            el_github_link.setAttribute('aria-label', 'GitHub project source');
             el_github_link.href = el_github_link.target = '_blank';
             el_links_block.appendChild(el_github_link);
         }
