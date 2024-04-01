@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+    <title>
+        Perceptron
+    </title>
+    <link
+        rel="stylesheet"
+        href="./src/common.css"
+    >
+    <link
+        rel="stylesheet"
+        href="./src/style.css"
+    >
+</head>
+
+<body>
+    <div class="container">
+        <h2 class="title">AI basics: perceptron powers</h2>
+        <div class="canvas-container">
+            <canvas
+                id="canvas"
+                width="400"
+                height="400"
+            >Your browser does not support canvas</canvas>
+            <div
+                id="error"
+                class="input-form"
+            > Perceptron failed to classify some data
+                because of clustered data overlapping.
+
+                Reset data and repeat learning.
+            </div>
+        </div>
+        <br>
+        <div class="input-form">
+            <label for="n">Learn rate:
+                <input
+                    id="n"
+                    class="learning-rate"
+                    type="number"
+                    title="perceptron learning rate"
+                    step="0.001"
+                />
+            </label>
+        </div>
+        <br>
+        <div class="input-form">
+            <label for="learn">Learn<input
+                    id="learn"
+                    type="radio"
+                    name="input_mode"
+                    value="learn"
+                /></label>
+            <label for="classify">Classify<input
+                    id="classify"
+                    type="radio"
+                    name="input_mode"
+                    value="classify"
+                /></label>
+        </div>
+        <br>
+        <div class="input-form">
+            <label for="soldier">Soldier<input
+                    id="soldier"
+                    type="radio"
+                    name="marker_type"
+                    value="soldier"
+                /></label>
+            <label for="zombie">Zombie<input
+                    id="zombie"
+                    type="radio"
+                    name="marker_type"
+                    value="zombie"
+                /></label>
+        </div>
+        <br>
+        <br>
+        <div class="input-form buttons">
+            <button
+                id="reset"
+                class="button"
+            >Reset data</button>
+        </div>
+    </div>
+
+    <script type="module">
+        import Perceptron from './src/perceptron.mjs';
+        import DrawHelperFunctions from './src/draw.mjs';
+        import CoordSystemsHelper from './src/coord_systems.mjs';
+        import UIHelperFunctions from './src/ui.mjs';
+
+        const canvas = document.getElementById("canvas");
+        const coordinates = CoordSystemsHelper(canvas);
+        const drawtools = DrawHelperFunctions(canvas);
+
+        UIHelperFunctions({
+            canvas,
+            coordinates,
+            drawtools,
+            perceptron: new Perceptron()
+        }).init();
+    </script>
+</body>
+
+</html>

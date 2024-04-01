@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+    <title>Supercharged modals</title>
+    <link
+        rel="stylesheet"
+        href="./assets/style.css"
+    >
+</head>
+
+<body>
+    <article class="container">
+        <h3 class="title">JS superpowers - dialogs made easy 🔥</h3>
+
+        <div class="content">
+            Thanks for the sematic <h3>&lt;dialog&gt;</h3> element, we can create real modals without the CSS
+        </div>
+
+        <dialog
+            id="dialog"
+            class="dialog"
+        >
+            This is the dialog. Not modal though. You can click-through it.
+            <br>
+            <br>
+            <button
+                id="dismiss"
+                onclick="handle_close_dialog()"
+            >dismiss</button>
+        </dialog>
+
+        <dialog
+            id="dialog-modal"
+            class="dialog modal"
+        >
+            This is the modal dialog. It has a backdrop, that prevents click-through. Hooray!
+            <br>
+            <br>
+            <button
+                id="dismiss"
+                onclick="handle_close_dialog_modal()"
+            >close it</button>
+        </dialog>
+
+        <dialog
+            id="dialog-modal-with-return"
+            class="dialog modal"
+            onclose="handle_modal_with_return_closed(event)"
+        >
+            Modal can be closed with a return value also! Useful!
+            <br>
+            <br>
+            <button
+                id="dismiss"
+                onclick="handle_close_dialog_modal_with_return()"
+            >close and return some data</button>
+        </dialog>
+
+
+        <section class="buttons">
+            <button
+                type="button"
+                class="button"
+                onclick="handle_open_dialog()"
+            >
+                Show dialog
+            </button>
+
+            <button
+                type="button"
+                class="button"
+                onclick="handle_open_dialog_modal()"
+            >
+                Show modal dialog
+            </button>
+
+            <button
+                type="button"
+                class="button"
+                onclick="handle_open_dialog_modal_with_return()"
+            >
+                Modal dialog can return a value on close
+            </button>
+        </section>
+    </article>
+
+    <script>
+        const dialog = document.getElementById('dialog');
+        const dialog_modal = document.getElementById('dialog-modal');
+        const dialog_modal_with_return = document.getElementById('dialog-modal-with-return');
+
+        function handle_open_dialog() {
+            dialog.show();
+        }
+
+        function handle_close_dialog() {
+            dialog.close();
+        }
+
+        function handle_open_dialog_modal() {
+            dialog_modal.showModal();
+        }
+
+        function handle_close_dialog_modal() {
+            dialog_modal.close();
+        }
+
+        function handle_modal_with_return_closed(e) {
+            const value = JSON.stringify(e.target.returnValue);
+
+            alert(value);
+        }
+
+        function handle_open_dialog_modal_with_return() {
+            dialog_modal_with_return.showModal();
+        }
+
+        function handle_close_dialog_modal_with_return() {
+            dialog_modal_with_return.close(JSON.stringify({
+                "this": 'JSON',
+                'was': 'returned',
+                'from': ['modal', 'dialog']
+            }));
+        }
+    </script>
+</body>
+
+</html>

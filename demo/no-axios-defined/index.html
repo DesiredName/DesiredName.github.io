@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+    <title>No AXIOS defined</title>
+    <link
+        rel="stylesheet"
+        href="./assets/style.css"
+    >
+</head>
+
+<body>
+    <article class="container">
+        <h3 class="title">JS superpowers - no AXIOS defined ♥️</h3>
+
+        <div class="content">
+            No need to use AXIOS or any other library to define
+            &gt;&gt; GLOBAL &lt;&lt;
+            hooks, middleware or loggers for network requests!
+        </div>
+
+        <section class="buttons">
+            <button
+                type="button"
+                class="button"
+                onclick="handle_middleware_usage('./assets/textfile.txt')"
+            >
+                Text file
+            </button>
+
+            <button
+                type="button"
+                class="button"
+                onclick="handle_middleware_usage('./assets/jsonfile.json')"
+            >
+                JSON file
+            </button>
+
+            <button
+                type="button"
+                class="button"
+                onclick="handle_middleware_usage('./assets/gifimage.gif')"
+            >
+                GIF file
+                <a
+                    href="https://opengameart.org/content/1-bit-doomsphere-charset"
+                    class="link"
+                    target="_blank"
+                    onclick="event.stopPropagation()"
+                >image credits</a>
+            </button>
+
+            <button
+                type="button"
+                class="button"
+                onclick="handle_middleware_usage_prevent()"
+            >
+                Prevent request
+            </button>
+
+            <button
+                type="button"
+                class="button"
+                onclick="handle_middleware_usage_log_before()"
+            >
+                Log before request (see console output)
+            </button>
+
+            <button
+                type="button"
+                class="button"
+                onclick="handle_middleware_usage_log_after()"
+            >
+                Log after request (see console output)
+            </button>
+        </section>
+    </article>
+
+    <script>
+        const origin = fetch;
+
+        fetch = async (resource, options) => {
+            console.log("I'm a middleware", resource, options);
+
+            if (options?.method === 'POST') {
+                if (resource.includes('to_prevent')) {
+                    throw 'This route was blocked by middleware'
+                }
+
+                if (resource.includes('to_log_before')) {
+                    alert('This route was logged before submission\n\nheaders:\n' + JSON.stringify(options.headers));
+                    console.dir(resource, options);
+                }
+            }
+
+            const result = await origin(resource, options);
+
+            if (options?.method === 'POST') {
+                if (resource.includes('to_log_after')) {
+                    alert('This route was logged after submission\n\nheaders:\n' + JSON.stringify(options.headers));
+                    console.dir(resource, options);
+                }
+            }
+
+            return result;
+        }
+
+        function handle_middleware_usage(url) {
+            fetch(url)
+                .then((res) => {
+                    if (res.ok !== true) throw 'Request failed';
+
+                    const type = res.headers.get('Content-Type')?.toLowerCase();
+
+                    if (type.includes('application/json')) {
+                        return res.blob().then((blob) => save(blob, 'json-file.json'));
+                    } else if (type.includes('text/html')) {
+                        return res.blob().then((blob) => save(blob, 'text-file.txt'));
+                    } else {
+                        return res.blob().then((blob) => save(blob, 'text-file.json'));
+                    }
+                })
+                .catch((ex) => {
+                    console.dir(ex);
+                    console.log('Something went wrong!');
+                });
+        }
+
+        function handle_middleware_usage_prevent() {
+            fetch('./assets/to_prevent', {
+                method: 'POST'
+            }).catch((ex) => {
+                alert(ex);
+            });
+        }
+
+        function handle_middleware_usage_log_before() {
+            fetch('./assets/to_log_before', {
+                method: 'POST',
+                headers: {
+                    'X-Logged-Request': 'this request was logged before submission'
+                }
+            }).catch((ex) => {
+                // ignore
+            });
+        }
+
+        function handle_middleware_usage_log_after() {
+            fetch('./assets/to_log_after', {
+                method: 'POST',
+                headers: {
+                    'X-Logged-Request': 'this request was logged after submission'
+                }
+            }).catch((ex) => {
+                // ignore
+            });
+        }
+
+        function save(blob, filename) {
+            const a = document.createElement('a');
+
+            a.href = URL.createObjectURL(blob);
+            a.setAttribute('download', filename);
+            a.onclick = ({ target: { href } }) => {
+                setTimeout(function () {
+                    URL.revokeObjectURL(href);
+                }, 1500);
+            };
+            a.click();
+            a.remove();
+        }
+    </script>
+</body>
+
+</html>

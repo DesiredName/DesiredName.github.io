@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+    <title>DesireName: Blog</title>
+    <link
+        rel="stylesheet"
+        href="/assets/style.css"
+    >
+    <script
+        type="module"
+        src="/components/the-post/index.mjs"
+    ></script>
+</head>
+
+<body class="layout">
+    <h1 class="title">
+        DesiredName
+        <div class="links">
+            <a
+                class="icon"
+                href="https://www.linkedin.com/in/anton-krasnov-in-prague/"
+            >
+                <img src="/assets/LI-In-Bug.png">
+            </a>
+            <a
+                class="icon"
+                href="https://github.com/DesiredName"
+            >
+                <img src="/assets/github-mark-white.svg">
+            </a>
+        </div>
+    </h1>
+    <section class="content">
+        <the-post
+            title="AI Basics: The Perceptron"
+            description="Perceptron is the power of basic classification"
+            github-link="https://github.com/DesiredName/perceptron"
+            demo-link="/demo/perceptron/index.html"
+        ></the-post>
+        <the-post
+            title="JS Powers: no creepy CSS-modals"
+            description="From 2022 we don't need CSS or JS to build bulletproof modals"
+            github-link="https://github.com/DesiredName/modal-made-easy"
+            demo-link="/demo/modal-made-easy/index.html"
+        ></the-post>
+        <the-post
+            title="JS Powers: no AXIOS defined"
+            description="If you wish to create a pure-JS networking middleware, just use <code>fetch</code>"
+            github-link="https://github.com/DesiredName/no-axios-defined"
+            demo-link="/demo/no-axios-defined/index.html"
+        ></the-post>
+    </section>
+</body>
+
+</html>

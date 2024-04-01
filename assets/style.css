@@ -1,0 +1,70 @@
+*,
+*::after,
+*::before {
+    --dark: #222;
+    --bright: #ccc;
+    --brownish: #a17d7d66;
+    --vine: rgba(224, 52, 52, 0.74);
+
+    font-family: monospace;
+    font-size: 1rem;
+    font-weight: normal;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    background-color: var(--dark);
+    color: var(--bright);
+}
+
+.layout {
+    border: none;
+    display: flex;
+    flex-flow: column;
+    height: 100dvh;
+    margin: 0 auto;
+    padding: 0 1rem;
+    width: 720px;
+}
+
+@media screen and (max-width: 720px) {
+    .layout {
+        margin: 0;
+        width: 100vw;
+    }
+}
+
+.layout .title {
+    background-color: var(--dark);
+    border-bottom: 1px solid var(--bright);
+    display: flex;
+    font-size: 2rem;
+    font-weight: bold;
+    justify-content: space-between;
+    height: 80px;
+    position: sticky;
+    padding: 2rem 1rem 1rem;
+    text-align: left;
+    top: 0;
+}
+
+.layout .title .links {
+    align-items: center;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+}
+
+.layout .title .links .icon:not(:last-child) {
+    margin-right: 0.5rem;
+}
+
+.layout .title .links .icon img {
+    height: 1.4rem;
+}
+
+.layout .content .article {
+    padding: 2rem 1rem;
+}

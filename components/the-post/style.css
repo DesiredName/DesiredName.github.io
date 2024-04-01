@@ -1,0 +1,54 @@
+.the-post {
+    border-radius: 1rem;
+    cursor: pointer;
+    display: grid;
+    grid-template-areas: 'date . links' 'title . links' 'description . links';
+    grid-template-columns: 1fr auto auto;
+    margin-top: 1rem;
+    padding: 1rem;
+    transition-property: background-color, color;
+    transition-duration: 300ms;
+    will-change: background-color, color;
+}
+
+.the-post:hover {
+    background-color: var(--bright);
+    color: var(--dark);
+}
+
+.the-post .title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    grid-area: title;
+}
+
+.the-post .description {
+    font-size: 0.8rem;
+    font-weight: normal;
+    grid-area: description;
+    padding-top: 0.8rem;
+}
+
+.the-post .links-block {
+    align-items: center;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    grid-area: links;
+}
+
+.the-post .links-block .github-link {
+    background-image: url('/assets/github-mark-white.svg');
+    background-size: contain;
+    background-color: transparent;
+    display: block;
+    grid-area: links;
+    height: 2rem;
+    transition-duration: 300ms;
+    transition-property: transform;
+    width: 2rem;
+}
+
+.the-post .links-block .github-link:hover {
+    transform: scale(1.3);
+}

@@ -1,0 +1,53 @@
+.container {
+    & .canvas-container {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        position: relative;
+    }
+
+    & #canvas {
+        border: 1px solid var(--bright);
+        height: 400px;
+        margin: 2rem 0 2rem;
+        width: 400px;
+    }
+
+    & #error {
+        background-color: var(--bright);
+        border-radius: 10px;
+        color: var(--vine);
+        display: none;
+        padding: 1rem;
+        position: absolute;
+        visibility: hidden;
+        white-space: pre-line;
+    }
+
+    & #error.active {
+        display: block;
+        visibility: visible;
+    }
+}
+
+.input-form label,
+.input-form input {
+    user-select: none;
+}
+
+.input-form label:not(:last-child) {
+    margin-right: 2rem;
+}
+
+.input-form input {
+    margin-left: 1rem;
+}
+
+.input-form input.learning-rate {
+    background-color: transparent;
+    border: 1px solid;
+    border-radius: 5px;
+    color: var(--bright);
+    padding: 0.2rem;
+    width: 85px;
+}
