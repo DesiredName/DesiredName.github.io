@@ -1,12 +1,3 @@
-.container {
-    & .buttons .button {
-        & .link {
-            color: var(--bright);
-            font-style: italic;
-        }
-    }
-}
-
 .dialog {
     background-color: var(--dark);
     border-radius: 1rem;

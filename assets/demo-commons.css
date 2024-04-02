@@ -54,7 +54,7 @@ body {
 
     & .buttons.has-counter .button::before {
         counter-increment: option 1;
-        content: counter(option);
+        content: counter(option) '.';
     }
 
     & .buttons .button {
