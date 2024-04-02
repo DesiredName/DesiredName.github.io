@@ -70,7 +70,18 @@
 
 <body>
     <div class="container">
+        <div class="return-button">
+            <img
+                alt="close demo button"
+                src="/assets/close.svg"
+                height="32"
+                width="32"
+                onclick="(() => history.back())()"
+            />
+        </div>
+
         <h2 class="title">AI basics: perceptron powers</h2>
+
         <div class="canvas-container">
             <canvas
                 id="canvas"

@@ -50,7 +50,7 @@ class ThePost extends HTMLElement {
         shadow.appendChild(el_content);
 
         this.onclick = () =>
-            window.open(this.getAttribute('demo-link'), '_blank');
+            window.open(this.getAttribute('demo-link'), '_self');
     }
 }
 

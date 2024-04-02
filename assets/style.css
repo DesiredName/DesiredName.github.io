@@ -1,11 +1,8 @@
+@import url('/assets/colors.css');
+
 *,
 *::after,
 *::before {
-    --dark: #222;
-    --bright: #ccc;
-    --brownish: #a17d7d66;
-    --vine: rgba(224, 52, 52, 0.74);
-
     font-family: monospace;
     font-size: 1rem;
     font-weight: normal;
