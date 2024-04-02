@@ -23,6 +23,11 @@ body {
     width: 100vw;
 }
 
+.return-button-container {
+    padding: 3rem 3rem 0;
+    text-align: right;
+}
+
 .container {
     border: none;
     border-radius: 10px;
@@ -78,5 +83,28 @@ body {
             background-color: rgba(161, 125, 125, 0.4);
             cursor: not-allowed;
         }
+    }
+}
+
+@media screen and (max-width: 720px) {
+    .return-button-container {
+        padding: 1rem 1rem 0;
+    }
+
+    .container {
+        box-shadow: none;
+        padding: 0;
+
+        & .title {
+            font-size: 1.2rem;
+        }
+    }
+}
+
+@media screen and (max-width: 440px) {
+    .container {
+        box-shadow: none;
+        padding: 0;
+        width: 100%;
     }
 }

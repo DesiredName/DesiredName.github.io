@@ -3,10 +3,9 @@
     background-color: var(--vine);
     border-radius: 2rem;
     cursor: pointer;
-    display: flex;
+    display: inline-flex;
     justify-content: center;
     height: 2rem;
-    position: fixed;
     right: 2rem;
     top: 2rem;
     width: 2rem;
