@@ -5,6 +5,8 @@
 *::before {
     font-family: monospace;
     font-size: 1rem;
+    font-weight: normal;
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
@@ -99,7 +101,8 @@ body {
     .container {
         box-shadow: none;
         margin-top: 2rem;
-        padding: 0;
+        padding: 0 1rem;
+        width: 100vw;
 
         & .title {
             font-size: 1.2rem;
@@ -109,8 +112,6 @@ body {
 
 @media screen and (max-width: 440px) {
     .container {
-        box-shadow: none;
-        padding: 0;
-        width: 100%;
+        min-width: 360px;
     }
 }
