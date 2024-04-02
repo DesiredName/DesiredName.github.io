@@ -36,6 +36,8 @@ class ThePost extends HTMLElement {
             el_github_link.className = 'github-link';
             el_github_link.setAttribute('alt', 'GitHub project source');
             el_github_link.setAttribute('aria-label', 'GitHub project source');
+            el_github_link.setAttribute('height', '32');
+            el_github_link.setAttribute('width', '32');
             el_github_link.href = el_github_link.target = '_blank';
             el_links_block.appendChild(el_github_link);
         }

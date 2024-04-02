@@ -2,20 +2,29 @@
 <html lang="en">
 
 <head>
+    <title>DesiredName: The Blog</title>
+
     <meta charset="UTF-8">
     <meta
         name="viewport"
         content="width=device-width, initial-scale=1.0"
     >
-    <title>DesiredName: The Blog</title>
     <link
         rel="stylesheet"
         href="/assets/style.css"
     >
+
+    <!-- Scripts -->
     <script
         type="module"
         src="/components/the-post/index.mjs"
     ></script>
+
+    <!-- Security -->
+    <meta
+        http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self';"
+    />
 
     <!-- SEO -->
     <link
@@ -24,19 +33,34 @@
     />
     <meta
         name="description"
-        content="DesiredName blog, written by senior web developer with expertise in Vue.js/NUXT, JavaScript/TypeScript. Solid knowledge of how to build, integrate and deliver web services. Profound knowledge of application refactoring, UX improvement. Proven ability to lead and mentor junior developers."
+        content="DesiredName IT Blog by Krasnov Anton"
     >
     <meta
         name="keywords"
-        content="HTML, CSS, JavaScript, Typescript, PWA, Power Web Applications, ServiceWorker, Worker API, Architecutre, Patterns, TIps'n'Triks, Open Web technologies"
+        content="HTML, CSS, JavaScript, Typescript, PWA, Power Web Applications,
+        ServiceWorker, Worker API, Architecutre, Patterns, Tips'n'Triks, Open Web technologies,
+        LLM, AI, Artificial Intelligence, Data Analytics, Data Structures, Machine Learning,
+        Programming, Developer, UI, ECMAScript, ESNEXT, NodeJS, ExpressJS, NextJS, NUXT, VusJE"
+    >
+    <meta
+        name="robots"
+        content="index, follow"
     >
     <meta
         name="author"
         content="Krasnov Anton"
     >
     <meta
+        name="creator"
+        content="Krasnov Anton"
+    >
+    <meta
+        property="og:locale"
+        content="en_US"
+    >
+    <meta
         property="og:title"
-        content="DesiredName IT Blog by Krasnov Anton"
+        content="DesiredName by Krasnov Anton"
     />
     <meta
         property="og:type"
@@ -45,11 +69,6 @@
     <meta
         property="og:url"
         content="https://www.linkedin.com/in/anton-krasnov-in-prague/"
-    />
-
-    <meta
-        http-equiv="Content-Security-Policy"
-        content="default-src 'self'; script-src 'self';"
     />
 </head>
 
@@ -63,8 +82,10 @@
                 aria-label="link to leetcode profile"
             >
                 <img
-                    src="/assets/leetcode.png"
                     alt="LeetCode profile"
+                    src="/assets/leetcode.png"
+                    width="23"
+                    height="27"
                 >
             </a>
             <a
@@ -73,8 +94,10 @@
                 aria-label="link to linkedin profile"
             >
                 <img
-                    src="/assets/LI-In-Bug.png"
                     alt="LinkedIn profile"
+                    src="/assets/LI-In-Bug.png"
+                    width="23"
+                    height="20"
                 >
             </a>
             <a
@@ -83,8 +106,10 @@
                 aria-label="link to github profile"
             >
                 <img
-                    src="/assets/github-mark-white.svg"
                     alt="GitHub profile"
+                    src="/assets/github-mark-white.svg"
+                    width="23"
+                    height="22"
                 >
             </a>
         </div>
