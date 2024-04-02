@@ -61,6 +61,11 @@ body {
         content: counter(option) '.';
     }
 
+    & .buttons.inline {
+        flex-flow: row nowrap;
+        justify-content: space-around;
+    }
+
     & .buttons .button {
         background-color: transparent;
         border: none;
@@ -93,6 +98,7 @@ body {
 
     .container {
         box-shadow: none;
+        margin-top: 2rem;
         padding: 0;
 
         & .title {

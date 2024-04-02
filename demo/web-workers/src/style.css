@@ -1,0 +1,25 @@
+.container {
+    & .counter {
+        padding: 2rem 0 2rem;
+
+        & .animation {
+            color: #3a3;
+            font-size: 3rem;
+        }
+
+        & .hint {
+            font-size: 0.7rem;
+        }
+    }
+}
+
+.footer {
+    bottom: 4rem;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+
+    & a {
+        color: #ccc;
+    }
+}
