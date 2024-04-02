@@ -7,7 +7,7 @@ class ThePost extends HTMLElement {
     }
 
     connectedCallback() {
-        const shadow = this.attachShadow({ mode: 'open' });
+        const shadow = this.attachShadow({ mode: 'closed' });
 
         const el_content = document.createElement('div');
         el_content.className = 'the-post';
@@ -51,8 +51,10 @@ class ThePost extends HTMLElement {
         shadow.appendChild(el_style);
         shadow.appendChild(el_content);
 
-        this.onclick = () =>
+        this.onclick = (e) => {
+            e.stopPropagation();
             window.open(this.getAttribute('demo-link'), '_self');
+        };
     }
 }
 

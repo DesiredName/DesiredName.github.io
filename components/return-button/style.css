@@ -1,0 +1,22 @@
+.return-button {
+    align-items: center;
+    background-color: var(--vine);
+    border-radius: 2rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    height: 2rem;
+    position: fixed;
+    right: 2rem;
+    top: 2rem;
+    width: 2rem;
+}
+
+.return-button>img {
+    height: 2rem;
+    width: 2rem;
+}
+
+.return-button:hover {
+    background-color: var(--bright);
+}

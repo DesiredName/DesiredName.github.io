@@ -17,6 +17,10 @@
         rel="stylesheet"
         href="./assets/style.css"
     >
+    <script
+        type="module"
+        src="/components/return-button/index.mjs"
+    ></script>
 
     <!-- Security -->
     <meta
@@ -71,15 +75,7 @@
 
 <body>
     <article class="container">
-        <div class="return-button">
-            <img
-                alt="close demo button"
-                src="/assets/close.svg"
-                height="32"
-                width="32"
-                onclick="(() => history.back())()"
-            />
-        </div>
+        <return-button></return-button>
 
         <h3 class="title">JS superpowers - no AXIOS defined ♥️</h3>
 

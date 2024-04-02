@@ -17,6 +17,10 @@
         rel="stylesheet"
         href="./src/style.css"
     >
+    <script
+        type="module"
+        src="/components/return-button/index.mjs"
+    ></script>
 
     <!-- Security -->
     <meta
@@ -70,15 +74,7 @@
 
 <body>
     <div class="container">
-        <div class="return-button">
-            <img
-                alt="close demo button"
-                src="/assets/close.svg"
-                height="32"
-                width="32"
-                onclick="(() => history.back())()"
-            />
-        </div>
+        <return-button></return-button>
 
         <h2 class="title">AI basics: perceptron powers</h2>
 
