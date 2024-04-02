@@ -8,9 +8,9 @@
 
     & #canvas {
         border: 1px solid var(--bright);
-        height: 400px;
+        height: 360px;
         margin: 2rem 0 2rem;
-        width: 400px;
+        width: 360px;
     }
 
     & #error {
