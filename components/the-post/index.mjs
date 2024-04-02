@@ -39,6 +39,7 @@ class ThePost extends HTMLElement {
             el_github_link.setAttribute('height', '32');
             el_github_link.setAttribute('width', '32');
             el_github_link.href = github_link;
+            el_github_link.onclick = (e) => e.stopPropagation();
             el_github_link.setAttribute('target', '_blank');
             el_links_block.appendChild(el_github_link);
         }
