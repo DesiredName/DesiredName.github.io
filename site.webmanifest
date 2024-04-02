@@ -1,6 +1,6 @@
 {
-    "name": "DesiredName: The Blog by Krasnov Anton",
-    "short_name": "DesiredName: The Blog",
+    "name": "DesiredName by Krasnov Anton",
+    "short_name": "DesiredName",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",
