@@ -1,4 +1,4 @@
-const CACHE_ID = 2;
+const CACHE_ID = 1;
 
 self.addEventListener('install', () => {
     self.skipWaiting();
