@@ -25,6 +25,10 @@ self.addEventListener('activate', (e) => {
                     '/components/the-post/style.css',
                     '/components/return-button/index.mjs',
                     '/components/return-button/style.css',
+                    '/android-chrome-144x144.png',
+                    '/android-chrome-192x192.png',
+                    '/android-chrome-512x512.png',
+                    '/apple-touch-icon.png',
                 ]),
             ),
     );
