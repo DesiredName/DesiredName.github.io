@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Preload block -->
+    <link
+        rel="preload"
+        href="/assets/style.css"
+        as="style"
+    />
+    <link
+        rel="preload"
+        href="/components/the-post/index.mjs"
+        as="script"
+        crossorigin
+    />
+
+    <title>DesiredName: The Blog</title>
+
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+    <link
+        rel="stylesheet"
+        href="/assets/style.css"
+    >
+    <link
+        rel="manifest"
+        href="/site.webmanifest"
+        crossorigin="use-credentials"
+    />
+
+    <!-- Favicon -->
+    <link
+        rel="apple-touch-icon"
+        sizes="180x180"
+        href="/apple-touch-icon.png"
+    >
+    <link
+        rel="icon"
+        type="image/png"
+        sizes="32x32"
+        href="/favicon-32x32.png"
+    >
+    <link
+        rel="icon"
+        type="image/png"
+        sizes="16x16"
+        href="/favicon-16x16.png"
+    >
+
+    <!-- Scripts -->
+    <script
+        type="module"
+        src="/components/the-post/index.mjs"
+    ></script>
+
+    <!-- Security -->
+    <meta
+        http-equiv="Content-Security-Policy"
+        content="default-src 'self' 'unsafe-eval' 'unsafe-inline';"
+    />
+
+    <!-- SEO -->
+    <link
+        rel="canonical"
+        href="https://desiredname.github.io/"
+    />
+    <meta
+        name="theme-color"
+        content="#222222"
+    />
+    <meta
+        name="description"
+        content="DesiredName IT Blog by Krasnov Anton"
+    >
+    <meta
+        name="keywords"
+        content="HTML, CSS, JavaScript, Typescript, PWA, Power Web Applications,
+        ServiceWorker, Worker API, Architecutre, Patterns, Tips'n'Triks, Open Web technologies,
+        LLM, AI, Artificial Intelligence, Data Analytics, Data Structures, Machine Learning,
+        Programming, Developer, UI, ECMAScript, ESNEXT, NodeJS, ExpressJS, NextJS, NUXT, VusJE"
+    >
+    <meta
+        name="robots"
+        content="index, follow"
+    >
+    <meta
+        name="author"
+        content="Krasnov Anton"
+    >
+    <meta
+        name="creator"
+        content="Krasnov Anton"
+    >
+    <meta
+        property="og:locale"
+        content="en_US"
+    >
+    <meta
+        property="og:title"
+        content="DesiredName by Krasnov Anton"
+    />
+    <meta
+        property="og:type"
+        content="website"
+    />
+    <meta
+        property="og:url"
+        content="https://www.linkedin.com/in/anton-krasnov-in-prague/"
+    />
+
+    <!-- Run SW -->
+    <script>
+        if ("serviceWorker" in navigator) {
+            navigator.serviceWorker.register("/sw.js");
+        }
+    </script>
+</head>
+
+<body class="layout offline">
+    <section
+        class="content"
+        aria-label="you are offline title"
+    >
+        <div>
+            Oh-no! It seems you are offline.
+        </div>
+        <div>
+            Check your connection and try again.
+        </div>
+    </section>
+</body>
+
+</html>

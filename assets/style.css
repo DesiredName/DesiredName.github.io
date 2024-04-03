@@ -26,6 +26,12 @@
     width: 720px;
 }
 
+.layout.offline {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
 .layout .title {
     background-color: var(--dark);
     border-bottom: 1px solid var(--bright);

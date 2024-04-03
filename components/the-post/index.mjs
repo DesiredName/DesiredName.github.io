@@ -53,7 +53,7 @@ class ThePost extends HTMLElement {
 
         this.onclick = (e) => {
             e.stopPropagation();
-            window.open(this.getAttribute('demo-link'), '_self');
+            location.href = this.getAttribute('demo-link');
         };
     }
 }
