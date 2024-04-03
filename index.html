@@ -2,6 +2,18 @@
 <html lang="en">
 
 <head>
+    <!-- Preload block -->
+    <link
+        rel="preload"
+        href="/assets/style.css"
+        as="style"
+    />
+    <link
+        rel="preload"
+        href="/components/the-post/index.mjs"
+        as="script"
+    />
+
     <title>DesiredName: The Blog</title>
 
     <meta charset="UTF-8">
@@ -13,6 +25,11 @@
         rel="stylesheet"
         href="/assets/style.css"
     >
+    <link
+        rel="manifest"
+        href="/site.webmanifest"
+        crossorigin="use-credentials"
+    />
 
     <!-- Favicon -->
     <link
@@ -31,10 +48,6 @@
         type="image/png"
         sizes="16x16"
         href="/favicon-16x16.png"
-    >
-    <link
-        rel="manifest"
-        href="/site.webmanifest"
     >
 
     <!-- Scripts -->
@@ -97,6 +110,13 @@
         property="og:url"
         content="https://www.linkedin.com/in/anton-krasnov-in-prague/"
     />
+
+    <!-- Run SW -->
+    <script>
+        if ("serviceWorker" in navigator) {
+            navigator.serviceWorker.register("/sw.js");
+        }
+    </script>
 </head>
 
 <body class="layout">
