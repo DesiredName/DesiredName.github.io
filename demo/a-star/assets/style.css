@@ -45,9 +45,10 @@
 .console {
     background-color: black;
     height: 4rem;
-    margin: 1rem 0.6rem;
+    margin: 0.5rem 0.3rem;
     min-height: 4rem;
     overflow: scroll;
+    padding: 0.5rem 0.3rem;
 
     & .message {
         color: rgb(139, 107, 24);
