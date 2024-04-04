@@ -1,0 +1,40 @@
+:root {
+    --cell-width: 32px;
+}
+
+.content {
+    & .the-map {
+        display: flex;
+        height: 320px;
+        margin: auto;
+        position: relative;
+        width: 320px;
+
+        & .map,
+        & .grid-overlay {
+            height: 320px;
+            width: 320px;
+        }
+
+        .grid-overlay {
+            background-image: repeating-linear-gradient(#000 0, transparent 1px, transparent var(--cell-width)),
+                repeating-linear-gradient(90deg, #000 0, transparent 1px, transparent var(--cell-width));
+            position: absolute;
+        }
+
+        .zombie {
+            background-image: url('./tiles_82.png');
+            background-repeat: no-repeat;
+            background-position: -96px -160px;
+            background-size: 128px;
+            height: 32px;
+            left: 128px;
+            position: absolute;
+            top: 288px;
+            transition-duration: 1s;
+            transition-timing-function: linear;
+            transition-property: left, top;
+            width: 32px;
+        }
+    }
+}

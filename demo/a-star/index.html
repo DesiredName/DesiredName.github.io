@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Preload block -->
+    <link
+        rel="preload"
+        href="/assets/demo-commons.css"
+        as="style"
+    />
+    <link
+        rel="preload"
+        href="/components/return-button/index.mjs"
+        as="script"
+        crossorigin
+    />
+
+    <title>DesiredName: A-* to find the path 🧱</title>
+
+    <meta charset="UTF-8" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    />
+    <link
+        rel="stylesheet"
+        href="/assets/demo-commons.css"
+    />
+    <link
+        rel="manifest"
+        href="/site.webmanifest"
+        crossorigin="use-credentials"
+    />
+    <link
+        rel="stylesheet"
+        href="./assets/style.css"
+    />
+    <script
+        type="module"
+        src="/components/return-button/index.mjs"
+    ></script>
+
+    <!-- Security -->
+    <meta
+        http-equiv="Content-Security-Policy"
+        content="default-src 'self' 'unsafe-eval' 'unsafe-inline';"
+    />
+
+    <!-- SEO -->
+    <link
+        rel="canonical"
+        href="https://desiredname.github.io/"
+    />
+    <meta
+        name="theme-color"
+        content="#222222"
+    />
+    <meta
+        name="description"
+        content="DesiredName IT Blog by Krasnov Anton. Using of a path-finding algorythm on game map."
+    />
+    <meta
+        name="robots"
+        content="index, nofollow"
+    />
+    <meta
+        name="author"
+        content="Krasnov Anton"
+    />
+    <meta
+        name="creator"
+        content="Krasnov Anton"
+    />
+    <meta
+        property="og:locale"
+        content="en_US"
+    />
+    <meta
+        property="og:title"
+        content="Algos: A-* to find the path"
+    />
+    <meta
+        property="og:type"
+        content="website"
+    />
+    <meta
+        property="og:url"
+        content="https://www.linkedin.com/in/anton-krasnov-in-prague/"
+    />
+</head>
+
+<body>
+    <div class="return-button-container">
+        <return-button></return-button>
+    </div>
+
+    <article class="container">
+        <h3 class="title">Algos: A-* to find the path 🧱</h3>
+
+        <div class="content">
+            <div class="the-map">
+                <img
+                    alt="the example map for pathfinding"
+                    aria-label="the example map for pathfinding"
+                    class="map"
+                    height="640"
+                    src="./assets/pastoral-mockup.png"
+                    width="640"
+                />
+                <div class="grid-overlay"></div>
+                <div
+                    id="zombie"
+                    class="zombie"
+                ></div>
+            </div>
+        </div>
+
+        <div>
+            Move around with keyboard
+            <br>
+            Click / tap the cell to go to.
+        </div>
+
+    </article>
+
+    <div class="footer">
+        <a
+            href="https://opengameart.org/content/pastoral-overworld"
+            target="_blank"
+            aria-label="link to original sprite image"
+            referrerpolicy="no-referrer"
+        >
+            image credits
+        </a>
+        <br />
+        <a
+            href="https://pebonius.itch.io/"
+            target="_blank"
+            aria-label="link to sprite's author page"
+            referrerpolicy="no-referrer"
+        >
+            images author page
+        </a>
+    </div>
+
+    <script type="module">
+        const cell_width = 32;
+
+        import map_data from './src/map.mjs';
+        import Grid from './src/grid.mjs';
+        import Player from './src/player.mjs';
+        import GameEvents from './src/game_events.mjs';
+
+        const game_grid = new Grid(map_data.paths);
+        const game_events = new GameEvents(map_data.events);
+        const player = new Player(
+            document.getElementById('zombie'),
+            {
+                x: 4,
+                y: 9,
+            },
+            game_grid,
+        );
+
+        document.addEventListener('keydown', (e) => {
+            switch (e.key) {
+                case 'ArrowLeft':
+                    player.go_left();
+                    break;
+
+                case 'ArrowRight':
+                    player.go_right();
+                    break;
+
+                case 'ArrowUp':
+                    player.go_up();
+                    break;
+
+                case 'ArrowDown':
+                    player.go_down();
+                    break;
+            }
+
+            game_events.check_event(player);
+        });
+    </script>
+</body>
+
+</html>
