@@ -16,7 +16,7 @@ export default {
             2: {
                 type: ['text', 'teleport'],
                 text: "Oh, I didn't know I could climb a tree! Wow!...",
-                teleport: [2, 1, 100],
+                teleport: [2, 1, 200],
                 repeat: 1,
             },
             3: {
