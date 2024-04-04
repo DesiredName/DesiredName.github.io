@@ -13,9 +13,7 @@ export default class GameEvents {
         }
 
         if (typeof event.repeat === 'number') {
-            if (event.repeat === 0) {
-                return;
-            } else {
+            if (event.repeat > 0) {
                 event.repeat = event.repeat - 1;
                 callback(event);
             }

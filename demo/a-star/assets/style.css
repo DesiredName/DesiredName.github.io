@@ -2,7 +2,9 @@
     --cell-width: 32px;
 }
 
-.content {
+.container .content {
+    padding-bottom: 0;
+
     & .the-map {
         display: flex;
         height: 320px;
@@ -33,8 +35,21 @@
             top: 288px;
             transition-duration: 1s;
             transition-timing-function: linear;
-            transition-property: left, top;
+            transition-property: left, top, opacity;
             width: 32px;
         }
+    }
+}
+
+.console {
+    height: 4rem;
+    margin: 1rem 0.6rem;
+    min-height: 4rem;
+    overflow: scroll;
+
+    & .message {
+        color: rgb(139, 107, 24);
+        font-size: 0.7rem;
+        text-align: left;
     }
 }

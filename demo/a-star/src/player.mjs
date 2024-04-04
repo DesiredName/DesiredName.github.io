@@ -47,20 +47,30 @@ export default class Player {
         this.#go(this.#x, this.#y + 1);
     }
 
-    teleport(x, y) {
-        this.#go(x, y, true);
+    hide() {
+        this.#el.style.opacity = 0;
     }
 
-    #go(x, y, is_teleport = false) {
+    show() {
+        this.#el.style.opacity = 1;
+    }
+
+    teleport(x, y, anim_time) {
+        this.#move(x, y, anim_time);
+    }
+
+    #go(x, y) {
         this.#rotate(x, y);
 
         const cost = this.#grid.get_node_cost({ x, y });
 
-        if (!is_teleport && (cost === 0 || this.#is_moving)) {
-            return;
+        if (cost !== 0 && this.#is_moving === false) {
+            this.#move(x, y, cost * 100);
         }
+    }
 
-        this.#el.style.transitionDuration = `${cost * 100}ms`;
+    #move(x, y, anim_time) {
+        this.#el.style.transitionDuration = `${anim_time}ms`;
         this.#el.style.left = `${x * 32}px`;
         this.#el.style.top = `${y * 32}px`;
         this.#x = x;

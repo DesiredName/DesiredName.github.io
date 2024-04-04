@@ -115,6 +115,11 @@
             </div>
         </div>
 
+        <div
+            id="console"
+            class="console"
+        ></div>
+
         <div>
             Move around with keyboard
             <br>
@@ -150,9 +155,11 @@
         import Grid from './src/grid.mjs';
         import Player from './src/player.mjs';
         import GameEvents from './src/game_events.mjs';
+        import GameConsole from './src/game_console.mjs';
 
         const game_grid = new Grid(map_data.paths);
         const game_events = new GameEvents(map_data.events);
+        const game_console = new GameConsole(document.getElementById('console'));
         const player = new Player(
             document.getElementById('zombie'),
             {
@@ -183,14 +190,22 @@
 
             game_events.check_event(player.position, (event) => {
                 if (event.type.includes('text')) {
-                    alert(event.text);
+                    game_console.print_message(event.text);
                 }
 
                 if (event.type.includes('teleport')) {
                     player.teleport(...event.teleport);
                 }
+
+                if (event.type.includes('hide')) {
+                    player.hide();
+                } else {
+                    player.show();
+                }
             });
         });
+
+        game_console.print_message('Ahh... My beloved island! I\'m home again ♥');
     </script>
 </body>
 
