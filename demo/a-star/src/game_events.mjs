@@ -5,20 +5,22 @@ export default class GameEvents {
         this.#events = events;
     }
 
-    check_event(player) {
-        const { x, y } = player.position;
+    check_event({ x, y }, callback) {
         const event = this.#events[x]?.[y];
 
         if (event == null) {
             return;
         }
 
-        if (event.type.includes('text')) {
-            alert(event.text);
-        }
-
-        if (event.type.includes('teleport')) {
-            player.teleport(...event.teleport);
+        if (typeof event.repeat === 'number') {
+            if (event.repeat === 0) {
+                return;
+            } else {
+                event.repeat = event.repeat - 1;
+                callback(event);
+            }
+        } else {
+            callback(event);
         }
     }
 }

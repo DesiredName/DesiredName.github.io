@@ -28,6 +28,7 @@ export default {
             1: {
                 type: ['text'],
                 text: 'I wish I had a lighthouse here instead of this dumb tree...',
+                repeat: 1,
             },
         },
         8: {

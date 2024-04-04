@@ -181,7 +181,15 @@
                     break;
             }
 
-            game_events.check_event(player);
+            game_events.check_event(player.position, (event) => {
+                if (event.type.includes('text')) {
+                    alert(event.text);
+                }
+
+                if (event.type.includes('teleport')) {
+                    player.teleport(...event.teleport);
+                }
+            });
         });
     </script>
 </body>
