@@ -31,7 +31,14 @@ export default class Grid {
     }
 
     get_path(from, to) {
-        return [];
+        const start = this.#grid.get(key(from.x, from.y));
+        const end = this.#grid.get(key(to.x, to.y));
+
+        if (start.is_neighbor(end)) {
+            return [start, end];
+        }
+
+        return null;
     }
 }
 
@@ -54,5 +61,9 @@ export class GridNode {
 
     get_connections() {
         return this.#connections;
+    }
+
+    is_neighbor(node) {
+        return this.#connections.has(node);
     }
 }

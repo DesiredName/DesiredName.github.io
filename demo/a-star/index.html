@@ -112,7 +112,10 @@
                     src="./assets/pastoral-mockup.png"
                     width="640"
                 />
-                <div class="grid-overlay"></div>
+                <div
+                    id="grid"
+                    class="grid-overlay"
+                ></div>
                 <div
                     id="zombie"
                     class="zombie"
@@ -155,7 +158,9 @@
         import Player from './src/player.mjs';
         import GameEvents from './src/game_events.mjs';
         import GameConsole from './src/game_console.mjs';
+        import GameInput, { GameInputEvent } from './src/game_input.mjs';
 
+        const game_input = new GameInput(document.getElementById('grid'));
         const game_grid = new Grid(map_data.paths);
         const game_events = new GameEvents(map_data.events);
         const game_console = new GameConsole(document.getElementById('console'));
@@ -168,21 +173,21 @@
             game_grid,
         );
 
-        document.addEventListener('keydown', (e) => {
-            switch (e.key) {
-                case 'ArrowLeft':
+        game_input.on_keyboard_event((e) => {
+            switch (e) {
+                case GameInputEvent.GoLeft:
                     player.go_left();
                     break;
 
-                case 'ArrowRight':
+                case GameInputEvent.GoRight:
                     player.go_right();
                     break;
 
-                case 'ArrowUp':
+                case GameInputEvent.GoUp:
                     player.go_up();
                     break;
 
-                case 'ArrowDown':
+                case GameInputEvent.GoDown:
                     player.go_down();
                     break;
             }
@@ -202,6 +207,16 @@
                     player.show();
                 }
             });
+        });
+
+        game_input.on_controller_event((e) => {
+            const path = game_grid.get_path(player.position, { x: e.cell_x, y: e.cell_y });
+
+            if (path == null) {
+                game_console.print_message('Oh, I can not get there...');
+            } else {
+                console.log(path);
+            }
         });
 
         game_console.print_message('Ahh... My beloved island! I\'m home again ♥');
