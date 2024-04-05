@@ -2,7 +2,6 @@ class ThePost extends HTMLElement {
     static observedAttributes = ['title', 'repo-link', 'description'];
 
     constructor() {
-        // Always call super first in constructor
         super();
     }
 

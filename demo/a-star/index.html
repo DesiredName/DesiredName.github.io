@@ -103,22 +103,22 @@
                 Click / tap the map to move
             </div>
 
-            <div class="the-map">
+            <div class="the-map no-highlight">
                 <img
                     alt="the example map for pathfinding"
                     aria-label="the example map for pathfinding"
-                    class="map"
+                    class="map no-highlight"
                     height="640"
                     src="./assets/pastoral-mockup.png"
                     width="640"
                 />
                 <div
                     id="grid"
-                    class="grid-overlay"
+                    class="grid-overlay no-highlight"
                 ></div>
                 <div
                     id="zombie"
-                    class="zombie"
+                    class="zombie no-highlight"
                 ></div>
             </div>
 
@@ -130,25 +130,29 @@
 
     </article>
 
-    <div class="footer">
-        <a
-            href="https://opengameart.org/content/pastoral-overworld"
-            target="_blank"
-            aria-label="link to original sprite image"
-            referrerpolicy="no-referrer"
-        >
-            image credits
-        </a>
-        <br />
-        <a
-            href="https://pebonius.itch.io/"
-            target="_blank"
-            aria-label="link to sprite's author page"
-            referrerpolicy="no-referrer"
-        >
-            image's author page
-        </a>
-    </div>
+    <details
+        class="footer"
+        aria-label="page footer with additional information"
+    >
+        <summary class="footer-summary">credits</summary>
+        <div class="footer-content">
+            <a
+                href="https://opengameart.org/content/pastoral-overworld"
+                class="link"
+                target="_blank"
+                aria-label="link to original sprite image"
+                referrerpolicy="no-referrer"
+            >image credits</a>
+            <br />
+            <a
+                href="https://pebonius.itch.io/"
+                class="link"
+                target="_blank"
+                aria-label="link to sprite's author page"
+                referrerpolicy="no-referrer"
+            >image's author page</a>
+        </div>
+    </details>
 
     <script type="module">
         const cell_width = 32;

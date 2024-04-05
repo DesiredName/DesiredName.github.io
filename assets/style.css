@@ -1,4 +1,5 @@
 @import url('/assets/colors.css');
+@import url('/assets/elements-common.css');
 
 *,
 *::after,
@@ -79,19 +80,6 @@
 
 .layout .content .article {
     padding: 2rem 1rem;
-}
-
-.link {
-    color: var(--bright);
-}
-
-.link:active,
-.link:visited {
-    color: var(--vine);
-}
-
-.link:hover {
-    color: var(--brownish);
 }
 
 @media screen and (max-width: 720px) {

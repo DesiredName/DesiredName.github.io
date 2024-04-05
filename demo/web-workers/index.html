@@ -129,12 +129,19 @@
         </div>
     </div>
 
-    <div class="footer">
-        <a
-            href="https://developer.mozilla.org/en-US/docs/Web/API/Worker"
-            target="_blank"
-        >More about Worker API</a>
-    </div>
+    <details
+        class="footer"
+        aria-label="page footer with additional information"
+    >
+        <summary class="footer-summary">More about Worker API</summary>
+        <div class="footer-content">
+            <a
+                href="https://developer.mozilla.org/en-US/docs/Web/API/Worker"
+                class="link"
+                target="_blank"
+            >The Worker API infromation on MDN</a>
+        </div>
+    </details>
 
     <script type="module">
         import compute_primes from './src/primes.mjs';

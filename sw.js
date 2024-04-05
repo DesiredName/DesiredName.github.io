@@ -1,4 +1,4 @@
-const CACHE_ID = 21;
+const CACHE_ID = 22;
 const OFFLINE_URL = '/no-connection.html';
 
 self.addEventListener('install', () => {
@@ -18,6 +18,7 @@ self.addEventListener('activate', (e) => {
                     '/site.webmanifest',
                     OFFLINE_URL,
                     '/assets/colors.css',
+                    '/assets/elements-common.css',
                     '/assets/github-mark-white.svg',
                     '/assets/leetcode.png',
                     '/assets/LI-In-Bug.png',

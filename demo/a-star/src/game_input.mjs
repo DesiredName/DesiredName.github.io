@@ -12,11 +12,8 @@ export default class GameInput {
     #offset_y;
 
     constructor(el) {
-        const rect = el.getBoundingClientRect();
-
         this.#el = el;
-        this.#offset_x = rect.x;
-        this.#offset_y = rect.y;
+        this.#setup_offset();
     }
 
     on_keyboard_event(callback) {
@@ -75,5 +72,14 @@ export default class GameInput {
             },
             { passive: true },
         );
+    }
+
+    #setup_offset() {
+        const rect = this.#el.getBoundingClientRect();
+
+        this.#offset_x = rect.x;
+        this.#offset_y = rect.y;
+
+        window.addEventListener('resize', this.#setup_offset.bind(this));
     }
 }

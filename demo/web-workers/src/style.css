@@ -12,14 +12,3 @@
         }
     }
 }
-
-.footer {
-    bottom: 4rem;
-    text-align: center;
-    position: fixed;
-    width: 100%;
-
-    & a {
-        color: #ccc;
-    }
-}
