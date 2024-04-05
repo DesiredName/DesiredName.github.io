@@ -4,6 +4,7 @@ export default class Player {
     #y;
     #grid;
     #is_moving = false;
+    #actions_stack = [];
 
     constructor(el, { x, y }, grid) {
         this.#el = el;
@@ -53,6 +54,14 @@ export default class Player {
 
     show() {
         this.#el.style.opacity = 1;
+    }
+
+    move_along_path(path) {
+        path.forEach((node) => {
+            this.#actions_stack.push(() => this.#go(node.x, node.y));
+        });
+
+        this.#actions_stack.pop()?.();
     }
 
     teleport(x, y, anim_time) {

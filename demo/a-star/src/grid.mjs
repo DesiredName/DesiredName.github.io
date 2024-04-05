@@ -28,9 +28,14 @@ export default class Grid {
         this.#grid.set(key(x, y), node);
 
         node.set_connections([
+            this.#grid.get(key(x - 1, y + 1)),
             this.#grid.get(key(x - 1, y)),
             this.#grid.get(key(x - 1, y - 1)),
+            this.#grid.get(key(x, y + 1)),
             this.#grid.get(key(x, y - 1)),
+            this.#grid.get(key(x + 1, y + 1)),
+            this.#grid.get(key(x + 1, y)),
+            this.#grid.get(key(x + 1, y - 1)),
         ]);
     }
 
@@ -39,20 +44,20 @@ export default class Grid {
     }
 
     get_path(from, to) {
-        this.#prepare_nodes(to);
-
         const start = this.#grid.get(key(from.x, from.y));
         const end = this.#grid.get(key(to.x, to.y));
 
         if (start.connections.has(end)) {
-            return [start, end];
+            return [end];
         }
 
-        let path = a_start(start, end);
-        let result = [];
+        this.#prepare_nodes(to);
 
-        while (path) {
-            result = [path].compute_h(result);
+        const result = [];
+        let path = a_start(start, end);
+
+        while (path.parent) {
+            result.push(path);
             path = path.parent;
         }
 
