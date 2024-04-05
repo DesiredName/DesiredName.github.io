@@ -7,12 +7,14 @@ export class GameInputEvent {
 }
 
 export default class GameInput {
+    #el;
     #offset_x;
     #offset_y;
 
     constructor(el) {
         const rect = el.getBoundingClientRect();
 
+        this.#el = el;
         this.#offset_x = rect.x;
         this.#offset_y = rect.y;
     }
@@ -47,7 +49,7 @@ export default class GameInput {
             callback({ raw_x, raw_y, cell_x, cell_y });
         }
 
-        window.addEventListener('mousedown', (e) => {
+        this.#el.addEventListener('mousedown', (e) => {
             e.stopImmediatePropagation();
             e.stopPropagation();
             e.preventDefault();
@@ -58,7 +60,7 @@ export default class GameInput {
             });
         });
 
-        window.addEventListener('touchstart', (e) => {
+        this.#el.addEventListener('touchstart', (e) => {
             e.stopImmediatePropagation();
             e.stopPropagation();
             e.preventDefault();

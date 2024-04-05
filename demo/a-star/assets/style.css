@@ -49,6 +49,8 @@
     min-height: 4rem;
     overflow: scroll;
     padding: 0.5rem 0.3rem;
+    scrollbar-width: thin;
+    scrollbar-color: var(--dark) var(--dark);
 
     & .message {
         color: rgb(139, 107, 24);
