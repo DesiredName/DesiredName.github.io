@@ -40,7 +40,7 @@ export default class Grid {
     }
 
     get_node_cost({ x, y }) {
-        return this.#grid.get(key(x, y))?.g ?? 0;
+        return this.#grid.get(key(x, y))?.cost ?? 0;
     }
 
     get_path(from, to) {
@@ -56,12 +56,12 @@ export default class Grid {
         const result = [];
         let path = a_start(start, end);
 
-        while (path.parent) {
+        while (path) {
             result.push(path);
             path = path.parent;
         }
 
-        return result;
+        return result.length > 0 ? result : null;
     }
 
     #prepare_nodes(target_node) {

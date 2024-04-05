@@ -13,6 +13,12 @@ export default {
     ],
     events: {
         2: {
+            1: {
+                type: ['text', 'goto'],
+                text: "Too scarry, I'd better don't do this again",
+                goto: [2, 2, 200],
+                repeat: 1,
+            },
             2: {
                 type: ['text', 'goto'],
                 text: "Oh, I didn't know I could climb a tree! Wow!...",
@@ -37,7 +43,6 @@ export default {
             7: {
                 type: ['text'],
                 text: "The sign says: 'Keep away from my vegetables!'",
-                repeat: 1,
             },
         },
         4: {
@@ -61,6 +66,7 @@ export default {
             1: {
                 type: ['text'],
                 text: 'I wish I had a lighthouse here instead of this stupid tree.....',
+                repeat: 1,
             },
         },
         8: {
