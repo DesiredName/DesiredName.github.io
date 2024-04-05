@@ -99,8 +99,8 @@
 
         <div class="content">
             <div>
-                Move around with keyboard
-                Click / tap the cell to go to.
+                Move around with arrow keys
+                Click / tap the map to move
             </div>
 
             <div class="the-map">
@@ -225,7 +225,13 @@
 
         game_console.print_message('Ahh... My beloved island! I\'m home again ♥');
 
-        setInterval(() => player.update(), 100);
+        function loop() {
+            player.update();
+
+            requestAnimationFrame(loop);
+        }
+
+        loop();
     </script>
 </body>
 

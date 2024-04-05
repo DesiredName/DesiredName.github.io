@@ -4,6 +4,7 @@ export default class Player {
     #y;
     #grid;
     #is_acting = false;
+    #is_hidden = false;
     #actions_stack = [];
 
     #on_action_end = () => {};
@@ -28,6 +29,12 @@ export default class Player {
             y: this.#y,
         };
     }
+
+    get is_hidden() {
+        return this.#is_hidden;
+    }
+
+    // loop
 
     update() {
         if (this.#is_acting) {
@@ -72,15 +79,26 @@ export default class Player {
     }
 
     hide() {
-        this.#add_action(() => (this.#el.style.opacity = 0));
+        this.#tmpl_if_player_visible(() => {
+            this.#add_action(() => {
+                this.#is_hidden = true;
+                this.#el.style.opacity = 0;
+            });
+        });
     }
 
     show() {
-        this.#add_action(() => (this.#el.style.opacity = 1));
+        this.#tmpl_if_player_hidden(() => {
+            this.#add_action(() => {
+                this.#is_hidden = false;
+                this.#el.style.opacity = 1;
+            });
+        });
     }
 
     move_along_path(path) {
         this.#clear_actions();
+
         path.forEach((node) => {
             this.#add_action(() => this.#go(node.x, node.y));
         });
@@ -93,7 +111,25 @@ export default class Player {
         });
     }
 
+    // remplates
+    #tmpl_if_player_hidden(func) {
+        if (this.#is_hidden === false) {
+            return;
+        } else {
+            func();
+        }
+    }
+
+    #tmpl_if_player_visible(func) {
+        if (this.#is_hidden === true) {
+            return;
+        } else {
+            func();
+        }
+    }
+
     // intenals
+
     #listen_events() {
         this.#el.addEventListener('transitionstart', () => {
             this.#is_acting = true;
