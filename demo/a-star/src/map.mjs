@@ -14,9 +14,9 @@ export default {
     events: {
         2: {
             2: {
-                type: ['text', 'teleport'],
+                type: ['text', 'goto'],
                 text: "Oh, I didn't know I could climb a tree! Wow!...",
-                teleport: [2, 1, 200],
+                goto: [2, 1, 200],
                 repeat: 1,
             },
             3: {
@@ -65,9 +65,9 @@ export default {
         },
         8: {
             5: {
-                type: ['text', 'teleport'],
+                type: ['text', 'goto'],
                 text: "Wow, that's a deadly pumpkin! I better stay away from it.",
-                teleport: [7, 5, 100],
+                goto: [7, 5, 100],
             },
         },
     },

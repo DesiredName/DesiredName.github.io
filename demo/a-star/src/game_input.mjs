@@ -23,7 +23,6 @@ export default class GameInput {
         window.addEventListener('keydown', (e) => {
             e.stopImmediatePropagation();
             e.stopPropagation();
-            e.preventDefault();
 
             switch (e.key) {
                 case 'ArrowLeft':
@@ -52,7 +51,6 @@ export default class GameInput {
         this.#el.addEventListener('mousedown', (e) => {
             e.stopImmediatePropagation();
             e.stopPropagation();
-            e.preventDefault();
 
             trigger_event({
                 raw_x: e.clientX - this.#offset_x,
@@ -60,19 +58,22 @@ export default class GameInput {
             });
         });
 
-        this.#el.addEventListener('touchstart', (e) => {
-            e.stopImmediatePropagation();
-            e.stopPropagation();
-            e.preventDefault();
+        this.#el.addEventListener(
+            'touchstart',
+            (e) => {
+                e.stopImmediatePropagation();
+                e.stopPropagation();
 
-            const touch = e.changedTouches[0];
+                const touch = e.changedTouches[0];
 
-            if (touch != null) {
-                trigger_event({
-                    raw_x: touch.clientX - this.#offset_x,
-                    raw_y: touch.clientY - this.#offset_y,
-                });
-            }
-        });
+                if (touch != null) {
+                    trigger_event({
+                        raw_x: touch.clientX - this.#offset_x,
+                        raw_y: touch.clientY - this.#offset_y,
+                    });
+                }
+            },
+            { passive: true },
+        );
     }
 }

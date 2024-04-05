@@ -3,7 +3,7 @@ export default class Player {
     #x;
     #y;
     #grid;
-    #is_moving = false;
+    #is_acting = false;
     #actions_stack = [];
 
     constructor(el, { x, y }, grid) {
@@ -13,15 +13,15 @@ export default class Player {
         this.#grid = grid;
 
         this.#el.addEventListener('transitionstart', () => {
-            this.#is_moving = true;
+            this.#is_acting = true;
         });
 
         this.#el.addEventListener('transitionend', () => {
-            this.#is_moving = false;
+            this.#is_acting = false;
         });
 
         this.#el.addEventListener('transitioncancel', () => {
-            this.#is_moving = false;
+            this.#is_acting = false;
         });
     }
 
@@ -32,40 +32,56 @@ export default class Player {
         };
     }
 
+    update() {
+        if (this.#is_acting === false && this.#actions_stack.length > 0) {
+            this.#is_acting = true;
+            this.#actions_stack.pop()?.();
+        }
+        console.dir(this.#actions_stack);
+    }
+
+    // actions
+
     go_left() {
-        this.#go(this.#x - 1, this.#y);
+        this.#add_action(() => this.#go(this.#x - 1, this.#y));
     }
 
     go_right() {
-        this.#go(this.#x + 1, this.#y);
+        this.#add_action(() => this.#go(this.#x + 1, this.#y));
     }
 
     go_up() {
-        this.#go(this.#x, this.#y - 1);
+        this.#add_action(() => this.#go(this.#x, this.#y - 1));
     }
 
     go_down() {
-        this.#go(this.#x, this.#y + 1);
+        this.#add_action(() => this.#go(this.#x, this.#y + 1));
     }
 
     hide() {
-        this.#el.style.opacity = 0;
+        this.#add_action(() => (this.#el.style.opacity = 0));
     }
 
     show() {
-        this.#el.style.opacity = 1;
+        this.#add_action(() => (this.#el.style.opacity = 1));
     }
 
     move_along_path(path) {
-        path.forEach((node) => {
-            this.#actions_stack.push(() => this.#go(node.x, node.y));
-        });
+        this.#actions_stack.splice(0);
 
-        this.#actions_stack.pop()?.();
+        path.forEach((node) => {
+            this.#add_action(() => this.#go(node.x, node.y));
+        });
+        console.dir(this.#actions_stack);
     }
 
-    teleport(x, y, anim_time) {
-        this.#move(x, y, anim_time);
+    goto(x, y, anim_time) {
+        this.#add_action(() => this.#move(x, y, anim_time));
+    }
+
+    #add_action(action) {
+        this.#actions_stack.push(action);
+        console.dir(this.#actions_stack);
     }
 
     #go(x, y) {
@@ -73,12 +89,14 @@ export default class Player {
 
         const cost = this.#grid.get_node_cost({ x, y });
 
-        if (cost !== 0 && this.#is_moving === false) {
+        if (cost !== 0) {
             this.#move(x, y, cost * 100);
         }
     }
 
     #move(x, y, anim_time) {
+        this.#rotate(x, y);
+
         this.#el.style.transitionDuration = `${anim_time}ms`;
         this.#el.style.left = `${x * 32}px`;
         this.#el.style.top = `${y * 32}px`;

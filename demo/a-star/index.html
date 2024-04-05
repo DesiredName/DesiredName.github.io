@@ -173,24 +173,6 @@
             game_grid,
         );
 
-        function check_events() {
-            game_events.check_event(player.position, (event) => {
-                if (event.type.includes('text')) {
-                    game_console.print_message(event.text);
-                }
-
-                if (event.type.includes('teleport')) {
-                    player.teleport(...event.teleport);
-                }
-
-                if (event.type.includes('hide')) {
-                    player.hide();
-                } else {
-                    player.show();
-                }
-            });
-        }
-
         game_input.on_keyboard_event((e) => {
             switch (e) {
                 case GameInputEvent.GoLeft:
@@ -209,8 +191,6 @@
                     player.go_down();
                     break;
             }
-
-            check_events();
         });
 
         game_input.on_controller_event((e) => {
@@ -221,11 +201,38 @@
             } else {
                 player.move_along_path(path);
             }
-
-            check_events();
         });
 
         game_console.print_message('Ahh... My beloved island! I\'m home again ♥');
+
+        // main loop
+
+        function check_events() {
+            game_events.check_event(player.position, (event) => {
+                if (event.type.includes('text')) {
+                    game_console.print_message(event.text);
+                }
+
+                if (event.type.includes('goto')) {
+                    player.goto(...event.goto);
+                }
+
+                if (event.type.includes('hide')) {
+                    player.hide();
+                } else {
+                    player.show();
+                }
+            });
+        };
+
+        function update() {
+            check_events();
+            player.update();
+
+            setTimeout(update, 2000);
+        }
+
+        update();
     </script>
 </body>
 
