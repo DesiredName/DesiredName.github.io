@@ -8,12 +8,6 @@
         href="/assets/style.css"
         as="style"
     />
-    <link
-        rel="preload"
-        href="/components/the-post/index.mjs"
-        as="script"
-        crossorigin
-    />
 
     <title>DesiredName: The Blog</title>
 
@@ -50,12 +44,6 @@
         sizes="16x16"
         href="/favicon-16x16.png"
     >
-
-    <!-- Scripts -->
-    <script
-        type="module"
-        src="/components/the-post/index.mjs"
-    ></script>
 
     <!-- Security -->
     <meta
@@ -111,13 +99,6 @@
         property="og:url"
         content="https://www.linkedin.com/in/anton-krasnov-in-prague/"
     />
-
-    <!-- Run SW -->
-    <script>
-        if ("serviceWorker" in navigator) {
-            navigator.serviceWorker.register("/sw.js");
-        }
-    </script>
 </head>
 
 <body class="layout offline">
@@ -130,6 +111,13 @@
         </div>
         <div>
             Check your connection and try again.
+        </div>
+        <div>
+            <a
+                class="link"
+                href="https://desiredname.github.io/"
+                aria-label="return to main page"
+            >Return to the main page</a>
         </div>
     </section>
 </body>

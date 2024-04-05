@@ -81,6 +81,19 @@
     padding: 2rem 1rem;
 }
 
+.link {
+    color: var(--bright);
+}
+
+.link:active,
+.link:visited {
+    color: var(--vine);
+}
+
+.link:hover {
+    color: var(--brownish);
+}
+
 @media screen and (max-width: 720px) {
     .layout {
         margin: 0;

@@ -1,4 +1,4 @@
-const CACHE_ID = 15;
+const CACHE_ID = 21;
 const OFFLINE_URL = '/no-connection.html';
 
 self.addEventListener('install', () => {
@@ -15,6 +15,7 @@ self.addEventListener('activate', (e) => {
                 cache.addAll([
                     '/',
                     '/index.html',
+                    '/site.webmanifest',
                     OFFLINE_URL,
                     '/assets/colors.css',
                     '/assets/github-mark-white.svg',
@@ -27,6 +28,8 @@ self.addEventListener('activate', (e) => {
                     '/android-chrome-192x192.png',
                     '/android-chrome-512x512.png',
                     '/apple-touch-icon.png',
+                    '/favicon-32x32.png',
+                    '/favicon-16x16.png',
                 ]),
             ),
     );
@@ -37,18 +40,25 @@ self.addEventListener('fetch', (e) => {
 
     async function lookup() {
         const cached = await caches.match(request);
-        const fetched = () =>
-            fetch(request, {
-                signal: AbortSignal.timeout(5000),
-            }).catch(() => {
-                if (e.request.mode === 'navigate') {
-                    return caches.match(OFFLINE_URL);
-                } else {
-                    return undefined;
-                }
-            });
 
-        return cached ?? fetched();
+        if (cached != null) {
+            return cached;
+        } else {
+            try {
+                return await fetch(request, {
+                    signal: AbortSignal.timeout(5000),
+                });
+            } catch (error) {
+                if (
+                    request.mode === 'navigate' &&
+                    !request.url.endsWith(OFFLINE_URL)
+                ) {
+                    return Response.redirect(OFFLINE_URL);
+                } else {
+                    return Response.error();
+                }
+            }
+        }
     }
 
     e.respondWith(lookup());
