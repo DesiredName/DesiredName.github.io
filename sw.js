@@ -1,4 +1,4 @@
-const CACHE_ID = 25;
+const CACHE_ID = 28;
 const OFFLINE_URL = '/no-connection.html';
 
 self.addEventListener('install', () => {

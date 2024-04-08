@@ -27,25 +27,26 @@
 </head>
 
 <body>
-    <article class="container">
-        <div class="content">
-            <div
-                id="console"
-                class="console"
-            >
-            </div>
+    <div
+        id="console"
+        class="console"
+    >
+    </div>
 
-            <div class="console_input">
-                <input
-                    id="console_input"
-                    placeholder="start typing"
-                />
-                <button
-                    type="button"
-                    onclick="handle_post_message()"
-                >send</button>
-            </div>
-        </div>
+    <div class="console_input">
+        <input
+            id="console_input"
+            placeholder="start typing"
+        />
+        <button
+            type="button"
+            onclick="handle_post_message()"
+        >submit</button>
+        <button
+            type="button"
+            onclick="handle_close_iframe()"
+        >close</button>
+    </div>
     </article>
 
     <script type="module">
@@ -56,10 +57,6 @@
 
         window.console_helper = new ConsoleHelper(console_el);
         window.bch = new BroadcastHelper();
-
-        window.addEventListener('beforeunload', () => {
-            bch.message('left the chat');
-        });
 
         bch.onmessage = ({ username, time, message }) => {
             console_helper.message({ username, time, message });
@@ -74,8 +71,14 @@
             const el = document.getElementById('console_input');
             const message = el.value;
 
+            el.value = '';
             bch.message(message);
             console_helper.message_local(message);
+        }
+
+        function handle_close_iframe(params) {
+            bch.message('left the chat');
+            parent.handle_close_iframe();
         }
     </script>
 </body>

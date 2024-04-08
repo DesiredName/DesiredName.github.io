@@ -137,7 +137,6 @@
 
         window.console_helper = new ConsoleHelper(console_el);
         window.bch = new BroadcastHelper();
-
         window.addEventListener('beforeunload', () => {
             bch.message('left the chat');
         });
@@ -151,6 +150,8 @@
     </script>
 
     <script>
+        const iframe_id = 'communication-iframe';
+
         function handle_open_new_frame(event) {
             event.stopImmediatePropagation();
             event.stopPropagation();
@@ -158,6 +159,7 @@
 
             const iframe = document.createElement('iframe');
             iframe.classList = 'iframe';
+            iframe.setAttribute('id', iframe_id);
             iframe.setAttribute('src', './iframe.html');
             iframe.setAttribute('title', 'The iFrame example');
             iframe.setAttribute('allow', 'fullscreen');
@@ -169,8 +171,13 @@
             const el = document.getElementById('console_input');
             const message = el.value;
 
+            el.value = '';
             bch.message(message);
             console_helper.message_local(message);
+        }
+
+        function handle_close_iframe() {
+            document.getElementById(iframe_id).remove();
         }
     </script>
 </body>
