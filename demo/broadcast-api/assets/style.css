@@ -1,6 +1,6 @@
 .iframe {
     bottom: 0;
-    height: 240px;
+    height: 250px;
     max-width: 400px;
     position: fixed;
     width: 100vw;
@@ -34,6 +34,7 @@
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
+    padding-top: 1rem;
 
     input {
         flex: 1 1 auto;

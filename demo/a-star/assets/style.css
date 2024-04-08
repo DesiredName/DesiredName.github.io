@@ -45,7 +45,7 @@
 .console {
     background-color: black;
     height: 4rem;
-    margin: 0.5rem 0.3rem;
+    margin-top: 1rem;
     min-height: 4rem;
     overflow: scroll;
     padding: 0.5rem 0.3rem;

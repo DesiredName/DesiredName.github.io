@@ -47,7 +47,6 @@ body {
 
     & .content {
         padding: 2rem 0 2rem;
-        white-space: pre-line;
     }
 
     & .buttons {
