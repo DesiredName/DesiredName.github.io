@@ -2,12 +2,12 @@
     color: var(--bright);
 }
 
-.link:active,
-.link:visited {
+.link:active {
     color: var(--vine);
 }
 
-.link:hover {
+.link:hover,
+.link:visited {
     color: var(--brownish);
 }
 

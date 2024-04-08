@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Preload block -->
+    <link
+        rel="preload"
+        href="/assets/demo-commons.css"
+        as="style"
+    />
+
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+    <link
+        rel="stylesheet"
+        href="/assets/demo-commons.css"
+    />
+    <title>DesiredName: Share data between pages with Broadcast API</title>
+
+    <link
+        rel="stylesheet"
+        href="./assets/style.css"
+    />
+</head>
+
+<body>
+    <article class="container">
+        <div class="content">
+            <div
+                id="console"
+                class="console"
+            >
+            </div>
+
+            <div class="console_input">
+                <input
+                    id="console_input"
+                    placeholder="start typing"
+                />
+                <button
+                    type="button"
+                    onclick="handle_post_message()"
+                >send</button>
+            </div>
+        </div>
+    </article>
+
+    <script type="module">
+        import BroadcastHelper from './src/broadcast.mjs';
+        import ConsoleHelper from './src/console.mjs';
+
+        const console_el = document.getElementById('console');
+
+        window.console_helper = new ConsoleHelper(console_el);
+        window.bch = new BroadcastHelper();
+
+        window.addEventListener('beforeunload', () => {
+            bch.message('left the chat');
+        });
+
+        bch.onmessage = ({ username, time, message }) => {
+            console_helper.message({ username, time, message });
+        };
+
+        bch.message('joined the chat');
+        console_helper.message_local('joined the chat');
+    </script>
+
+    <script>
+        function handle_post_message(e) {
+            const el = document.getElementById('console_input');
+            const message = el.value;
+
+            bch.message(message);
+            console_helper.message_local(message);
+        }
+    </script>
+</body>
+
+</html>
