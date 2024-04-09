@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Preload block -->
+    <link
+        rel="preload"
+        href="/assets/demo-commons.css"
+        as="style"
+    />
+    <link
+        rel="preload"
+        href="/components/return-button/index.mjs"
+        as="script"
+        crossorigin
+    />
+
+    <title>Offline strategy without PWA</title>
+
+    <meta charset="UTF-8" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    />
+    <link
+        rel="stylesheet"
+        href="/assets/demo-commons.css"
+    />
+    <link
+        rel="manifest"
+        href="/site.webmanifest"
+        crossorigin="use-credentials"
+    />
+    <link
+        rel="stylesheet"
+        href="./assets/style.css"
+    />
+    <script
+        type="module"
+        src="/components/return-button/index.mjs"
+    ></script>
+
+    <!-- Security -->
+    <meta
+        http-equiv="Content-Security-Policy"
+        content="default-src 'self' 'unsafe-eval' 'unsafe-inline';"
+    />
+
+    <!-- SEO -->
+    <link
+        rel="canonical"
+        href="https://desiredname.github.io/"
+    />
+    <meta
+        name="theme-color"
+        content="#222222"
+    />
+    <meta
+        name="description"
+        content="DesiredName IT Blog by Krasnov Anton. Example of
+        offline cache storage use to download resources without
+        PWA support."
+    />
+    <meta
+        name="robots"
+        content="index, nofollow"
+    />
+    <meta
+        name="author"
+        content="Krasnov Anton"
+    />
+    <meta
+        name="creator"
+        content="Krasnov Anton"
+    />
+    <meta
+        property="og:locale"
+        content="en_US"
+    />
+    <meta
+        property="og:title"
+        content="Offline strategy without PWA"
+    />
+    <meta
+        property="og:type"
+        content="website"
+    />
+    <meta
+        property="og:url"
+        content="https://www.linkedin.com/in/anton-krasnov-in-prague/"
+    />
+</head>
+
+<body>
+    <div class="return-button-container">
+        <return-button></return-button>
+    </div>
+
+    <div class="container">
+        <h3 class="title">Offline strategy without PWA</h3>
+
+        <div
+            class="content"
+            style="text-align: justify;"
+        >
+            You can <a
+                class="link"
+                download="the_file"
+                href="./public/some-data.json"
+                onclick="handle_intercept(event)"
+            >download some resource</a>, while online. Then
+
+            <label for="toggle-offline-state">
+                go offline
+                <input
+                    id="toggle-offline-state"
+                    type="checkbox"
+                />
+            </label>
+
+            and <a
+                class="link"
+                download="the_file"
+                href="./public/some-data.json"
+                onclick="handle_intercept(event)"
+            >download the same resource again</a>. You can do this as many times as you like, until
+
+            <button
+                type="button"
+                onclick="handle_clear_storage()"
+            >the storage is cleared</button>.
+
+            Then browser will fail to download the resource from the network and will not be able to fetch it from the
+            cache.
+        </div>
+
+        <div class="console">
+
+        </div>
+    </div>
+
+    <script>
+        const is_offline = () => document.getElementById('toggle-offline-state').checked === true;
+        const cache_name = 'offline-example';
+
+        function handle_clear_storage() {
+            caches.delete('offline-example');
+        }
+
+        async function handle_intercept(e) {
+            e.preventDefault();
+
+            const href = e.target.href;
+            const signal = AbortSignal.timeout(is_offline() ? 0 : 5000)
+
+            try {
+                console.log(`Trying to fetch "${href}" from cache`);
+                const from_cache = await caches.match(href);
+
+                if (from_cache != null && from_cache.ok) {
+                    console.log(`Resource "${href}" fetched from cache`);
+                    const blob = await from_cache.blob();
+
+                    return download_blob(blob);
+                }
+
+                console.log(`Trying to fetch "${href}" from network`);
+                const from_network = await fetch(href, { signal });
+
+                if (from_network != null && from_network.ok) {
+                    console.log(`Resource "${href}" fetched from network`);
+                    const clone = from_network.clone();
+                    const blob = await from_network.blob();
+
+                    caches.open(cache_name).then((cache) => {
+                        console.log(`Resource "${href}" saved to cache`);
+                        cache.put(href, clone)
+                    });
+
+                    return download_blob(blob);
+                }
+            } catch (ex) {
+                console.log(`Resource "${href}" not found in cache and could not be recieved from network`);
+            }
+        }
+
+        function download_blob(blob) {
+            const data = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = data;
+            a.download = 'some-data';
+            a.click();
+
+            URL.revokeObjectURL(data);
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,10 @@
+{
+    "some": "data",
+    "your": ["user", "will", "need"],
+    "someday": ",",
+    "and": {
+        "you": "have",
+        "no": "PWA",
+        "enabled": false
+    }
+}

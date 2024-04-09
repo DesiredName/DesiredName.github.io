@@ -21,3 +21,20 @@
     -ms-user-select: none;
     user-select: none;
 }
+
+.console {
+    background-color: black;
+    height: 4rem;
+    margin-top: 1rem;
+    min-height: 4rem;
+    overflow: scroll;
+    padding: 0.5rem 0.3rem;
+    scrollbar-width: thin;
+    scrollbar-color: var(--dark) var(--dark);
+
+    & .message {
+        color: rgb(139, 107, 24);
+        font-size: 0.7rem;
+        text-align: left;
+    }
+}
