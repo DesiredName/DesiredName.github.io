@@ -1,4 +1,4 @@
-const CACHE_ID = 41;
+const CACHE_ID = 46;
 const OFFLINE_URL = '/no-connection.html';
 let req_id = 0;
 
@@ -42,12 +42,13 @@ self.addEventListener('activate', (e) => {
 
 self.addEventListener('fetch', (e) => {
     const request = e.request;
+    const url = new URL(request.url);
 
     async function lookup() {
         const id = req_id++;
         const cached = await caches.match(request);
 
-        console.log(`${id}: requesting "${request.url}"`);
+        console.log(`${id}: requesting "${url}"`);
 
         if (cached != null) {
             console.log(`${id}: found in cache`);
@@ -64,7 +65,10 @@ self.addEventListener('fetch', (e) => {
                 })
                 .catch((error) => {
                     console.log(`${id}: request failed "${error}"`);
-                    if (request.mode === 'navigate') {
+                    if (
+                        request.mode === 'navigate' &&
+                        !url.pathname.endsWith(OFFLINE_URL)
+                    ) {
                         console.log(`${id}: redirect to offline page`);
                         return Response.redirect(OFFLINE_URL);
                     } else {

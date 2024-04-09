@@ -1,7 +1,7 @@
-const format = Intl.DateTimeFormat('en', {
+const format = Intl.DateTimeFormat(undefined, {
+    hour: '2-digit',
     minute: '2-digit',
     second: '2-digit',
-    fractionalSecondDigits: 3,
 });
 
 class TheConsole extends HTMLElement {
@@ -27,7 +27,7 @@ class TheConsole extends HTMLElement {
 
         if (timestamp === true) {
             html.push(
-                `<span class='time'>${format.format(Date.now())}</span">: `,
+                `<span class='time'>${format.format(Date.now())}</span"> `,
             );
         }
 
