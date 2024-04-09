@@ -113,43 +113,59 @@
             class="content"
             style="text-align: justify;"
         >
-            You can <a
-                class="link"
-                download="the_file"
-                href="./public/some-data.json"
-                onclick="handle_intercept(event)"
-            >download some resource</a>, while online. Then
+            <div>
+                1. <a
+                    class="link"
+                    download="the_file"
+                    href="./public/some-data.json"
+                    onclick="handle_intercept(event)"
+                >Download some resource</a>, while online
+            </div>
 
-            <label for="toggle-offline-state">
-                go offline
-                <input
-                    id="toggle-offline-state"
-                    type="checkbox"
-                />
-            </label>
+            <div>
+                <label for="toggle-offline-state">
+                    2. Go offline
+                    <input
+                        id="toggle-offline-state"
+                        type="checkbox"
+                    /> or switch off WiFi on your device
+                </label>
+            </div>
 
-            and <a
-                class="link"
-                download="the_file"
-                href="./public/some-data.json"
-                onclick="handle_intercept(event)"
-            >download the same resource again</a>. You can do this as many times as you like, until
+            <div>
+                3. <a
+                    class="link"
+                    download="the_file"
+                    href="./public/some-data.json"
+                    onclick="handle_intercept(event)"
+                >Download the same resource again</a> as many times as you'd like
+            </div>
 
-            <button
-                type="button"
-                onclick="handle_clear_storage()"
-            >the storage is cleared</button>.
+            <div>
+                4. <button
+                    type="button"
+                    onclick="handle_clear_storage()"
+                >Clear the storage</button>
+            </div>
 
-            Then browser will fail to download the resource from the network and will not be able to fetch it from the
-            cache.
+
+            <div>
+                5. Then browser will <a
+                    class="link"
+                    download="the_file"
+                    href="./public/some-data.json"
+                    onclick="handle_intercept(event)"
+                >fail to download the same resource again</a> because it is not in cache and can not be fetched from
+                network
+            </div>
         </div>
 
         <the-console id="console"></the-console>
     </div>
 
     <script>
-        const cache_name = 'offline-example';
         const is_offline = () => document.getElementById('toggle-offline-state').checked === true;
+
         const print_message = (message) => {
             document.getElementById('console').push_message({
                 message
@@ -157,6 +173,45 @@
                 timestamp: true
             });
         };
+
+        const cache_name = 'offline-example';
+
+        const fetch_from_cache = async (href) => {
+            print_message('Trying to fetch from cache');
+
+            const from_cache = await caches.match(href);
+
+            if (from_cache?.ok === true) {
+                print_message('Resource fetched from cache');
+            } else {
+                print_message('Resource not found in cache');
+            }
+
+            return from_cache;
+        }
+
+        const fetch_from_network = async (href) => {
+            const signal = AbortSignal.timeout(is_offline() ? 0 : 5000)
+
+            print_message('Trying to fetch from network');
+
+            const from_network = await fetch(href, { signal });
+
+            if (from_network?.ok === true) {
+                print_message('Resource fetched from network');
+            } else {
+                print_message('Resource not found online');
+            }
+
+            return from_network;
+        }
+
+        const put_to_cache = (href, clone) => {
+            // Fire'n'Forget, don't wait to store on request
+            caches.open(cache_name)
+                .then((cache) => cache.put(href, clone))
+                .then(() => print_message('Resource saved to cache'));
+        }
 
         function handle_clear_storage() {
             caches.delete('offline-example').then(() => {
@@ -168,33 +223,20 @@
             e.preventDefault();
 
             const href = e.target.href;
-            const signal = AbortSignal.timeout(is_offline() ? 0 : 5000)
 
             try {
-                print_message('Trying to fetch from cache');
-                const from_cache = await caches.match(href);
+                const from_cache = await fetch_from_cache(href);
 
-                if (from_cache != null && from_cache.ok) {
-                    print_message('Resource fetched from cache');
-                    const blob = await from_cache.blob();
-
-                    return download_blob(blob);
+                if (from_cache?.ok === true) {
+                    return from_cache.blob().then(download_blob);
                 }
 
-                print_message('Trying to fetch from network');
-                const from_network = await fetch(href, { signal });
+                const from_network = await fetch_from_network(href);
 
-                if (from_network != null && from_network.ok) {
-                    print_message('Resource fetched from network');
-                    const clone = from_network.clone();
-                    const blob = await from_network.blob();
+                if (from_network?.ok === true) {
+                    put_to_cache(href, from_network.clone())
 
-                    caches.open(cache_name).then((cache) => {
-                        print_message('Resource saved to cache');
-                        cache.put(href, clone)
-                    });
-
-                    return download_blob(blob);
+                    return from_network.blob().then(download_blob);
                 }
             } catch (ex) {
                 print_message('Resource not found in cache and could not be recieved from network');

@@ -54,6 +54,7 @@ self.addEventListener('fetch', (e) => {
             return cached;
         } else {
             const signal = AbortSignal.timeout(5000);
+
             return fetch(request, { signal })
                 .then((res) => {
                     console.log(
