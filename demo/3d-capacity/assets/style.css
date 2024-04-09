@@ -1,0 +1,32 @@
+.description {
+    margin-bottom: 1rem;
+}
+
+.canvas-container {
+    align-items: center;
+    display: flex;
+    flex-flow: column;
+    height: 320px;
+    margin-bottom: 1rem;
+    width: 100%;
+
+    #canvas {
+        height: 320px;
+        image-rendering: pixelated;
+        width: 320px;
+    }
+}
+
+.heightmap-controls {
+    margin-bottom: 1rem;
+
+    .heightmap-input {
+        background-color: var(--dark);
+        color: var(--bright);
+        height: 120px;
+        white-space: pre-line;
+        resize: none;
+        text-align: center;
+        width: 160px;
+    }
+}

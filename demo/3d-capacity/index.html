@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Preload block -->
+    <link
+        rel="preload"
+        href="/assets/demo-commons.css"
+        as="style"
+    />
+    <link
+        rel="preload"
+        href="/components/return-button/index.mjs"
+        as="script"
+        crossorigin
+    />
+
+    <title>DesiredName: Water capacity of a 3D scape</title>
+
+    <meta charset="UTF-8" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    />
+    <link
+        rel="stylesheet"
+        href="/assets/demo-commons.css"
+    />
+    <link
+        rel="manifest"
+        href="/site.webmanifest"
+        crossorigin="use-credentials"
+    />
+    <link
+        rel="stylesheet"
+        href="./assets/style.css"
+    />
+    <script
+        type="module"
+        src="/components/return-button/index.mjs"
+    ></script>
+
+    <!-- Security -->
+    <meta
+        http-equiv="Content-Security-Policy"
+        content="default-src 'self' 'unsafe-eval' 'unsafe-inline';"
+    />
+
+    <!-- SEO -->
+    <link
+        rel="canonical"
+        href="https://desiredname.github.io/"
+    />
+    <meta
+        name="theme-color"
+        content="#222222"
+    />
+    <meta
+        name="description"
+        content="DesiredName IT Blog by Krasnov Anton. The LeetCode solution of water trapping container problem."
+    />
+    <meta
+        name="robots"
+        content="index, nofollow"
+    />
+    <meta
+        name="author"
+        content="Krasnov Anton"
+    />
+    <meta
+        name="creator"
+        content="Krasnov Anton"
+    />
+    <meta
+        property="og:locale"
+        content="en_US"
+    />
+    <meta
+        property="og:title"
+        content="Algos: Water capacity of a 3D scape"
+    />
+    <meta
+        property="og:type"
+        content="website"
+    />
+    <meta
+        property="og:url"
+        content="https://www.linkedin.com/in/anton-krasnov-in-prague/"
+    />
+</head>
+
+<body>
+    <div class="return-button-container">
+        <return-button></return-button>
+    </div>
+
+    <article class="container">
+        <h3 class="title">Algos: Water capacity of a 3D scape</h3>
+
+        <div class="content">
+            <div class="description">
+                Click'n'Drag to rotate
+            </div>
+
+            <div class="canvas-container">
+                <canvas
+                    id="canvas"
+                    height="320"
+                    width="320"
+                >
+                    your browser does not support canvas
+                </canvas>
+            </div>
+
+            <div class="heightmap-controls">
+                <textarea
+                    id="heightmap_input"
+                    class="heightmap-input"
+                    rows="10"
+                >
+                    1,1,3,2,2,1,4
+                </textarea>
+            </div>
+
+            <div class="buttons inline">
+                <button
+                    id="apply_heightmap"
+                    aria-label="build and display heightmap on screen"
+                    class="button"
+                    type="button"
+                >Apply heightmap</button>
+            </div>
+        </div>
+
+    </article>
+
+    <details
+        class="footer"
+        aria-label="page footer with additional information"
+    >
+        <summary class="footer-summary">links</summary>
+        <div class="footer-content">
+            <a
+                href="https://leetcode.com/problems/trapping-rain-water-ii"
+                class="link"
+                target="_blank"
+                aria-label="the link to the original LeetCode problem"
+                referrerpolicy="no-referrer"
+            >the link to the problem on LeetCode</a>
+        </div>
+    </details>
+
+    <script type="module">
+        import { RENDERER_EVENTS } from './src/renderer.mjs';
+        import {
+            parse_heightmap,
+            link_canvas_events
+        } from './src/utils.mjs';
+
+        const heightmap_input = document.getElementById('heightmap_input');
+        const renderer = new Worker('./src/renderer.mjs', { type: 'module' });
+        const canvas = document.getElementById('canvas');
+        const offscreen = canvas.transferControlToOffscreen();
+
+        renderer.postMessage({ name: RENDERER_EVENTS.INIT, offscreen }, [offscreen]);
+
+        document.getElementById('apply_heightmap').onclick = () => renderer.postMessage({
+            name: RENDERER_EVENTS.RENDER,
+            heightmap: parse_heightmap(heightmap_input.value)
+        });
+
+        link_canvas_events(canvas, renderer);
+
+        renderer.postMessage({
+            name: RENDERER_EVENTS.RENDER,
+            heightmap: parse_heightmap(heightmap_input.value)
+        });
+    </script>
+</body>
+
+</html>
