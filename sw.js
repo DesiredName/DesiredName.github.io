@@ -1,5 +1,8 @@
-const CACHE_ID = 32;
+const CACHE_ID = 41;
 const OFFLINE_URL = '/no-connection.html';
+let req_id = 0;
+
+console.log(`starting service worker ${CACHE_ID}`);
 
 self.addEventListener('install', () => {
     self.skipWaiting();
@@ -32,7 +35,8 @@ self.addEventListener('activate', (e) => {
                     '/favicon-32x32.png',
                     '/favicon-16x16.png',
                 ]),
-            ),
+            )
+            .then(() => clients.claim()),
     );
 });
 
@@ -40,25 +44,33 @@ self.addEventListener('fetch', (e) => {
     const request = e.request;
 
     async function lookup() {
+        const id = req_id++;
         const cached = await caches.match(request);
 
+        console.log(`${id}: requesting "${request.url}"`);
+
         if (cached != null) {
+            console.log(`${id}: found in cache`);
             return cached;
         } else {
-            try {
-                return await fetch(request, {
-                    signal: AbortSignal.timeout(5000),
+            const signal = AbortSignal.timeout(5000);
+            return fetch(request, { signal })
+                .then((res) => {
+                    console.log(
+                        `${id}: request resolved with network [${res.ok}]`,
+                    );
+                    return res;
+                })
+                .catch((error) => {
+                    console.log(`${id}: request failed "${error}"`);
+                    if (request.mode === 'navigate') {
+                        console.log(`${id}: redirect to offline page`);
+                        return Response.redirect(OFFLINE_URL);
+                    } else {
+                        console.log(`${id}: return error response`);
+                        return Response.error();
+                    }
                 });
-            } catch (error) {
-                if (
-                    request.mode === 'navigate' &&
-                    !request.url.endsWith(OFFLINE_URL)
-                ) {
-                    return Response.redirect(OFFLINE_URL);
-                } else {
-                    return Response.error();
-                }
-            }
         }
     }
 

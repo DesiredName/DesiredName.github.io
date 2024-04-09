@@ -1,0 +1,16 @@
+.console {
+    background-color: black;
+    height: 4rem;
+    min-height: 4rem;
+    overflow: scroll;
+    padding: 0.5rem 0.3rem;
+    scrollbar-width: thin;
+    scrollbar-color: var(--dark) var(--dark);
+
+    .message {
+        color: goldenrod !important;
+        font-size: 0.7rem !important;
+        text-align: left !important;
+        white-space: nowrap;
+    }
+}

@@ -14,6 +14,12 @@
         as="script"
         crossorigin
     />
+    <link
+        rel="preload"
+        href="/components/the-console/index.mjs"
+        as="script"
+        crossorigin
+    />
 
     <title>Offline strategy without PWA</title>
 
@@ -38,6 +44,10 @@
     <script
         type="module"
         src="/components/return-button/index.mjs"
+    ></script>
+    <script
+        type="module"
+        src="/components/the-console/index.mjs"
     ></script>
 
     <!-- Security -->
@@ -134,17 +144,24 @@
             cache.
         </div>
 
-        <div class="console">
-
-        </div>
+        <the-console id="console"></the-console>
     </div>
 
     <script>
-        const is_offline = () => document.getElementById('toggle-offline-state').checked === true;
         const cache_name = 'offline-example';
+        const is_offline = () => document.getElementById('toggle-offline-state').checked === true;
+        const print_message = (message) => {
+            document.getElementById('console').push_message({
+                message
+            }, {
+                timestamp: true
+            });
+        };
 
         function handle_clear_storage() {
-            caches.delete('offline-example');
+            caches.delete('offline-example').then(() => {
+                print_message('The cache was cleared');
+            });
         }
 
         async function handle_intercept(e) {
@@ -154,33 +171,33 @@
             const signal = AbortSignal.timeout(is_offline() ? 0 : 5000)
 
             try {
-                console.log(`Trying to fetch "${href}" from cache`);
+                print_message('Trying to fetch from cache');
                 const from_cache = await caches.match(href);
 
                 if (from_cache != null && from_cache.ok) {
-                    console.log(`Resource "${href}" fetched from cache`);
+                    print_message('Resource fetched from cache');
                     const blob = await from_cache.blob();
 
                     return download_blob(blob);
                 }
 
-                console.log(`Trying to fetch "${href}" from network`);
+                print_message('Trying to fetch from network');
                 const from_network = await fetch(href, { signal });
 
                 if (from_network != null && from_network.ok) {
-                    console.log(`Resource "${href}" fetched from network`);
+                    print_message('Resource fetched from network');
                     const clone = from_network.clone();
                     const blob = await from_network.blob();
 
                     caches.open(cache_name).then((cache) => {
-                        console.log(`Resource "${href}" saved to cache`);
+                        print_message('Resource saved to cache');
                         cache.put(href, clone)
                     });
 
                     return download_blob(blob);
                 }
             } catch (ex) {
-                console.log(`Resource "${href}" not found in cache and could not be recieved from network`);
+                print_message('Resource not found in cache and could not be recieved from network');
             }
         }
 
@@ -190,6 +207,8 @@
             a.href = data;
             a.download = 'some-data';
             a.click();
+
+            print_message('Download in progress...');
 
             URL.revokeObjectURL(data);
         }
