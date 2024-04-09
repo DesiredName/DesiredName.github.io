@@ -12,7 +12,7 @@ export function parse_heightmap(raw_input) {
 export function link_canvas_events(canvas, renderer) {
     const { x: x_offset, y: y_offset } = canvas.getBoundingClientRect();
 
-    let start_point = null;
+    let current_pivot = null;
 
     function stop_event(next, e) {
         e.stopPropagation();
@@ -33,45 +33,52 @@ export function link_canvas_events(canvas, renderer) {
         };
     }
 
-    function get_start_point_offset({ x, y }) {
+    function calculate_with_offset({ x, y }) {
         return {
-            x: x - start_point.x,
-            y: y - start_point.y,
+            x: x - current_pivot.x,
+            y: y - current_pivot.y,
+        };
+    }
+
+    function normalize({ x, y }) {
+        const d = Math.sqrt(x * x + y * y);
+        return {
+            x: x / d / 10,
+            y: y / d / 10,
         };
     }
 
     function on_start_event(e) {
-        start_point = extract_translation(e);
+        current_pivot = extract_translation(e);
     }
 
     function on_move_event(e) {
-        if (start_point == null) {
+        if (current_pivot == null) {
             return;
         }
 
+        const next_pivot = extract_translation(e);
+
         renderer.postMessage({
-            name: RENDERER_EVENTS.SET_TRANSLATION,
-            translation: get_start_point_offset(extract_translation(e)),
+            name: RENDERER_EVENTS.CAMERA_MOVE,
+            translation: normalize(calculate_with_offset(next_pivot)),
         });
+
+        current_pivot = next_pivot;
     }
 
     function on_stop_event(e) {
-        if (start_point == null) {
+        if (current_pivot == null) {
             return;
         }
 
-        renderer.postMessage({
-            name: RENDERER_EVENTS.FIX_TRANSLATION,
-            translation: get_start_point_offset(extract_translation(e)),
-        });
-
-        start_point = null;
+        current_pivot = null;
     }
 
-    function on_change_scale(e) {
+    function on_change_panning(e) {
         renderer.postMessage({
-            name: RENDERER_EVENTS.CHANGE_SCALE,
-            delta: e.wheelDelta < 0 ? -0.1 : 0.1,
+            name: RENDERER_EVENTS.CAMERA_PAN,
+            pan: e.wheelDelta > 0 ? -1 : 1,
         });
     }
 
@@ -85,5 +92,5 @@ export function link_canvas_events(canvas, renderer) {
     canvas.onmouseleave = stop_event.bind(this, on_stop_event);
     canvas.ontouchend = stop_event.bind(this, on_stop_event);
 
-    canvas.onwheel = on_change_scale;
+    canvas.onwheel = on_change_panning;
 }
