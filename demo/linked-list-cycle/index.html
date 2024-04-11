@@ -1,193 +1,261 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <!-- Preload block -->
+        <link
+            rel="preload"
+            href="/assets/demo-commons.css"
+            as="style"
+        />
+        <link
+            rel="preload"
+            href="/components/return-button/index.mjs"
+            as="script"
+            crossorigin
+        />
 
-<head>
-    <!-- Preload block -->
-    <link
-        rel="preload"
-        href="/assets/demo-commons.css"
-        as="style"
-    />
-    <link
-        rel="preload"
-        href="/components/return-button/index.mjs"
-        as="script"
-        crossorigin
-    />
+        <title>Linked list cycle detection</title>
 
-    <title>Linked list cycle detection</title>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        />
+        <link
+            rel="stylesheet"
+            href="/assets/demo-commons.css"
+        />
+        <link
+            rel="manifest"
+            href="/site.webmanifest"
+            crossorigin="use-credentials"
+        />
+        <link
+            rel="stylesheet"
+            href="./assets/style.css"
+        />
+        <script
+            type="module"
+            src="/components/return-button/index.mjs"
+        ></script>
 
-    <meta charset="UTF-8" />
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    />
-    <link
-        rel="stylesheet"
-        href="/assets/demo-commons.css"
-    />
-    <link
-        rel="manifest"
-        href="/site.webmanifest"
-        crossorigin="use-credentials"
-    />
-    <link
-        rel="stylesheet"
-        href="./assets/style.css"
-    />
-    <script
-        type="module"
-        src="/components/return-button/index.mjs"
-    ></script>
+        <!-- Security -->
+        <meta
+            http-equiv="Content-Security-Policy"
+            content="default-src 'self' 'unsafe-eval' 'unsafe-inline';"
+        />
 
-    <!-- Security -->
-    <meta
-        http-equiv="Content-Security-Policy"
-        content="default-src 'self' 'unsafe-eval' 'unsafe-inline';"
-    />
+        <!-- SEO -->
+        <link
+            rel="canonical"
+            href="https://desiredname.github.io/"
+        />
+        <meta
+            name="theme-color"
+            content="#222222"
+        />
+        <meta
+            name="description"
+            content="DesiredName IT Blog by Krasnov Anton. Linked list cycle detection with Hare-Tortoise algorithm."
+        />
+        <meta
+            name="robots"
+            content="index, nofollow"
+        />
+        <meta
+            name="author"
+            content="Krasnov Anton"
+        />
+        <meta
+            name="creator"
+            content="Krasnov Anton"
+        />
+        <meta
+            property="og:locale"
+            content="en_US"
+        />
+        <meta
+            property="og:title"
+            content="Linked list cycle detection"
+        />
+        <meta
+            property="og:type"
+            content="website"
+        />
+        <meta
+            property="og:url"
+            content="https://www.linkedin.com/in/anton-krasnov-in-prague/"
+        />
+    </head>
 
-    <!-- SEO -->
-    <link
-        rel="canonical"
-        href="https://desiredname.github.io/"
-    />
-    <meta
-        name="theme-color"
-        content="#222222"
-    />
-    <meta
-        name="description"
-        content="DesiredName IT Blog by Krasnov Anton. Linked list cycle detection with Hare-Tortoise algorithm."
-    />
-    <meta
-        name="robots"
-        content="index, nofollow"
-    />
-    <meta
-        name="author"
-        content="Krasnov Anton"
-    />
-    <meta
-        name="creator"
-        content="Krasnov Anton"
-    />
-    <meta
-        property="og:locale"
-        content="en_US"
-    />
-    <meta
-        property="og:title"
-        content="Linked list cycle detection"
-    />
-    <meta
-        property="og:type"
-        content="website"
-    />
-    <meta
-        property="og:url"
-        content="https://www.linkedin.com/in/anton-krasnov-in-prague/"
-    />
-</head>
-
-<body>
-    <div class="return-button-container">
-        <return-button></return-button>
-    </div>
-
-    <article class="container">
-        <h3 class="title">Linked list cycle detection</h3>
-
-        <div class="content">
-            <div class="section">
-                <span>Set length of the linked list and</span>
-                <br>
-                <span>the index, where cycle starts</span>
-            </div>
-
-            <div class="section">
-                asd
-            </div>
-
-            <div class="form section">
-                <div class="row">
-                    <div class="control">
-                        <label
-                            for="list-length"
-                            class="control-label"
-                        >
-                            The list length
-                        </label>
-                        <input
-                            id="list-length"
-                            aria-label="The list length"
-                            class="control-input"
-                            type="number"
-                            value="10"
-                        >
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="control">
-                        <label
-                            for="cycle-start-index"
-                            class="control-label"
-                        >
-                            The index when the cycle starts
-                        </label>
-                        <input
-                            id="cycle-start-index"
-                            aria-label="The index when the cycle starts"
-                            class="control-input"
-                            type="number"
-                            value="5"
-                        >
-                    </div>
-                </div>
-            </div>
-
-            <div class="section buttons inline">
-                <button class="button">
-                    Run algorithm
-                </button>
-            </div>
+    <body>
+        <div class="return-button-container">
+            <return-button></return-button>
         </div>
 
-    </article>
+        <article class="container">
+            <h3 class="title">Linked list cycle detection</h3>
 
-    <details
-        class="footer"
-        aria-label="page footer with additional information"
-    >
-        <summary class="footer-summary">additional info on algorithm and data structure</summary>
-        <div class="footer-content">
-            <a
-                href="https://www.geeksforgeeks.org/floyds-cycle-finding-algorithm/"
-                class="link"
-                target="_blank"
-                aria-label="link to the GeekForGeeks.org algorithm description"
-                referrerpolicy="no-referrer"
-            >GeekForGeeks: Hare-Tortoise algorithm</a>
-            <br />
-            <a
-                href="https://en.wikipedia.org/wiki/Cycle_detection#Tortoise_and_hare"
-                class="link"
-                target="_blank"
-                aria-label="link to the Wikipedia algorithm description"
-                referrerpolicy="no-referrer"
-            >Wikipedia: Hare-Tortoise algorithm</a>
-            <br />
-            <a
-                href="https://en.wikipedia.org/wiki/Linked_list"
-                class="link"
-                target="_blank"
-                aria-label="link to the Wikipedia linked list data structure description"
-                referrerpolicy="no-referrer"
-            >Wikipedia: Linked list</a>
-        </div>
-    </details>
+            <div class="content">
+                <div class="section">
+                    <span>Set length of the linked list and</span>
+                    <br />
+                    <span>the index, where cycle starts</span>
+                </div>
 
-    <script type="module">
-    </script>
-</body>
+                <div class="section">
+                    <div
+                        id="the-list"
+                        class="the-list"
+                    >
+                        <div class="list-poniters">pointers</div>
+                        <div class="list-items">
+                            <div
+                                class="list-item"
+                                style="animation-delay: 100ms"
+                            ></div>
+                            <div
+                                class="list-item"
+                                style="animation-delay: 200ms"
+                            ></div>
+                            <div
+                                class="list-item"
+                                style="animation-delay: 300ms"
+                            ></div>
+                            <div
+                                class="list-item is-cycle"
+                                style="animation-delay: 400ms"
+                            ></div>
+                            <div
+                                class="list-item"
+                                style="animation-delay: 500ms"
+                            ></div>
+                        </div>
+                        <div class="list-loop-arrow">the loop</div>
+                    </div>
+                </div>
 
+                <div class="form section">
+                    <div class="row">
+                        <div class="control">
+                            <label
+                                for="list-length"
+                                class="control-label"
+                            >
+                                The list length
+                            </label>
+                            <input
+                                id="list-length"
+                                aria-label="The list length"
+                                class="control-input"
+                                type="number"
+                            />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="control">
+                            <label
+                                for="cycle-start-index"
+                                class="control-label"
+                            >
+                                The index when the cycle starts
+                            </label>
+                            <input
+                                id="cycle-start-index"
+                                aria-label="The index when the cycle starts"
+                                class="control-input"
+                                type="number"
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section buttons inline">
+                    <button class="button">Run algorithm</button>
+                </div>
+            </div>
+        </article>
+
+        <details
+            class="footer"
+            aria-label="page footer with additional information"
+        >
+            <summary class="footer-summary">
+                additional info on algorithm and data structure
+            </summary>
+            <div class="footer-content">
+                <a
+                    href="https://www.geeksforgeeks.org/floyds-cycle-finding-algorithm/"
+                    class="link"
+                    target="_blank"
+                    aria-label="link to the GeekForGeeks.org algorithm description"
+                    referrerpolicy="no-referrer"
+                    >GeekForGeeks: Hare-Tortoise algorithm</a
+                >
+                <br />
+                <a
+                    href="https://en.wikipedia.org/wiki/Cycle_detection#Tortoise_and_hare"
+                    class="link"
+                    target="_blank"
+                    aria-label="link to the Wikipedia algorithm description"
+                    referrerpolicy="no-referrer"
+                    >Wikipedia: Hare-Tortoise algorithm</a
+                >
+                <br />
+                <a
+                    href="https://en.wikipedia.org/wiki/Linked_list"
+                    class="link"
+                    target="_blank"
+                    aria-label="link to the Wikipedia linked list data structure description"
+                    referrerpolicy="no-referrer"
+                    >Wikipedia: Linked list</a
+                >
+            </div>
+        </details>
+
+        <script type="module">
+            const el_list_length = document.getElementById('list-length');
+            const el_cycle_start_index =
+                document.getElementById('cycle-start-index');
+
+            const list_setup = new Proxy(
+                {
+                    length: 10,
+                    min: 1,
+                    max: 20,
+                    cycle_at: 3,
+                },
+                {
+                    set(target, prop, value) {
+                        if (prop === 'length') {
+                            target.length = value;
+                            target.cycle_at = Math.min(target.cycle_at, value);
+
+                            el_cycle_start_index.max = target.length;
+                            el_cycle_start_index.value = target.cycle_at;
+
+                            return true;
+                        } else {
+                            return Reflect.set(...arguments);
+                        }
+                    },
+                },
+            );
+
+            // set defaults and watch
+            el_list_length.value = list_setup.length;
+            el_list_length.min = list_setup.min;
+            el_list_length.max = list_setup.max;
+            el_list_length.onchange = () => {
+                list_setup.length = el_list_length.valueAsNumber;
+            };
+
+            el_cycle_start_index.value = list_setup.cycle_at;
+            el_cycle_start_index.min = list_setup.min;
+            el_cycle_start_index.max = list_setup.length;
+            el_cycle_start_index.onchange = () => {
+                list_setup.cycle_at = el_cycle_start_index.valueAsNumber;
+            };
+        </script>
+    </body>
 </html>

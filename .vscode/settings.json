@@ -1,9 +1,14 @@
 {
     "editor.formatOnSave": true,
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.snippetSuggestions": "top",
     "html.format.wrapAttributes": "force-expand-multiline",
     "emmet.showSuggestionsAsSnippets": true,
-    "prettier.vueIndentScriptAndStyle": true,
-    "liveServer.settings.NoBrowser": true
+    "liveServer.settings.NoBrowser": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[html]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }
 }
