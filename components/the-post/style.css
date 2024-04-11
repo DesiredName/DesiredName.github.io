@@ -43,10 +43,10 @@
     grid-area: links;
 }
 
-.the-post .links-block .github-link {
-    background-image: url('/assets/github-mark-white.svg');
+.the-post .links-block .ext-link {
     background-size: contain;
     background-color: transparent;
+    background-repeat: no-repeat;
     display: block;
     grid-area: links;
     height: 2rem;
@@ -55,6 +55,18 @@
     width: 2rem;
 }
 
-.the-post .links-block .github-link:hover {
+.the-post .links-block .ext-link:not(:last-child) {
+    margin-right: 1rem;
+}
+
+.the-post .links-block .ext-link:hover {
     transform: scale(1.3);
+}
+
+.the-post .links-block .ext-link.github-link {
+    background-image: url('/assets/github-mark-white.svg');
+}
+
+.the-post .links-block .ext-link.leetcode-link {
+    background-image: url('/assets/leetcode.png');
 }

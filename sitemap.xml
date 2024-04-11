@@ -3,7 +3,7 @@
 	<url>
 		<loc>https://www.desiredname.github.io</loc>
 		<priority>1.00</priority>
-		<lastmod>2024-04-10</lastmod>
+		<lastmod>2024-04-11</lastmod>
 	</url>
 	<url>
 		<loc>https://www.desiredname.github.io/no-connection.html</loc>
@@ -11,22 +11,12 @@
 		<lastmod>2024-04-09</lastmod>
 	</url>
 	<url>
-		<loc>https://www.desiredname.github.io/demo/web-workers</loc>
+		<loc>https://www.desiredname.github.io/demo/cache-drop-offline</loc>
 		<priority>0.33</priority>
-		<lastmod>2024-04-09</lastmod>
+		<lastmod>2024-04-10</lastmod>
 	</url>
 	<url>
-		<loc>https://www.desiredname.github.io/demo/perceptron</loc>
-		<priority>0.33</priority>
-		<lastmod>2024-04-09</lastmod>
-	</url>
-	<url>
-		<loc>https://www.desiredname.github.io/demo/no-axios-defined</loc>
-		<priority>0.33</priority>
-		<lastmod>2024-04-09</lastmod>
-	</url>
-	<url>
-		<loc>https://www.desiredname.github.io/demo/modal-made-easy</loc>
+		<loc>https://www.desiredname.github.io/demo/a-star</loc>
 		<priority>0.33</priority>
 		<lastmod>2024-04-09</lastmod>
 	</url>
@@ -36,14 +26,24 @@
 		<lastmod>2024-04-09</lastmod>
 	</url>
 	<url>
-		<loc>https://www.desiredname.github.io/demo/a-star</loc>
+		<loc>https://www.desiredname.github.io/demo/modal-made-easy</loc>
 		<priority>0.33</priority>
 		<lastmod>2024-04-09</lastmod>
 	</url>
 	<url>
-		<loc>https://www.desiredname.github.io/demo/cache-drop-offline</loc>
+		<loc>https://www.desiredname.github.io/demo/no-axios-defined</loc>
 		<priority>0.33</priority>
-		<lastmod>2024-04-10</lastmod>
+		<lastmod>2024-04-09</lastmod>
+	</url>
+	<url>
+		<loc>https://www.desiredname.github.io/demo/perceptron</loc>
+		<priority>0.33</priority>
+		<lastmod>2024-04-09</lastmod>
+	</url>
+	<url>
+		<loc>https://www.desiredname.github.io/demo/web-workers</loc>
+		<priority>0.33</priority>
+		<lastmod>2024-04-09</lastmod>
 	</url>
 	<url>
 		<loc>https://www.desiredname.github.io/demo/broadcast-api/iframe.html</loc>

@@ -49,6 +49,10 @@ body {
         padding: 2rem 0 2rem;
     }
 
+    & .content .section:not(:last-child) {
+        margin-bottom: 1rem;
+    }
+
     & .buttons {
         display: flex;
         justify-content: space-around;
