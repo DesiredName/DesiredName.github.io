@@ -3,17 +3,30 @@
         background-color: black;
         display: flex;
         flex-flow: column;
-        min-height: 2rem;
+        min-height: 7rem;
         overflow: hidden;
         padding: 0.4rem;
+        position: relative;
 
         counter-reset: index 0;
     }
 
-    & .list-pointers,
-    & .list-loop-arrow {
-        height: 1rem;
+    & .list-pointers {
+        height: 2rem;
+        position: relative;
     }
+
+    & .pointer {
+        position: absolute;
+        height: 2rem;
+        left: 0;
+        line-height: 2rem;
+        top: 0;
+        transition-duration: 500ms;
+        transition-property: left;
+        width: 2rem;
+    }
+
 
     & .list-items {
         align-items: center;
@@ -26,7 +39,7 @@
     & .list-item {
         counter-increment: index 1;
 
-        animation: fade-in 1s 1 forwards;
+        animation: fade-in 300ms 1 forwards;
         background-color: var(--dark);
         border-radius: 1rem;
         flex-flow: row;
@@ -35,6 +48,8 @@
         opacity: 0;
         text-align: center;
         transform: translateY(-100px);
+        transition-duration: 400ms;
+        transition-property: background-color;
         width: 2rem;
 
         &::after {
@@ -48,6 +63,14 @@
         &.is-cycle {
             background-color: var(--vine);
         }
+    }
+
+    & .list-loop-arrow {
+        border: 5px dotted var(--vine);
+        border-style: none dotted dotted;
+        bottom: 1rem;
+        min-height: 1rem;
+        position: absolute;
     }
 }
 

@@ -100,7 +100,7 @@
                 <div class="section">
                     <span>Set length of the linked list and</span>
                     <br />
-                    <span>the index, where cycle starts</span>
+                    <span>the index, where the cycle starts</span>
                 </div>
 
                 <div class="section">
@@ -108,30 +108,28 @@
                         id="the-list"
                         class="the-list"
                     >
-                        <div class="list-poniters">pointers</div>
-                        <div class="list-items">
+                        <div class="list-pointers">
                             <div
-                                class="list-item"
-                                style="animation-delay: 100ms"
-                            ></div>
+                                id="pointer-tortoise"
+                                class="pointer"
+                            >
+                                🐢
+                            </div>
                             <div
-                                class="list-item"
-                                style="animation-delay: 200ms"
-                            ></div>
-                            <div
-                                class="list-item"
-                                style="animation-delay: 300ms"
-                            ></div>
-                            <div
-                                class="list-item is-cycle"
-                                style="animation-delay: 400ms"
-                            ></div>
-                            <div
-                                class="list-item"
-                                style="animation-delay: 500ms"
-                            ></div>
+                                id="pointer-hare"
+                                class="pointer"
+                            >
+                                🐇
+                            </div>
                         </div>
-                        <div class="list-loop-arrow">the loop</div>
+                        <div
+                            id="items"
+                            class="list-items"
+                        ></div>
+                        <div
+                            id="list-loop-arrow"
+                            class="list-loop-arrow"
+                        ></div>
                     </div>
                 </div>
 
@@ -158,7 +156,7 @@
                                 for="cycle-start-index"
                                 class="control-label"
                             >
-                                The index when the cycle starts
+                                The index at which the cycle starts
                             </label>
                             <input
                                 id="cycle-start-index"
@@ -171,7 +169,12 @@
                 </div>
 
                 <div class="section buttons inline">
-                    <button class="button">Run algorithm</button>
+                    <button
+                        id="run-animation"
+                        class="button"
+                    >
+                        Run algorithm
+                    </button>
                 </div>
             </div>
         </article>
@@ -214,48 +217,99 @@
         </details>
 
         <script type="module">
+            import ListController from './src/list_controller.mjs';
+            import BuildLinkedList from './src/linked_list.mjs';
+            import BuildHareTortoiseMoves from './src/hare_tortoise.mjs';
+
+            const initial_state = {
+                length: 10,
+                min: 1,
+                max: 20,
+                cycle_at: 3,
+            };
+
+            const el_run_button = document.getElementById('run-animation');
             const el_list_length = document.getElementById('list-length');
             const el_cycle_start_index =
                 document.getElementById('cycle-start-index');
 
-            const list_setup = new Proxy(
-                {
-                    length: 10,
-                    min: 1,
-                    max: 20,
-                    cycle_at: 3,
-                },
-                {
-                    set(target, prop, value) {
-                        if (prop === 'length') {
-                            target.length = value;
-                            target.cycle_at = Math.min(target.cycle_at, value);
+            const list_controller = new ListController({
+                el_tortoise: document.getElementById('pointer-tortoise'),
+                el_hare: document.getElementById('pointer-hare'),
+                el_items: document.getElementById('items'),
+                el_arrow: document.getElementById('list-loop-arrow'),
+                length: initial_state.length,
+                cycle_at: initial_state.cycle_at,
+            });
 
-                            el_cycle_start_index.max = target.length;
-                            el_cycle_start_index.value = target.cycle_at;
+            const list_state = new Proxy(initial_state, {
+                set(target, prop, value) {
+                    if (prop === 'length') {
+                        target.length = value;
+                        target.cycle_at = Math.min(target.cycle_at, value);
 
-                            return true;
-                        } else {
-                            return Reflect.set(...arguments);
-                        }
-                    },
+                        el_cycle_start_index.max = target.length;
+                        el_cycle_start_index.value = target.cycle_at;
+
+                        list_controller.length = target.length;
+
+                        return true;
+                    } else if ((prop = 'cycle_at')) {
+                        target.cycle_at = Math.min(value, target.length);
+
+                        list_controller.cycle_at = target.cycle_at;
+
+                        return true;
+                    } else {
+                        return Reflect.set(...arguments);
+                    }
                 },
-            );
+            });
 
             // set defaults and watch
-            el_list_length.value = list_setup.length;
-            el_list_length.min = list_setup.min;
-            el_list_length.max = list_setup.max;
+            el_list_length.value = list_state.length;
+            el_list_length.min = list_state.min;
+            el_list_length.max = list_state.max;
             el_list_length.onchange = () => {
-                list_setup.length = el_list_length.valueAsNumber;
+                list_state.length = el_list_length.valueAsNumber;
             };
 
-            el_cycle_start_index.value = list_setup.cycle_at;
-            el_cycle_start_index.min = list_setup.min;
-            el_cycle_start_index.max = list_setup.length;
+            el_cycle_start_index.value = list_state.cycle_at;
+            el_cycle_start_index.min = list_state.min;
+            el_cycle_start_index.max = list_state.length;
             el_cycle_start_index.onchange = () => {
-                list_setup.cycle_at = el_cycle_start_index.valueAsNumber;
+                list_state.cycle_at = el_cycle_start_index.valueAsNumber;
             };
+
+            // wire button
+            el_run_button.onclick = async () => {
+                lock_ui(true);
+
+                const list = BuildLinkedList(
+                    list_state.length,
+                    list_state.cycle_at,
+                );
+                const moves = BuildHareTortoiseMoves(list, list_controller);
+
+                for await (let { t, h } of moves) {
+                    list_controller.move_hare(h);
+                    list_controller.move_tortoise(t);
+                    console.log({ t, h });
+
+                    await new Promise((res) => setTimeout(res, 500));
+                }
+
+                lock_ui(false);
+            };
+
+            function lock_ui(locked) {
+                [el_run_button, el_list_length, el_cycle_start_index].forEach(
+                    (el) =>
+                        locked
+                            ? el.setAttribute('disabled', true)
+                            : el.removeAttribute('disabled'),
+                );
+            }
         </script>
     </body>
 </html>
