@@ -6,7 +6,7 @@ export default function AnimationHelper(output) {
     const format = Intl.DateTimeFormat('en', {
         minute: '2-digit',
         second: '2-digit',
-        fractionalSecondDigits: 3
+        fractionalSecondDigits: 3,
     });
 
     const draw_ticks = (ticks) => (output.textContent = format.format(ticks));
@@ -16,12 +16,12 @@ export default function AnimationHelper(output) {
         last = ts;
 
         draw_ticks(elapsed);
-        
+
         timer_id = requestAnimationFrame(animate);
     }
 
     draw_ticks(0);
-    
+
     return {
         start() {
             last = document.timeline.currentTime;

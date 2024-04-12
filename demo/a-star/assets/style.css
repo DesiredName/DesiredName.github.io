@@ -19,8 +19,17 @@
         }
 
         .grid-overlay {
-            background-image: repeating-linear-gradient(#000 0, transparent 1px, transparent var(--cell-width)),
-                repeating-linear-gradient(90deg, #000 0, transparent 1px, transparent var(--cell-width));
+            background-image: repeating-linear-gradient(
+                    #000 0,
+                    transparent 1px,
+                    transparent var(--cell-width)
+                ),
+                repeating-linear-gradient(
+                    90deg,
+                    #000 0,
+                    transparent 1px,
+                    transparent var(--cell-width)
+                );
             cursor: pointer;
             position: absolute;
         }

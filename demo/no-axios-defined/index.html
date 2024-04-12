@@ -1,261 +1,276 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <!-- Preload block -->
+        <link
+            rel="preload"
+            href="/assets/demo-commons.css"
+            as="style"
+        />
+        <link
+            rel="preload"
+            href="/components/return-button/index.mjs"
+            as="script"
+            crossorigin
+        />
 
-<head>
-    <!-- Preload block -->
-    <link
-        rel="preload"
-        href="/assets/demo-commons.css"
-        as="style"
-    />
-    <link
-        rel="preload"
-        href="/components/return-button/index.mjs"
-        as="script"
-        crossorigin
-    />
+        <title>No AXIOS defined</title>
 
-    <title>No AXIOS defined</title>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        />
+        <link
+            rel="stylesheet"
+            href="/assets/demo-commons.css"
+        />
+        <link
+            rel="manifest"
+            href="/site.webmanifest"
+            crossorigin="use-credentials"
+        />
+        <link
+            rel="stylesheet"
+            href="./assets/style.css"
+        />
+        <script
+            type="module"
+            src="/components/return-button/index.mjs"
+        ></script>
 
-    <meta charset="UTF-8">
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-    <link
-        rel="stylesheet"
-        href="/assets/demo-commons.css"
-    >
-    <link
-        rel="manifest"
-        href="/site.webmanifest"
-        crossorigin="use-credentials"
-    />
-    <link
-        rel="stylesheet"
-        href="./assets/style.css"
-    >
-    <script
-        type="module"
-        src="/components/return-button/index.mjs"
-    ></script>
+        <!-- Security -->
+        <meta
+            http-equiv="Content-Security-Policy"
+            content="default-src 'self' 'unsafe-eval' 'unsafe-inline';"
+        />
 
-    <!-- Security -->
-    <meta
-        http-equiv="Content-Security-Policy"
-        content="default-src 'self' 'unsafe-eval' 'unsafe-inline';"
-    />
-
-    <!-- SEO -->
-    <link
-        rel="canonical"
-        href="https://desiredname.github.io/"
-    />
-    <meta
-        name="theme-color"
-        content="#222222"
-    />
-    <meta
-        name="description"
-        content="DesiredName IT Blog by Krasnov Anton. In this article I'd like to show
+        <!-- SEO -->
+        <link
+            rel="canonical"
+            href="https://desiredname.github.io/"
+        />
+        <meta
+            name="theme-color"
+            content="#222222"
+        />
+        <meta
+            name="description"
+            content="DesiredName IT Blog by Krasnov Anton. In this article I'd like to show
         how a simple fetch function can be used to build a network middleware without
         any 3rd-party library involved."
-    >
-    <meta
-        name="robots"
-        content="index, nofollow"
-    >
-    <meta
-        name="author"
-        content="Krasnov Anton"
-    >
-    <meta
-        name="creator"
-        content="Krasnov Anton"
-    >
-    <meta
-        property="og:locale"
-        content="en_US"
-    >
-    <meta
-        property="og:title"
-        content="No AXIOS defined"
-    />
-    <meta
-        property="og:type"
-        content="website"
-    />
-    <meta
-        property="og:url"
-        content="https://www.linkedin.com/in/anton-krasnov-in-prague/"
-    />
-</head>
+        />
+        <meta
+            name="robots"
+            content="index, nofollow"
+        />
+        <meta
+            name="author"
+            content="Krasnov Anton"
+        />
+        <meta
+            name="creator"
+            content="Krasnov Anton"
+        />
+        <meta
+            property="og:locale"
+            content="en_US"
+        />
+        <meta
+            property="og:title"
+            content="No AXIOS defined"
+        />
+        <meta
+            property="og:type"
+            content="website"
+        />
+        <meta
+            property="og:url"
+            content="https://www.linkedin.com/in/anton-krasnov-in-prague/"
+        />
+    </head>
 
-<body>
-    <div class="return-button-container">
-        <return-button></return-button>
-    </div>
-
-    <article class="container">
-        <h3 class="title">JS superpowers - no AXIOS defined ♥️</h3>
-
-        <div class="content">
-            No need to use AXIOS or any other library to define
-            &gt;&gt; GLOBAL &lt;&lt;
-            hooks, middleware or loggers for network requests!
+    <body>
+        <div class="return-button-container">
+            <return-button></return-button>
         </div>
 
-        <section class="buttons has-counter">
-            <button
-                type="button"
-                class="button"
-                onclick="handle_middleware_usage('./assets/textfile.txt')"
-            >
-                Text file
-            </button>
+        <article class="container">
+            <h3 class="title">JS superpowers - no AXIOS defined ♥️</h3>
 
-            <button
-                type="button"
-                class="button"
-                onclick="handle_middleware_usage('./assets/jsonfile.json')"
-            >
-                JSON file
-            </button>
+            <div class="content">
+                No need to use AXIOS or any other library to define &gt;&gt;
+                GLOBAL &lt;&lt; hooks, middleware or loggers for network
+                requests!
+            </div>
 
-            <button
-                type="button"
-                class="button"
-                onclick="handle_middleware_usage('./assets/gifimage.gif')"
-            >
-                GIF file
-                <a
-                    href="https://opengameart.org/content/1-bit-doomsphere-charset"
-                    class="link"
-                    target="_blank"
-                    onclick="event.stopPropagation()"
-                >image credits</a>
-            </button>
+            <section class="buttons has-counter">
+                <button
+                    type="button"
+                    class="button"
+                    onclick="handle_middleware_usage('./assets/textfile.txt')"
+                >
+                    Text file
+                </button>
 
-            <button
-                type="button"
-                class="button"
-                onclick="handle_middleware_usage_prevent()"
-            >
-                Prevent request
-            </button>
+                <button
+                    type="button"
+                    class="button"
+                    onclick="handle_middleware_usage('./assets/jsonfile.json')"
+                >
+                    JSON file
+                </button>
 
-            <button
-                type="button"
-                class="button"
-                onclick="handle_middleware_usage_log_before()"
-            >
-                Log before request (see console output)
-            </button>
+                <button
+                    type="button"
+                    class="button"
+                    onclick="handle_middleware_usage('./assets/gifimage.gif')"
+                >
+                    GIF file
+                    <a
+                        href="https://opengameart.org/content/1-bit-doomsphere-charset"
+                        class="link"
+                        target="_blank"
+                        onclick="event.stopPropagation()"
+                        >image credits</a
+                    >
+                </button>
 
-            <button
-                type="button"
-                class="button"
-                onclick="handle_middleware_usage_log_after()"
-            >
-                Log after request (see console output)
-            </button>
-        </section>
-    </article>
+                <button
+                    type="button"
+                    class="button"
+                    onclick="handle_middleware_usage_prevent()"
+                >
+                    Prevent request
+                </button>
 
-    <script>
-        const origin = fetch;
+                <button
+                    type="button"
+                    class="button"
+                    onclick="handle_middleware_usage_log_before()"
+                >
+                    Log before request (see console output)
+                </button>
 
-        fetch = async (resource, options) => {
-            console.log("I'm a middleware", resource, options);
+                <button
+                    type="button"
+                    class="button"
+                    onclick="handle_middleware_usage_log_after()"
+                >
+                    Log after request (see console output)
+                </button>
+            </section>
+        </article>
 
-            if (options?.method === 'POST') {
-                if (resource.includes('to_prevent')) {
-                    throw 'This route was blocked by middleware'
-                }
+        <script>
+            const origin = fetch;
 
-                if (resource.includes('to_log_before')) {
-                    alert('This route was logged before submission\n\nheaders:\n' + JSON.stringify(options.headers));
-                    console.dir(resource, options);
-                }
-            }
+            fetch = async (resource, options) => {
+                console.log("I'm a middleware", resource, options);
 
-            const result = await origin(resource, options);
-
-            if (options?.method === 'POST') {
-                if (resource.includes('to_log_after')) {
-                    alert('This route was logged after submission\n\nheaders:\n' + JSON.stringify(options.headers));
-                    console.dir(resource, options);
-                }
-            }
-
-            return result;
-        }
-
-        function handle_middleware_usage(url) {
-            fetch(url)
-                .then((res) => {
-                    if (res.ok !== true) throw 'Request failed';
-
-                    const type = res.headers.get('Content-Type')?.toLowerCase();
-
-                    if (type.includes('application/json')) {
-                        return res.blob().then((blob) => save(blob, 'json-file.json'));
-                    } else if (type.includes('text/html')) {
-                        return res.blob().then((blob) => save(blob, 'text-file.txt'));
-                    } else {
-                        return res.blob().then((blob) => save(blob, 'text-file.json'));
+                if (options?.method === 'POST') {
+                    if (resource.includes('to_prevent')) {
+                        throw 'This route was blocked by middleware';
                     }
-                })
-                .catch((ex) => {
-                    console.dir(ex);
-                    console.log('Something went wrong!');
-                });
-        }
 
-        function handle_middleware_usage_prevent() {
-            fetch('./assets/to_prevent', {
-                method: 'POST'
-            }).catch((ex) => {
-                alert(ex);
-            });
-        }
-
-        function handle_middleware_usage_log_before() {
-            fetch('./assets/to_log_before', {
-                method: 'POST',
-                headers: {
-                    'X-Logged-Request': 'this request was logged before submission'
+                    if (resource.includes('to_log_before')) {
+                        alert(
+                            'This route was logged before submission\n\nheaders:\n' +
+                                JSON.stringify(options.headers),
+                        );
+                        console.dir(resource, options);
+                    }
                 }
-            }).catch((ex) => {
-                // ignore
-            });
-        }
 
-        function handle_middleware_usage_log_after() {
-            fetch('./assets/to_log_after', {
-                method: 'POST',
-                headers: {
-                    'X-Logged-Request': 'this request was logged after submission'
+                const result = await origin(resource, options);
+
+                if (options?.method === 'POST') {
+                    if (resource.includes('to_log_after')) {
+                        alert(
+                            'This route was logged after submission\n\nheaders:\n' +
+                                JSON.stringify(options.headers),
+                        );
+                        console.dir(resource, options);
+                    }
                 }
-            }).catch((ex) => {
-                // ignore
-            });
-        }
 
-        function save(blob, filename) {
-            const a = document.createElement('a');
-
-            a.href = URL.createObjectURL(blob);
-            a.setAttribute('download', filename);
-            a.onclick = ({ target: { href } }) => {
-                setTimeout(function () {
-                    URL.revokeObjectURL(href);
-                }, 1500);
+                return result;
             };
-            a.click();
-            a.remove();
-        }
-    </script>
-</body>
 
+            function handle_middleware_usage(url) {
+                fetch(url)
+                    .then((res) => {
+                        if (res.ok !== true) throw 'Request failed';
+
+                        const type = res.headers
+                            .get('Content-Type')
+                            ?.toLowerCase();
+
+                        if (type.includes('application/json')) {
+                            return res
+                                .blob()
+                                .then((blob) => save(blob, 'json-file.json'));
+                        } else if (type.includes('text/html')) {
+                            return res
+                                .blob()
+                                .then((blob) => save(blob, 'text-file.txt'));
+                        } else {
+                            return res
+                                .blob()
+                                .then((blob) => save(blob, 'text-file.json'));
+                        }
+                    })
+                    .catch((ex) => {
+                        console.dir(ex);
+                        console.log('Something went wrong!');
+                    });
+            }
+
+            function handle_middleware_usage_prevent() {
+                fetch('./assets/to_prevent', {
+                    method: 'POST',
+                }).catch((ex) => {
+                    alert(ex);
+                });
+            }
+
+            function handle_middleware_usage_log_before() {
+                fetch('./assets/to_log_before', {
+                    method: 'POST',
+                    headers: {
+                        'X-Logged-Request':
+                            'this request was logged before submission',
+                    },
+                }).catch((ex) => {
+                    // ignore
+                });
+            }
+
+            function handle_middleware_usage_log_after() {
+                fetch('./assets/to_log_after', {
+                    method: 'POST',
+                    headers: {
+                        'X-Logged-Request':
+                            'this request was logged after submission',
+                    },
+                }).catch((ex) => {
+                    // ignore
+                });
+            }
+
+            function save(blob, filename) {
+                const a = document.createElement('a');
+
+                a.href = URL.createObjectURL(blob);
+                a.setAttribute('download', filename);
+                a.onclick = ({ target: { href } }) => {
+                    setTimeout(function () {
+                        URL.revokeObjectURL(href);
+                    }, 1500);
+                };
+                a.click();
+                a.remove();
+            }
+        </script>
+    </body>
 </html>

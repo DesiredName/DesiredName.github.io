@@ -1,4 +1,4 @@
-const CACHE_ID = 65;
+const CACHE_ID = 66;
 const OFFLINE_URL = '/no-connection.html';
 let req_id = 0;
 

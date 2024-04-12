@@ -1,243 +1,249 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <!-- Preload block -->
+        <link
+            rel="preload"
+            href="/assets/demo-commons.css"
+            as="style"
+        />
+        <link
+            rel="preload"
+            href="/components/return-button/index.mjs"
+            as="script"
+            crossorigin
+        />
 
-<head>
-    <!-- Preload block -->
-    <link
-        rel="preload"
-        href="/assets/demo-commons.css"
-        as="style"
-    />
-    <link
-        rel="preload"
-        href="/components/return-button/index.mjs"
-        as="script"
-        crossorigin
-    />
+        <title>A-* to find the path 🧱</title>
 
-    <title>A-* to find the path 🧱</title>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        />
+        <link
+            rel="stylesheet"
+            href="/assets/demo-commons.css"
+        />
+        <link
+            rel="manifest"
+            href="/site.webmanifest"
+            crossorigin="use-credentials"
+        />
+        <link
+            rel="stylesheet"
+            href="./assets/style.css"
+        />
+        <script
+            type="module"
+            src="/components/return-button/index.mjs"
+        ></script>
 
-    <meta charset="UTF-8" />
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    />
-    <link
-        rel="stylesheet"
-        href="/assets/demo-commons.css"
-    />
-    <link
-        rel="manifest"
-        href="/site.webmanifest"
-        crossorigin="use-credentials"
-    />
-    <link
-        rel="stylesheet"
-        href="./assets/style.css"
-    />
-    <script
-        type="module"
-        src="/components/return-button/index.mjs"
-    ></script>
+        <!-- Security -->
+        <meta
+            http-equiv="Content-Security-Policy"
+            content="default-src 'self' 'unsafe-eval' 'unsafe-inline';"
+        />
 
-    <!-- Security -->
-    <meta
-        http-equiv="Content-Security-Policy"
-        content="default-src 'self' 'unsafe-eval' 'unsafe-inline';"
-    />
+        <!-- SEO -->
+        <link
+            rel="canonical"
+            href="https://desiredname.github.io/"
+        />
+        <meta
+            name="theme-color"
+            content="#222222"
+        />
+        <meta
+            name="description"
+            content="DesiredName IT Blog by Krasnov Anton. Using of a path-finding algorithm on game map."
+        />
+        <meta
+            name="robots"
+            content="index, nofollow"
+        />
+        <meta
+            name="author"
+            content="Krasnov Anton"
+        />
+        <meta
+            name="creator"
+            content="Krasnov Anton"
+        />
+        <meta
+            property="og:locale"
+            content="en_US"
+        />
+        <meta
+            property="og:title"
+            content="A-* to find the path"
+        />
+        <meta
+            property="og:type"
+            content="website"
+        />
+        <meta
+            property="og:url"
+            content="https://www.linkedin.com/in/anton-krasnov-in-prague/"
+        />
+    </head>
 
-    <!-- SEO -->
-    <link
-        rel="canonical"
-        href="https://desiredname.github.io/"
-    />
-    <meta
-        name="theme-color"
-        content="#222222"
-    />
-    <meta
-        name="description"
-        content="DesiredName IT Blog by Krasnov Anton. Using of a path-finding algorithm on game map."
-    />
-    <meta
-        name="robots"
-        content="index, nofollow"
-    />
-    <meta
-        name="author"
-        content="Krasnov Anton"
-    />
-    <meta
-        name="creator"
-        content="Krasnov Anton"
-    />
-    <meta
-        property="og:locale"
-        content="en_US"
-    />
-    <meta
-        property="og:title"
-        content="A-* to find the path"
-    />
-    <meta
-        property="og:type"
-        content="website"
-    />
-    <meta
-        property="og:url"
-        content="https://www.linkedin.com/in/anton-krasnov-in-prague/"
-    />
-</head>
-
-<body>
-    <div class="return-button-container">
-        <return-button></return-button>
-    </div>
-
-    <article class="container">
-        <h3 class="title">A-* to find the path 🧱</h3>
-
-        <div class="content">
-            <div style="padding: 1rem;">
-                <span>Move around with arrow keys</span>
-                <br>
-                <span>Click / tap the map to move</span>
-            </div>
-
-            <div class="the-map no-highlight">
-                <img
-                    alt="the example map for pathfinding"
-                    aria-label="the example map for pathfinding"
-                    class="map no-highlight"
-                    height="640"
-                    src="./assets/pastoral-mockup.png"
-                    width="640"
-                />
-                <div
-                    id="grid"
-                    class="grid-overlay no-highlight"
-                ></div>
-                <div
-                    id="zombie"
-                    class="zombie no-highlight"
-                ></div>
-            </div>
-
-            <div
-                id="console"
-                class="console"
-            ></div>
+    <body>
+        <div class="return-button-container">
+            <return-button></return-button>
         </div>
 
-    </article>
+        <article class="container">
+            <h3 class="title">A-* to find the path 🧱</h3>
 
-    <details
-        class="footer"
-        aria-label="page footer with additional information"
-    >
-        <summary class="footer-summary">credits</summary>
-        <div class="footer-content">
-            <a
-                href="https://opengameart.org/content/pastoral-overworld"
-                class="link"
-                target="_blank"
-                aria-label="link to original sprite image"
-                referrerpolicy="no-referrer"
-            >image credits</a>
-            <br />
-            <a
-                href="https://pebonius.itch.io/"
-                class="link"
-                target="_blank"
-                aria-label="link to sprite's author page"
-                referrerpolicy="no-referrer"
-            >image's author page</a>
-        </div>
-    </details>
+            <div class="content">
+                <div style="padding: 1rem">
+                    <span>Move around with arrow keys</span>
+                    <br />
+                    <span>Click / tap the map to move</span>
+                </div>
 
-    <script type="module">
-        const cell_width = 32;
+                <div class="the-map no-highlight">
+                    <img
+                        alt="the example map for pathfinding"
+                        aria-label="the example map for pathfinding"
+                        class="map no-highlight"
+                        height="640"
+                        src="./assets/pastoral-mockup.png"
+                        width="640"
+                    />
+                    <div
+                        id="grid"
+                        class="grid-overlay no-highlight"
+                    ></div>
+                    <div
+                        id="zombie"
+                        class="zombie no-highlight"
+                    ></div>
+                </div>
 
-        import map_data from './src/map.mjs';
-        import Grid from './src/grid.mjs';
-        import Player from './src/player.mjs';
-        import GameEvents from './src/game_events.mjs';
-        import GameConsole from './src/game_console.mjs';
-        import GameInput, { GameInputEvent } from './src/game_input.mjs';
+                <div
+                    id="console"
+                    class="console"
+                ></div>
+            </div>
+        </article>
 
-        const game_input = new GameInput(document.getElementById('grid'));
-        const game_grid = new Grid(map_data.paths);
-        const game_events = new GameEvents(map_data.events);
-        const game_console = new GameConsole(document.getElementById('console'));
+        <details
+            class="footer"
+            aria-label="page footer with additional information"
+        >
+            <summary class="footer-summary">credits</summary>
+            <div class="footer-content">
+                <a
+                    href="https://opengameart.org/content/pastoral-overworld"
+                    class="link"
+                    target="_blank"
+                    aria-label="link to original sprite image"
+                    referrerpolicy="no-referrer"
+                    >image credits</a
+                >
+                <br />
+                <a
+                    href="https://pebonius.itch.io/"
+                    class="link"
+                    target="_blank"
+                    aria-label="link to sprite's author page"
+                    referrerpolicy="no-referrer"
+                    >image's author page</a
+                >
+            </div>
+        </details>
 
-        const player = new Player({
-            el: document.getElementById('zombie'),
-            initial_position: {
-                x: 4,
-                y: 9,
-            },
-            grid: game_grid,
-            check_events_callback: check_events
-        });
+        <script type="module">
+            const cell_width = 32;
 
-        function check_events(player) {
-            game_events.check_event(player.position, (event) => {
-                if (event.type.includes('text')) {
-                    game_console.print_message(event.text);
-                }
+            import map_data from './src/map.mjs';
+            import Grid from './src/grid.mjs';
+            import Player from './src/player.mjs';
+            import GameEvents from './src/game_events.mjs';
+            import GameConsole from './src/game_console.mjs';
+            import GameInput, { GameInputEvent } from './src/game_input.mjs';
 
-                if (event.type.includes('goto')) {
-                    player.goto(...event.goto);
-                }
+            const game_input = new GameInput(document.getElementById('grid'));
+            const game_grid = new Grid(map_data.paths);
+            const game_events = new GameEvents(map_data.events);
+            const game_console = new GameConsole(
+                document.getElementById('console'),
+            );
 
-                if (event.type.includes('hide')) {
-                    player.hide();
-                } else {
-                    player.show();
+            const player = new Player({
+                el: document.getElementById('zombie'),
+                initial_position: {
+                    x: 4,
+                    y: 9,
+                },
+                grid: game_grid,
+                check_events_callback: check_events,
+            });
+
+            function check_events(player) {
+                game_events.check_event(player.position, (event) => {
+                    if (event.type.includes('text')) {
+                        game_console.print_message(event.text);
+                    }
+
+                    if (event.type.includes('goto')) {
+                        player.goto(...event.goto);
+                    }
+
+                    if (event.type.includes('hide')) {
+                        player.hide();
+                    } else {
+                        player.show();
+                    }
+                });
+            }
+
+            game_input.on_keyboard_event((e) => {
+                switch (e) {
+                    case GameInputEvent.GoLeft:
+                        player.go_left();
+                        break;
+
+                    case GameInputEvent.GoRight:
+                        player.go_right();
+                        break;
+
+                    case GameInputEvent.GoUp:
+                        player.go_up();
+                        break;
+
+                    case GameInputEvent.GoDown:
+                        player.go_down();
+                        break;
                 }
             });
-        };
 
-        game_input.on_keyboard_event((e) => {
-            switch (e) {
-                case GameInputEvent.GoLeft:
-                    player.go_left();
-                    break;
+            game_input.on_controller_event((e) => {
+                const path = game_grid.get_path(player.position, {
+                    x: e.cell_x,
+                    y: e.cell_y,
+                });
 
-                case GameInputEvent.GoRight:
-                    player.go_right();
-                    break;
+                if (path == null) {
+                    game_console.print_message('Oh, I can not get there...');
+                } else {
+                    player.move_along_path(path);
+                }
+            });
 
-                case GameInputEvent.GoUp:
-                    player.go_up();
-                    break;
+            game_console.print_message(
+                "Ahh... My beloved island! I'm home again ♥",
+            );
 
-                case GameInputEvent.GoDown:
-                    player.go_down();
-                    break;
+            function loop() {
+                player.update();
+
+                requestAnimationFrame(loop);
             }
-        });
 
-        game_input.on_controller_event((e) => {
-            const path = game_grid.get_path(player.position, { x: e.cell_x, y: e.cell_y });
-
-            if (path == null) {
-                game_console.print_message('Oh, I can not get there...');
-            } else {
-                player.move_along_path(path);
-            }
-        });
-
-        game_console.print_message('Ahh... My beloved island! I\'m home again ♥');
-
-        function loop() {
-            player.update();
-
-            requestAnimationFrame(loop);
-        }
-
-        loop();
-    </script>
-</body>
-
+            loop();
+        </script>
+    </body>
 </html>

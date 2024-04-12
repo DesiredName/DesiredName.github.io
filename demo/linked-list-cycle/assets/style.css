@@ -28,11 +28,11 @@
     }
 
     & .pointer.hare::after {
-        content: "🐇";
+        content: '🐇';
     }
 
     & .pointer.tortoise::after {
-        content: "🐢";
+        content: '🐢';
     }
 
     & .list-items {

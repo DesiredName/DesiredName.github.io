@@ -1,214 +1,224 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <!-- Preload block -->
+        <link
+            rel="preload"
+            href="/assets/demo-commons.css"
+            as="style"
+        />
+        <link
+            rel="preload"
+            href="/components/return-button/index.mjs"
+            as="script"
+            crossorigin
+        />
 
-<head>
-    <!-- Preload block -->
-    <link
-        rel="preload"
-        href="/assets/demo-commons.css"
-        as="style"
-    />
-    <link
-        rel="preload"
-        href="/components/return-button/index.mjs"
-        as="script"
-        crossorigin
-    />
+        <title>Supercharged modals</title>
 
-    <title>Supercharged modals</title>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        />
+        <link
+            rel="stylesheet"
+            href="/assets/demo-commons.css"
+        />
+        <link
+            rel="manifest"
+            href="/site.webmanifest"
+            crossorigin="use-credentials"
+        />
+        <link
+            rel="stylesheet"
+            href="./assets/style.css"
+        />
+        <script
+            type="module"
+            src="/components/return-button/index.mjs"
+        ></script>
 
-    <meta charset="UTF-8">
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-    <link
-        rel="stylesheet"
-        href="/assets/demo-commons.css"
-    >
-    <link
-        rel="manifest"
-        href="/site.webmanifest"
-        crossorigin="use-credentials"
-    />
-    <link
-        rel="stylesheet"
-        href="./assets/style.css"
-    >
-    <script
-        type="module"
-        src="/components/return-button/index.mjs"
-    ></script>
+        <!-- Security -->
+        <meta
+            http-equiv="Content-Security-Policy"
+            content="default-src 'self' 'unsafe-eval' 'unsafe-inline';"
+        />
 
-    <!-- Security -->
-    <meta
-        http-equiv="Content-Security-Policy"
-        content="default-src 'self' 'unsafe-eval' 'unsafe-inline';"
-    />
-
-    <!-- SEO -->
-    <link
-        rel="canonical"
-        href="https://desiredname.github.io/"
-    />
-    <meta
-        name="theme-color"
-        content="#222222"
-    />
-    <meta
-        name="description"
-        content="DesiredName IT Blog by Krasnov Anton. In this article I'd like to show
+        <!-- SEO -->
+        <link
+            rel="canonical"
+            href="https://desiredname.github.io/"
+        />
+        <meta
+            name="theme-color"
+            content="#222222"
+        />
+        <meta
+            name="description"
+            content="DesiredName IT Blog by Krasnov Anton. In this article I'd like to show
         an example of dialog tag usage on HTML pages. Minimum JS/CSS required."
-    >
-    <meta
-        name="robots"
-        content="index, nofollow"
-    >
-    <meta
-        name="author"
-        content="Krasnov Anton"
-    >
-    <meta
-        name="creator"
-        content="Krasnov Anton"
-    >
-    <meta
-        property="og:locale"
-        content="en_US"
-    >
-    <meta
-        property="og:title"
-        content="Supercharged modals"
-    />
-    <meta
-        property="og:type"
-        content="website"
-    />
-    <meta
-        property="og:url"
-        content="https://www.linkedin.com/in/anton-krasnov-in-prague/"
-    />
-</head>
+        />
+        <meta
+            name="robots"
+            content="index, nofollow"
+        />
+        <meta
+            name="author"
+            content="Krasnov Anton"
+        />
+        <meta
+            name="creator"
+            content="Krasnov Anton"
+        />
+        <meta
+            property="og:locale"
+            content="en_US"
+        />
+        <meta
+            property="og:title"
+            content="Supercharged modals"
+        />
+        <meta
+            property="og:type"
+            content="website"
+        />
+        <meta
+            property="og:url"
+            content="https://www.linkedin.com/in/anton-krasnov-in-prague/"
+        />
+    </head>
 
-<body>
-    <div class="return-button-container">
-        <return-button></return-button>
-    </div>
-
-    <article class="container">
-        <h3 class="title">JS superpowers - dialogs made easy 🔥</h3>
-
-        <div class="content">
-            Thanks for the sematic <h3>&lt;dialog&gt;</h3> element, we can create real modals without the CSS
+    <body>
+        <div class="return-button-container">
+            <return-button></return-button>
         </div>
 
-        <dialog
-            id="dialog"
-            class="dialog"
-        >
-            This is the dialog. Not modal though. You can click-through it.
-            <br>
-            <br>
-            <button
-                id="dismiss"
-                onclick="handle_close_dialog()"
-            >dismiss</button>
-        </dialog>
+        <article class="container">
+            <h3 class="title">JS superpowers - dialogs made easy 🔥</h3>
 
-        <dialog
-            id="dialog-modal"
-            class="dialog modal"
-        >
-            This is the modal dialog. It has a backdrop, that prevents click-through. Hooray!
-            <br>
-            <br>
-            <button
-                id="dismiss"
-                onclick="handle_close_dialog_modal()"
-            >close it</button>
-        </dialog>
+            <div class="content">
+                Thanks for the sematic
+                <h3>&lt;dialog&gt;</h3>
+                element, we can create real modals without the CSS
+            </div>
 
-        <dialog
-            id="dialog-modal-with-return"
-            class="dialog modal"
-            onclose="handle_modal_with_return_closed(event)"
-        >
-            Modal can be closed with a return value also! Useful!
-            <br>
-            <br>
-            <button
-                id="dismiss"
-                onclick="handle_close_dialog_modal_with_return()"
-            >close and return some data</button>
-        </dialog>
-
-
-        <section class="buttons has-counter">
-            <button
-                type="button"
-                class="button"
-                onclick="handle_open_dialog()"
+            <dialog
+                id="dialog"
+                class="dialog"
             >
-                Show dialog
-            </button>
+                This is the dialog. Not modal though. You can click-through it.
+                <br />
+                <br />
+                <button
+                    id="dismiss"
+                    onclick="handle_close_dialog()"
+                >
+                    dismiss
+                </button>
+            </dialog>
 
-            <button
-                type="button"
-                class="button"
-                onclick="handle_open_dialog_modal()"
+            <dialog
+                id="dialog-modal"
+                class="dialog modal"
             >
-                Show modal dialog
-            </button>
+                This is the modal dialog. It has a backdrop, that prevents
+                click-through. Hooray!
+                <br />
+                <br />
+                <button
+                    id="dismiss"
+                    onclick="handle_close_dialog_modal()"
+                >
+                    close it
+                </button>
+            </dialog>
 
-            <button
-                type="button"
-                class="button"
-                onclick="handle_open_dialog_modal_with_return()"
+            <dialog
+                id="dialog-modal-with-return"
+                class="dialog modal"
+                onclose="handle_modal_with_return_closed(event)"
             >
-                Modal dialog can return a value on close
-            </button>
-        </section>
-    </article>
+                Modal can be closed with a return value also! Useful!
+                <br />
+                <br />
+                <button
+                    id="dismiss"
+                    onclick="handle_close_dialog_modal_with_return()"
+                >
+                    close and return some data
+                </button>
+            </dialog>
 
-    <script>
-        const dialog = document.getElementById('dialog');
-        const dialog_modal = document.getElementById('dialog-modal');
-        const dialog_modal_with_return = document.getElementById('dialog-modal-with-return');
+            <section class="buttons has-counter">
+                <button
+                    type="button"
+                    class="button"
+                    onclick="handle_open_dialog()"
+                >
+                    Show dialog
+                </button>
 
-        function handle_open_dialog() {
-            dialog.show();
-        }
+                <button
+                    type="button"
+                    class="button"
+                    onclick="handle_open_dialog_modal()"
+                >
+                    Show modal dialog
+                </button>
 
-        function handle_close_dialog() {
-            dialog.close();
-        }
+                <button
+                    type="button"
+                    class="button"
+                    onclick="handle_open_dialog_modal_with_return()"
+                >
+                    Modal dialog can return a value on close
+                </button>
+            </section>
+        </article>
 
-        function handle_open_dialog_modal() {
-            dialog_modal.showModal();
-        }
+        <script>
+            const dialog = document.getElementById('dialog');
+            const dialog_modal = document.getElementById('dialog-modal');
+            const dialog_modal_with_return = document.getElementById(
+                'dialog-modal-with-return',
+            );
 
-        function handle_close_dialog_modal() {
-            dialog_modal.close();
-        }
+            function handle_open_dialog() {
+                dialog.show();
+            }
 
-        function handle_modal_with_return_closed(e) {
-            const value = JSON.stringify(e.target.returnValue);
+            function handle_close_dialog() {
+                dialog.close();
+            }
 
-            alert(value);
-        }
+            function handle_open_dialog_modal() {
+                dialog_modal.showModal();
+            }
 
-        function handle_open_dialog_modal_with_return() {
-            dialog_modal_with_return.showModal();
-        }
+            function handle_close_dialog_modal() {
+                dialog_modal.close();
+            }
 
-        function handle_close_dialog_modal_with_return() {
-            dialog_modal_with_return.close(JSON.stringify({
-                "this": 'JSON',
-                'was': 'returned',
-                'from': ['modal', 'dialog']
-            }));
-        }
-    </script>
-</body>
+            function handle_modal_with_return_closed(e) {
+                const value = JSON.stringify(e.target.returnValue);
 
+                alert(value);
+            }
+
+            function handle_open_dialog_modal_with_return() {
+                dialog_modal_with_return.showModal();
+            }
+
+            function handle_close_dialog_modal_with_return() {
+                dialog_modal_with_return.close(
+                    JSON.stringify({
+                        this: 'JSON',
+                        was: 'returned',
+                        from: ['modal', 'dialog'],
+                    }),
+                );
+            }
+        </script>
+    </body>
 </html>

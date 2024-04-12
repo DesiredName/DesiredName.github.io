@@ -1,219 +1,226 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <!-- Preload block -->
+        <link
+            rel="preload"
+            href="/assets/demo-commons.css"
+            as="style"
+        />
+        <link
+            rel="preload"
+            href="/components/return-button/index.mjs"
+            as="script"
+            crossorigin
+        />
 
-<head>
-    <!-- Preload block -->
-    <link
-        rel="preload"
-        href="/assets/demo-commons.css"
-        as="style"
-    />
-    <link
-        rel="preload"
-        href="/components/return-button/index.mjs"
-        as="script"
-        crossorigin
-    />
+        <title>Share data between pages with Broadcast API</title>
 
-    <title>Share data between pages with Broadcast API</title>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        />
+        <link
+            rel="stylesheet"
+            href="/assets/demo-commons.css"
+        />
+        <link
+            rel="manifest"
+            href="/site.webmanifest"
+            crossorigin="use-credentials"
+        />
+        <link
+            rel="stylesheet"
+            href="./assets/style.css"
+        />
+        <script
+            type="module"
+            src="/components/return-button/index.mjs"
+        ></script>
 
-    <meta charset="UTF-8" />
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    />
-    <link
-        rel="stylesheet"
-        href="/assets/demo-commons.css"
-    />
-    <link
-        rel="manifest"
-        href="/site.webmanifest"
-        crossorigin="use-credentials"
-    />
-    <link
-        rel="stylesheet"
-        href="./assets/style.css"
-    />
-    <script
-        type="module"
-        src="/components/return-button/index.mjs"
-    ></script>
+        <!-- Security -->
+        <meta
+            http-equiv="Content-Security-Policy"
+            content="default-src 'self' 'unsafe-eval' 'unsafe-inline';"
+        />
 
-    <!-- Security -->
-    <meta
-        http-equiv="Content-Security-Policy"
-        content="default-src 'self' 'unsafe-eval' 'unsafe-inline';"
-    />
-
-    <!-- SEO -->
-    <link
-        rel="canonical"
-        href="https://desiredname.github.io/"
-    />
-    <meta
-        name="theme-color"
-        content="#222222"
-    />
-    <meta
-        name="description"
-        content="DesiredName IT Blog by Krasnov Anton. An example of
+        <!-- SEO -->
+        <link
+            rel="canonical"
+            href="https://desiredname.github.io/"
+        />
+        <meta
+            name="theme-color"
+            content="#222222"
+        />
+        <meta
+            name="description"
+            content="DesiredName IT Blog by Krasnov Anton. An example of
         sharing data between same-origin pages with Broadcast Channel API."
-    />
-    <meta
-        name="robots"
-        content="index, nofollow"
-    />
-    <meta
-        name="author"
-        content="Krasnov Anton"
-    />
-    <meta
-        name="creator"
-        content="Krasnov Anton"
-    />
-    <meta
-        property="og:locale"
-        content="en_US"
-    />
-    <meta
-        property="og:title"
-        content="Share data between pages with Broadcast API"
-    />
-    <meta
-        property="og:type"
-        content="website"
-    />
-    <meta
-        property="og:url"
-        content="https://www.linkedin.com/in/anton-krasnov-in-prague/"
-    />
-</head>
+        />
+        <meta
+            name="robots"
+            content="index, nofollow"
+        />
+        <meta
+            name="author"
+            content="Krasnov Anton"
+        />
+        <meta
+            name="creator"
+            content="Krasnov Anton"
+        />
+        <meta
+            property="og:locale"
+            content="en_US"
+        />
+        <meta
+            property="og:title"
+            content="Share data between pages with Broadcast API"
+        />
+        <meta
+            property="og:type"
+            content="website"
+        />
+        <meta
+            property="og:url"
+            content="https://www.linkedin.com/in/anton-krasnov-in-prague/"
+        />
+    </head>
 
-<body>
-    <div class="return-button-container">
-        <return-button></return-button>
-    </div>
+    <body>
+        <div class="return-button-container">
+            <return-button></return-button>
+        </div>
 
-    <article class="container">
-        <h3 class="title">Share data between pages with Broadcast API</h3>
+        <article class="container">
+            <h3 class="title">Share data between pages with Broadcast API</h3>
 
-        <div class="content">
-            <div style="padding-bottom: 1rem;">
-                Open a <a
+            <div class="content">
+                <div style="padding-bottom: 1rem">
+                    Open a
+                    <a
+                        class="link"
+                        href="."
+                        target="_blank"
+                        >a new page</a
+                    >
+                    or an
+                    <a
+                        class="link"
+                        href="#"
+                        onclick="handle_open_new_frame(event)"
+                        >iframe</a
+                    >
+                    and start typing in the window below
+                </div>
+
+                <div
+                    id="console"
+                    class="console"
+                ></div>
+
+                <div class="console_input">
+                    <input
+                        id="console_input"
+                        placeholder="start typing"
+                    />
+                    <button
+                        type="button"
+                        onclick="handle_post_message()"
+                    >
+                        submit
+                    </button>
+                </div>
+            </div>
+        </article>
+
+        <details
+            class="footer"
+            aria-label="page footer with additional information"
+        >
+            <summary class="footer-summary">documentation</summary>
+            <div class="footer-content">
+                <a
+                    href="https://developer.mozilla.org/en-US/docs/Web/API/Broadcast_Channel_API"
                     class="link"
-                    href="."
                     target="_blank"
-                >a new page</a> or an <a
+                    aria-label="link to Broadcast Channel API on MDN"
+                    referrerpolicy="no-referrer"
+                    >Broadcast Channel API</a
+                >
+                <br />
+                <a
+                    href="https://developer.mozilla.org/en-US/docs/Web/API/Window/beforeunload_event"
                     class="link"
-                    href="#"
-                    onclick="handle_open_new_frame(event)"
-                >iframe</a> and
-                start typing in the window below
+                    target="_blank"
+                    aria-label="link to beforeunload event API on MDN"
+                    referrerpolicy="no-referrer"
+                    >BeforeUnload event</a
+                >
+                <br />
+                <a
+                    href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe"
+                    class="link"
+                    target="_blank"
+                    aria-label="link to iFrame docs on MDN"
+                    referrerpolicy="no-referrer"
+                    >iFrame documentation</a
+                >
             </div>
+        </details>
 
-            <div
-                id="console"
-                class="console"
-            >
-            </div>
+        <script type="module">
+            import BroadcastHelper from './src/broadcast.mjs';
+            import ConsoleHelper from './src/console.mjs';
 
-            <div class="console_input">
-                <input
-                    id="console_input"
-                    placeholder="start typing"
-                />
-                <button
-                    type="button"
-                    onclick="handle_post_message()"
-                >submit</button>
-            </div>
-        </div>
-    </article>
+            const console_el = document.getElementById('console');
 
-    <details
-        class="footer"
-        aria-label="page footer with additional information"
-    >
-        <summary class="footer-summary">documentation</summary>
-        <div class="footer-content">
-            <a
-                href="https://developer.mozilla.org/en-US/docs/Web/API/Broadcast_Channel_API"
-                class="link"
-                target="_blank"
-                aria-label="link to Broadcast Channel API on MDN"
-                referrerpolicy="no-referrer"
-            >Broadcast Channel API</a>
-            <br />
-            <a
-                href="https://developer.mozilla.org/en-US/docs/Web/API/Window/beforeunload_event"
-                class="link"
-                target="_blank"
-                aria-label="link to beforeunload event API on MDN"
-                referrerpolicy="no-referrer"
-            >BeforeUnload event</a>
-            <br />
-            <a
-                href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe"
-                class="link"
-                target="_blank"
-                aria-label="link to iFrame docs on MDN"
-                referrerpolicy="no-referrer"
-            >iFrame documentation</a>
-        </div>
-    </details>
+            window.console_helper = new ConsoleHelper(console_el);
+            window.bch = new BroadcastHelper();
+            window.addEventListener('beforeunload', () => {
+                bch.message('left the chat');
+            });
 
-    <script type="module">
-        import BroadcastHelper from './src/broadcast.mjs';
-        import ConsoleHelper from './src/console.mjs';
+            bch.onmessage = ({ username, time, message }) => {
+                console_helper.message({ username, time, message });
+            };
 
-        const console_el = document.getElementById('console');
+            bch.message('joined the chat');
+            console_helper.message_local('joined the chat');
+        </script>
 
-        window.console_helper = new ConsoleHelper(console_el);
-        window.bch = new BroadcastHelper();
-        window.addEventListener('beforeunload', () => {
-            bch.message('left the chat');
-        });
+        <script>
+            const iframe_id = 'communication-iframe';
 
-        bch.onmessage = ({ username, time, message }) => {
-            console_helper.message({ username, time, message });
-        };
+            function handle_open_new_frame(event) {
+                event.stopImmediatePropagation();
+                event.stopPropagation();
+                event.preventDefault();
 
-        bch.message('joined the chat');
-        console_helper.message_local('joined the chat');
-    </script>
+                const iframe = document.createElement('iframe');
+                iframe.classList = 'iframe';
+                iframe.setAttribute('id', iframe_id);
+                iframe.setAttribute('src', './iframe.html');
+                iframe.setAttribute('title', 'The iFrame example');
+                iframe.setAttribute('allow', 'fullscreen');
 
-    <script>
-        const iframe_id = 'communication-iframe';
+                document.body.append(iframe);
+            }
 
-        function handle_open_new_frame(event) {
-            event.stopImmediatePropagation();
-            event.stopPropagation();
-            event.preventDefault();
+            function handle_post_message(e) {
+                const el = document.getElementById('console_input');
+                const message = el.value;
 
-            const iframe = document.createElement('iframe');
-            iframe.classList = 'iframe';
-            iframe.setAttribute('id', iframe_id);
-            iframe.setAttribute('src', './iframe.html');
-            iframe.setAttribute('title', 'The iFrame example');
-            iframe.setAttribute('allow', 'fullscreen');
+                el.value = '';
+                bch.message(message);
+                console_helper.message_local(message);
+            }
 
-            document.body.append(iframe);
-        }
-
-        function handle_post_message(e) {
-            const el = document.getElementById('console_input');
-            const message = el.value;
-
-            el.value = '';
-            bch.message(message);
-            console_helper.message_local(message);
-        }
-
-        function handle_close_iframe() {
-            document.getElementById(iframe_id).remove();
-        }
-    </script>
-</body>
-
+            function handle_close_iframe() {
+                document.getElementById(iframe_id).remove();
+            }
+        </script>
+    </body>
 </html>

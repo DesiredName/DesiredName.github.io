@@ -1,187 +1,192 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <!-- Preload block -->
+        <link
+            rel="preload"
+            href="/assets/demo-commons.css"
+            as="style"
+        />
+        <link
+            rel="preload"
+            href="/components/return-button/index.mjs"
+            as="script"
+            crossorigin
+        />
 
-<head>
-    <!-- Preload block -->
-    <link
-        rel="preload"
-        href="/assets/demo-commons.css"
-        as="style"
-    />
-    <link
-        rel="preload"
-        href="/components/return-button/index.mjs"
-        as="script"
-        crossorigin
-    />
+        <title>Perceptron Powers</title>
 
-    <title>Perceptron Powers</title>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        />
+        <link
+            rel="stylesheet"
+            href="/assets/demo-commons.css"
+        />
+        <link
+            rel="manifest"
+            href="/site.webmanifest"
+            crossorigin="use-credentials"
+        />
+        <link
+            rel="stylesheet"
+            href="./src/style.css"
+        />
+        <script
+            type="module"
+            src="/components/return-button/index.mjs"
+        ></script>
 
-    <meta charset="UTF-8">
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-    <link
-        rel="stylesheet"
-        href="/assets/demo-commons.css"
-    >
-    <link
-        rel="manifest"
-        href="/site.webmanifest"
-        crossorigin="use-credentials"
-    />
-    <link
-        rel="stylesheet"
-        href="./src/style.css"
-    >
-    <script
-        type="module"
-        src="/components/return-button/index.mjs"
-    ></script>
+        <!-- Security -->
+        <meta
+            http-equiv="Content-Security-Policy"
+            content="default-src 'self' 'unsafe-eval' 'unsafe-inline';"
+        />
 
-    <!-- Security -->
-    <meta
-        http-equiv="Content-Security-Policy"
-        content="default-src 'self' 'unsafe-eval' 'unsafe-inline';"
-    />
-
-    <!-- SEO -->
-    <link
-        rel="canonical"
-        href="https://desiredname.github.io/"
-    />
-    <meta
-        name="theme-color"
-        content="#222222"
-    />
-    <meta
-        name="description"
-        content="DesiredName IT Blog by Krasnov Anton. In this article I'd like to show
+        <!-- SEO -->
+        <link
+            rel="canonical"
+            href="https://desiredname.github.io/"
+        />
+        <meta
+            name="theme-color"
+            content="#222222"
+        />
+        <meta
+            name="description"
+            content="DesiredName IT Blog by Krasnov Anton. In this article I'd like to show
         a simple perceptron use example for objects classification."
-    >
-    <meta
-        name="robots"
-        content="index, nofollow"
-    >
-    <meta
-        name="author"
-        content="Krasnov Anton"
-    >
-    <meta
-        name="creator"
-        content="Krasnov Anton"
-    >
-    <meta
-        property="og:locale"
-        content="en_US"
-    >
-    <meta
-        property="og:title"
-        content="Perceptron Powers"
-    />
-    <meta
-        property="og:type"
-        content="website"
-    />
-    <meta
-        property="og:url"
-        content="https://www.linkedin.com/in/anton-krasnov-in-prague/"
-    />
-</head>
+        />
+        <meta
+            name="robots"
+            content="index, nofollow"
+        />
+        <meta
+            name="author"
+            content="Krasnov Anton"
+        />
+        <meta
+            name="creator"
+            content="Krasnov Anton"
+        />
+        <meta
+            property="og:locale"
+            content="en_US"
+        />
+        <meta
+            property="og:title"
+            content="Perceptron Powers"
+        />
+        <meta
+            property="og:type"
+            content="website"
+        />
+        <meta
+            property="og:url"
+            content="https://www.linkedin.com/in/anton-krasnov-in-prague/"
+        />
+    </head>
 
-<body>
-    <div class="return-button-container">
-        <return-button></return-button>
-    </div>
+    <body>
+        <div class="return-button-container">
+            <return-button></return-button>
+        </div>
 
-    <div class="container">
-        <h2 class="title">AI basics: perceptron powers</h2>
+        <div class="container">
+            <h2 class="title">AI basics: perceptron powers</h2>
 
-        <div class="canvas-container">
-            <canvas
-                id="canvas"
-                width="360"
-                height="360"
-            >Your browser does not support canvas</canvas>
-            <div
-                id="error"
-                class="input-form"
-            > Perceptron failed to classify some data
-                because of clustered data overlapping.
-
-                Reset data and repeat learning.
+            <div class="canvas-container">
+                <canvas
+                    id="canvas"
+                    width="360"
+                    height="360"
+                    >Your browser does not support canvas</canvas
+                >
+                <div
+                    id="error"
+                    class="input-form"
+                >
+                    Perceptron failed to classify some data because of clustered
+                    data overlapping. Reset data and repeat learning.
+                </div>
+            </div>
+            <br />
+            <div class="input-form">
+                <label for="n"
+                    >Learn rate:
+                    <input
+                        id="n"
+                        class="learning-rate"
+                        type="number"
+                        title="perceptron learning rate"
+                        step="0.001"
+                    />
+                </label>
+            </div>
+            <br />
+            <div class="input-form">
+                <label for="learn"
+                    >Learn<input
+                        id="learn"
+                        type="radio"
+                        name="input_mode"
+                        value="learn"
+                /></label>
+                <label for="classify"
+                    >Classify<input
+                        id="classify"
+                        type="radio"
+                        name="input_mode"
+                        value="classify"
+                /></label>
+            </div>
+            <br />
+            <div class="input-form">
+                <label for="soldier"
+                    >Soldier<input
+                        id="soldier"
+                        type="radio"
+                        name="marker_type"
+                        value="soldier"
+                /></label>
+                <label for="zombie"
+                    >Zombie<input
+                        id="zombie"
+                        type="radio"
+                        name="marker_type"
+                        value="zombie"
+                /></label>
+            </div>
+            <br />
+            <br />
+            <div class="input-form buttons">
+                <button
+                    id="reset"
+                    class="button"
+                >
+                    Reset data
+                </button>
             </div>
         </div>
-        <br>
-        <div class="input-form">
-            <label for="n">Learn rate:
-                <input
-                    id="n"
-                    class="learning-rate"
-                    type="number"
-                    title="perceptron learning rate"
-                    step="0.001"
-                />
-            </label>
-        </div>
-        <br>
-        <div class="input-form">
-            <label for="learn">Learn<input
-                    id="learn"
-                    type="radio"
-                    name="input_mode"
-                    value="learn"
-                /></label>
-            <label for="classify">Classify<input
-                    id="classify"
-                    type="radio"
-                    name="input_mode"
-                    value="classify"
-                /></label>
-        </div>
-        <br>
-        <div class="input-form">
-            <label for="soldier">Soldier<input
-                    id="soldier"
-                    type="radio"
-                    name="marker_type"
-                    value="soldier"
-                /></label>
-            <label for="zombie">Zombie<input
-                    id="zombie"
-                    type="radio"
-                    name="marker_type"
-                    value="zombie"
-                /></label>
-        </div>
-        <br>
-        <br>
-        <div class="input-form buttons">
-            <button
-                id="reset"
-                class="button"
-            >Reset data</button>
-        </div>
-    </div>
 
-    <script type="module">
-        import Perceptron from './src/perceptron.mjs';
-        import DrawHelperFunctions from './src/draw.mjs';
-        import CoordSystemsHelper from './src/coord_systems.mjs';
-        import UIHelperFunctions from './src/ui.mjs';
+        <script type="module">
+            import Perceptron from './src/perceptron.mjs';
+            import DrawHelperFunctions from './src/draw.mjs';
+            import CoordSystemsHelper from './src/coord_systems.mjs';
+            import UIHelperFunctions from './src/ui.mjs';
 
-        const canvas = document.getElementById("canvas");
-        const coordinates = CoordSystemsHelper(canvas);
-        const drawtools = DrawHelperFunctions(canvas);
+            const canvas = document.getElementById('canvas');
+            const coordinates = CoordSystemsHelper(canvas);
+            const drawtools = DrawHelperFunctions(canvas);
 
-        UIHelperFunctions({
-            canvas,
-            coordinates,
-            drawtools,
-            perceptron: new Perceptron()
-        }).init();
-    </script>
-</body>
-
+            UIHelperFunctions({
+                canvas,
+                coordinates,
+                drawtools,
+                perceptron: new Perceptron(),
+            }).init();
+        </script>
+    </body>
 </html>

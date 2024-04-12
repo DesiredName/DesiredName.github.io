@@ -1,239 +1,237 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <!-- Preload block -->
+        <link
+            rel="preload"
+            href="/assets/colors.css"
+            as="style"
+        />
+        <link
+            rel="preload"
+            href="/assets/elements-common.css"
+            as="style"
+        />
+        <link
+            rel="preload"
+            href="/assets/style.css"
+            as="style"
+        />
+        <link
+            rel="preload"
+            href="/components/the-post/index.mjs"
+            as="script"
+            crossorigin
+        />
+        <link
+            rel="preload"
+            href="/components/the-post/style.css"
+            as="style"
+        />
 
-<head>
-    <!-- Preload block -->
-    <link
-        rel="preload"
-        href="/assets/colors.css"
-        as="style"
-    />
-    <link
-        rel="preload"
-        href="/assets/elements-common.css"
-        as="style"
-    />
-    <link
-        rel="preload"
-        href="/assets/style.css"
-        as="style"
-    />
-    <link
-        rel="preload"
-        href="/components/the-post/index.mjs"
-        as="script"
-        crossorigin
-    />
-    <link
-        rel="preload"
-        href="/components/the-post/style.css"
-        as="style"
-    />
+        <title>DesiredName: The Blog</title>
 
-    <title>DesiredName: The Blog</title>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        />
+        <link
+            rel="stylesheet"
+            href="/assets/style.css"
+        />
+        <link
+            rel="manifest"
+            href="/site.webmanifest"
+            crossorigin="use-credentials"
+        />
 
-    <meta charset="UTF-8">
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-    <link
-        rel="stylesheet"
-        href="/assets/style.css"
-    >
-    <link
-        rel="manifest"
-        href="/site.webmanifest"
-        crossorigin="use-credentials"
-    />
+        <!-- Favicon -->
+        <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="/apple-touch-icon.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/favicon-32x32.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/favicon-16x16.png"
+        />
 
-    <!-- Favicon -->
-    <link
-        rel="apple-touch-icon"
-        sizes="180x180"
-        href="/apple-touch-icon.png"
-    >
-    <link
-        rel="icon"
-        type="image/png"
-        sizes="32x32"
-        href="/favicon-32x32.png"
-    >
-    <link
-        rel="icon"
-        type="image/png"
-        sizes="16x16"
-        href="/favicon-16x16.png"
-    >
+        <!-- Scripts -->
+        <script
+            type="module"
+            src="/components/the-post/index.mjs"
+        ></script>
 
-    <!-- Scripts -->
-    <script
-        type="module"
-        src="/components/the-post/index.mjs"
-    ></script>
+        <!-- Security -->
+        <meta
+            http-equiv="Content-Security-Policy"
+            content="default-src 'self' 'unsafe-eval' 'unsafe-inline';"
+        />
 
-    <!-- Security -->
-    <meta
-        http-equiv="Content-Security-Policy"
-        content="default-src 'self' 'unsafe-eval' 'unsafe-inline';"
-    />
-
-    <!-- SEO -->
-    <link
-        rel="canonical"
-        href="https://desiredname.github.io/"
-    />
-    <meta
-        name="theme-color"
-        content="#222222"
-    />
-    <meta
-        name="description"
-        content="DesiredName IT: a blog for web developers who focus on modern JS / CSS / HTML features and capabilities and want to know how to build better applications without (meta)frameworks"
-    >
-    <meta
-        name="keywords"
-        content="HTML, CSS, JavaScript, Typescript, PWA, Power Web Applications,
+        <!-- SEO -->
+        <link
+            rel="canonical"
+            href="https://desiredname.github.io/"
+        />
+        <meta
+            name="theme-color"
+            content="#222222"
+        />
+        <meta
+            name="description"
+            content="DesiredName IT: a blog for web developers who focus on modern JS / CSS / HTML features and capabilities and want to know how to build better applications without (meta)frameworks"
+        />
+        <meta
+            name="keywords"
+            content="HTML, CSS, JavaScript, Typescript, PWA, Power Web Applications,
         ServiceWorker, Worker API, Architecutre, Patterns, Tips'n'Triks, Open Web technologies,
         LLM, AI, Artificial Intelligence, Data Analytics, Data Structures, Machine Learning,
         Programming, Developer, UI, ECMAScript, ESNEXT, NodeJS, ExpressJS, NextJS, NUXT, VusJE"
-    >
-    <meta
-        name="robots"
-        content="index, follow"
-    >
-    <meta
-        name="author"
-        content="Krasnov Anton"
-    >
-    <meta
-        name="creator"
-        content="Krasnov Anton"
-    >
-    <meta
-        property="og:locale"
-        content="en_US"
-    >
-    <meta
-        property="og:title"
-        content="DesiredName by Krasnov Anton"
-    />
-    <meta
-        property="og:type"
-        content="website"
-    />
-    <meta
-        property="og:url"
-        content="https://www.linkedin.com/in/anton-krasnov-in-prague/"
-    />
+        />
+        <meta
+            name="robots"
+            content="index, follow"
+        />
+        <meta
+            name="author"
+            content="Krasnov Anton"
+        />
+        <meta
+            name="creator"
+            content="Krasnov Anton"
+        />
+        <meta
+            property="og:locale"
+            content="en_US"
+        />
+        <meta
+            property="og:title"
+            content="DesiredName by Krasnov Anton"
+        />
+        <meta
+            property="og:type"
+            content="website"
+        />
+        <meta
+            property="og:url"
+            content="https://www.linkedin.com/in/anton-krasnov-in-prague/"
+        />
 
-    <!-- Run SW -->
-    <script>
-        if ("serviceWorker" in navigator) {
-            navigator.serviceWorker.register("/sw.js");
-        }
-    </script>
-</head>
+        <!-- Run SW -->
+        <script>
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/sw.js');
+            }
+        </script>
+    </head>
 
-<body class="layout">
-    <h1 class="title">
-        <div class="main">DesiredName</div>
-        <div class="links">
-            <a
-                class="icon"
-                href="https://leetcode.com/DesiredName/"
-                target="_blank"
-                aria-label="link to leetcode profile"
-            >
-                <img
-                    alt="LeetCode profile"
-                    src="/assets/leetcode.png"
-                    width="23"
-                    height="27"
+    <body class="layout">
+        <h1 class="title">
+            <div class="main">DesiredName</div>
+            <div class="links">
+                <a
+                    class="icon"
+                    href="https://leetcode.com/DesiredName/"
+                    target="_blank"
+                    aria-label="link to leetcode profile"
                 >
-            </a>
-            <a
-                class="icon"
-                href="https://www.linkedin.com/in/anton-krasnov-in-prague/"
-                target="_blank"
-                aria-label="link to linkedin profile"
-            >
-                <img
-                    alt="LinkedIn profile"
-                    src="/assets/LI-In-Bug.png"
-                    width="22"
-                    height="20"
+                    <img
+                        alt="LeetCode profile"
+                        src="/assets/leetcode.png"
+                        width="23"
+                        height="27"
+                    />
+                </a>
+                <a
+                    class="icon"
+                    href="https://www.linkedin.com/in/anton-krasnov-in-prague/"
+                    target="_blank"
+                    aria-label="link to linkedin profile"
                 >
-            </a>
-            <a
-                class="icon"
-                href="https://github.com/DesiredName"
-                target="_blank"
-                aria-label="link to github profile"
-            >
-                <img
-                    alt="GitHub profile"
-                    src="/assets/github-mark-white.svg"
-                    width="23"
-                    height="22"
+                    <img
+                        alt="LinkedIn profile"
+                        src="/assets/LI-In-Bug.png"
+                        width="22"
+                        height="20"
+                    />
+                </a>
+                <a
+                    class="icon"
+                    href="https://github.com/DesiredName"
+                    target="_blank"
+                    aria-label="link to github profile"
                 >
-            </a>
-        </div>
-    </h1>
-    <section
-        class="content"
-        aria-label="list of blog posts"
-    >
-        <the-post
-            title="Algos: Linked list cycle detection"
-            description="The basic way to detect cycle loops in linked list data structure"
-            github-link="https://github.com/DesiredName/DesiredName.github.io/tree/main/demo/linked-list-cycle"
-            leetcode-link="https://leetcode.com/problems/linked-list-cycle-ii/description/"
-            demo-link="/demo/linked-list-cycle/index.html"
-        ></the-post>
-        <the-post
-            title="JS Powers: The offline strategy without SW"
-            description="We can use the offline strategy to deliver cached resources without the Service Worker support"
-            github-link="https://github.com/DesiredName/DesiredName.github.io/tree/main/demo/cache-drop-offline"
-            demo-link="/demo/cache-drop-offline/index.html"
-        ></the-post>
-        <the-post
-            title="JS Powers: Share data between pages with Broadcast API"
-            description="An example of Broadcast Channel API use to share data between same-origin pages"
-            github-link="https://github.com/DesiredName/DesiredName.github.io/tree/main/demo/broadcast-api"
-            demo-link="/demo/broadcast-api/index.html"
-        ></the-post>
-        <the-post
-            title="Algos: A-* to find the path"
-            description="In gamedev finding a path on a map to follow is a common problem"
-            github-link="https://github.com/DesiredName/DesiredName.github.io/tree/main/demo/a-star"
-            demo-link="/demo/a-star/index.html"
-        ></the-post>
-        <the-post
-            title="AI Basics: The Perceptron"
-            description="Perceptron is the power of basic classification"
-            github-link="https://github.com/DesiredName/perceptron"
-            demo-link="/demo/perceptron/index.html"
-        ></the-post>
-        <the-post
-            title="JS Powers: no creepy CSS-modals"
-            description="From 2022 we don't need CSS or JS to build bulletproof modals"
-            github-link="https://github.com/DesiredName/modal-made-easy"
-            demo-link="/demo/modal-made-easy/index.html"
-        ></the-post>
-        <the-post
-            title="JS Powers: no AXIOS defined"
-            description="If you wish to create a pure-JS networking middleware, just use fetch"
-            github-link="https://github.com/DesiredName/no-axios-defined"
-            demo-link="/demo/no-axios-defined/index.html"
-        ></the-post>
-        <the-post
-            title="JS Powers: Worker API for better UI"
-            description="Use power of Worker API to deliver users better UI"
-            github-link="https://github.com/DesiredName/worker-ui"
-            demo-link="/demo/web-workers/index.html"
-        ></the-post>
-    </section>
-</body>
-
+                    <img
+                        alt="GitHub profile"
+                        src="/assets/github-mark-white.svg"
+                        width="23"
+                        height="22"
+                    />
+                </a>
+            </div>
+        </h1>
+        <section
+            class="content"
+            aria-label="list of blog posts"
+        >
+            <the-post
+                title="Algos: Linked list cycle detection"
+                description="The basic way to detect cycle loops in linked list data structure"
+                github-link="https://github.com/DesiredName/DesiredName.github.io/tree/main/demo/linked-list-cycle"
+                leetcode-link="https://leetcode.com/problems/linked-list-cycle-ii/description/"
+                demo-link="/demo/linked-list-cycle/index.html"
+            ></the-post>
+            <the-post
+                title="JS Powers: The offline strategy without SW"
+                description="We can use the offline strategy to deliver cached resources without the Service Worker support"
+                github-link="https://github.com/DesiredName/DesiredName.github.io/tree/main/demo/cache-drop-offline"
+                demo-link="/demo/cache-drop-offline/index.html"
+            ></the-post>
+            <the-post
+                title="JS Powers: Share data between pages with Broadcast API"
+                description="An example of Broadcast Channel API use to share data between same-origin pages"
+                github-link="https://github.com/DesiredName/DesiredName.github.io/tree/main/demo/broadcast-api"
+                demo-link="/demo/broadcast-api/index.html"
+            ></the-post>
+            <the-post
+                title="Algos: A-* to find the path"
+                description="In gamedev finding a path on a map to follow is a common problem"
+                github-link="https://github.com/DesiredName/DesiredName.github.io/tree/main/demo/a-star"
+                demo-link="/demo/a-star/index.html"
+            ></the-post>
+            <the-post
+                title="AI Basics: The Perceptron"
+                description="Perceptron is the power of basic classification"
+                github-link="https://github.com/DesiredName/perceptron"
+                demo-link="/demo/perceptron/index.html"
+            ></the-post>
+            <the-post
+                title="JS Powers: no creepy CSS-modals"
+                description="From 2022 we don't need CSS or JS to build bulletproof modals"
+                github-link="https://github.com/DesiredName/modal-made-easy"
+                demo-link="/demo/modal-made-easy/index.html"
+            ></the-post>
+            <the-post
+                title="JS Powers: no AXIOS defined"
+                description="If you wish to create a pure-JS networking middleware, just use fetch"
+                github-link="https://github.com/DesiredName/no-axios-defined"
+                demo-link="/demo/no-axios-defined/index.html"
+            ></the-post>
+            <the-post
+                title="JS Powers: Worker API for better UI"
+                description="Use power of Worker API to deliver users better UI"
+                github-link="https://github.com/DesiredName/worker-ui"
+                demo-link="/demo/web-workers/index.html"
+            ></the-post>
+        </section>
+    </body>
 </html>

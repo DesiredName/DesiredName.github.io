@@ -1,201 +1,202 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <!-- Preload block -->
+        <link
+            rel="preload"
+            href="/assets/demo-commons.css"
+            as="style"
+        />
+        <link
+            rel="preload"
+            href="/components/return-button/index.mjs"
+            as="script"
+            crossorigin
+        />
 
-<head>
-    <!-- Preload block -->
-    <link
-        rel="preload"
-        href="/assets/demo-commons.css"
-        as="style"
-    />
-    <link
-        rel="preload"
-        href="/components/return-button/index.mjs"
-        as="script"
-        crossorigin
-    />
+        <title>Worker API for better UI</title>
 
-    <title>Worker API for better UI</title>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        />
+        <link
+            rel="stylesheet"
+            href="/assets/demo-commons.css"
+        />
+        <link
+            rel="manifest"
+            href="/site.webmanifest"
+            crossorigin="use-credentials"
+        />
+        <link
+            rel="stylesheet"
+            href="./src/style.css"
+        />
+        <script
+            type="module"
+            src="/components/return-button/index.mjs"
+        ></script>
 
-    <meta charset="UTF-8">
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-    <link
-        rel="stylesheet"
-        href="/assets/demo-commons.css"
-    >
-    <link
-        rel="manifest"
-        href="/site.webmanifest"
-        crossorigin="use-credentials"
-    />
-    <link
-        rel="stylesheet"
-        href="./src/style.css"
-    >
-    <script
-        type="module"
-        src="/components/return-button/index.mjs"
-    ></script>
+        <!-- Security -->
+        <meta
+            http-equiv="Content-Security-Policy"
+            content="default-src 'self' 'unsafe-eval' 'unsafe-inline';"
+        />
 
-    <!-- Security -->
-    <meta
-        http-equiv="Content-Security-Policy"
-        content="default-src 'self' 'unsafe-eval' 'unsafe-inline';"
-    />
-
-    <!-- SEO -->
-    <link
-        rel="canonical"
-        href="https://desiredname.github.io/"
-    />
-    <meta
-        name="theme-color"
-        content="#222222"
-    />
-    <meta
-        name="description"
-        content="DesiredName IT Blog by Krasnov Anton. Use Workers to
+        <!-- SEO -->
+        <link
+            rel="canonical"
+            href="https://desiredname.github.io/"
+        />
+        <meta
+            name="theme-color"
+            content="#222222"
+        />
+        <meta
+            name="description"
+            content="DesiredName IT Blog by Krasnov Anton. Use Workers to
         offload main UI thread and deliver to user a friendly UI."
-    >
-    <meta
-        name="robots"
-        content="index, nofollow"
-    >
-    <meta
-        name="author"
-        content="Krasnov Anton"
-    >
-    <meta
-        name="creator"
-        content="Krasnov Anton"
-    >
-    <meta
-        property="og:locale"
-        content="en_US"
-    >
-    <meta
-        property="og:title"
-        content="Worker API for better UI"
-    />
-    <meta
-        property="og:type"
-        content="website"
-    />
-    <meta
-        property="og:url"
-        content="https://www.linkedin.com/in/anton-krasnov-in-prague/"
-    />
-</head>
+        />
+        <meta
+            name="robots"
+            content="index, nofollow"
+        />
+        <meta
+            name="author"
+            content="Krasnov Anton"
+        />
+        <meta
+            name="creator"
+            content="Krasnov Anton"
+        />
+        <meta
+            property="og:locale"
+            content="en_US"
+        />
+        <meta
+            property="og:title"
+            content="Worker API for better UI"
+        />
+        <meta
+            property="og:type"
+            content="website"
+        />
+        <meta
+            property="og:url"
+            content="https://www.linkedin.com/in/anton-krasnov-in-prague/"
+        />
+    </head>
 
-<body>
-    <div class="return-button-container">
-        <return-button></return-button>
-    </div>
+    <body>
+        <div class="return-button-container">
+            <return-button></return-button>
+        </div>
 
-    <div class="container">
-        <h3 class="title">Worker API for better UI</h3>
-        <div class="counter">
-            <div
-                id="animation"
-                class="animation"
-            >
-                <!-- animation -->
+        <div class="container">
+            <h3 class="title">Worker API for better UI</h3>
+            <div class="counter">
+                <div
+                    id="animation"
+                    class="animation"
+                >
+                    <!-- animation -->
+                </div>
+                <span class="hint">
+                    Animation time to deliver better UI,
+                    <br />
+                    while processing the heavy task
+                </span>
             </div>
-            <span class="hint">
-                Animation time to deliver better UI,
-                <br>
-                while processing the heavy task
-            </span>
+            <div class="buttons inline">
+                <button
+                    name="runner_button"
+                    class="button"
+                    onclick="do_main_thread()"
+                >
+                    Main thread
+                </button>
+                <button
+                    id="worker_thread"
+                    name="runner_button"
+                    class="button"
+                    onclick="do_worker_thread()"
+                >
+                    Worker thread
+                </button>
+            </div>
         </div>
-        <div class="buttons inline">
-            <button
-                name="runner_button"
-                class="button"
-                onclick="do_main_thread()"
-            >
-                Main thread
-            </button>
-            <button
-                id="worker_thread"
-                name="runner_button"
-                class="button"
-                onclick="do_worker_thread()"
-            >
-                Worker thread
-            </button>
-        </div>
-    </div>
 
-    <details
-        class="footer"
-        aria-label="page footer with additional information"
-    >
-        <summary class="footer-summary">More about Worker API</summary>
-        <div class="footer-content">
-            <a
-                href="https://developer.mozilla.org/en-US/docs/Web/API/Worker"
-                class="link"
-                target="_blank"
-            >The Worker API infromation on MDN</a>
-        </div>
-    </details>
+        <details
+            class="footer"
+            aria-label="page footer with additional information"
+        >
+            <summary class="footer-summary">More about Worker API</summary>
+            <div class="footer-content">
+                <a
+                    href="https://developer.mozilla.org/en-US/docs/Web/API/Worker"
+                    class="link"
+                    target="_blank"
+                    >The Worker API infromation on MDN</a
+                >
+            </div>
+        </details>
 
-    <script type="module">
-        import compute_primes from './src/primes.mjs';
-        import AnimationHelper from './src/animation.mjs';
-        import UIHelper from './src/ui.mjs';
+        <script type="module">
+            import compute_primes from './src/primes.mjs';
+            import AnimationHelper from './src/animation.mjs';
+            import UIHelper from './src/ui.mjs';
 
-        window.task_data = {
-            n: 10000,
-            compute_primes
-        };
+            window.task_data = {
+                n: 10000,
+                compute_primes,
+            };
 
-        window.animation_helper = AnimationHelper(
-            document.getElementById('animation')
-        );
+            window.animation_helper = AnimationHelper(
+                document.getElementById('animation'),
+            );
 
-        window.ui_helper = UIHelper();
-        window.ui_helper.check_worker();
-    </script>
+            window.ui_helper = UIHelper();
+            window.ui_helper.check_worker();
+        </script>
 
-    <script>
-        const worker = new Worker('./src/worker.mjs', { type: 'module' });
+        <script>
+            const worker = new Worker('./src/worker.mjs', { type: 'module' });
 
-        function do_main_thread() {
-            execute((res) => {
-                res(task_data.compute_primes(task_data.n));
-            });
-        }
-
-        function do_worker_thread() {
-            execute((res) => {
-                const result = new ArrayBuffer(task_data.n * 4);
-
-                worker.addEventListener('message', ({ data }) => {
-                    res(new Int32Array(data));
+            function do_main_thread() {
+                execute((res) => {
+                    res(task_data.compute_primes(task_data.n));
                 });
+            }
 
-                worker.postMessage(result, [result]);
-            });
-        }
+            function do_worker_thread() {
+                execute((res) => {
+                    const result = new ArrayBuffer(task_data.n * 4);
 
-        function execute(task) {
-            window.ui_helper.disable_buttons();
-            window.animation_helper.start();
+                    worker.addEventListener('message', ({ data }) => {
+                        res(new Int32Array(data));
+                    });
 
-            new Promise((res) => {
-                task(res);
-            }).then((res) => {
-                console.log(`computed ${res.length} prime numbers`);
-            }).finally(() => {
-                window.ui_helper.enable_buttons();
-                window.animation_helper.stop();
-            });
-        }
-    </script>
-</body>
+                    worker.postMessage(result, [result]);
+                });
+            }
 
+            function execute(task) {
+                window.ui_helper.disable_buttons();
+                window.animation_helper.start();
+
+                new Promise((res) => {
+                    task(res);
+                })
+                    .then((res) => {
+                        console.log(`computed ${res.length} prime numbers`);
+                    })
+                    .finally(() => {
+                        window.ui_helper.enable_buttons();
+                        window.animation_helper.stop();
+                    });
+            }
+        </script>
+    </body>
 </html>

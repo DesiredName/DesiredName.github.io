@@ -1,260 +1,275 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <!-- Preload block -->
+        <link
+            rel="preload"
+            href="/assets/demo-commons.css"
+            as="style"
+        />
+        <link
+            rel="preload"
+            href="/components/return-button/index.mjs"
+            as="script"
+            crossorigin
+        />
+        <link
+            rel="preload"
+            href="/components/the-console/index.mjs"
+            as="script"
+            crossorigin
+        />
 
-<head>
-    <!-- Preload block -->
-    <link
-        rel="preload"
-        href="/assets/demo-commons.css"
-        as="style"
-    />
-    <link
-        rel="preload"
-        href="/components/return-button/index.mjs"
-        as="script"
-        crossorigin
-    />
-    <link
-        rel="preload"
-        href="/components/the-console/index.mjs"
-        as="script"
-        crossorigin
-    />
+        <title>Offline strategy to deliver resources from cache</title>
 
-    <title>Offline strategy to deliver resources from cache</title>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        />
+        <link
+            rel="stylesheet"
+            href="/assets/demo-commons.css"
+        />
+        <link
+            rel="manifest"
+            href="/site.webmanifest"
+            crossorigin="use-credentials"
+        />
+        <script
+            type="module"
+            src="/components/return-button/index.mjs"
+        ></script>
+        <script
+            type="module"
+            src="/components/the-console/index.mjs"
+        ></script>
 
-    <meta charset="UTF-8" />
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    />
-    <link
-        rel="stylesheet"
-        href="/assets/demo-commons.css"
-    />
-    <link
-        rel="manifest"
-        href="/site.webmanifest"
-        crossorigin="use-credentials"
-    />
-    <link
-        rel="stylesheet"
-        href="./assets/style.css"
-    />
-    <script
-        type="module"
-        src="/components/return-button/index.mjs"
-    ></script>
-    <script
-        type="module"
-        src="/components/the-console/index.mjs"
-    ></script>
+        <!-- Security -->
+        <meta
+            http-equiv="Content-Security-Policy"
+            content="default-src 'self' 'unsafe-eval' 'unsafe-inline';"
+        />
 
-    <!-- Security -->
-    <meta
-        http-equiv="Content-Security-Policy"
-        content="default-src 'self' 'unsafe-eval' 'unsafe-inline';"
-    />
-
-    <!-- SEO -->
-    <link
-        rel="canonical"
-        href="https://desiredname.github.io/"
-    />
-    <meta
-        name="theme-color"
-        content="#222222"
-    />
-    <meta
-        name="description"
-        content="DesiredName IT Blog by Krasnov Anton. An example of
+        <!-- SEO -->
+        <link
+            rel="canonical"
+            href="https://desiredname.github.io/"
+        />
+        <meta
+            name="theme-color"
+            content="#222222"
+        />
+        <meta
+            name="description"
+            content="DesiredName IT Blog by Krasnov Anton. An example of
         a cache storage use to download resources been cached without
         the Service Worker support."
-    />
-    <meta
-        name="robots"
-        content="index, nofollow"
-    />
-    <meta
-        name="author"
-        content="Krasnov Anton"
-    />
-    <meta
-        name="creator"
-        content="Krasnov Anton"
-    />
-    <meta
-        property="og:locale"
-        content="en_US"
-    />
-    <meta
-        property="og:title"
-        content="Offline strategy to deliver resources from cache"
-    />
-    <meta
-        property="og:type"
-        content="website"
-    />
-    <meta
-        property="og:url"
-        content="https://www.linkedin.com/in/anton-krasnov-in-prague/"
-    />
-</head>
+        />
+        <meta
+            name="robots"
+            content="index, nofollow"
+        />
+        <meta
+            name="author"
+            content="Krasnov Anton"
+        />
+        <meta
+            name="creator"
+            content="Krasnov Anton"
+        />
+        <meta
+            property="og:locale"
+            content="en_US"
+        />
+        <meta
+            property="og:title"
+            content="Offline strategy to deliver resources from cache"
+        />
+        <meta
+            property="og:type"
+            content="website"
+        />
+        <meta
+            property="og:url"
+            content="https://www.linkedin.com/in/anton-krasnov-in-prague/"
+        />
+    </head>
 
-<body>
-    <div class="return-button-container">
-        <return-button></return-button>
-    </div>
-
-    <div class="container">
-        <h3 class="title">Offline strategy to deliver resources from cache</h3>
-
-        <div
-            class="content"
-            style="text-align: justify;"
-        >
-            <div>
-                1. <a
-                    class="link"
-                    download="the_file"
-                    href="./public/some-data.json"
-                    onclick="handle_intercept(event)"
-                >Download some resource</a>, while online
-            </div>
-
-            <div>
-                <label for="toggle-offline-state">
-                    2. Go offline
-                    <input
-                        id="toggle-offline-state"
-                        type="checkbox"
-                    /> or switch off WiFi on your device
-                </label>
-            </div>
-
-            <div>
-                3. <a
-                    class="link"
-                    download="the_file"
-                    href="./public/some-data.json"
-                    onclick="handle_intercept(event)"
-                >Download the same resource again</a> as many times as you'd like
-            </div>
-
-            <div>
-                4. <button
-                    type="button"
-                    onclick="handle_clear_storage()"
-                >Clear the storage</button>
-            </div>
-
-
-            <div>
-                5. Then browser will <a
-                    class="link"
-                    download="the_file"
-                    href="./public/some-data.json"
-                    onclick="handle_intercept(event)"
-                >fail to download the same resource again</a> because it is not in cache and can not be fetched from
-                network
-            </div>
+    <body>
+        <div class="return-button-container">
+            <return-button></return-button>
         </div>
 
-        <the-console id="console"></the-console>
-    </div>
+        <div class="container">
+            <h3 class="title">
+                Offline strategy to deliver resources from cache
+            </h3>
 
-    <script>
-        const is_offline = () => document.getElementById('toggle-offline-state').checked === true;
+            <div
+                class="content"
+                style="text-align: justify"
+            >
+                <div>
+                    1.
+                    <a
+                        class="link"
+                        download="the_file"
+                        href="./public/some-data.json"
+                        onclick="handle_intercept(event)"
+                        >Download some resource</a
+                    >, while online
+                </div>
 
-        const print_message = (message) => {
-            document.getElementById('console').push_message({
-                message
-            }, {
-                timestamp: true
-            });
-        };
+                <div>
+                    <label for="toggle-offline-state">
+                        2. Go offline
+                        <input
+                            id="toggle-offline-state"
+                            type="checkbox"
+                        />
+                        or switch off WiFi on your device
+                    </label>
+                </div>
 
-        const cache_name = 'offline-example';
+                <div>
+                    3.
+                    <a
+                        class="link"
+                        download="the_file"
+                        href="./public/some-data.json"
+                        onclick="handle_intercept(event)"
+                        >Download the same resource again</a
+                    >
+                    as many times as you'd like
+                </div>
 
-        const fetch_from_cache = async (href) => {
-            print_message('Trying to fetch from cache');
+                <div>
+                    4.
+                    <button
+                        type="button"
+                        onclick="handle_clear_storage()"
+                    >
+                        Clear the storage
+                    </button>
+                </div>
 
-            const from_cache = await caches.match(href);
+                <div>
+                    5. Then browser will
+                    <a
+                        class="link"
+                        download="the_file"
+                        href="./public/some-data.json"
+                        onclick="handle_intercept(event)"
+                        >fail to download the same resource again</a
+                    >
+                    because it is not in cache and can not be fetched from
+                    network
+                </div>
+            </div>
 
-            if (from_cache?.ok === true) {
-                print_message('Resource fetched from cache');
-            } else {
-                print_message('Resource not found in cache');
-            }
+            <the-console id="console"></the-console>
+        </div>
 
-            return from_cache;
-        }
+        <script>
+            const is_offline = () =>
+                document.getElementById('toggle-offline-state').checked ===
+                true;
 
-        const fetch_from_network = async (href) => {
-            const signal = AbortSignal.timeout(is_offline() ? 0 : 5000)
+            const print_message = (message) => {
+                document.getElementById('console').push_message(
+                    {
+                        message,
+                    },
+                    {
+                        timestamp: true,
+                    },
+                );
+            };
 
-            print_message('Trying to fetch from network');
+            const cache_name = 'offline-example';
 
-            const from_network = await fetch(href, { signal });
+            const fetch_from_cache = async (href) => {
+                print_message('Trying to fetch from cache');
 
-            if (from_network?.ok === true) {
-                print_message('Resource fetched from network');
-            } else {
-                print_message('Resource not found online');
-            }
-
-            return from_network;
-        }
-
-        const put_to_cache = (href, clone) => {
-            // Fire'n'Forget, don't wait to store on request
-            caches.open(cache_name)
-                .then((cache) => cache.put(href, clone))
-                .then(() => print_message('Resource saved to cache'));
-        }
-
-        function handle_clear_storage() {
-            caches.delete('offline-example').then(() => {
-                print_message('The cache was cleared');
-            });
-        }
-
-        async function handle_intercept(e) {
-            e.preventDefault();
-
-            const href = e.target.href;
-
-            try {
-                const from_cache = await fetch_from_cache(href);
+                const from_cache = await caches.match(href);
 
                 if (from_cache?.ok === true) {
-                    return from_cache.blob().then(download_blob);
+                    print_message('Resource fetched from cache');
+                } else {
+                    print_message('Resource not found in cache');
                 }
 
-                const from_network = await fetch_from_network(href);
+                return from_cache;
+            };
+
+            const fetch_from_network = async (href) => {
+                const signal = AbortSignal.timeout(is_offline() ? 0 : 5000);
+
+                print_message('Trying to fetch from network');
+
+                const from_network = await fetch(href, { signal });
 
                 if (from_network?.ok === true) {
-                    put_to_cache(href, from_network.clone())
-
-                    return from_network.blob().then(download_blob);
+                    print_message('Resource fetched from network');
+                } else {
+                    print_message('Resource not found online');
                 }
-            } catch (ex) {
-                print_message('Resource not found in cache and could not be recieved from network');
+
+                return from_network;
+            };
+
+            const put_to_cache = (href, clone) => {
+                // Fire'n'Forget, don't wait to store on request
+                caches
+                    .open(cache_name)
+                    .then((cache) => cache.put(href, clone))
+                    .then(() => print_message('Resource saved to cache'));
+            };
+
+            function handle_clear_storage() {
+                caches.delete('offline-example').then(() => {
+                    print_message('The cache was cleared');
+                });
             }
-        }
 
-        function download_blob(blob) {
-            const data = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = data;
-            a.download = 'some-data';
-            a.click();
+            async function handle_intercept(e) {
+                e.preventDefault();
 
-            print_message('Download in progress...');
+                const href = e.target.href;
 
-            URL.revokeObjectURL(data);
-        }
-    </script>
-</body>
+                try {
+                    const from_cache = await fetch_from_cache(href);
 
+                    if (from_cache?.ok === true) {
+                        return from_cache.blob().then(download_blob);
+                    }
+
+                    const from_network = await fetch_from_network(href);
+
+                    if (from_network?.ok === true) {
+                        put_to_cache(href, from_network.clone());
+
+                        return from_network.blob().then(download_blob);
+                    }
+                } catch (ex) {
+                    print_message(
+                        'Resource not found in cache and could not be recieved from network',
+                    );
+                }
+            }
+
+            function download_blob(blob) {
+                const data = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = data;
+                a.download = 'some-data';
+                a.click();
+
+                print_message('Download in progress...');
+
+                URL.revokeObjectURL(data);
+            }
+        </script>
+    </body>
 </html>

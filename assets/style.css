@@ -52,7 +52,7 @@
 }
 
 .layout .title .main::after {
-    content: ": The Blog";
+    content: ': The Blog';
 }
 
 .layout .title .links {

@@ -13,9 +13,11 @@ export default function UIHelper() {
         },
 
         disable_buttons() {
-            Array.from(document.getElementsByName('runner_button')).forEach((b) => {
-                b.setAttribute('disabled', true);
-            });
+            Array.from(document.getElementsByName('runner_button')).forEach(
+                (b) => {
+                    b.setAttribute('disabled', true);
+                },
+            );
         },
 
         enable_buttons() {

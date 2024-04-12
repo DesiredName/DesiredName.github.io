@@ -56,7 +56,7 @@
             text-align: right;
         }
 
-        & .control-input[type="number"] {
+        & .control-input[type='number'] {
             flex: 0 1 80px;
             max-width: 80px;
             text-align: center;
