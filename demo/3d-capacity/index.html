@@ -1,183 +1,213 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <!-- Preload block -->
+        <link
+            rel="preload"
+            href="/assets/demo-commons.css"
+            as="style"
+        />
+        <link
+            rel="preload"
+            href="/components/return-button/index.mjs"
+            as="script"
+            crossorigin
+        />
 
-<head>
-    <!-- Preload block -->
-    <link
-        rel="preload"
-        href="/assets/demo-commons.css"
-        as="style"
-    />
-    <link
-        rel="preload"
-        href="/components/return-button/index.mjs"
-        as="script"
-        crossorigin
-    />
+        <title>DesiredName: Water capacity of a 3D scape</title>
 
-    <title>DesiredName: Water capacity of a 3D scape</title>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        />
+        <link
+            rel="stylesheet"
+            href="/assets/demo-commons.css"
+        />
+        <link
+            rel="manifest"
+            href="/site.webmanifest"
+            crossorigin="use-credentials"
+        />
+        <link
+            rel="stylesheet"
+            href="./assets/style.css"
+        />
+        <script
+            type="module"
+            src="/components/return-button/index.mjs"
+        ></script>
+        <script
+            type="module"
+            src="./src/the-cam-controls/index.mjs"
+        ></script>
 
-    <meta charset="UTF-8" />
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    />
-    <link
-        rel="stylesheet"
-        href="/assets/demo-commons.css"
-    />
-    <link
-        rel="manifest"
-        href="/site.webmanifest"
-        crossorigin="use-credentials"
-    />
-    <link
-        rel="stylesheet"
-        href="./assets/style.css"
-    />
-    <script
-        type="module"
-        src="/components/return-button/index.mjs"
-    ></script>
+        <!-- Security -->
+        <meta
+            http-equiv="Content-Security-Policy"
+            content="default-src 'self' 'unsafe-eval' 'unsafe-inline';"
+        />
 
-    <!-- Security -->
-    <meta
-        http-equiv="Content-Security-Policy"
-        content="default-src 'self' 'unsafe-eval' 'unsafe-inline';"
-    />
+        <!-- SEO -->
+        <link
+            rel="canonical"
+            href="https://desiredname.github.io/"
+        />
+        <meta
+            name="theme-color"
+            content="#222222"
+        />
+        <meta
+            name="description"
+            content="DesiredName IT Blog by Krasnov Anton. The LeetCode solution of water trapping container problem."
+        />
+        <meta
+            name="robots"
+            content="index, nofollow"
+        />
+        <meta
+            name="author"
+            content="Krasnov Anton"
+        />
+        <meta
+            name="creator"
+            content="Krasnov Anton"
+        />
+        <meta
+            property="og:locale"
+            content="en_US"
+        />
+        <meta
+            property="og:title"
+            content="Algos: Water capacity of a 3D scape"
+        />
+        <meta
+            property="og:type"
+            content="website"
+        />
+        <meta
+            property="og:url"
+            content="https://www.linkedin.com/in/anton-krasnov-in-prague/"
+        />
+    </head>
 
-    <!-- SEO -->
-    <link
-        rel="canonical"
-        href="https://desiredname.github.io/"
-    />
-    <meta
-        name="theme-color"
-        content="#222222"
-    />
-    <meta
-        name="description"
-        content="DesiredName IT Blog by Krasnov Anton. The LeetCode solution of water trapping container problem."
-    />
-    <meta
-        name="robots"
-        content="index, nofollow"
-    />
-    <meta
-        name="author"
-        content="Krasnov Anton"
-    />
-    <meta
-        name="creator"
-        content="Krasnov Anton"
-    />
-    <meta
-        property="og:locale"
-        content="en_US"
-    />
-    <meta
-        property="og:title"
-        content="Algos: Water capacity of a 3D scape"
-    />
-    <meta
-        property="og:type"
-        content="website"
-    />
-    <meta
-        property="og:url"
-        content="https://www.linkedin.com/in/anton-krasnov-in-prague/"
-    />
-</head>
-
-<body>
-    <div class="return-button-container">
-        <return-button></return-button>
-    </div>
-
-    <article class="container">
-        <h3 class="title">Algos: Water capacity of a 3D scape</h3>
-
-        <div class="content">
-            <div class="description">
-                Click'n'Drag to rotate
-            </div>
-
-            <div class="canvas-container">
-                <canvas
-                    id="canvas"
-                    height="320"
-                    width="320"
-                >
-                    your browser does not support canvas
-                </canvas>
-            </div>
-
-            <div class="heightmap-controls">
-                <textarea
-                    id="heightmap_input"
-                    class="heightmap-input"
-                    rows="4"
-                >
-                1,2,3,2,2,1,4
-                3,1,1,1,3,1,2
-                1,2,2,2,2,3,4
-                </textarea>
-            </div>
-
-            <div class="buttons inline">
-                <button
-                    id="apply_heightmap"
-                    aria-label="build and display heightmap on screen"
-                    class="button"
-                    type="button"
-                >Apply heightmap</button>
-            </div>
+    <body>
+        <div class="return-button-container">
+            <return-button></return-button>
         </div>
 
-    </article>
+        <article class="container">
+            <h3 class="title">Algos: Water capacity of a 3D scape</h3>
 
-    <details
-        class="footer"
-        aria-label="page footer with additional information"
-    >
-        <summary class="footer-summary">links</summary>
-        <div class="footer-content">
-            <a
-                href="https://leetcode.com/problems/trapping-rain-water-ii"
-                class="link"
-                target="_blank"
-                aria-label="the link to the original LeetCode problem"
-                referrerpolicy="no-referrer"
-            >the link to the problem on LeetCode</a>
-        </div>
-    </details>
+            <div class="content">
+                <div class="description section">
+                    Click'n'Drag to move
+                    <br />
+                    Scroll the wheel to pan
+                </div>
 
-    <script type="module">
-        import { RENDERER_EVENTS } from './src/renderer.mjs';
-        import {
-            parse_heightmap,
-            link_canvas_events
-        } from './src/utils.mjs';
+                <div class="canvas-container section">
+                    <canvas
+                        id="canvas"
+                        height="320"
+                        width="320"
+                    >
+                        your browser does not support canvas
+                    </canvas>
+                </div>
 
-        const heightmap_input = document.getElementById('heightmap_input');
-        const renderer = new Worker('./src/renderer.mjs', { type: 'module' });
-        const canvas = document.getElementById('canvas');
-        const offscreen = canvas.transferControlToOffscreen();
+                <div class="heightmap-controls section">
+                    <div class="left">
+                        <textarea
+                            id="heightmap_input"
+                            class="heightmap-input"
+                            rows="4"
+                        >
+                            1,2,3,2,2,1,4
+                            3,1,1,1,3,1,2
+                            1,2,2,2,2,3,4
+                        </textarea>
+                    </div>
+                    <the-cam-controls
+                        id="cam-controls"
+                        class="right"
+                    ></the-cam-controls>
+                </div>
 
-        renderer.postMessage({ name: RENDERER_EVENTS.INIT, offscreen }, [offscreen]);
+                <div class="buttons inline section">
+                    <button
+                        id="apply_heightmap"
+                        aria-label="build and display heightmap on screen"
+                        class="button"
+                        type="button"
+                    >
+                        Rerender
+                    </button>
+                </div>
+            </div>
+        </article>
 
-        document.getElementById('apply_heightmap').onclick = () => renderer.postMessage({
-            name: RENDERER_EVENTS.RENDER,
-            heightmap: parse_heightmap(heightmap_input.value)
-        });
+        <details
+            class="footer"
+            aria-label="page footer with additional information"
+        >
+            <summary class="footer-summary">links</summary>
+            <div class="footer-content">
+                <a
+                    href="https://leetcode.com/problems/trapping-rain-water-ii"
+                    class="link"
+                    target="_blank"
+                    aria-label="the link to the original LeetCode problem"
+                    referrerpolicy="no-referrer"
+                    >the link to the problem on LeetCode</a
+                >
+            </div>
+        </details>
 
-        link_canvas_events(canvas, renderer);
+        <script type="module">
+            import { RENDERER_EVENTS } from './src/renderer.mjs';
+            import {
+                parse_heightmap,
+                link_canvas_events,
+                link_cam_controls_events,
+            } from './src/utils.mjs';
 
-        renderer.postMessage({
-            name: RENDERER_EVENTS.RENDER,
-            heightmap: parse_heightmap(heightmap_input.value)
-        });
-    </script>
-</body>
+            const el_canvas = document.getElementById('canvas');
+            const el_cam_controls = document.getElementById('cam-controls');
+            const el_heightmap_input =
+                document.getElementById('heightmap_input');
+            const el_apply_heightmap =
+                document.getElementById('apply_heightmap');
 
+            const offscreen = el_canvas.transferControlToOffscreen();
+            const renderer = new Worker('./src/renderer.mjs', {
+                type: 'module',
+            });
+
+            // link events
+            link_canvas_events(el_canvas, (e) => {
+                renderer.postMessage(e);
+            });
+            link_cam_controls_events(el_cam_controls, (e) => {
+                renderer.postMessage(e);
+            });
+            el_apply_heightmap.onclick = () => {
+                renderer.postMessage({
+                    name: RENDERER_EVENTS.RENDER,
+                    heightmap: parse_heightmap(el_heightmap_input.value),
+                });
+            };
+
+            // run renderer
+            renderer.postMessage({ name: RENDERER_EVENTS.INIT, offscreen }, [
+                offscreen,
+            ]);
+
+            renderer.postMessage({
+                name: RENDERER_EVENTS.RENDER,
+                heightmap: parse_heightmap(el_heightmap_input.value),
+            });
+        </script>
+    </body>
 </html>

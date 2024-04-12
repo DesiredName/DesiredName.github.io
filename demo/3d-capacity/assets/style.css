@@ -1,13 +1,8 @@
-.description {
-    margin-bottom: 1rem;
-}
-
 .canvas-container {
     align-items: center;
     display: flex;
     flex-flow: column;
     height: 320px;
-    margin-bottom: 1rem;
     width: 100%;
 
     #canvas {
@@ -18,14 +13,47 @@
 }
 
 .heightmap-controls {
-    margin-bottom: 1rem;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+
+    .left {
+        order: 0;
+    }
+
+    .right {
+        order: 1;
+        display: none;
+    }
 
     .heightmap-input {
+        order: 0;
         background-color: var(--dark);
         color: var(--bright);
         white-space: pre-line;
         resize: none;
         text-align: center;
         width: 160px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .heightmap-controls {
+        flex-flow: column;
+        justify-content: center;
+
+        .left {
+            order: 1;
+        }
+
+        .right {
+            order: 0;
+            margin-bottom: 1rem;
+            display: block;
+        }
+    }
+
+    .form .row {
+        justify-content: center;
     }
 }

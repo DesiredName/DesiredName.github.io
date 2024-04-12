@@ -46,6 +46,7 @@
 
     & .control {
         align-items: center;
+        align-content: center;
         display: flex;
         flex-flow: row nowrap;
         justify-content: space-between;
@@ -71,7 +72,7 @@
         border: none;
         background-color: var(--brownish);
         color: var(--bright);
-        padding: 0.2 5rem 0.5rem;
+        padding: 0.2rem 0.5rem;
     }
 }
 

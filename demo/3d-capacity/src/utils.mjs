@@ -9,20 +9,25 @@ export function parse_heightmap(raw_input) {
         });
 }
 
-export function link_canvas_events(canvas, renderer) {
+function stop_event(next, e) {
+    e.stopPropagation();
+    e.stopImmediatePropagation();
+    e.preventDefault();
+
+    next(e);
+}
+
+function calculate_with_offset(next_pivot, current_pivot) {
+    return {
+        x: next_pivot.x - current_pivot.x,
+        y: next_pivot.y - current_pivot.y,
+    };
+}
+
+function extract_translation(canvas) {
     const { x: x_offset, y: y_offset } = canvas.getBoundingClientRect();
 
-    let current_pivot = null;
-
-    function stop_event(next, e) {
-        e.stopPropagation();
-        e.stopImmediatePropagation();
-        e.preventDefault();
-
-        next(e);
-    }
-
-    function extract_translation(e) {
+    return (e) => {
         const touch = e.touches?.[0] ?? e.changedTouches?.[0];
         const x = e.clientX ?? touch.clientX ?? 0;
         const y = e.clientY ?? touch.clientY ?? 0;
@@ -31,47 +36,36 @@ export function link_canvas_events(canvas, renderer) {
             x: x - x_offset,
             y: y - y_offset,
         };
-    }
+    };
+}
 
-    function calculate_with_offset({ x, y }) {
-        return {
-            x: x - current_pivot.x,
-            y: y - current_pivot.y,
-        };
-    }
+export function link_canvas_events(canvas, callback) {
+    const ex = extract_translation(canvas);
+    let current_pivot = null;
 
     function on_start_event(e) {
-        current_pivot = extract_translation(e);
+        current_pivot = ex(e);
     }
 
     function on_move_event(e) {
-        if (current_pivot == null) {
-            return;
+        if (current_pivot != null) {
+            const next_pivot = ex(e);
+            const move = calculate_with_offset(next_pivot, current_pivot);
+
+            callback({ name: RENDERER_EVENTS.CAMERA_MOVE, move });
+
+            current_pivot = next_pivot;
         }
-
-        const next_pivot = extract_translation(e);
-
-        renderer.postMessage({
-            name: RENDERER_EVENTS.CAMERA_MOVE,
-            translation: calculate_with_offset(next_pivot),
-        });
-
-        current_pivot = next_pivot;
     }
 
-    function on_stop_event(e) {
-        if (current_pivot == null) {
-            return;
-        }
-
+    function on_stop_event() {
         current_pivot = null;
     }
 
     function on_change_panning(e) {
-        renderer.postMessage({
-            name: RENDERER_EVENTS.CAMERA_PAN,
-            pan: e.wheelDelta > 0 ? -1 : 1,
-        });
+        const pan = e.wheelDelta > 0 ? -1 : 1;
+
+        callback({ name: RENDERER_EVENTS.CAMERA_PAN, pan });
     }
 
     canvas.onmousedown = stop_event.bind(this, on_start_event);
@@ -85,4 +79,16 @@ export function link_canvas_events(canvas, renderer) {
     canvas.ontouchend = stop_event.bind(this, on_stop_event);
 
     canvas.onwheel = on_change_panning;
+}
+
+export function link_cam_controls_events(cam_controls, callback) {
+    cam_controls.addEventListener('pan', (e) => {
+        callback({ name: RENDERER_EVENTS.CAMERA_PAN, pan: e.detail });
+    });
+    cam_controls.addEventListener('rotate', (e) => {
+        callback({ name: RENDERER_EVENTS.CAMERA_ROTATE, angle: e.detail });
+    });
+    cam_controls.addEventListener('move', (e) => {
+        callback({ name: RENDERER_EVENTS.CAMERA_MOVE, move: e.detail });
+    });
 }

@@ -11,8 +11,6 @@ let ctx = null;
 let heightmap = [];
 
 const cell_size = 32;
-
-const angel = -35;
 const camera = {
     min_scale: 0.5,
     max_scale: 4,
@@ -23,12 +21,12 @@ const camera = {
     pan: 1,
     position: {
         x: 45,
-        y: 230,
+        y: 240,
     },
     rotation: {
-        degrees: angel,
-        sin: Math.sin(translate_angel(angel)),
-        cos: Math.cos(translate_angel(angel)),
+        degrees: -35,
+        sin: Math.sin(translate_angel(-35)),
+        cos: Math.cos(translate_angel(-35)),
     },
 };
 
@@ -49,9 +47,18 @@ addEventListener('message', (e) => {
             );
             break;
 
+        case RENDERER_EVENTS.CAMERA_ROTATE:
+            const angel = camera.rotation.degrees - e.data.angle;
+            camera.rotation = {
+                degrees: angel,
+                sin: Math.sin(translate_angel(angel)),
+                cos: Math.cos(translate_angel(angel)),
+            };
+            break;
+
         case RENDERER_EVENTS.CAMERA_MOVE:
-            camera.position.x += e.data.translation.x;
-            camera.position.y += e.data.translation.y;
+            camera.position.x += e.data.move.x;
+            camera.position.y += e.data.move.y;
             break;
 
         case RENDERER_EVENTS.RENDER:
