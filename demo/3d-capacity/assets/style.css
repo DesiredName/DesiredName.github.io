@@ -23,7 +23,6 @@
 
     .right {
         order: 1;
-        display: none;
     }
 
     .heightmap-input {
@@ -49,7 +48,6 @@
         .right {
             order: 0;
             margin-bottom: 1rem;
-            display: block;
         }
     }
 

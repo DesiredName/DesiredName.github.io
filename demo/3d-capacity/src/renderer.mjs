@@ -9,6 +9,7 @@ export class RENDERER_EVENTS {
 let canvas = null;
 let ctx = null;
 let heightmap = [];
+let waterlevel = [];
 
 const cell_size = 32;
 const camera = {
@@ -63,6 +64,7 @@ addEventListener('message', (e) => {
 
         case RENDERER_EVENTS.RENDER:
             heightmap = e.data.heightmap;
+            waterlevel = e.data.waterlevel;
             break;
     }
 
@@ -120,45 +122,52 @@ function draw_grid(h, w) {
 function draw_blocks(h, w) {
     for (let x = w - 1; x >= 0; x--) {
         for (let y = 0; y < h; y++) {
-            const z = heightmap[y][x];
+            const zh = heightmap[y][x];
+            const wh = waterlevel[y][x];
 
-            ctx.fillStyle = 'green';
-            ctx.strokeStyle = 'darkgrey';
-
-            ctx.beginPath();
-            ctx.moveTo(...translate_matrix(x, y, z));
-            ctx.lineTo(...translate_matrix(x + 1, y, z));
-            ctx.lineTo(...translate_matrix(x + 1, y + 1, z));
-            ctx.lineTo(...translate_matrix(x, y + 1, z));
-            ctx.closePath();
-            ctx.fill();
-            ctx.stroke();
-
-            if (z === 0) {
-                continue;
+            if (zh >= wh) {
+                draw_block(x, y, zh, 'green');
+            } else {
+                draw_block(x, y, wh, 'blue');
             }
-
-            ctx.fillStyle = 'gray';
-
-            ctx.beginPath();
-            ctx.moveTo(...translate_matrix(x, y, z));
-            ctx.lineTo(...translate_matrix(x, y, 0));
-            ctx.lineTo(...translate_matrix(x, y + 1, 0));
-            ctx.lineTo(...translate_matrix(x, y + 1, z));
-            ctx.closePath();
-            ctx.fill();
-            ctx.stroke();
-
-            ctx.fillStyle = 'lightgray';
-
-            ctx.beginPath();
-            ctx.moveTo(...translate_matrix(x, y + 1, z));
-            ctx.lineTo(...translate_matrix(x, y + 1, 0));
-            ctx.lineTo(...translate_matrix(x + 1, y + 1, 0));
-            ctx.lineTo(...translate_matrix(x + 1, y + 1, z));
-            ctx.closePath();
-            ctx.fill();
-            ctx.stroke();
         }
+    }
+}
+
+function draw_block(x, y, z, cap_color) {
+    ctx.fillStyle = cap_color;
+    ctx.strokeStyle = 'darkgrey';
+
+    ctx.beginPath();
+    ctx.moveTo(...translate_matrix(x, y, z));
+    ctx.lineTo(...translate_matrix(x + 1, y, z));
+    ctx.lineTo(...translate_matrix(x + 1, y + 1, z));
+    ctx.lineTo(...translate_matrix(x, y + 1, z));
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
+
+    if (z !== 0) {
+        ctx.fillStyle = 'gray';
+
+        ctx.beginPath();
+        ctx.moveTo(...translate_matrix(x, y, z));
+        ctx.lineTo(...translate_matrix(x, y, 0));
+        ctx.lineTo(...translate_matrix(x, y + 1, 0));
+        ctx.lineTo(...translate_matrix(x, y + 1, z));
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.fillStyle = 'lightgray';
+
+        ctx.beginPath();
+        ctx.moveTo(...translate_matrix(x, y + 1, z));
+        ctx.lineTo(...translate_matrix(x, y + 1, 0));
+        ctx.lineTo(...translate_matrix(x + 1, y + 1, 0));
+        ctx.lineTo(...translate_matrix(x + 1, y + 1, z));
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
     }
 }

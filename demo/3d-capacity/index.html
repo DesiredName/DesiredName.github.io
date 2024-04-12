@@ -124,26 +124,15 @@
                             class="heightmap-input"
                             rows="4"
                         >
-                            1,2,3,2,2,1,4
-                            3,1,1,1,3,1,2
-                            1,2,2,2,2,3,4
+                            3,3,3,3,3,3
+                            2,1,1,1,1,3
+                            2,2,2,2,2,2
                         </textarea>
                     </div>
                     <the-cam-controls
                         id="cam-controls"
                         class="right"
                     ></the-cam-controls>
-                </div>
-
-                <div class="buttons inline section">
-                    <button
-                        id="apply_heightmap"
-                        aria-label="build and display heightmap on screen"
-                        class="button"
-                        type="button"
-                    >
-                        Rerender
-                    </button>
                 </div>
             </div>
         </article>
@@ -172,15 +161,13 @@
                 link_canvas_events,
                 link_cam_controls_events,
             } from './src/utils.mjs';
+            import compute_water_levels from './src/water.mjs';
 
             const el_canvas = document.getElementById('canvas');
             const el_cam_controls = document.getElementById('cam-controls');
             const el_heightmap_input =
                 document.getElementById('heightmap_input');
-            const el_apply_heightmap =
-                document.getElementById('apply_heightmap');
 
-            const offscreen = el_canvas.transferControlToOffscreen();
             const renderer = new Worker('./src/renderer.mjs', {
                 type: 'module',
             });
@@ -192,22 +179,28 @@
             link_cam_controls_events(el_cam_controls, (e) => {
                 renderer.postMessage(e);
             });
-            el_apply_heightmap.onclick = () => {
-                renderer.postMessage({
-                    name: RENDERER_EVENTS.RENDER,
-                    heightmap: parse_heightmap(el_heightmap_input.value),
-                });
-            };
+            el_heightmap_input.oninput = render_heightmap;
 
-            // run renderer
+            // setup renderer
+            const offscreen = el_canvas.transferControlToOffscreen();
+
             renderer.postMessage({ name: RENDERER_EVENTS.INIT, offscreen }, [
                 offscreen,
             ]);
 
-            renderer.postMessage({
-                name: RENDERER_EVENTS.RENDER,
-                heightmap: parse_heightmap(el_heightmap_input.value),
-            });
+            // run renderer
+            function render_heightmap() {
+                const heightmap = parse_heightmap(el_heightmap_input.value);
+                const waterlevel = compute_water_levels(heightmap);
+
+                renderer.postMessage({
+                    name: RENDERER_EVENTS.RENDER,
+                    heightmap,
+                    waterlevel,
+                });
+            }
+
+            render_heightmap();
         </script>
     </body>
 </html>
