@@ -7,7 +7,7 @@ export default function BuildLinkedList(length, cycle_at) {
             next: null,
         };
 
-        let index = 1;
+        let index = 0;
         let current = root;
         let cycle = null;
 

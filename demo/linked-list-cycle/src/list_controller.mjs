@@ -100,7 +100,7 @@ export default class ListController {
 
         for (let i = 0; i < this.#el_items.childElementCount; i++) {
             const child = this.#el_items.children[i];
-            const is_cycle = i + 1 === this.#cycle_at;
+            const is_cycle = i === this.#cycle_at;
 
             child.classList.toggle('is-cycle', is_cycle);
 

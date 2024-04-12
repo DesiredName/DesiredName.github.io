@@ -8,7 +8,7 @@
         padding: 0.4rem;
         position: relative;
 
-        counter-reset: index 0;
+        counter-reset: index -1;
     }
 
     & .list-pointers {
@@ -27,6 +27,13 @@
         width: 2rem;
     }
 
+    & .pointer.hare::after {
+        content: "🐇";
+    }
+
+    & .pointer.tortoise::after {
+        content: "🐢";
+    }
 
     & .list-items {
         align-items: center;
