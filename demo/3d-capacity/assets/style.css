@@ -23,7 +23,6 @@
     .heightmap-input {
         background-color: var(--dark);
         color: var(--bright);
-        height: 120px;
         white-space: pre-line;
         resize: none;
         text-align: center;

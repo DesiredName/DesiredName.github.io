@@ -40,14 +40,6 @@ export function link_canvas_events(canvas, renderer) {
         };
     }
 
-    function normalize({ x, y }) {
-        const d = Math.sqrt(x * x + y * y);
-        return {
-            x: x / d / 10,
-            y: y / d / 10,
-        };
-    }
-
     function on_start_event(e) {
         current_pivot = extract_translation(e);
     }
@@ -61,7 +53,7 @@ export function link_canvas_events(canvas, renderer) {
 
         renderer.postMessage({
             name: RENDERER_EVENTS.CAMERA_MOVE,
-            translation: normalize(calculate_with_offset(next_pivot)),
+            translation: calculate_with_offset(next_pivot),
         });
 
         current_pivot = next_pivot;
