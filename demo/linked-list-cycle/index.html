@@ -218,7 +218,7 @@
 
         <script type="module">
             import ListController from './src/list_controller.mjs';
-            import BuildLinkedList from './src/linked_list.mjs';
+            import BuildLinkedList from './src/linked_list_builder.mjs';
             import BuildHareTortoiseMoves from './src/hare_tortoise.mjs';
 
             const initial_state = {
@@ -228,6 +228,7 @@
                 cycle_at: 3,
             };
 
+            // init controls
             const el_run_button = document.getElementById('run-animation');
             const el_list_length = document.getElementById('list-length');
             const el_cycle_start_index =
@@ -242,6 +243,7 @@
                 cycle_at: initial_state.cycle_at,
             });
 
+            // set watch proxy
             const list_state = new Proxy(initial_state, {
                 set(target, prop, value) {
                     if (prop === 'length') {
@@ -266,7 +268,7 @@
                 },
             });
 
-            // set defaults and watch
+            // set defaults
             el_list_length.value = list_state.length;
             el_list_length.min = list_state.min;
             el_list_length.max = list_state.max;
@@ -291,10 +293,8 @@
                 );
                 const moves = BuildHareTortoiseMoves(list, list_controller);
 
-                for await (let { t, h } of moves) {
-                    list_controller.move_hare(h);
-                    list_controller.move_tortoise(t);
-                    console.log({ t, h });
+                for await (let { h, t } of moves) {
+                    list_controller.move_pointers(h, t);
 
                     await new Promise((res) => setTimeout(res, 500));
                 }

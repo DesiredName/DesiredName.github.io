@@ -50,16 +50,21 @@ export default class ListController {
         });
     }
 
-    move_hare(index) {
+    move_pointers(hare_index, tortoise_index) {
+        this.#move_hare(hare_index);
+        this.#move_tortoise(tortoise_index);
+    }
+
+    #move_hare(index) {
         const el_item = this.#el_items.children[index];
         const { x, width } = el_item.getBoundingClientRect();
         this.#el_hare.style.width = `${width}px`;
         this.#el_hare.style.left = `${x - this.#parent_position_x}px`;
     }
 
-    move_tortoise(index) {
+    #move_tortoise(index) {
         const el_item = this.#el_items.children[index];
-        const { x, width } = el_item.getBoundingClientRect();
+        const { x } = el_item.getBoundingClientRect();
 
         this.#el_tortoise.style.left = `${x - this.#parent_position_x}px`;
     }
