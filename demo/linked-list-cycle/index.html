@@ -136,7 +136,7 @@
                                 for="list-length"
                                 class="control-label"
                             >
-                                The list length
+                                The items count
                             </label>
                             <input
                                 id="list-length"
@@ -152,7 +152,7 @@
                                 for="cycle-start-index"
                                 class="control-label"
                             >
-                                The index at which the cycle starts
+                                The index of the cycle start
                             </label>
                             <input
                                 id="cycle-start-index"
@@ -229,7 +229,7 @@
             const initial_state = {
                 length: 10,
                 min: 0,
-                max: 20,
+                max: 15,
                 cycle_at: 3,
             };
 
@@ -252,17 +252,30 @@
             const list_state = new Proxy(initial_state, {
                 set(target, prop, value) {
                     if (prop === 'length') {
-                        target.length = value;
-                        target.cycle_at = Math.min(target.cycle_at, value);
+                        target.length = Math.max(
+                            1,
+                            Math.min(target.max, value),
+                        );
+                        target.cycle_at = Math.min(
+                            target.cycle_at,
+                            target.length - 1,
+                        );
 
+                        el_list_length.value = target.length;
                         el_cycle_start_index.max = target.length;
                         el_cycle_start_index.value = target.cycle_at;
 
+                        list_controller.cycle_at = target.cycle_at;
                         list_controller.length = target.length;
 
                         return true;
                     } else if ((prop = 'cycle_at')) {
-                        target.cycle_at = Math.min(value, target.length);
+                        target.cycle_at = Math.max(
+                            target.min,
+                            Math.min(value, target.length - 1),
+                        );
+
+                        el_cycle_start_index.value = target.cycle_at;
 
                         list_controller.cycle_at = target.cycle_at;
 

@@ -1,4 +1,4 @@
-const CACHE_ID = 62;
+const CACHE_ID = 64;
 const OFFLINE_URL = '/no-connection.html';
 let req_id = 0;
 
@@ -32,6 +32,7 @@ self.addEventListener('activate', (e) => {
                     '/android-chrome-192x192.png',
                     '/android-chrome-512x512.png',
                     '/apple-touch-icon.png',
+                    '/favicon.ico',
                     '/favicon-32x32.png',
                     '/favicon-16x16.png',
                 ]),

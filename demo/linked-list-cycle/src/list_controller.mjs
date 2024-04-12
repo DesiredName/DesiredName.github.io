@@ -24,6 +24,10 @@ export default class ListController {
 
         this.length = length;
         this.cycle_at = cycle_at;
+
+        window.addEventListener('resize', () => {
+            this.#parent_position_x = this.#el_items.getBoundingClientRect().x;
+        });
     }
 
     set length(value) {
@@ -64,8 +68,9 @@ export default class ListController {
 
     #move_tortoise(index) {
         const el_item = this.#el_items.children[index];
-        const { x } = el_item.getBoundingClientRect();
+        const { x, width } = el_item.getBoundingClientRect();
 
+        this.#el_tortoise.style.width = `${width}px`;
         this.#el_tortoise.style.left = `${x - this.#parent_position_x}px`;
     }
 
