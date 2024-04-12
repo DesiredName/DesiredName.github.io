@@ -11,7 +11,7 @@ export default function (height_map) {
 
         for (let y = 0; y < max_y; y++) {
             if (x == 0 || x == max_x - 1 || y == 0 || y == max_y - 1) {
-                queue.enqueue(height_map[x][y], x, y);
+                queue.enqueue(height_map[x][y] ?? 0, x, y);
                 visited[x][y] = true;
             } else {
                 visited[x][y] = false;

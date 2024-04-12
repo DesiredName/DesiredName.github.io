@@ -1,4 +1,5 @@
 import { RENDERER_EVENTS } from './renderer.mjs';
+import { CAM_CONTROLS_EVENTS } from './the-cam-controls/index.mjs';
 
 export function parse_heightmap(raw_input) {
     return raw_input
@@ -82,13 +83,22 @@ export function link_canvas_events(canvas, callback) {
 }
 
 export function link_cam_controls_events(cam_controls, callback) {
-    cam_controls.addEventListener('pan', (e) => {
+    cam_controls.addEventListener(CAM_CONTROLS_EVENTS.PAN, (e) => {
         callback({ name: RENDERER_EVENTS.CAMERA_PAN, pan: e.detail });
     });
-    cam_controls.addEventListener('rotate', (e) => {
+    cam_controls.addEventListener(CAM_CONTROLS_EVENTS.ROTATE, (e) => {
         callback({ name: RENDERER_EVENTS.CAMERA_ROTATE, angle: e.detail });
     });
-    cam_controls.addEventListener('move', (e) => {
+    cam_controls.addEventListener(CAM_CONTROLS_EVENTS.MOVE, (e) => {
         callback({ name: RENDERER_EVENTS.CAMERA_MOVE, move: e.detail });
+    });
+    cam_controls.addEventListener(CAM_CONTROLS_EVENTS.SLICE, (e) => {
+        callback({ name: RENDERER_EVENTS.CAMERA_SLICE, slice: e.detail });
+    });
+    cam_controls.addEventListener(CAM_CONTROLS_EVENTS.SHOW_WATER, (e) => {
+        callback({
+            name: RENDERER_EVENTS.CAMERA_SHOW_WATER,
+            show_water: e.detail,
+        });
     });
 }

@@ -15,6 +15,7 @@
             <input
                 id="pan"
                 class="control-input"
+                aria-label="the pan slider"
                 type="range"
                 min="0.5"
                 max="4"
@@ -33,6 +34,7 @@
             <input
                 id="rotate"
                 class="control-input"
+                aria-label="the rotate slider"
                 type="range"
                 min="-35"
                 max="20"
@@ -51,6 +53,7 @@
             <input
                 id="move_x"
                 class="control-input"
+                aria-label="the move by X slider"
                 type="range"
                 min="-200"
                 max="200"
@@ -69,10 +72,51 @@
             <input
                 id="move_y"
                 class="control-input"
+                aria-label="the move by Y slider"
                 type="range"
                 min="-200"
                 max="200"
                 step="10"
+            />
+        </div>
+    </div>
+    <div class="row">
+        <div class="control">
+            <label
+                for="slice"
+                class="control-label"
+            >
+                Slice:
+            </label>
+            <input
+                id="slice"
+                class="control-input"
+                aria-label="the slice hieghtmap slider"
+                type="range"
+                min="0"
+                max="20"
+                step="1"
+                value="0"
+            />
+        </div>
+    </div>
+    <div
+        class="row"
+        style="user-select: none"
+    >
+        <div class="control">
+            <label
+                for="show_water"
+                class="control-label"
+            >
+                Show water:
+            </label>
+            <input
+                id="show_water"
+                class="control-input"
+                aria-label="the hide water toggle"
+                type="checkbox"
+                checked
             />
         </div>
     </div>
