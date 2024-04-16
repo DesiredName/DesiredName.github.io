@@ -1,33 +1,29 @@
-const CACHE_ID = 82;
+const CACHE_ID = '92';
 const OFFLINE_URL = '/no-connection.html';
 
 console.log(`starting service worker #${CACHE_ID}`);
 
-async function precache() {
-    const cache = await caches.open(CACHE_ID);
-
-    return cache.addAll([
-        '/',
-        '/index.html',
-        '/site.webmanifest',
-        OFFLINE_URL,
-        '/assets/colors.css',
-        '/assets/elements-common.css',
-        '/assets/github-mark-white.svg',
-        '/assets/leetcode.png',
-        '/assets/LI-In-Bug.png',
-        '/assets/style.css',
-        '/components/the-post/index.mjs',
-        '/components/the-post/style.css',
-        '/android-chrome-144x144.png',
-        '/android-chrome-192x192.png',
-        '/android-chrome-512x512.png',
-        '/apple-touch-icon.png',
-        '/favicon.ico',
-        '/favicon-32x32.png',
-        '/favicon-16x16.png',
-    ]);
-}
+const to_cache = [
+    '/',
+    '/index.html',
+    '/site.webmanifest',
+    OFFLINE_URL,
+    '/assets/colors.css',
+    '/assets/elements-common.css',
+    '/assets/github-mark-white.svg',
+    '/assets/leetcode.png',
+    '/assets/LI-In-Bug.png',
+    '/assets/style.css',
+    '/components/the-post/index.mjs',
+    '/components/the-post/style.css',
+    '/android-chrome-144x144.png',
+    '/android-chrome-192x192.png',
+    '/android-chrome-512x512.png',
+    '/apple-touch-icon.png',
+    '/favicon.ico',
+    '/favicon-32x32.png',
+    '/favicon-16x16.png',
+];
 
 async function stale_with_revalidate(request, is_offline_page) {
     try {
@@ -61,7 +57,14 @@ async function stale_with_revalidate(request, is_offline_page) {
 }
 
 self.addEventListener('install', (e) => {
-    e.waitUntil(precache());
+    e.waitUntil(
+        (async () => {
+            const cache = await caches.open(CACHE_ID);
+            await cache.addAll(to_cache);
+
+            return self.skipWaiting();
+        })(),
+    );
 });
 
 self.addEventListener('activate', (e) => {
@@ -70,11 +73,10 @@ self.addEventListener('activate', (e) => {
             .keys()
             .then((keys) =>
                 keys.forEach((key) => {
-                    key !== CACHE_ID ? caches.delete(key) : null;
+                    key != CACHE_ID ? caches.delete(key) : null;
                 }),
             )
-            .then(() => clients.claim())
-            .then(() => self.skipWaiting()),
+            .then(() => clients.claim()),
     );
 });
 
