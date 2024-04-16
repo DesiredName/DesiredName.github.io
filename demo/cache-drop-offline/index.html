@@ -192,7 +192,9 @@
             const fetch_from_cache = async (href) => {
                 print_message('Trying to fetch from cache');
 
-                const from_cache = await caches.match(href);
+                const from_cache = await caches
+                    .open(cache_name)
+                    .then((cache) => cache.match(href));
 
                 if (from_cache?.ok === true) {
                     print_message('Resource fetched from cache');
@@ -228,7 +230,7 @@
             };
 
             function handle_clear_storage() {
-                caches.delete('offline-example').then(() => {
+                caches.delete(cache_name).then(() => {
                     print_message('The cache was cleared');
                 });
             }
