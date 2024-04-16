@@ -1,4 +1,4 @@
-const CACHE_ID = '92';
+const CACHE_ID = '94';
 const OFFLINE_URL = '/no-connection.html';
 
 console.log(`starting service worker #${CACHE_ID}`);
@@ -9,7 +9,9 @@ const to_cache = [
     '/site.webmanifest',
     OFFLINE_URL,
     '/assets/colors.css',
+    '/assets/demo-commons.css',
     '/assets/elements-common.css',
+    '/assets/close.svg',
     '/assets/github-mark-white.svg',
     '/assets/leetcode.png',
     '/assets/LI-In-Bug.png',

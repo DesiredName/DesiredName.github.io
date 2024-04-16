@@ -1,3 +1,5 @@
+import fetch_template from '/utils/fetch-template.mjs';
+
 class ThePost extends HTMLElement {
     static observedAttributes = ['title', 'repo-link', 'description'];
 
@@ -8,18 +10,22 @@ class ThePost extends HTMLElement {
     connectedCallback() {
         const shadow = this.attachShadow({ mode: 'closed' });
         const title = this.getAttribute('title');
+        const description = this.getAttribute('description');
 
-        add_content(shadow)
-            .then(add_title.bind(this, title))
-            .then(add_description.bind(this, this.getAttribute('description')))
+        fetch_template('/components/the-post/index.html')
+            .then((template) => {
+                shadow.innerHTML = template;
+
+                return shadow.querySelector('div.the-post');
+            })
+            .then(update_title.bind(this, title))
+            .then(update_description.bind(this, description))
             .then(
                 add_links.bind(this, title, {
                     github: this.getAttribute('github-link'),
                     leetcode: this.getAttribute('leetcode-link'),
                 }),
             );
-
-        add_style_element(shadow);
 
         this.onclick = (e) => {
             e.stopPropagation();
@@ -28,38 +34,19 @@ class ThePost extends HTMLElement {
     }
 }
 
-async function add_content(shadow) {
-    const el_content = document.createElement('div');
-    el_content.className = 'the-post';
-    shadow.appendChild(el_content);
-
-    return Promise.resolve(el_content);
-}
-
-async function add_style_element(shadow) {
-    const el_style = document.createElement('link');
-    el_style.setAttribute('rel', 'stylesheet');
-    el_style.setAttribute('href', '/components/the-post/style.css');
-
-    shadow.appendChild(el_style);
-}
-
-async function add_title(title, el_content) {
-    const el_title = document.createElement('div');
+async function update_title(title, el_content) {
+    const el_title = el_content.querySelector('div.title');
     el_title.className = 'title';
     el_title.textContent = title;
-    el_content.setAttribute('aria-label', `demo example for ${title} post`);
-    el_content.appendChild(el_title);
+
+    el_content.ariaLabel = `demo example for ${title} post`;
 
     return Promise.resolve(el_content);
 }
 
-async function add_description(description, el_content) {
-    const el_description = document.createElement('div');
-    el_description.className = 'description';
+async function update_description(description, el_content) {
+    const el_description = el_content.querySelector('div.description');
     el_description.textContent = description;
-    el_content.setAttribute('aria-label', description);
-    el_content.appendChild(el_description);
 
     return Promise.resolve(el_content);
 }
@@ -69,9 +56,7 @@ async function add_links(
     { github: github_link, leetcode: leetcode_link },
     el_content,
 ) {
-    const el_links_block = document.createElement('div');
-    el_links_block.className = 'links-block';
-    el_content.appendChild(el_links_block);
+    const el_links_block = el_content.querySelector('div.links-block');
 
     function create_link_icon(link, description, icon_class) {
         if (link == null) {
