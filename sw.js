@@ -1,4 +1,4 @@
-const CACHE_ID = 81;
+const CACHE_ID = 82;
 const OFFLINE_URL = '/no-connection.html';
 
 console.log(`starting service worker #${CACHE_ID}`);
@@ -32,7 +32,9 @@ async function precache() {
 async function stale_with_revalidate(request, is_offline_page) {
     try {
         const from_cache = caches.match(request);
-        const from_network = fetch(request).then(async (res) => {
+        const from_network = fetch(request, {
+            signal: AbortSignal.timeout(5000),
+        }).then(async (res) => {
             if (res.ok) {
                 const clone = res.clone();
 
