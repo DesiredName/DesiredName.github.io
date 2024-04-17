@@ -4,7 +4,7 @@
         <!-- Preload block -->
         <link
             rel="preload"
-            href="/assets/style.css"
+            href="/assets/elements-common.css"
             as="style"
         />
 
@@ -17,7 +17,7 @@
         />
         <link
             rel="stylesheet"
-            href="/assets/style.css"
+            href="/assets/elements-common.css"
         />
         <link
             rel="manifest"
@@ -42,6 +42,61 @@
             type="image/png"
             sizes="16x16"
             href="/favicon-16x16.png"
+        />
+
+        <!-- Styles -->
+        <style>
+            *,
+            *::after,
+            *::before {
+                font-family: monospace;
+                font-size: 1rem;
+                font-weight: normal;
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+
+            :root {
+                background-color: var(--dark);
+                color: var(--bright);
+                scrollbar-width: thin;
+                scrollbar-color: var(--dark) var(--dark);
+            }
+
+            .layout {
+                border: none;
+                display: flex;
+                flex-flow: column;
+                height: 100dvh;
+                margin: 0 auto;
+                padding: 0 1rem;
+                width: 720px;
+            }
+
+            .layout.offline {
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+            }
+
+            @media screen and (max-width: 720px) {
+                .layout {
+                    margin: 0;
+                    padding: 0;
+                    width: 100vw;
+                }
+            }
+
+            @media screen and (max-width: 440px) {
+                .layout {
+                    min-width: 360px;
+                }
+            }
+        </style>
+        <link
+            rel="stylesheet"
+            href="/assets/colors.css"
         />
 
         <!-- Security -->

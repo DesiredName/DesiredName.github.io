@@ -9,16 +9,6 @@
         />
         <link
             rel="preload"
-            href="/assets/elements-common.css"
-            as="style"
-        />
-        <link
-            rel="preload"
-            href="/assets/style.css"
-            as="style"
-        />
-        <link
-            rel="preload"
             href="/components/the-post/index.mjs"
             as="script"
             crossorigin
@@ -35,10 +25,6 @@
         <meta
             name="viewport"
             content="width=device-width, initial-scale=1.0"
-        />
-        <link
-            rel="stylesheet"
-            href="/assets/style.css"
         />
         <link
             rel="manifest"
@@ -63,6 +49,117 @@
             type="image/png"
             sizes="16x16"
             href="/favicon-16x16.png"
+        />
+
+        <!-- Styles -->
+        <style>
+            *,
+            *::after,
+            *::before {
+                font-family: monospace;
+                font-size: 1rem;
+                font-weight: normal;
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+
+            :root {
+                background-color: var(--dark);
+                color: var(--bright);
+                scrollbar-width: thin;
+                scrollbar-color: var(--dark) var(--dark);
+            }
+
+            .layout {
+                border: none;
+                display: flex;
+                flex-flow: column;
+                height: 100dvh;
+                margin: 0 auto;
+                padding: 0 1rem;
+                width: 720px;
+            }
+
+            .layout .title {
+                background-color: var(--dark);
+                border-bottom: 1px solid var(--bright);
+                display: flex;
+                justify-content: space-between;
+                height: 80px;
+                position: sticky;
+                padding: 2rem 1rem 1rem;
+                top: 0;
+            }
+
+            .layout .title .main,
+            .layout .title .main::after {
+                font-size: 2rem;
+                font-weight: bold;
+                text-align: left;
+            }
+
+            .layout .title .main::after {
+                content: ': The Blog';
+            }
+
+            .layout .title .links {
+                align-items: center;
+                display: flex;
+                flex-flow: row nowrap;
+                justify-content: center;
+            }
+
+            .layout .title .links .icon {
+                align-items: center;
+                display: inline-flex;
+                justify-content: center;
+                height: 2rem;
+                width: 2rem;
+            }
+
+            .layout .title .links .icon:not(:last-child) {
+                margin-right: 1.2rem;
+            }
+
+            .layout .title .links .icon img {
+                width: 1.4rem;
+            }
+
+            @media screen and (max-width: 720px) {
+                .layout {
+                    margin: 0;
+                    padding: 0;
+                    width: 100vw;
+                }
+
+                .layout .title .main,
+                .layout .title .main::after {
+                    font-size: 1.4rem;
+                }
+            }
+
+            @media screen and (max-width: 440px) {
+                .layout {
+                    min-width: 360px;
+                }
+
+                .layout .title .main {
+                    font-size: 1.4rem;
+                }
+
+                .layout .title .main::after {
+                    display: none;
+                }
+            }
+        </style>
+        <link
+            rel="stylesheet"
+            href="/assets/colors.css"
+        />
+        <link
+            rel="stylesheet"
+            href="/components/the-post/style.css"
         />
 
         <!-- Scripts -->
