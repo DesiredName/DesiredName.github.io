@@ -192,6 +192,8 @@
 .input.textarea-input {
     resize: none;
     white-space: wrap;
+    scrollbar-width: thin;
+    scrollbar-color: var(--bright) var(--brownish);
 }
 
 /**/
@@ -209,10 +211,14 @@
 }
 
 .input.range-input::-webkit-slider-thumb {
+    appearance: none;
+    -webkit-appearance: none;
     background-color: var(--vine);
     border-radius: 0;
     border-style: none;
     cursor: pointer;
+    height: 1rem;
+    width: 1rem;
 }
 
 .input.range-input::-ms-thumb {
@@ -224,6 +230,7 @@
 
 .input.range-input::-moz-range-track {
     background-color: var(--brownish);
+    padding: 0.3rem;
 }
 
 .input.range-input::-webkit-slider-runnable-track {

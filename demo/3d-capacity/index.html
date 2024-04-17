@@ -209,8 +209,11 @@
 
             // run renderer
             function render_heightmap() {
-                const heightmap = parse_heightmap(el_heightmap_input.value);
+                const value = el_heightmap_input.value.trim();
+                const heightmap = parse_heightmap(value);
                 const waterlevel = compute_water_levels(heightmap);
+
+                el_heightmap_input.value = value;
 
                 renderer.postMessage({
                     name: RENDERER_EVENTS.RENDER,
