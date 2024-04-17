@@ -1,86 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <!-- Preload block -->
-    <link
-        rel="preload"
-        href="/assets/demo-commons.css"
-        as="style"
-    />
-
-    <meta charset="UTF-8">
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-    <link
-        rel="stylesheet"
-        href="/assets/demo-commons.css"
-    />
-    <title>DesiredName: Share data between pages with Broadcast API</title>
-
-    <link
-        rel="stylesheet"
-        href="./assets/style.css"
-    />
-</head>
-
-<body>
-    <div
-        id="console"
-        class="console"
-    >
-    </div>
-
-    <div class="console_input">
-        <input
-            id="console_input"
-            placeholder="start typing"
+    <head>
+        <!-- Preload block -->
+        <link
+            rel="preload"
+            href="/assets/demo-commons.css"
+            as="style"
         />
-        <button
-            type="button"
-            onclick="handle_post_message()"
-        >submit</button>
-        <button
-            type="button"
-            onclick="handle_close_iframe()"
-        >close</button>
-    </div>
-    </article>
 
-    <script type="module">
-        import BroadcastHelper from './src/broadcast.mjs';
-        import ConsoleHelper from './src/console.mjs';
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        />
+        <link
+            rel="stylesheet"
+            href="/assets/demo-commons.css"
+        />
+        <title>DesiredName: Share data between pages with Broadcast API</title>
 
-        const console_el = document.getElementById('console');
+        <link
+            rel="stylesheet"
+            href="./assets/style.css"
+        />
+    </head>
 
-        window.console_helper = new ConsoleHelper(console_el);
-        window.bch = new BroadcastHelper();
+    <body>
+        <!-- TODO: replace with console -->
+        <div
+            id="console"
+            class="console"
+        ></div>
 
-        bch.onmessage = ({ username, time, message }) => {
-            console_helper.message({ username, time, message });
-        };
+        <form class="form">
+            <div class="form-row">
+                <div class="form-control">
+                    <input
+                        id="console_input"
+                        class="control-input input"
+                        placeholder="start typing"
+                    />
+                    <button
+                        type="button"
+                        class="control-input button"
+                        onclick="handle_post_message()"
+                    >
+                        submit
+                    </button>
+                    <button
+                        type="button"
+                        class="control-input button"
+                        onclick="handle_close_iframe()"
+                    >
+                        close
+                    </button>
+                </div>
+            </div>
+        </form>
 
-        bch.message('joined the chat');
-        console_helper.message_local('joined the chat');
-    </script>
+        <script type="module">
+            import BroadcastHelper from './src/broadcast.mjs';
+            import ConsoleHelper from './src/console.mjs';
 
-    <script>
-        function handle_post_message(e) {
-            const el = document.getElementById('console_input');
-            const message = el.value;
+            const console_el = document.getElementById('console');
 
-            el.value = '';
-            bch.message(message);
-            console_helper.message_local(message);
-        }
+            window.console_helper = new ConsoleHelper(console_el);
+            window.bch = new BroadcastHelper();
 
-        function handle_close_iframe(params) {
-            bch.message('left the chat');
-            parent.handle_close_iframe();
-        }
-    </script>
-</body>
+            bch.onmessage = ({ username, time, message }) => {
+                console_helper.message({ username, time, message });
+            };
 
+            bch.message('joined the chat');
+            console_helper.message_local('joined the chat');
+        </script>
+
+        <script>
+            function handle_post_message(e) {
+                const el = document.getElementById('console_input');
+                const message = el.value;
+
+                el.value = '';
+                bch.message(message);
+                console_helper.message_local(message);
+            }
+
+            function handle_close_iframe(params) {
+                bch.message('left the chat');
+                parent.handle_close_iframe();
+            }
+        </script>
+    </body>
 </html>

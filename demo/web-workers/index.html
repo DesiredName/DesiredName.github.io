@@ -32,7 +32,7 @@
         />
         <link
             rel="stylesheet"
-            href="./src/style.css"
+            href="./assets/style.css"
         />
         <script
             type="module"
@@ -94,21 +94,27 @@
             <return-button></return-button>
         </div>
 
-        <div class="container">
+        <article class="container">
             <h3 class="title">Worker API for better UI</h3>
-            <div class="counter">
-                <div
-                    id="animation"
-                    class="animation"
-                >
-                    <!-- animation -->
+
+            <div class="content">
+                <div class="section">
+                    <div class="counter">
+                        <div
+                            id="animation"
+                            class="animation"
+                        >
+                            <!-- animation -->
+                        </div>
+                        <span class="hint">
+                            Animation time to deliver better UI,
+                            <br />
+                            while processing the heavy task
+                        </span>
+                    </div>
                 </div>
-                <span class="hint">
-                    Animation time to deliver better UI,
-                    <br />
-                    while processing the heavy task
-                </span>
             </div>
+
             <div class="buttons inline">
                 <button
                     name="runner_button"
@@ -126,7 +132,7 @@
                     Worker thread
                 </button>
             </div>
-        </div>
+        </article>
 
         <details
             class="footer"

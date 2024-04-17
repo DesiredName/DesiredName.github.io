@@ -47,11 +47,6 @@
     margin-left: 1rem;
 }
 
-.input-form input.learning-rate {
-    background-color: transparent;
-    border: 1px solid;
-    border-radius: 5px;
-    color: var(--bright);
-    padding: 0.2rem;
+.input-form .input {
     width: 85px;
 }

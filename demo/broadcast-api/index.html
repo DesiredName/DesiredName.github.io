@@ -98,7 +98,7 @@
             <h3 class="title">Share data between pages with Broadcast API</h3>
 
             <div class="content">
-                <div style="padding-bottom: 1rem">
+                <div class="section">
                     Open a
                     <a
                         class="link"
@@ -116,23 +116,28 @@
                     and start typing in the window below
                 </div>
 
+                <!-- TODO: replace with console -->
                 <div
                     id="console"
-                    class="console"
+                    class="console section"
                 ></div>
 
-                <div class="console_input">
-                    <input
-                        id="console_input"
-                        placeholder="start typing"
-                    />
-                    <button
-                        type="button"
-                        onclick="handle_post_message()"
-                    >
-                        submit
-                    </button>
-                </div>
+                <form class="form section">
+                    <div class="form-row">
+                        <input
+                            id="console_input"
+                            class="control-input input"
+                            placeholder="start typing"
+                        />
+                        <button
+                            type="button"
+                            class="control-input button"
+                            onclick="handle_post_message()"
+                        >
+                            submit
+                        </button>
+                    </div>
+                </form>
             </div>
         </article>
 

@@ -101,75 +101,81 @@
             <return-button></return-button>
         </div>
 
-        <div class="container">
+        <article class="container">
             <h3 class="title">
                 Offline strategy to deliver resources from cache
             </h3>
 
-            <div
-                class="content"
-                style="text-align: justify"
-            >
-                <div>
-                    1.
-                    <a
-                        class="link"
-                        download="the_file"
-                        href="./public/some-data.json"
-                        onclick="handle_intercept(event)"
-                        >Download some resource</a
-                    >, while online
+            <div class="content">
+                <div
+                    class="section"
+                    style="text-align: left"
+                >
+                    <div>
+                        1.
+                        <a
+                            class="link"
+                            download="the_file"
+                            href="./public/some-data.json"
+                            onclick="handle_intercept(event)"
+                            >Download some resource</a
+                        >, while online
+                    </div>
+
+                    <div>
+                        <label for="toggle-offline-state">
+                            2. Go offline
+                            <input
+                                id="toggle-offline-state"
+                                class="checkbox-input"
+                                type="checkbox"
+                            />
+                            or switch off WiFi on your device
+                        </label>
+                    </div>
+
+                    <div>
+                        3.
+                        <a
+                            class="link"
+                            download="the_file"
+                            href="./public/some-data.json"
+                            onclick="handle_intercept(event)"
+                            >Download the same resource again</a
+                        >
+                        as many times as you'd like
+                    </div>
+
+                    <div>
+                        4.
+                        <button
+                            type="button"
+                            onclick="handle_clear_storage()"
+                        >
+                            Clear the storage
+                        </button>
+                    </div>
+
+                    <div>
+                        5. Then browser will
+                        <a
+                            class="link"
+                            download="the_file"
+                            href="./public/some-data.json"
+                            onclick="handle_intercept(event)"
+                            >fail to download the same resource again</a
+                        >
+                        because it is not in cache and can not be fetched from
+                        network
+                    </div>
                 </div>
 
-                <div>
-                    <label for="toggle-offline-state">
-                        2. Go offline
-                        <input
-                            id="toggle-offline-state"
-                            type="checkbox"
-                        />
-                        or switch off WiFi on your device
-                    </label>
-                </div>
-
-                <div>
-                    3.
-                    <a
-                        class="link"
-                        download="the_file"
-                        href="./public/some-data.json"
-                        onclick="handle_intercept(event)"
-                        >Download the same resource again</a
-                    >
-                    as many times as you'd like
-                </div>
-
-                <div>
-                    4.
-                    <button
-                        type="button"
-                        onclick="handle_clear_storage()"
-                    >
-                        Clear the storage
-                    </button>
-                </div>
-
-                <div>
-                    5. Then browser will
-                    <a
-                        class="link"
-                        download="the_file"
-                        href="./public/some-data.json"
-                        onclick="handle_intercept(event)"
-                        >fail to download the same resource again</a
-                    >
-                    because it is not in cache and can not be fetched from
-                    network
-                </div>
+                <the-console
+                    id="console"
+                    class="section"
+                ></the-console>
             </div>
-
-            <the-console id="console"></the-console>
-        </div>
+        </article>
 
         <script>
             const is_offline = () =>

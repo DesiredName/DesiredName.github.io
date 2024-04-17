@@ -58,49 +58,28 @@ body {
         justify-content: space-around;
 
         counter-reset: option 0;
-    }
 
-    & .buttons.has-counter .button::before {
-        counter-increment: option 1;
-        content: counter(option) '.';
-    }
-
-    & .buttons:not(.inline) {
-        align-content: center;
-        flex-flow: column nowrap;
-
-        & .button:not(:last-child) {
-            margin-bottom: 0.6rem;
-        }
-    }
-
-    & .buttons.inline {
-        align-content: start;
-        flex-flow: row nowrap;
-
-        & .button:not(:last-child) {
-            margin-right: 0.6rem;
-        }
-    }
-
-    & .buttons .button {
-        background-color: var(--brownish);
-        border: none;
-        border-radius: 10px;
-        color: var(--bright);
-        cursor: pointer;
-        font-size: 1rem;
-        padding: 0.4rem 0.6rem;
-        text-align: left;
-
-        &:hover:not(:disabled) {
-            background-color: var(--bright);
-            color: var(--dark);
+        &.has-counter .button::before {
+            counter-increment: option 1;
+            content: counter(option) '.';
         }
 
-        &:disabled {
-            border: 1px solid var(--bright);
-            cursor: not-allowed;
+        &:not(.inline) {
+            align-content: center;
+            flex-flow: column nowrap;
+
+            & .button:not(:last-child) {
+                margin-bottom: 0.6rem;
+            }
+        }
+
+        &.inline {
+            align-content: start;
+            flex-flow: row nowrap;
+
+            & .button:not(:last-child) {
+                margin-right: 0.6rem;
+            }
         }
     }
 }

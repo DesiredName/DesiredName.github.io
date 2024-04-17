@@ -94,74 +94,102 @@
             <return-button></return-button>
         </div>
 
-        <div class="container">
+        <article class="container">
             <h2 class="title">AI basics: perceptron powers</h2>
 
-            <div class="canvas-container">
-                <canvas
-                    id="canvas"
-                    width="360"
-                    height="360"
-                    >Your browser does not support canvas</canvas
-                >
-                <div
-                    id="error"
-                    class="input-form"
-                >
-                    Perceptron failed to classify some data because of clustered
-                    data overlapping. Reset data and repeat learning.
+            <div class="content">
+                <div class="canvas-container section">
+                    <canvas
+                        id="canvas"
+                        width="360"
+                        height="360"
+                        >Your browser does not support canvas</canvas
+                    >
+                    <div
+                        id="error"
+                        class="input-form"
+                    >
+                        Perceptron failed to classify some data because of
+                        clustered data overlapping. Reset data and repeat
+                        learning.
+                    </div>
                 </div>
+
+                <form class="form section">
+                    <div class="form-row">
+                        <div class="form-control">
+                            <label
+                                for="n"
+                                class="control-label"
+                                >Learn rate:
+                                <input
+                                    id="n"
+                                    class="control-input input"
+                                    type="number"
+                                    title="perceptron learning rate"
+                                    step="0.001"
+                                />
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-control">
+                            <label
+                                for="learn"
+                                class="control-label"
+                                >Learn<input
+                                    id="learn"
+                                    type="radio"
+                                    calss="control-input radiobutton-input"
+                                    name="input_mode"
+                                    value="learn"
+                            /></label>
+                        </div>
+                        <div class="form-control">
+                            <label
+                                for="classify"
+                                class="control-label"
+                                >Classify<input
+                                    id="classify"
+                                    type="radio"
+                                    calss="control-input radiobutton-input"
+                                    name="input_mode"
+                                    value="classify"
+                            /></label>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-control">
+                            <label
+                                for="soldier"
+                                class="control-label"
+                                >Soldier<input
+                                    id="soldier"
+                                    type="radio"
+                                    calss="control-input radiobutton-input"
+                                    name="marker_type"
+                                    value="soldier"
+                            /></label>
+                        </div>
+                        <div class="form-control">
+                            <label
+                                for="zombie"
+                                class="control-label"
+                                >Zombie<input
+                                    id="zombie"
+                                    type="radio"
+                                    calss="control-input radiobutton-input"
+                                    name="marker_type"
+                                    value="zombie"
+                            /></label>
+                        </div>
+                    </div>
+                </form>
             </div>
-            <br />
-            <div class="input-form">
-                <label for="n"
-                    >Learn rate:
-                    <input
-                        id="n"
-                        class="learning-rate"
-                        type="number"
-                        title="perceptron learning rate"
-                        step="0.001"
-                    />
-                </label>
-            </div>
-            <br />
-            <div class="input-form">
-                <label for="learn"
-                    >Learn<input
-                        id="learn"
-                        type="radio"
-                        name="input_mode"
-                        value="learn"
-                /></label>
-                <label for="classify"
-                    >Classify<input
-                        id="classify"
-                        type="radio"
-                        name="input_mode"
-                        value="classify"
-                /></label>
-            </div>
-            <br />
-            <div class="input-form">
-                <label for="soldier"
-                    >Soldier<input
-                        id="soldier"
-                        type="radio"
-                        name="marker_type"
-                        value="soldier"
-                /></label>
-                <label for="zombie"
-                    >Zombie<input
-                        id="zombie"
-                        type="radio"
-                        name="marker_type"
-                        value="zombie"
-                /></label>
-            </div>
-            <br />
-            <br />
-            <div class="input-form buttons">
+
+            <div class="buttons">
                 <button
                     id="reset"
                     class="button"
@@ -169,7 +197,7 @@
                     Reset data
                 </button>
             </div>
-        </div>
+        </article>
 
         <script type="module">
             import Perceptron from './src/perceptron.mjs';

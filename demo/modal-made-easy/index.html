@@ -98,59 +98,14 @@
             <h3 class="title">JS superpowers - dialogs made easy 🔥</h3>
 
             <div class="content">
-                Thanks for the sematic
-                <h3>&lt;dialog&gt;</h3>
-                element, we can create real modals without the CSS
+                <div class="section">
+                    Thanks for the sematic
+                    <h3>&lt;dialog&gt;</h3>
+                    element, we can create real modals without the CSS
+                </div>
             </div>
 
-            <dialog
-                id="dialog"
-                class="dialog"
-            >
-                This is the dialog. Not modal though. You can click-through it.
-                <br />
-                <br />
-                <button
-                    id="dismiss"
-                    onclick="handle_close_dialog()"
-                >
-                    dismiss
-                </button>
-            </dialog>
-
-            <dialog
-                id="dialog-modal"
-                class="dialog modal"
-            >
-                This is the modal dialog. It has a backdrop, that prevents
-                click-through. Hooray!
-                <br />
-                <br />
-                <button
-                    id="dismiss"
-                    onclick="handle_close_dialog_modal()"
-                >
-                    close it
-                </button>
-            </dialog>
-
-            <dialog
-                id="dialog-modal-with-return"
-                class="dialog modal"
-                onclose="handle_modal_with_return_closed(event)"
-            >
-                Modal can be closed with a return value also! Useful!
-                <br />
-                <br />
-                <button
-                    id="dismiss"
-                    onclick="handle_close_dialog_modal_with_return()"
-                >
-                    close and return some data
-                </button>
-            </dialog>
-
-            <section class="buttons has-counter">
+            <div class="buttons has-counter">
                 <button
                     type="button"
                     class="button"
@@ -174,8 +129,55 @@
                 >
                     Modal dialog can return a value on close
                 </button>
-            </section>
+            </div>
         </article>
+
+        <dialog
+            id="dialog"
+            class="dialog"
+        >
+            This is the dialog. Not modal though. You can click-through it.
+            <br />
+            <br />
+            <button
+                id="dismiss"
+                onclick="handle_close_dialog()"
+            >
+                dismiss
+            </button>
+        </dialog>
+
+        <dialog
+            id="dialog-modal"
+            class="dialog modal"
+        >
+            This is the modal dialog. It has a backdrop, that prevents
+            click-through. Hooray!
+            <br />
+            <br />
+            <button
+                id="dismiss"
+                onclick="handle_close_dialog_modal()"
+            >
+                close it
+            </button>
+        </dialog>
+
+        <dialog
+            id="dialog-modal-with-return"
+            class="dialog modal"
+            onclose="handle_modal_with_return_closed(event)"
+        >
+            Modal can be closed with a return value also! Useful!
+            <br />
+            <br />
+            <button
+                id="dismiss"
+                onclick="handle_close_dialog_modal_with_return()"
+            >
+                close and return some data
+            </button>
+        </dialog>
 
         <script>
             const dialog = document.getElementById('dialog');

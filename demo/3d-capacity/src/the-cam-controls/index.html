@@ -3,121 +3,118 @@
     href="/assets/elements-common.css"
 />
 
-<div class="form">
-    <div class="row">
-        <div class="control">
+<form class="form">
+    <div class="form-row">
+        <div class="form-control">
             <label
                 for="pan"
                 class="control-label"
             >
                 Pan:
+                <input
+                    id="pan"
+                    class="control-input range-input"
+                    aria-label="the pan slider"
+                    type="range"
+                    min="0.5"
+                    max="4"
+                    step="0.5"
+                />
             </label>
-            <input
-                id="pan"
-                class="control-input"
-                aria-label="the pan slider"
-                type="range"
-                min="0.5"
-                max="4"
-                step="0.5"
-            />
         </div>
     </div>
-    <div class="row">
-        <div class="control">
+    <div class="form-row">
+        <div class="form-control">
             <label
                 for="rotate"
                 class="control-label"
             >
                 Rotate:
+                <input
+                    id="rotate"
+                    class="control-input range-input"
+                    aria-label="the rotate slider"
+                    type="range"
+                    min="-35"
+                    max="20"
+                    step="1"
+                />
             </label>
-            <input
-                id="rotate"
-                class="control-input"
-                aria-label="the rotate slider"
-                type="range"
-                min="-35"
-                max="20"
-                step="1"
-            />
         </div>
     </div>
-    <div class="row">
-        <div class="control">
+    <div class="form-row">
+        <div class="form-control">
             <label
                 for="move_x"
                 class="control-label"
             >
                 Move X:
+                <input
+                    id="move_x"
+                    class="control-input range-input"
+                    aria-label="the move by X slider"
+                    type="range"
+                    min="-200"
+                    max="200"
+                    step="1"
+                />
             </label>
-            <input
-                id="move_x"
-                class="control-input"
-                aria-label="the move by X slider"
-                type="range"
-                min="-200"
-                max="200"
-                step="1"
-            />
         </div>
     </div>
-    <div class="row">
-        <div class="control">
+    <div class="form-row">
+        <div class="form-control">
             <label
                 for="move_y"
                 class="control-label"
             >
                 Move Y:
+                <input
+                    id="move_y"
+                    class="control-input range-input"
+                    aria-label="the move by Y slider"
+                    type="range"
+                    min="-200"
+                    max="200"
+                    step="10"
+                />
             </label>
-            <input
-                id="move_y"
-                class="control-input"
-                aria-label="the move by Y slider"
-                type="range"
-                min="-200"
-                max="200"
-                step="10"
-            />
         </div>
     </div>
-    <div class="row">
-        <div class="control">
+    <div class="form-row">
+        <div class="form-control">
             <label
                 for="slice"
                 class="control-label"
             >
                 Slice:
+                <input
+                    id="slice"
+                    class="control-input range-input"
+                    aria-label="the slice hieghtmap slider"
+                    type="range"
+                    min="0"
+                    max="20"
+                    step="1"
+                    value="0"
+                />
             </label>
-            <input
-                id="slice"
-                class="control-input"
-                aria-label="the slice hieghtmap slider"
-                type="range"
-                min="0"
-                max="20"
-                step="1"
-                value="0"
-            />
         </div>
     </div>
-    <div
-        class="row"
-        style="user-select: none"
-    >
-        <div class="control">
+    <div class="form-row">
+        <div class="form-control">
             <label
                 for="show_water"
                 class="control-label"
             >
                 Show water:
+                <input
+                    id="show_water"
+                    class="control-input checkbox-input"
+                    aria-label="the hide water toggle"
+                    type="checkbox"
+                    checked
+                />
             </label>
-            <input
-                id="show_water"
-                class="control-input"
-                aria-label="the hide water toggle"
-                type="checkbox"
-                checked
-            />
         </div>
     </div>
-</div>
+</form>

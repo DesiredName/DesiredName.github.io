@@ -1,0 +1,10 @@
+.counter {
+    & .animation {
+        color: #3a3;
+        font-size: 3rem;
+    }
+
+    & .hint {
+        font-size: 0.7rem;
+    }
+}

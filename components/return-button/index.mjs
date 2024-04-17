@@ -11,6 +11,16 @@ class ReturnButton extends HTMLElement {
         fetch_template('/components/return-button/index.html').then(
             (template) => {
                 shadow.innerHTML = template;
+
+                window.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape') {
+                        requestIdleCallback(() => {
+                            window.location.href = location.origin;
+                            console.dir(location);
+                        });
+                        return false;
+                    }
+                });
             },
         );
     }

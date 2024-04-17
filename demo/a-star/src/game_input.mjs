@@ -18,9 +18,6 @@ export default class GameInput {
 
     on_keyboard_event(callback) {
         window.addEventListener('keydown', (e) => {
-            e.stopImmediatePropagation();
-            e.stopPropagation();
-
             switch (e.key) {
                 case 'ArrowLeft':
                     return callback(GameInputEvent.GoLeft);
