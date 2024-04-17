@@ -140,7 +140,6 @@
 
     &:focus,
     &:focus-visible {
-        background-color: var(--bright);
         color: var(--dark);
         outline-style: none;
     }
