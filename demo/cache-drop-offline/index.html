@@ -107,12 +107,11 @@
             </h3>
 
             <div class="content">
-                <div
+                <ol
                     class="section"
                     style="text-align: left"
                 >
-                    <div>
-                        1.
+                    <li>
                         <a
                             class="link"
                             download="the_file"
@@ -120,11 +119,11 @@
                             onclick="handle_intercept(event)"
                             >Download some resource</a
                         >, while online
-                    </div>
+                    </li>
 
-                    <div>
+                    <li>
                         <label for="toggle-offline-state">
-                            2. Go offline
+                            Go offline
                             <input
                                 id="toggle-offline-state"
                                 class="checkbox-input"
@@ -132,10 +131,9 @@
                             />
                             or switch off WiFi on your device
                         </label>
-                    </div>
+                    </li>
 
-                    <div>
-                        3.
+                    <li>
                         <a
                             class="link"
                             download="the_file"
@@ -144,20 +142,20 @@
                             >Download the same resource again</a
                         >
                         as many times as you'd like
-                    </div>
+                    </li>
 
-                    <div>
-                        4.
+                    <li>
                         <button
                             type="button"
+                            class="button"
                             onclick="handle_clear_storage()"
                         >
                             Clear the storage
                         </button>
-                    </div>
+                    </li>
 
-                    <div>
-                        5. Then browser will
+                    <li>
+                        Then browser will
                         <a
                             class="link"
                             download="the_file"
@@ -167,8 +165,8 @@
                         >
                         because it is not in cache and can not be fetched from
                         network
-                    </div>
-                </div>
+                    </li>
+                </ol>
 
                 <the-console
                     id="console"

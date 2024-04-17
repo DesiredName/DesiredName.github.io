@@ -9,7 +9,6 @@
     & #canvas {
         border: 1px solid var(--bright);
         height: 360px;
-        margin: 2rem 0 2rem;
         width: 360px;
     }
 
@@ -32,11 +31,6 @@
     & .buttons .button {
         text-align: center;
     }
-}
-
-.input-form label,
-.input-form input {
-    user-select: none;
 }
 
 .input-form label:not(:last-child) {

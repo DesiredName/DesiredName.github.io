@@ -12,6 +12,65 @@
 
 /* custom controls */
 
+.form {
+    & .form-row {
+        align-content: center;
+        align-items: center;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+
+        & .form-control {
+            align-content: center;
+            align-items: center;
+            display: flex;
+            flex: 1;
+            flex-flow: row nowrap;
+            justify-content: start;
+
+            /* input, wrapped with label */
+            & > .control-label {
+                align-content: center;
+                align-items: center;
+                display: inline-flex;
+                flex: 1;
+                flex-flow: row nowrap;
+                justify-content: space-between;
+                user-select: none;
+
+                & > .control-input {
+                    flex-basis: 4rem;
+                    flex-grow: 0;
+                    flex-shrink: 0;
+                    margin-left: 1rem;
+                }
+
+                & > .control-input:not(:last-child) {
+                    margin-right: 0.5rem;
+                }
+            }
+
+            /* plain input */
+            & > .input.control-input {
+                flex: 1;
+            }
+        }
+    }
+
+    & .form-row:not(:last-child) {
+        margin-bottom: 0.5rem;
+    }
+
+    & .form-row .form-control:not(:last-child) {
+        margin-right: 0.5rem;
+    }
+
+    & .form-row .form-control > .control-input:not(:last-child),
+    & .form-row .form-control > .control-label:not(:last-child) {
+        margin-right: 0.5rem;
+    }
+}
+
 .console {
     background-color: black;
     height: 4rem;
@@ -44,6 +103,8 @@
     color: var(--brownish);
 }
 
+/**/
+
 .button {
     background-color: var(--brownish);
     border: none;
@@ -66,12 +127,14 @@
     }
 }
 
+/**/
+
 .input {
     background-color: var(--brownish);
     border-radius: 0.2rem;
     border-style: none;
     color: var(--bright);
-    min-width: 4rem;
+    min-width: 5rem;
     padding: 0.35rem 0.5rem;
     text-align: center;
 
@@ -81,4 +144,92 @@
         color: var(--dark);
         outline-style: none;
     }
+
+    &:disabled {
+        background-color: var(--bright);
+        border: none;
+        cursor: not-allowed;
+        opacity: 0.3;
+    }
+
+    &:checked:disabled {
+        background-color: var(--bright);
+        opacity: 1;
+    }
+
+    &:checked {
+        background-color: var(--vine);
+    }
+}
+
+/**/
+
+.input.checkbox-input,
+.input.radiobutton-input {
+    align-content: center;
+    align-items: center;
+    appearance: none;
+    display: inline-flex;
+    justify-content: center;
+    max-height: 1rem;
+    min-height: 1rem;
+    max-width: 1rem;
+    min-width: 1rem;
+}
+
+.input.checkbox-input:checked::after,
+.input.radiobutton-input:checked::after {
+    color: var(--bright);
+}
+
+.input.checkbox-input:disabled:checked::after,
+.input.radiobutton-input:disabled:checked::after {
+    color: var(--dark);
+}
+
+/**/
+
+.input.textarea-input {
+    resize: none;
+    white-space: wrap;
+}
+
+/**/
+
+.input.range-input {
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.input.range-input::-moz-range-thumb {
+    background-color: var(--vine);
+    border-radius: 0;
+    border-style: none;
+    cursor: pointer;
+}
+
+.input.range-input::-webkit-slider-thumb {
+    background-color: var(--vine);
+    border-radius: 0;
+    border-style: none;
+    cursor: pointer;
+}
+
+.input.range-input::-ms-thumb {
+    background-color: var(--vine);
+    border-radius: 0;
+    border-style: none;
+    cursor: pointer;
+}
+
+.input.range-input::-moz-range-track {
+    background-color: var(--brownish);
+}
+
+.input.range-input::-webkit-slider-runnable-track {
+    background-color: var(--brownish);
+}
+
+.input.range-input::-ms-track {
+    background-color: var(--brownish);
 }

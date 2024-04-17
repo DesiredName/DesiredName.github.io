@@ -26,12 +26,6 @@
     }
 
     .heightmap-input {
-        order: 0;
-        background-color: var(--dark);
-        color: var(--bright);
-        white-space: pre-line;
-        resize: none;
-        text-align: center;
         width: 160px;
     }
 }
