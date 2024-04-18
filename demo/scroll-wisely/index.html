@@ -162,6 +162,7 @@
                             </label>
                         </div>
                     </div>
+                    <div class="form-row-caption">Snap type:</div>
                     <div class="form-row">
                         <div class="form-control">
                             <label
@@ -205,6 +206,40 @@
                                     checked
                                     class="control-input input radiobutton-input"
                                     onchange="handle_change_snap_type(SNAP_TYPE.BOTH)"
+                                />
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-row-caption">Block alignment:</div>
+                    <div class="form-row">
+                        <div class="form-control">
+                            <label
+                                for="toggle-align-start"
+                                class="control-label"
+                                aria-label="toggle the scroll align to the start of the block"
+                            >
+                                The start:
+                                <input
+                                    id="toggle-align-start"
+                                    name="toggle_align"
+                                    type="radio"
+                                    class="control-input input radiobutton-input"
+                                    checked
+                                    onchange="handle_change_align_type(ALIGN_TYPE.START)"
+                                />
+                            </label>
+                            <label
+                                for="toggle-align-end"
+                                class="control-label"
+                                aria-label="toggle the scroll align to the rnf of the block"
+                            >
+                                The end:
+                                <input
+                                    id="toggle-align-end"
+                                    name="toggle_align"
+                                    type="radio"
+                                    class="control-input input radiobutton-input"
+                                    onchange="handle_change_align_type(ALIGN_TYPE.END)"
                                 />
                             </label>
                         </div>
@@ -264,15 +299,20 @@
                 static Y = 'y mandatory';
             }
 
+            class ALIGN_TYPE {
+                static START = 'start';
+                static END = 'end';
+            }
+
             const el_viewport = document.querySelector('.the-viewport');
-            const el_radio_snap_type =
-                document.querySelectorAll('input[type=radio]');
+            const el_radios = document.querySelectorAll('input[type=radio]');
+            const el_blocks = document.querySelectorAll('.the-block');
 
             function handle_toggle_snap(e) {
                 const checked = e.target.checked === true;
                 const method = checked ? 'removeAttribute' : 'setAttribute';
 
-                el_radio_snap_type.forEach((el) => {
+                el_radios.forEach((el) => {
                     el[method]('disabled', 'disabled');
                 });
                 el_viewport.classList.toggle('with-snap');
@@ -280,6 +320,12 @@
 
             function handle_change_snap_type(type) {
                 el_viewport.style.scrollSnapType = type;
+            }
+
+            function handle_change_align_type(type) {
+                el_blocks.forEach((el) => {
+                    el.style.scrollSnapAlign = type;
+                });
             }
         </script>
     </body>

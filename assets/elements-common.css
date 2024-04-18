@@ -35,6 +35,11 @@
 /* custom controls */
 
 .form {
+    & .form-row-caption {
+        padding: 0.5rem 0 0.3rem;
+        width: 100%;
+    }
+
     & .form-row {
         align-content: center;
         align-items: center;
@@ -54,6 +59,7 @@
             & > .control-label {
                 align-content: center;
                 align-items: center;
+                cursor: pointer;
                 display: inline-flex;
                 flex: 1;
                 flex-flow: row nowrap;
