@@ -20,10 +20,6 @@
 }
 
 body {
-    align-content: center;
-    display: flex;
-    flex-flow: column;
-    justify-content: center;
     height: 100dvh;
     width: 100vw;
 }
@@ -132,7 +128,7 @@ body {
 
     .container {
         box-shadow: none;
-        margin-top: 2rem;
+        margin: 2rem 0 4rem 0;
         padding: 0 1rem;
         width: 100vw;
 
@@ -144,6 +140,6 @@ body {
 
 @media screen and (max-width: 440px) {
     .container {
-        min-width: 360px;
+        min-width: 320px;
     }
 }
