@@ -3,56 +3,61 @@
 	<url>
 		<loc>https://www.desiredname.github.io</loc>
 		<priority>1.00</priority>
-		<lastmod>2024-04-12</lastmod>
+		<lastmod>2024-04-18</lastmod>
 	</url>
 	<url>
 		<loc>https://www.desiredname.github.io/no-connection.html</loc>
 		<priority>0.80</priority>
-		<lastmod>2024-04-12</lastmod>
+		<lastmod>2024-04-18</lastmod>
 	</url>
 	<url>
 		<loc>https://www.desiredname.github.io/demo/web-workers</loc>
 		<priority>0.60</priority>
-		<lastmod>2024-04-12</lastmod>
+		<lastmod>2024-04-18</lastmod>
 	</url>
 	<url>
 		<loc>https://www.desiredname.github.io/demo/perceptron</loc>
 		<priority>0.60</priority>
-		<lastmod>2024-04-12</lastmod>
+		<lastmod>2024-04-18</lastmod>
 	</url>
 	<url>
 		<loc>https://www.desiredname.github.io/demo/no-axios-defined</loc>
 		<priority>0.60</priority>
-		<lastmod>2024-04-12</lastmod>
+		<lastmod>2024-04-18</lastmod>
 	</url>
 	<url>
 		<loc>https://www.desiredname.github.io/demo/modal-made-easy</loc>
 		<priority>0.60</priority>
-		<lastmod>2024-04-12</lastmod>
+		<lastmod>2024-04-18</lastmod>
 	</url>
 	<url>
 		<loc>https://www.desiredname.github.io/demo/linked-list-cycle</loc>
 		<priority>0.60</priority>
-		<lastmod>2024-04-12</lastmod>
+		<lastmod>2024-04-18</lastmod>
 	</url>
 	<url>
 		<loc>https://www.desiredname.github.io/demo/cache-drop-offline</loc>
 		<priority>0.60</priority>
-		<lastmod>2024-04-12</lastmod>
+		<lastmod>2024-04-18</lastmod>
 	</url>
 	<url>
 		<loc>https://www.desiredname.github.io/demo/broadcast-api</loc>
 		<priority>0.60</priority>
-		<lastmod>2024-04-12</lastmod>
+		<lastmod>2024-04-18</lastmod>
 	</url>
 	<url>
 		<loc>https://www.desiredname.github.io/demo/a-star</loc>
 		<priority>0.60</priority>
-		<lastmod>2024-04-12</lastmod>
+		<lastmod>2024-04-18</lastmod>
 	</url>
 	<url>
 		<loc>https://www.desiredname.github.io/demo/3d-capacity</loc>
 		<priority>0.60</priority>
-		<lastmod>2024-04-12</lastmod>
+		<lastmod>2024-04-18</lastmod>
+	</url>
+	<url>
+		<loc>https://www.desiredname.github.io/demo/scroll-wisely</loc>
+		<priority>0.60</priority>
+		<lastmod>2024-04-18</lastmod>
 	</url>
 </urlset>
