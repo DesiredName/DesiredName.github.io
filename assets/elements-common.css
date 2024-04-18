@@ -1,4 +1,4 @@
-/* nodifiers */
+/* modifiers */
 
 .no-highlight {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -8,6 +8,28 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+
+/* markup */
+
+.code {
+    background-color: var(--bright);
+    border-radius: 0.1rem;
+    color: var(--dark);
+    font-style: italic;
+    font-weight: bold;
+    padding: 0.1rem 0.2rem;
+}
+
+.ordered-list,
+.unordered-list {
+    padding-left: 2rem;
+    text-align: justify;
+    text-wrap: pretty;
+
+    & > li {
+        padding-bottom: 0.2rem;
+    }
 }
 
 /* custom controls */
@@ -48,6 +70,10 @@
                 & > .control-input:not(:last-child) {
                     margin-right: 0.5rem;
                 }
+            }
+
+            & > .control-label:has(.control-input:checked) {
+                color: var(--vine);
             }
 
             /* plain input */

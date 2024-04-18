@@ -1,5 +1,6 @@
 .the-viewport {
     --size: 300px;
+    --block-size: 280px;
 
     background-color: var(--brownish);
     display: flex;
@@ -7,72 +8,34 @@
     height: var(--size);
     margin: auto;
     overflow: scroll;
-    position: relative;
-    scroll-snap-stop: always;
-    scroll-snap-type: both mandatory;
-    scrollbar-width: thin;
     width: var(--size);
 
+    & .the-row {
+        counter-increment: row 1;
+
+        display: flex;
+        flex-flow: row nowrap;
+        height: var(--block-size);
+        width: calc(3 * var(--block-size));
+    }
+
     & .the-block {
-        --x: 0;
-        --y: 0;
+        counter-increment: column 1;
 
         border: 1px solid var(--vine);
-        min-height: var(--size);
-        position: absolute;
+        min-height: var(--block-size);
+        min-width: var(--block-size);
         scroll-snap-align: start;
-        min-width: var(--size);
+        text-align: left;
 
-        left: calc(var(--x) * var(--size));
-        top: calc(var(--y) * var(--size));
-
-        &.t11 {
-            --x: 0;
-            --y: 0;
-        }
-
-        &.t12 {
-            --x: 1;
-            --y: 0;
-        }
-
-        &.t13 {
-            --x: 2;
-            --y: 0;
-        }
-
-        &.t21 {
-            --x: 0;
-            --y: 1;
-        }
-
-        &.t22 {
-            --x: 1;
-            --y: 1;
-        }
-
-        &.t23 {
-            --x: 2;
-            --y: 1;
-        }
-
-        &.t31 {
-            --x: 0;
-            --y: 2;
-        }
-
-        &.t32 {
-            --x: 1;
-            --y: 2;
-        }
-
-        &.t33 {
-            --x: 2;
-            --y: 2;
+        &::after {
+            content: counter(row) ':' counter(column);
         }
     }
 }
 
-.the-block.with-scroll-snap {
+.the-viewport.with-snap {
+    scroll-snap-stop: always;
     scroll-snap-type: both mandatory;
+    scrollbar-width: thin;
 }

@@ -99,40 +99,114 @@
 
             <div class="content">
                 <div class="section">
-                    Use the scroll-snap-type to define the axis to snap.
+                    <div>Important things to remember :</div>
                     <br />
-                    Set the scroll-padding to define how the scroll should
-                    target blocks on scroll event
+                    <ol class="ordered-list">
+                        <li>
+                            Set the
+                            <code class="code">scroll-snap-align</code> prop on
+                            parent
+                        </li>
+                        <li>
+                            Set the
+                            <code class="code">scroll-snap-type</code> prop on
+                            parent
+                        </li>
+                        <li>
+                            Set the
+                            <code class="code">scroll-snap-align</code> prop on
+                            child
+                        </li>
+                        <li>
+                            The child element MUST have an explicitly defined
+                            sizes (width, height)
+                        </li>
+                    </ol>
                 </div>
                 <div class="section">
-                    <div class="the-viewport with-scroll-snap">
-                        <div class="the-block t11"></div>
-                        <div class="the-block t12"></div>
-                        <div class="the-block t13"></div>
-                        <div class="the-block t21"></div>
-                        <div class="the-block t22"></div>
-                        <div class="the-block t23"></div>
-                        <div class="the-block t31"></div>
-                        <div class="the-block t32"></div>
-                        <div class="the-block t33"></div>
+                    <div class="the-viewport with-snap">
+                        <div class="the-row">
+                            <div class="the-block"></div>
+                            <div class="the-block"></div>
+                            <div class="the-block"></div>
+                        </div>
+                        <div class="the-row">
+                            <div class="the-block"></div>
+                            <div class="the-block"></div>
+                            <div class="the-block"></div>
+                        </div>
+                        <div class="the-row">
+                            <div class="the-block"></div>
+                            <div class="the-block"></div>
+                            <div class="the-block"></div>
+                        </div>
                     </div>
                 </div>
 
                 <form class="form section">
                     <div class="form-row">
                         <div class="form-control">
-                            <input
-                                id="console_input"
-                                class="control-input input"
-                                placeholder="start typing"
-                            />
-                            <button
-                                type="button"
-                                class="control-input button"
-                                onclick="handle_post_message()"
+                            <label
+                                for="toggle-snap"
+                                class="control-label"
+                                aria-label="toggle the scroll snap"
                             >
-                                submit
-                            </button>
+                                Toggle the snap:
+                                <input
+                                    id="toggle-snap"
+                                    type="checkbox"
+                                    class="control-input input checkbox-input"
+                                    checked
+                                    onchange="handle_toggle_snap(event)"
+                                />
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-control">
+                            <label
+                                for="toggle-snap-x-only"
+                                class="control-label"
+                                aria-label="toggle the scroll snap to X axis only"
+                            >
+                                X - only:
+                                <input
+                                    id="toggle-snap-x-only"
+                                    name="toggle_type"
+                                    type="radio"
+                                    class="control-input input radiobutton-input"
+                                    onchange="handle_change_snap_type(SNAP_TYPE.X)"
+                                />
+                            </label>
+                            <label
+                                for="toggle-snap-y-only"
+                                class="control-label"
+                                aria-label="toggle the scroll snap to Y axis only"
+                            >
+                                Y - only:
+                                <input
+                                    id="toggle-snap-y-only"
+                                    name="toggle_type"
+                                    type="radio"
+                                    class="control-input input radiobutton-input"
+                                    onchange="handle_change_snap_type(SNAP_TYPE.Y)"
+                                />
+                            </label>
+                            <label
+                                for="toggle-snap-both"
+                                class="control-label"
+                                aria-label="toggle the scroll snap on both axis"
+                            >
+                                Both:
+                                <input
+                                    id="toggle-snap-both"
+                                    name="toggle_type"
+                                    type="radio"
+                                    checked
+                                    class="control-input input radiobutton-input"
+                                    onchange="handle_change_snap_type(SNAP_TYPE.BOTH)"
+                                />
+                            </label>
                         </div>
                     </div>
                 </form>
@@ -145,6 +219,15 @@
         >
             <summary class="footer-summary">documentation</summary>
             <div class="footer-content">
+                <a
+                    href="https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-snap-align"
+                    class="link"
+                    target="_blank"
+                    aria-label="link to scroll-snap-align on MDN"
+                    referrerpolicy="no-referrer"
+                    >MDN: scroll-snap-align CSS property</a
+                >
+                <br />
                 <a
                     href="https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-snap-type"
                     class="link"
@@ -174,6 +257,30 @@
             </div>
         </details>
 
-        <script></script>
+        <script>
+            class SNAP_TYPE {
+                static BOTH = 'both mandatory';
+                static X = 'x mandatory';
+                static Y = 'y mandatory';
+            }
+
+            const el_viewport = document.querySelector('.the-viewport');
+            const el_radio_snap_type =
+                document.querySelectorAll('input[type=radio]');
+
+            function handle_toggle_snap(e) {
+                const checked = e.target.checked === true;
+                const method = checked ? 'removeAttribute' : 'setAttribute';
+
+                el_radio_snap_type.forEach((el) => {
+                    el[method]('disabled', 'disabled');
+                });
+                el_viewport.classList.toggle('with-snap');
+            }
+
+            function handle_change_snap_type(type) {
+                el_viewport.style.scrollSnapType = type;
+            }
+        </script>
     </body>
 </html>
