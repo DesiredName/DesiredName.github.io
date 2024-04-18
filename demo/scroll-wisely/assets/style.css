@@ -1,0 +1,78 @@
+.the-viewport {
+    --size: 300px;
+
+    background-color: var(--brownish);
+    display: flex;
+    flex-flow: column nowrap;
+    height: var(--size);
+    margin: auto;
+    overflow: scroll;
+    position: relative;
+    scroll-snap-stop: always;
+    scroll-snap-type: both mandatory;
+    scrollbar-width: thin;
+    width: var(--size);
+
+    & .the-block {
+        --x: 0;
+        --y: 0;
+
+        border: 1px solid var(--vine);
+        min-height: var(--size);
+        position: absolute;
+        scroll-snap-align: start;
+        min-width: var(--size);
+
+        left: calc(var(--x) * var(--size));
+        top: calc(var(--y) * var(--size));
+
+        &.t11 {
+            --x: 0;
+            --y: 0;
+        }
+
+        &.t12 {
+            --x: 1;
+            --y: 0;
+        }
+
+        &.t13 {
+            --x: 2;
+            --y: 0;
+        }
+
+        &.t21 {
+            --x: 0;
+            --y: 1;
+        }
+
+        &.t22 {
+            --x: 1;
+            --y: 1;
+        }
+
+        &.t23 {
+            --x: 2;
+            --y: 1;
+        }
+
+        &.t31 {
+            --x: 0;
+            --y: 2;
+        }
+
+        &.t32 {
+            --x: 1;
+            --y: 2;
+        }
+
+        &.t33 {
+            --x: 2;
+            --y: 2;
+        }
+    }
+}
+
+.the-block.with-scroll-snap {
+    scroll-snap-type: both mandatory;
+}

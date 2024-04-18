@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Preload block -->
+        <link
+            rel="preload"
+            href="/assets/demo-commons.css"
+            as="style"
+        />
+        <link
+            rel="preload"
+            href="/components/return-button/index.mjs"
+            as="script"
+            crossorigin
+        />
+
+        <title>Scroll Wisely</title>
+
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        />
+        <link
+            rel="stylesheet"
+            href="/assets/demo-commons.css"
+        />
+        <link
+            rel="manifest"
+            href="/site.webmanifest"
+            crossorigin="use-credentials"
+        />
+        <link
+            rel="stylesheet"
+            href="./assets/style.css"
+        />
+        <script
+            type="module"
+            src="/components/return-button/index.mjs"
+        ></script>
+
+        <!-- Security -->
+        <meta
+            http-equiv="Content-Security-Policy"
+            content="default-src 'self' 'unsafe-eval' 'unsafe-inline';"
+        />
+
+        <!-- SEO -->
+        <link
+            rel="canonical"
+            href="https://desiredname.github.io/"
+        />
+        <meta
+            name="theme-color"
+            content="#222222"
+        />
+        <meta
+            name="description"
+            content="DesiredName IT Blog by Krasnov Anton. An example of
+            scroll-snap and scroll-padding use on page."
+        />
+        <meta
+            name="robots"
+            content="index, nofollow"
+        />
+        <meta
+            name="author"
+            content="Krasnov Anton"
+        />
+        <meta
+            name="creator"
+            content="Krasnov Anton"
+        />
+        <meta
+            property="og:locale"
+            content="en_US"
+        />
+        <meta
+            property="og:title"
+            content="Scroll Wisely"
+        />
+        <meta
+            property="og:type"
+            content="website"
+        />
+        <meta
+            property="og:url"
+            content="https://www.linkedin.com/in/anton-krasnov-in-prague/"
+        />
+    </head>
+
+    <body>
+        <div class="return-button-container">
+            <return-button></return-button>
+        </div>
+
+        <article class="container">
+            <h3 class="title">Scroll Wisely</h3>
+
+            <div class="content">
+                <div class="section">
+                    Use the scroll-snap-type to define the axis to snap.
+                    <br />
+                    Set the scroll-padding to define how the scroll should
+                    target blocks on scroll event
+                </div>
+                <div class="section">
+                    <div class="the-viewport with-scroll-snap">
+                        <div class="the-block t11"></div>
+                        <div class="the-block t12"></div>
+                        <div class="the-block t13"></div>
+                        <div class="the-block t21"></div>
+                        <div class="the-block t22"></div>
+                        <div class="the-block t23"></div>
+                        <div class="the-block t31"></div>
+                        <div class="the-block t32"></div>
+                        <div class="the-block t33"></div>
+                    </div>
+                </div>
+
+                <form class="form section">
+                    <div class="form-row">
+                        <div class="form-control">
+                            <input
+                                id="console_input"
+                                class="control-input input"
+                                placeholder="start typing"
+                            />
+                            <button
+                                type="button"
+                                class="control-input button"
+                                onclick="handle_post_message()"
+                            >
+                                submit
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </article>
+
+        <details
+            class="footer"
+            aria-label="page footer with additional information"
+        >
+            <summary class="footer-summary">documentation</summary>
+            <div class="footer-content">
+                <a
+                    href="https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-snap-type"
+                    class="link"
+                    target="_blank"
+                    aria-label="link to scroll-snap-type on MDN"
+                    referrerpolicy="no-referrer"
+                    >MDN: scroll-snap-type CSS property</a
+                >
+                <br />
+                <a
+                    href="https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-padding"
+                    class="link"
+                    target="_blank"
+                    aria-label="link to scroll-padding on MDN"
+                    referrerpolicy="no-referrer"
+                    >MDN: scroll-padding CSS property</a
+                >
+                <br />
+                <a
+                    href="https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-margin"
+                    class="link"
+                    target="_blank"
+                    aria-label="link to scroll-margin on MDN"
+                    referrerpolicy="no-referrer"
+                    >MDN: scroll-margin CSS property</a
+                >
+            </div>
+        </details>
+
+        <script></script>
+    </body>
+</html>
