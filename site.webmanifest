@@ -33,29 +33,19 @@
     "scope": ".",
     "shortcuts": [
         {
-            "name": "Main page",
-            "url": "/index.html",
-            "description": "The main blog page"
+            "name": "LinkedIn profile",
+            "url": "https://www.linkedin.com/in/anton-krasnov-in-prague/",
+            "description": "My LinkedIn page"
         },
         {
-            "name": "Modal Made Easy",
-            "url": "/demo/modal-made-easy/index.html",
-            "description": "Example of HTMLDialog element usage on a page"
+            "name": "GitHub page",
+            "url": "https://github.com/DesiredName",
+            "description": "My GitHub page"
         },
         {
-            "name": "No AXIOS defined",
-            "url": "/demo/modal-made-easy/index.html",
-            "description": "Example of using plain fetch function to build network middleware"
-        },
-        {
-            "name": "Perceptron: AI Power",
-            "url": "/demo/perceptron/index.html",
-            "description": "Example of perceptron for objects classification"
-        },
-        {
-            "name": "Worker API in action",
-            "url": "/demo/web-workers/index.html",
-            "description": "Deomstrates usage of Worker API to offload main thread"
+            "name": "LeetCode profile",
+            "url": "https://leetcode.com/DesiredName/",
+            "description": "My LeetCode profile"
         }
     ]
 }
