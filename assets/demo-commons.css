@@ -82,45 +82,6 @@ body {
     }
 }
 
-.footer {
-    background-color: var(--dark);
-    border-radius: 1rem 1rem 0 0;
-    border: 1px solid transparent;
-    border-color: var(--dark) var(--dark) transparent var(--dark);
-    bottom: 0;
-    height: 2rem;
-    padding: 0.5rem;
-    position: fixed;
-    text-align: center;
-    transition-duration: 300ms;
-    transition-property: height, border-color;
-    transition-timing-function: linear;
-    width: 100%;
-
-    & .footer-summary {
-        cursor: pointer;
-        list-style: none;
-    }
-
-    & .footer-content {
-        padding: 2rem 1rem;
-    }
-}
-
-.footer:hover:not([open]) {
-    border-color: var(--bright) var(--bright) transparent var(--bright);
-    height: 4rem;
-
-    & .footer-summary {
-        height: 3rem;
-    }
-}
-
-.footer[open] {
-    border-color: var(--bright) var(--bright) transparent var(--bright);
-    height: 75dvh;
-}
-
 @media screen and (max-width: 720px) {
     .return-button-container {
         padding: 1rem 1rem 0;

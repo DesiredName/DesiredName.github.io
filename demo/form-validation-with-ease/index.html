@@ -19,6 +19,12 @@
             as="script"
             crossorigin
         />
+        <link
+            rel="preload"
+            href="/components/the-footer/index.mjs"
+            as="script"
+            crossorigin
+        />
 
         <title>Validate forms with ease</title>
 
@@ -47,6 +53,10 @@
         <script
             type="module"
             src="/components/the-console/index.mjs"
+        ></script>
+        <script
+            type="module"
+            src="/components/the-footer/index.mjs"
         ></script>
 
         <!-- Security -->
@@ -337,59 +347,28 @@
             </div>
         </article>
 
-        <details
-            class="footer"
-            aria-label="page footer with additional information"
+        <the-footer
+            title="Usefull links"
+            links='[
+                [
+                    "https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation",
+                    "MDN: The Form Validation tutorial"
+                ], [
+                    "https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/reportValidity",
+                    "MDN: The reportValidity method"
+                ], [
+                    "https://developer.mozilla.org/en-US/docs/Web/API/HTMLObjectElement/setCustomValidity",
+                    "MDN: The setCustomValidity method"
+                ], [
+                    "https://developer.mozilla.org/en-US/docs/Web/API/FormData/FormData",
+                    "MDN: The FormData class"
+                ], [
+                    "https://caniuse.com/constraint-validation",
+                    "CanIUse: the state of form constraint validation"
+                ]
+            ]'
         >
-            <summary class="footer-summary">Usefull links</summary>
-            <div class="footer-content">
-                <a
-                    href="https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation"
-                    class="link"
-                    aria-label="MDN: The Form Validation tutorial"
-                    target="_blank"
-                    referrerpolicy="no-referrer"
-                    >MDN: The Form Validation tutorial</a
-                >
-                <br />
-                <a
-                    href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/reportValidity"
-                    class="link"
-                    aria-label="MDN: The reportValidity method"
-                    target="_blank"
-                    referrerpolicy="no-referrer"
-                    >MDN: The <span class="code">reportValidity</span> method</a
-                >
-                <br />
-                <a
-                    href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLObjectElement/setCustomValidity"
-                    class="link"
-                    aria-label="MDN: The setCustomValidity method"
-                    target="_blank"
-                    referrerpolicy="no-referrer"
-                    >MDN: The
-                    <span class="code">setCustomValidity</span> method</a
-                >
-                <br />
-                <a
-                    href="https://developer.mozilla.org/en-US/docs/Web/API/FormData/FormData"
-                    class="link"
-                    aria-label="MDN: The FormData class"
-                    target="_blank"
-                    referrerpolicy="no-referrer"
-                    >MDN: The FormData class</a
-                >
-                <br />
-                <a
-                    href="https://caniuse.com/constraint-validation"
-                    class="link"
-                    aria-label="CanIUse: the state of form constraint validation"
-                    target="_blank"
-                    referrerpolicy="no-referrer"
-                    >CanIUse: the state of form constraint validation</a
-                >
-            </div>
-        </details>
+        </the-footer>
 
         <script>
             function handle_submit(e) {
