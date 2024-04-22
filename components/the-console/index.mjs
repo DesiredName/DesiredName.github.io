@@ -37,9 +37,16 @@ class TheConsole extends HTMLElement {
         message_el.className = 'message';
         message_el.innerHTML = html.join('');
 
+        this.#clear_old_messages();
         this.#content_el.appendChild(message_el);
 
         requestIdleCallback(() => message_el.scrollIntoView({ block: 'end' }));
+    }
+
+    #clear_old_messages() {
+        if (this.#content_el.children.length > 100) {
+            this.#content_el.children.item(0).remove();
+        }
     }
 }
 

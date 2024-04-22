@@ -13,8 +13,20 @@
             as="script"
             crossorigin
         />
+        <link
+            rel="preload"
+            href="/components/the-console/index.mjs"
+            as="script"
+            crossorigin
+        />
+        <link
+            rel="preload"
+            href="/components/the-footer/index.mjs"
+            as="script"
+            crossorigin
+        />
 
-        <title>The load balacer</title>
+        <title>The load balancer</title>
 
         <meta charset="UTF-8" />
         <meta
@@ -38,6 +50,14 @@
             type="module"
             src="/components/return-button/index.mjs"
         ></script>
+        <script
+            type="module"
+            src="/components/the-console/index.mjs"
+        ></script>
+        <script
+            type="module"
+            src="/components/the-footer/index.mjs"
+        ></script>
 
         <!-- Security -->
         <meta
@@ -56,7 +76,7 @@
         />
         <meta
             name="description"
-            content="Process a lot of data on backend in async non-blocking fashion"
+            content="Process the data on the backend in async non-blocking fashion"
         />
         <meta
             name="robots"
@@ -76,11 +96,11 @@
         />
         <meta
             property="og:title"
-            content="The load balacer"
+            content="The load balancer"
         />
         <meta
             name="og:description"
-            content="Process a lot of data on backend in async non-blocking fashion"
+            content="Process the data on the backend in async non-blocking fashion"
         />
         <meta
             property="og:image"
@@ -102,11 +122,58 @@
         </div>
 
         <article class="container">
-            <h3 class="title">The load balacer</h3>
+            <h3 class="title">The load balancer</h3>
 
-            <div class="content"></div>
+            <div class="content">
+                <the-console
+                    id="console"
+                    class="section"
+                ></the-console>
+            </div>
 
-            <div class="buttons inline"></div>
+            <div class="buttons inline">
+                <button
+                    id="start"
+                    class="button"
+                >
+                    Start
+                </button>
+            </div>
         </article>
+
+        <the-footer
+            title="Useful links"
+            links='[
+                [
+                    "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy",
+                    "MDN: The Proxy object"
+                ]
+            ]'
+        >
+        </the-footer>
+
+        <script type="module">
+            new Worker('./src/balancer.mjs', { type: 'module' });
+            new Worker('./src/producer.mjs', { type: 'module' });
+        </script>
+
+        <script type="module">
+            // UI-only
+            import channels from './src/channels.mjs';
+            import { PRODUCER_COMMAND_TYPE } from './src/commands.mjs';
+
+            const el_console = document.getElementById('console');
+            const el_btn_start = document.getElementById('start');
+
+            el_btn_start.addEventListener('click', () => {
+                channels.commands_channel.postMessage({
+                    command: PRODUCER_COMMAND_TYPE.START,
+                });
+            });
+
+            channels.debug_channel.addEventListener('message', (e) => {
+                el_console.push_message({ message: JSON.stringify(e.data) });
+            });
+        </script>
     </body>
 </html>

@@ -3,7 +3,7 @@
 	<url>
 		<loc>https://www.desiredname.github.io</loc>
 		<priority>1.00</priority>
-		<lastmod>2024-04-22</lastmod>
+		<lastmod>2024-04-23</lastmod>
 	</url>
 	<url>
 		<loc>https://www.desiredname.github.io/no-connection.html</loc>
@@ -11,52 +11,7 @@
 		<lastmod>2024-04-19</lastmod>
 	</url>
 	<url>
-		<loc>https://www.desiredname.github.io/demo/web-workers</loc>
-		<priority>0.60</priority>
-		<lastmod>2024-04-22</lastmod>
-	</url>
-	<url>
-		<loc>https://www.desiredname.github.io/demo/scroll-wisely</loc>
-		<priority>0.60</priority>
-		<lastmod>2024-04-22</lastmod>
-	</url>
-	<url>
-		<loc>https://www.desiredname.github.io/demo/perceptron</loc>
-		<priority>0.60</priority>
-		<lastmod>2024-04-22</lastmod>
-	</url>
-	<url>
-		<loc>https://www.desiredname.github.io/demo/no-axios-defined</loc>
-		<priority>0.60</priority>
-		<lastmod>2024-04-22</lastmod>
-	</url>
-	<url>
-		<loc>https://www.desiredname.github.io/demo/modal-made-easy</loc>
-		<priority>0.60</priority>
-		<lastmod>2024-04-22</lastmod>
-	</url>
-	<url>
-		<loc>https://www.desiredname.github.io/demo/load-balancer</loc>
-		<priority>0.60</priority>
-		<lastmod>2024-04-22</lastmod>
-	</url>
-	<url>
-		<loc>https://www.desiredname.github.io/demo/linked-list-cycle</loc>
-		<priority>0.60</priority>
-		<lastmod>2024-04-22</lastmod>
-	</url>
-	<url>
-		<loc>https://www.desiredname.github.io/demo/form-validation-with-ease</loc>
-		<priority>0.60</priority>
-		<lastmod>2024-04-22</lastmod>
-	</url>
-	<url>
-		<loc>https://www.desiredname.github.io/demo/cache-drop-offline</loc>
-		<priority>0.60</priority>
-		<lastmod>2024-04-22</lastmod>
-	</url>
-	<url>
-		<loc>https://www.desiredname.github.io/demo/broadcast-api</loc>
+		<loc>https://www.desiredname.github.io/demo/3d-capacity</loc>
 		<priority>0.60</priority>
 		<lastmod>2024-04-22</lastmod>
 	</url>
@@ -66,7 +21,52 @@
 		<lastmod>2024-04-22</lastmod>
 	</url>
 	<url>
-		<loc>https://www.desiredname.github.io/demo/3d-capacity</loc>
+		<loc>https://www.desiredname.github.io/demo/broadcast-api</loc>
+		<priority>0.60</priority>
+		<lastmod>2024-04-22</lastmod>
+	</url>
+	<url>
+		<loc>https://www.desiredname.github.io/demo/cache-drop-offline</loc>
+		<priority>0.60</priority>
+		<lastmod>2024-04-22</lastmod>
+	</url>
+	<url>
+		<loc>https://www.desiredname.github.io/demo/form-validation-with-ease</loc>
+		<priority>0.60</priority>
+		<lastmod>2024-04-22</lastmod>
+	</url>
+	<url>
+		<loc>https://www.desiredname.github.io/demo/linked-list-cycle</loc>
+		<priority>0.60</priority>
+		<lastmod>2024-04-22</lastmod>
+	</url>
+	<url>
+		<loc>https://www.desiredname.github.io/demo/load-balancer</loc>
+		<priority>0.60</priority>
+		<lastmod>2024-04-23</lastmod>
+	</url>
+	<url>
+		<loc>https://www.desiredname.github.io/demo/modal-made-easy</loc>
+		<priority>0.60</priority>
+		<lastmod>2024-04-22</lastmod>
+	</url>
+	<url>
+		<loc>https://www.desiredname.github.io/demo/no-axios-defined</loc>
+		<priority>0.60</priority>
+		<lastmod>2024-04-22</lastmod>
+	</url>
+	<url>
+		<loc>https://www.desiredname.github.io/demo/perceptron</loc>
+		<priority>0.60</priority>
+		<lastmod>2024-04-22</lastmod>
+	</url>
+	<url>
+		<loc>https://www.desiredname.github.io/demo/scroll-wisely</loc>
+		<priority>0.60</priority>
+		<lastmod>2024-04-22</lastmod>
+	</url>
+	<url>
+		<loc>https://www.desiredname.github.io/demo/web-workers</loc>
 		<priority>0.60</priority>
 		<lastmod>2024-04-22</lastmod>
 	</url>
