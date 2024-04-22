@@ -2,10 +2,10 @@
     background-color: black;
     height: 4rem;
     min-height: 4rem;
-    overflow: scroll;
+    overflow: auto scroll;
     padding: 0.5rem 0.3rem;
     scrollbar-width: thin;
-    scrollbar-color: var(--dark) var(--dark);
+    scrollbar-color: var(--bright) var(--dark);
 
     .message {
         color: goldenrod !important;
