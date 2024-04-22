@@ -6,6 +6,7 @@
     border: 1px solid transparent;
     border-color: var(--dark) var(--dark) transparent var(--dark);
     bottom: 0;
+    box-sizing: border-box;
     height: 2rem;
     padding: 0.5rem;
     position: fixed;

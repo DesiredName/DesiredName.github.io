@@ -11,7 +11,7 @@
         "bIncludeWWW": true,
         "bRemoveFileExtentions": false,
         "bUseTrailingSlash": false,
-        "bAutomaticallyUpdateSitemap": false,
+        "bAutomaticallyUpdateSitemap": true,
         "bMinimized": false
     }
 }
