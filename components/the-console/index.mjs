@@ -22,7 +22,7 @@ class TheConsole extends HTMLElement {
         shadow.appendChild(this.#content_el);
     }
 
-    push_message({ message }, { timestamp = false }) {
+    push_message({ message }, { timestamp = false } = {}) {
         const html = [];
 
         if (timestamp === true) {

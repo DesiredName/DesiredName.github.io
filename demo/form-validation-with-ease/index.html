@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Preload block -->
+        <link
+            rel="preload"
+            href="/assets/demo-commons.css"
+            as="style"
+        />
+        <link
+            rel="preload"
+            href="/components/return-button/index.mjs"
+            as="script"
+            crossorigin
+        />
+        <link
+            rel="preload"
+            href="/components/the-console/index.mjs"
+            as="script"
+            crossorigin
+        />
+
+        <title>Validate forms with ease</title>
+
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        />
+        <link
+            rel="stylesheet"
+            href="/assets/demo-commons.css"
+        />
+        <link
+            rel="manifest"
+            href="/site.webmanifest"
+            crossorigin="use-credentials"
+        />
+        <link
+            rel="stylesheet"
+            href="./assets/style.css"
+        />
+        <script
+            type="module"
+            src="/components/return-button/index.mjs"
+        ></script>
+        <script
+            type="module"
+            src="/components/the-console/index.mjs"
+        ></script>
+
+        <!-- Security -->
+        <meta
+            http-equiv="Content-Security-Policy"
+            content="default-src 'self' 'unsafe-eval' 'unsafe-inline';"
+        />
+
+        <!-- SEO -->
+        <link
+            rel="canonical"
+            href="https://desiredname.github.io/"
+        />
+        <meta
+            name="theme-color"
+            content="#222222"
+        />
+        <meta
+            name="description"
+            content="Use less JS - the plain CCS pseudo-selectors to validate forms are at rescue"
+        />
+        <meta
+            name="robots"
+            content="index, nofollow"
+        />
+        <meta
+            name="author"
+            content="Krasnov Anton"
+        />
+        <meta
+            name="creator"
+            content="Krasnov Anton"
+        />
+        <meta
+            property="og:locale"
+            content="en_US"
+        />
+        <meta
+            property="og:title"
+            content="Form validation with ease"
+        />
+        <meta
+            name="og:description"
+            content="Use less JS - the plain CCS pseudo-selectors to validate forms are at rescue"
+        />
+        <meta
+            property="og:image"
+            content="https://desiredname.github.io/title.png"
+        />
+        <meta
+            property="og:type"
+            content="website"
+        />
+        <meta
+            property="og:url"
+            content="https://www.linkedin.com/in/anton-krasnov-in-prague/"
+        />
+    </head>
+
+    <body>
+        <div class="return-button-container">
+            <return-button></return-button>
+        </div>
+
+        <article class="container">
+            <h3 class="title">Validate forms with ease</h3>
+
+            <div class="content">
+                <div class="section">
+                    <p>
+                        Form validation is done with the new
+                        <span class="code">:user-invalid</span> and old known
+                        <span class="code">attr</span> CSS properties.
+                    </p>
+                    <br />
+                    <p>
+                        The username is validated with the use of the new
+                        <span class="code">setCustomValidity</span> method. Type
+                        <span class="code">'TestUser'</span> as username to see
+                        the mechanism in action.
+                    </p>
+                </div>
+
+                <div class="section">
+                    <form
+                        action="submit"
+                        class="form"
+                        onsubmit="handle_submit(event)"
+                    >
+                        <div class="form-row">
+                            <div
+                                class="form-control"
+                                validation-msg="please check your username"
+                            >
+                                <label
+                                    for="username"
+                                    class="control-label"
+                                    >Username:
+                                    <input
+                                        id="username"
+                                        name="username"
+                                        type="text"
+                                        class="control-input input"
+                                        aria-label="choose you username"
+                                        aria-required="true"
+                                        pattern="[A-Za-z0-9]{4,10}"
+                                        required="true"
+                                        min="4"
+                                        max="10"
+                                        onblur="handle_username_validation(this)"
+                                    />
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div
+                                class="form-control"
+                                validation-msg="please verify the email"
+                            >
+                                <label
+                                    for="email"
+                                    class="control-label"
+                                    >Email:
+                                    <input
+                                        id="email"
+                                        name="email"
+                                        type="email"
+                                        class="control-input input"
+                                        aria-label="provide your email"
+                                        aria-required="true"
+                                        pattern="[A-Za-z0-9]{4,}@[A-Za-z0-9]{2,}\.[A-Za-z]{2,10}"
+                                        required="true"
+                                        min="5"
+                                    />
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div
+                                class="form-control"
+                                validation-msg="please select an option"
+                            >
+                                <label
+                                    for="where"
+                                    class="control-label"
+                                    >Where did you hear about us?
+                                    <select
+                                        id="where"
+                                        name="where"
+                                        class="control-input input select-input"
+                                        aria-label="select where did you hear about us"
+                                        aria-required="true"
+                                        required="true"
+                                    >
+                                        <option
+                                            value=""
+                                            aria-label="please specify"
+                                            selected
+                                        >
+                                            -- please specify --
+                                        </option>
+                                        <option
+                                            value="friends"
+                                            aria-label="from friends"
+                                        >
+                                            from friends
+                                        </option>
+                                        <option
+                                            value="social"
+                                            aria-label="from social network"
+                                        >
+                                            from social network
+                                        </option>
+                                        <option
+                                            value="advert"
+                                            aria-label="from advertisment"
+                                        >
+                                            from advertisment
+                                        </option>
+                                        <option
+                                            value="suddenly"
+                                            aria-label="just stumbled upon"
+                                        >
+                                            just stumbled upon
+                                        </option>
+                                    </select>
+                                </label>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="form-row">
+                            <div class="form-control">
+                                <label class="control-label">
+                                    How often would you like to recieve updates?
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div
+                                class="form-control"
+                                validation-msg="please pick your choise"
+                            >
+                                <label
+                                    for="never"
+                                    class="control-label"
+                                    >never<input
+                                        id="never"
+                                        type="radio"
+                                        class="control-input input radiobutton-input"
+                                        name="how_often"
+                                        value="never"
+                                        aria-required="true"
+                                        required="true"
+                                /></label>
+                                <label
+                                    for="month"
+                                    class="control-label"
+                                    >every month<input
+                                        id="month"
+                                        type="radio"
+                                        class="control-input input radiobutton-input"
+                                        name="how_often"
+                                        value="month"
+                                        aria-required="true"
+                                        required="true"
+                                /></label>
+                                <label
+                                    for="year"
+                                    class="control-label"
+                                    >every year<input
+                                        id="year"
+                                        type="radio"
+                                        class="control-input input radiobutton-input"
+                                        name="how_often"
+                                        value="year"
+                                        aria-required="true"
+                                        required="true"
+                                /></label>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="form-row">
+                            <div
+                                class="form-control"
+                                validation-msg="you have to agree to terms to proceed"
+                            >
+                                <label
+                                    for="agree"
+                                    class="control-label"
+                                    ><span
+                                        >I agree with
+                                        <a
+                                            class="link"
+                                            href="#"
+                                            >terms & conditions</a
+                                        >:</span
+                                    >
+                                    <input
+                                        id="agree"
+                                        name="agree"
+                                        type="checkbox"
+                                        class="control-input input checkbox-input"
+                                        aria-label="please check this box to agree to terms and conditions of service usage"
+                                        aria-required="true"
+                                        required="true"
+                                    />
+                                </label>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="form-row">
+                            <div class="form-control buttons">
+                                <button
+                                    type="submit"
+                                    class="button"
+                                >
+                                    Register
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <the-console
+                    id="console"
+                    class="section"
+                ></the-console>
+            </div>
+        </article>
+
+        <details
+            class="footer"
+            aria-label="page footer with additional information"
+        >
+            <summary class="footer-summary">Usefull links</summary>
+            <div class="footer-content">
+                <a
+                    href="https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation"
+                    class="link"
+                    aria-label="MDN: The Form Validation tutorial"
+                    target="_blank"
+                    referrerpolicy="no-referrer"
+                    >MDN: The Form Validation tutorial</a
+                >
+                <br />
+                <a
+                    href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/reportValidity"
+                    class="link"
+                    aria-label="MDN: The reportValidity method"
+                    target="_blank"
+                    referrerpolicy="no-referrer"
+                    >MDN: The <span class="code">reportValidity</span> method</a
+                >
+                <br />
+                <a
+                    href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLObjectElement/setCustomValidity"
+                    class="link"
+                    aria-label="MDN: The setCustomValidity method"
+                    target="_blank"
+                    referrerpolicy="no-referrer"
+                    >MDN: The
+                    <span class="code">setCustomValidity</span> method</a
+                >
+                <br />
+                <a
+                    href="https://developer.mozilla.org/en-US/docs/Web/API/FormData/FormData"
+                    class="link"
+                    aria-label="MDN: The FormData class"
+                    target="_blank"
+                    referrerpolicy="no-referrer"
+                    >MDN: The FormData class</a
+                >
+                <br />
+                <a
+                    href="https://caniuse.com/constraint-validation"
+                    class="link"
+                    aria-label="CanIUse: the state of form constraint validation"
+                    target="_blank"
+                    referrerpolicy="no-referrer"
+                    >CanIUse: the state of form constraint validation</a
+                >
+            </div>
+        </details>
+
+        <script>
+            function handle_submit(e) {
+                e.preventDefault();
+
+                const form_data = new FormData(e.target);
+                const array = Array.from(form_data);
+                const the_console = document.getElementById('console');
+
+                array.forEach((data) => {
+                    the_console.push_message({ message: JSON.stringify(data) });
+                });
+            }
+
+            function handle_username_validation(target) {
+                if (target.value === 'TestUser') {
+                    target.setCustomValidity('This username is occupied');
+                } else {
+                    target.setCustomValidity('');
+                }
+                target.reportValidity();
+            }
+        </script>
+    </body>
+</html>

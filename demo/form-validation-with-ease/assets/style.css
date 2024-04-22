@@ -1,0 +1,39 @@
+.form {
+    border: 1px solid var(--bright);
+    border-radius: 0.2rem;
+    padding: 0.5rem;
+}
+
+.form .form-row .form-control .control-label .control-input {
+    flex-basis: 13rem;
+}
+
+.form-control:has(.control-input:user-invalid) {
+    position: relative;
+    padding-bottom: 1rem;
+
+    & .control-input {
+        border: 1px solid var(--vine);
+    }
+
+    &::after {
+        bottom: 0;
+        color: var(--vine);
+        content: attr(validation-msg);
+        display: block;
+        font-size: 0.7rem;
+        position: absolute;
+        right: 0;
+    }
+}
+
+.form:has(:user-invalid) {
+    & .form-control.buttons {
+        cursor: not-allowed;
+        opacity: 0.3;
+
+        & .button {
+            pointer-events: none;
+        }
+    }
+}

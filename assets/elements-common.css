@@ -19,6 +19,7 @@
     font-style: italic;
     font-weight: bold;
     padding: 0.1rem 0.2rem;
+    word-break: keep-all;
 }
 
 .ordered-list,
@@ -271,4 +272,8 @@
 
 .input.range-input::-ms-track {
     background-color: var(--brownish);
+}
+
+/* selec */
+.input.select-input {
 }
