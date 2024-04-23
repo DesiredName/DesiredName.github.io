@@ -177,17 +177,14 @@
         </the-footer>
 
         <script type="module">
-            new Worker('./src/balancer.mjs', { type: 'module' });
+            new Worker('./src/balancer/index.mjs', { type: 'module' });
             new Worker('./src/producer.mjs', { type: 'module' });
         </script>
 
         <script type="module">
             // UI-only
             import channels from './src/channels.mjs';
-            import {
-                PRODUCER_COMMAND_TYPE,
-                DEBUG_INFO_TYPE,
-            } from './src/commands.mjs';
+            import { DEBUG_INFO_TYPE } from './src/commands.mjs';
 
             const el_console = document.getElementById('console');
             const el_btn_start = document.getElementById('start');
@@ -199,34 +196,30 @@
                 el_btn_start.setAttribute('disabled', true);
                 el_btn_stop.removeAttribute('disabled');
 
-                channels.commands_channel.postMessage({
-                    command: PRODUCER_COMMAND_TYPE.START,
-                });
+                channels.producer_start();
             });
 
             el_btn_stop.addEventListener('click', () => {
                 el_btn_stop.setAttribute('disabled', true);
                 el_btn_start.removeAttribute('disabled');
 
-                channels.commands_channel.postMessage({
-                    command: PRODUCER_COMMAND_TYPE.STOP,
-                });
+                channels.producer_stop();
             });
 
-            channels.debug_channel.addEventListener('message', (e) => {
+            channels.on_debug_message((e) => {
                 el_console.push_message({ message: JSON.stringify(e.data) });
 
                 switch (e.data.type) {
                     case DEBUG_INFO_TYPE.BALANCER_QUEUE_SIZE:
-                        el_d_balancer.textContent = e.data.data.size;
+                        el_d_balancer.textContent = e.data.payload.size;
                         break;
 
                     case DEBUG_INFO_TYPE.BALANCER_RUNNERS_SIZE:
-                        el_d_balancer.textContent = e.data.data.size;
+                        el_d_balancer.textContent = e.data.payload.size;
                         break;
 
                     case DEBUG_INFO_TYPE.PRODUCER_RPS:
-                        el_d_producer.textContent = e.data.data.rps;
+                        el_d_producer.textContent = e.data.payload.rps;
                         break;
 
                     default:
