@@ -184,11 +184,16 @@
         <script type="module">
             // UI-only
             import channels from './src/channels.mjs';
-            import { PRODUCER_COMMAND_TYPE } from './src/commands.mjs';
+            import {
+                PRODUCER_COMMAND_TYPE,
+                DEBUG_INFO_TYPE,
+            } from './src/commands.mjs';
 
             const el_console = document.getElementById('console');
             const el_btn_start = document.getElementById('start');
             const el_btn_stop = document.getElementById('stop');
+            const el_d_producer = document.getElementById('debug_producer');
+            const el_d_balancer = document.getElementById('debug_balancer');
 
             el_btn_start.addEventListener('click', () => {
                 el_btn_start.setAttribute('disabled', true);
@@ -210,6 +215,23 @@
 
             channels.debug_channel.addEventListener('message', (e) => {
                 el_console.push_message({ message: JSON.stringify(e.data) });
+
+                switch (e.data.type) {
+                    case DEBUG_INFO_TYPE.BALANCER_QUEUE_SIZE:
+                        el_d_balancer.textContent = e.data.data.size;
+                        break;
+
+                    case DEBUG_INFO_TYPE.BALANCER_RUNNERS_SIZE:
+                        el_d_balancer.textContent = e.data.data.size;
+                        break;
+
+                    case DEBUG_INFO_TYPE.PRODUCER_RPS:
+                        el_d_producer.textContent = e.data.data.rps;
+                        break;
+
+                    default:
+                        break;
+                }
             });
         </script>
     </body>

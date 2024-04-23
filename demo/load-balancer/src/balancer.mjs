@@ -1,5 +1,9 @@
 import channels from './channels.mjs';
-import { PRODUCER_COMMAND_TYPE, RUNNER_COMMAND_TYPE } from './commands.mjs';
+import {
+    DEBUG_INFO_TYPE,
+    RUNNER_COMMAND_TYPE,
+    PRODUCER_COMMAND_TYPE,
+} from './commands.mjs';
 
 let queue = [];
 
@@ -26,7 +30,14 @@ const add_task = (task) => {
 };
 
 const poll_task = () => {
-    if (queue.length === 0) {
+    const size = queue.length;
+
+    channels.debug_channel.postMessage({
+        type: DEBUG_INFO_TYPE.BALANCER_QUEUE_SIZE,
+        data: { size },
+    });
+
+    if (size === 0) {
         return;
     }
 
@@ -69,5 +80,13 @@ channels.commands_channel.addEventListener('message', (e) => {
 });
 
 channels.debug_channel.postMessage({ message: 'balancer initialized' });
+channels.debug_channel.postMessage({
+    type: DEBUG_INFO_TYPE.BALANCER_RUNNERS_SIZE,
+    data: { size: runners.length },
+});
+channels.debug_channel.postMessage({
+    type: DEBUG_INFO_TYPE.BALANCER_QUEUE_SIZE,
+    data: { size: queue.length },
+});
 
 setInterval(poll_task, 500);
