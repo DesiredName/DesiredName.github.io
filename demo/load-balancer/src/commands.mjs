@@ -1,6 +1,7 @@
 export class RUNNER_COMMAND_TYPE {
     static STARTED = 'worker-started';
     static EXECUTE_TASK = 'execute-task';
+    static TASK_COMPLETE = 'task-complete';
 }
 
 export class PRODUCER_COMMAND_TYPE {
