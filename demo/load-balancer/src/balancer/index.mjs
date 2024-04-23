@@ -1,4 +1,4 @@
-import ChannelsManager from './../channels.mjs';
+import ChannelsManager from './../channels/index.mjs';
 import QueueManager from './queue_manager.mjs';
 import RunnersManager from './runners_manager.mjs';
 

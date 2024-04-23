@@ -1,4 +1,4 @@
-import ChannelsManager from './../channels.mjs';
+import ChannelsManager from './../channels/index.mjs';
 
 export default class QueueManager {
     static #queue = [];
@@ -10,6 +10,7 @@ export default class QueueManager {
     static add_task(task) {
         this.#queue = [task].concat(this.#queue);
 
+        ChannelsManager.stats.balancer_queue_size(this.#queue.length);
         ChannelsManager.debug.post_message('QM: task received', task);
     }
 

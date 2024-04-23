@@ -1,4 +1,4 @@
-import ChannelsManager from './channels.mjs';
+import ChannelsManager from './channels/index.mjs';
 
 let task_id = 0;
 let timer_id = 0;
@@ -12,7 +12,12 @@ function submit_task() {
 }
 
 function start() {
+    const timeout = 300;
+    const rps = 1000 / timeout;
+
     timer_id = setInterval(() => submit_task(), 500);
+
+    ChannelsManager.stats.producer_rps(rps);
 }
 
 function stop() {

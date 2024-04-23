@@ -1,4 +1,6 @@
-import ChannelsManager from './../channels.mjs';
+import ChannelsManager from './../channels/index.mjs';
+
+const thrshold = 5;
 
 export default class RunnersManager {
     static #runners = [];
@@ -14,7 +16,7 @@ export default class RunnersManager {
         let min = Number.POSITIVE_INFINITY;
         let target_id = -1;
 
-        this.#runners.forEach(({ id, q, runner }) => {
+        this.#runners.forEach(({ id, q }) => {
             if (q < min) {
                 min = q;
                 target_id = id;

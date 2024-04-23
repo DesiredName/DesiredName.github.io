@@ -1,4 +1,4 @@
-import ChannelsManager from './../channels.mjs';
+import ChannelsManager from './../channels/index.mjs';
 
 const runner_id = self.name;
 

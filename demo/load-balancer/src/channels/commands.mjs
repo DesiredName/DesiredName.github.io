@@ -14,8 +14,8 @@ export class BALANCER_COMMAND_TYPE {
     static STARTED = 'balancer-has-started';
 }
 
-export class DEBUG_INFO_TYPE {
+export class STATS_INFO_TYPE {
     static PRODUCER_RPS = 'produce-rps';
-    static BALANCER_RUNNERS_SIZE = 'balancer-runners-size';
     static BALANCER_QUEUE_SIZE = 'balancer-queue-size';
+    static BALANCER_RUNNERS_SIZE = 'balancer-runners-size';
 }
