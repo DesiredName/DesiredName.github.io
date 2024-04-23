@@ -10,7 +10,7 @@ export default class QueueManager {
     static add_task(task) {
         this.#queue = [task].concat(this.#queue);
 
-        ChannelsManager.debug_message('QM: task received', task);
+        ChannelsManager.debug.post_message('QM: task received', task);
     }
 
     static get_task() {

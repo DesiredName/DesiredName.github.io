@@ -5,7 +5,7 @@ import RunnersManager from './runners_manager.mjs';
 let timer_id = null;
 
 RunnersManager.spawn_runners(3);
-ChannelsManager.on_producer_post_task((task) => {
+ChannelsManager.producer.on_post_task((task) => {
     QueueManager.add_task(task);
 
     if (timer_id == null) {
@@ -17,7 +17,7 @@ const poll_task = () => {
     const size = QueueManager.length;
 
     if (size === 0) {
-        ChannelsManager.debug_message('Balancer: no tasks to process');
+        ChannelsManager.debug.post_message('Balancer: no tasks to process');
         clearInterval(timer_id);
         return;
     }
@@ -32,4 +32,4 @@ const poll_task = () => {
     }
 };
 
-ChannelsManager.debug_message('Balancer: started');
+ChannelsManager.debug.post_message('Balancer: started');

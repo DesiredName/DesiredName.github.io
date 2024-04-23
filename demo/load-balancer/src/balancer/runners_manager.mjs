@@ -33,7 +33,7 @@ export default class RunnersManager {
 
         entry.q++;
 
-        ChannelsManager.execute_runner_task({
+        ChannelsManager.balancer.execute_task({
             runner_id,
             task,
         });
@@ -51,13 +51,8 @@ export default class RunnersManager {
             runner,
         };
 
-        ChannelsManager.on;
-        runner.addEventListener('message', (e) => {
-            const command = RUNNER_COMMAND_TYPE.TASK_COMPLETE;
-
-            if (e.data.command === command) {
-                this.#mark_as_free(e.data.payload.runner_id);
-            }
+        ChannelsManager.runner.on_task_complete((payload) => {
+            this.#mark_as_free(payload.runner_id);
         });
 
         this.#runners.push(entry);

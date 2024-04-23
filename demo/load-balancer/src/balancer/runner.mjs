@@ -15,14 +15,15 @@ const add_task = (task) => {
 };
 
 const poll_task = () => {
-    ChannelsManager.debug_message({
-        message: `runner "${runner_id}" queue size: ${queue.length}`,
-    });
-
     if (queue.length === 0) {
         clearInterval(timer_id);
     } else if (is_busy === false) {
+        ChannelsManager.debug.post_message({
+            message: `runner "${runner_id}" queue size: ${queue.length}`,
+        });
+
         is_busy = true;
+
         execute_task();
     }
 };
@@ -36,15 +37,15 @@ const execute_task = () => {
         is_busy = false;
 
         /* notify balancer the slot is empty */
-        ChannelsManager.runner_task_complete({
+        ChannelsManager.runner.task_complete({
             runner_id,
             status: 'ok',
         });
     }, 500 * (1 + Math.random()));
 };
 
-ChannelsManager.on_execute_runner_task((payload) => {
+ChannelsManager.balancer.on_execute_task((payload) => {
     add_task(payload);
 });
 
-ChannelsManager.debug_message(`Runner "${runner_id}" started`);
+ChannelsManager.debug.post_message(`Runner "${runner_id}" started`);

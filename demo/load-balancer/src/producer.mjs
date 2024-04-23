@@ -4,7 +4,7 @@ let task_id = 0;
 let timer_id = 0;
 
 function submit_task() {
-    ChannelsManager.post_producer_task({
+    ChannelsManager.producer.post_task({
         id: task_id,
     });
 
@@ -19,7 +19,7 @@ function stop() {
     clearInterval(timer_id);
 }
 
-ChannelsManager.on_producer_start(start);
-ChannelsManager.on_producer_stop(stop);
+ChannelsManager.producer.on_start(start);
+ChannelsManager.producer.on_stop(stop);
 
-ChannelsManager.debug_message('Producer: started');
+ChannelsManager.debug.post_message('Producer: started');

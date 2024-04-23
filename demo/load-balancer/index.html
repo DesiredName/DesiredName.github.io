@@ -183,7 +183,7 @@
 
         <script type="module">
             // UI-only
-            import channels from './src/channels.mjs';
+            import ChannelsManager from './src/channels.mjs';
             import { DEBUG_INFO_TYPE } from './src/commands.mjs';
 
             const el_console = document.getElementById('console');
@@ -196,17 +196,17 @@
                 el_btn_start.setAttribute('disabled', true);
                 el_btn_stop.removeAttribute('disabled');
 
-                channels.producer_start();
+                ChannelsManager.producer.start();
             });
 
             el_btn_stop.addEventListener('click', () => {
                 el_btn_stop.setAttribute('disabled', true);
                 el_btn_start.removeAttribute('disabled');
 
-                channels.producer_stop();
+                ChannelsManager.producer.stop();
             });
 
-            channels.on_debug_message((e) => {
+            ChannelsManager.debug.on_post_message((e) => {
                 el_console.push_message({ message: JSON.stringify(e.data) });
 
                 switch (e.data.type) {
