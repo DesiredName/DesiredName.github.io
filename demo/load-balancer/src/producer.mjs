@@ -22,7 +22,6 @@ function submit_task() {
 }
 
 function start() {
-    clearInterval(task_id);
     timer_id = setInterval(() => submit_task(), 500);
 
     channels.debug_channel.postMessage({
@@ -32,7 +31,7 @@ function start() {
 }
 
 function stop() {
-    clearInterval(task_id);
+    clearInterval(timer_id);
 
     channels.debug_channel.postMessage({
         command: PRODUCER_COMMAND_TYPE.START,
