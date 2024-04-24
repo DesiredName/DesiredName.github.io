@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Preload block -->
+        <link
+            rel="preload"
+            href="/assets/demo-commons.css"
+            as="style"
+        />
+        <link
+            rel="preload"
+            href="/components/return-button/index.mjs"
+            as="script"
+            crossorigin
+        />
+        <link
+            rel="preload"
+            href="/components/the-footer/index.mjs"
+            as="script"
+            crossorigin
+        />
+
+        <title>Hassle-free JS DOM animation in wild</title>
+
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        />
+        <link
+            rel="stylesheet"
+            href="/assets/demo-commons.css"
+        />
+        <link
+            rel="manifest"
+            href="/site.webmanifest"
+            crossorigin="use-credentials"
+        />
+        <link
+            rel="stylesheet"
+            href="./assets/style.css"
+        />
+        <script
+            type="module"
+            src="/components/return-button/index.mjs"
+        ></script>
+        <script
+            type="module"
+            src="/components/the-footer/index.mjs"
+        ></script>
+
+        <!-- Security -->
+        <meta
+            http-equiv="Content-Security-Policy"
+            content="default-src 'self' 'unsafe-eval' 'unsafe-inline';"
+        />
+
+        <!-- SEO -->
+        <link
+            rel="canonical"
+            href="https://desiredname.github.io/"
+        />
+        <meta
+            name="theme-color"
+            content="#222222"
+        />
+        <meta
+            name="description"
+            content="An example of DOM state animation using Element: animate() method"
+        />
+        <meta
+            name="robots"
+            content="index, nofollow"
+        />
+        <meta
+            name="author"
+            content="Krasnov Anton"
+        />
+        <meta
+            name="creator"
+            content="Krasnov Anton"
+        />
+        <meta
+            property="og:locale"
+            content="en_US"
+        />
+        <meta
+            property="og:title"
+            content="Hassle-free JS DOM animation in wild"
+        />
+        <meta
+            name="og:description"
+            content="An example of DOM state animation using Element: animate() method"
+        />
+        <meta
+            property="og:image"
+            content="https://desiredname.github.io/title.png"
+        />
+        <meta
+            property="og:type"
+            content="website"
+        />
+        <meta
+            property="og:url"
+            content="https://www.linkedin.com/in/anton-krasnov-in-prague/"
+        />
+    </head>
+
+    <body>
+        <div class="return-button-container">
+            <return-button></return-button>
+        </div>
+
+        <article class="container">
+            <h3 class="title">Hassle-free JS DOM animation in wild</h3>
+
+            <div class="content">
+                <div class="section">
+                    Press any button below to see the transition in action
+                </div>
+
+                <div class="section">
+                    <div id="target"></div>
+                </div>
+
+                <div class="section">
+                    <div class="dots">
+                        <button
+                            id="goto_p_1"
+                            class="dot"
+                            arai-label="Transition to card 1 content"
+                        ></button>
+                        <button
+                            id="goto_p_2"
+                            class="dot"
+                            arai-label="Transition to card 2 content"
+                        ></button>
+                        <button
+                            id="goto_p_3"
+                            class="dot"
+                            arai-label="Transition to card 3 content"
+                        ></button>
+                        <button
+                            id="goto_p_4"
+                            class="dot"
+                            arai-label="Transition to card 4 content"
+                        ></button>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <the-footer
+            title="Useful links"
+            links='[
+                [
+                    "https://developer.mozilla.org/en-US/docs/Web/API/View_Transitions_API",
+                    "MDN: The View Transition API"
+                ],
+                [
+                    "https://opengameart.org/content/playing-cards-pack",
+                    "Image pack"
+                ],
+                [
+                    "https://opengameart.org/users/kenney",
+                    "Images author page"
+                ]
+            ]'
+        >
+        </the-footer>
+
+        <script type="module">
+            import fetch_template from '/utils/fetch-template.mjs';
+            import fade_in_scale from './src/animations/fade-in-scale.mjs';
+            import fade_out_scale from './src/animations/fade-out-scale.mjs';
+
+            class PAGES {
+                static PAGE_1 = 'page_1';
+                static PAGE_2 = 'page_2';
+                static PAGE_3 = 'page_3';
+                static PAGE_3 = 'page_4';
+            }
+
+            const pages = {
+                [PAGES.PAGE_1]: fetch_template('./page_1.html'),
+                [PAGES.PAGE_2]: fetch_template('./page_2.html'),
+                [PAGES.PAGE_3]: fetch_template('./page_3.html'),
+                [PAGES.PAGE_4]: fetch_template('./page_4.html'),
+            };
+
+            const el_target = document.getElementById('target');
+
+            async function handle_open_page(page_id) {
+                const html = await pages[page_id];
+                const animation_out = el_target.animate(fade_out_scale, {
+                    duration: 300,
+                    iterations: 1,
+                    fill: 'forwards',
+                });
+
+                await animation_out.finished;
+
+                el_target.innerHTML = html;
+
+                el_target.animate(fade_in_scale, {
+                    duration: 300,
+                    iterations: 1,
+                    fill: 'forwards',
+                });
+            }
+
+            document.getElementById('goto_p_1').onclick = () =>
+                handle_open_page(PAGES.PAGE_1);
+            document.getElementById('goto_p_2').onclick = () =>
+                handle_open_page(PAGES.PAGE_2);
+            document.getElementById('goto_p_3').onclick = () =>
+                handle_open_page(PAGES.PAGE_3);
+            document.getElementById('goto_p_4').onclick = () =>
+                handle_open_page(PAGES.PAGE_4);
+
+            pages[PAGES.PAGE_1].then((html) => (el_target.innerHTML = html));
+        </script>
+    </body>
+</html>

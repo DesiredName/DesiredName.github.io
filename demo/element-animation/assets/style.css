@@ -1,0 +1,27 @@
+.dots {
+    & .dot {
+        appearance: none;
+        background-color: var(--vine);
+        border-radius: 10px;
+        border-style: none;
+        cursor: pointer;
+        height: 10px;
+        transition: transform 100ms linear;
+        width: 10px;
+    }
+
+    & .dot:hover {
+        transform: scale(1.4);
+    }
+}
+
+.the-card-container {
+    min-height: 320px;
+    min-width: 280px;
+    padding: 1rem 2rem;
+
+    & .the-card {
+        image-rendering: pixelated;
+        min-width: 280px;
+    }
+}
