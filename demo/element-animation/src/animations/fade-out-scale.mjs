@@ -3,7 +3,7 @@ export default {
     transform: [
         'translateX(0) scale(1)',
         'translate(7px, 7px) scale(1)',
-        'translate(300px, 7px) scale(1)',
+        'translate(100px, 7px) scale(1)',
     ],
     offset: [0, 0.25, 1],
 };

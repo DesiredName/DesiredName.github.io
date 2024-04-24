@@ -20,7 +20,7 @@
             crossorigin
         />
 
-        <title>Hassle-free JS DOM animation in wild</title>
+        <title>Hassle-free Lazy-Suspense DOM animation in wild</title>
 
         <meta charset="UTF-8" />
         <meta
@@ -86,7 +86,7 @@
         />
         <meta
             property="og:title"
-            content="Hassle-free JS DOM animation in wild"
+            content="Hassle-free Lazy-Suspense DOM animation in wild"
         />
         <meta
             name="og:description"
@@ -112,14 +112,15 @@
         </div>
 
         <article class="container">
-            <h3 class="title">Hassle-free JS DOM animation in wild</h3>
+            <h3 class="title">
+                Hassle-free Lazy-Suspense DOM animation in wild
+            </h3>
 
             <div class="content">
-                <div class="section text">
+                <div class="section">
                     <div>
-                        Click the carousel buttons to see the transition in
-                        action. This will dynamicaly change DOM state and
-                        animate it.
+                        Click the carousel buttons below to see the transition
+                        in action.
                     </div>
                 </div>
 
@@ -133,9 +134,7 @@
                         id="target_1"
                         class="the-card move"
                     ></div>
-                </div>
 
-                <div class="section">
                     <div class="dots">
                         <button
                             id="goto_p_1"
@@ -160,10 +159,11 @@
                     </div>
                 </div>
 
-                <div class="section text">
+                <div class="section">
                     <div>
                         Every time the button is pressed the new content is
                         fetched from the server. Then the aimation takes place.
+                        The easy and clean lazy-loading / suspense technique.
                     </div>
                 </div>
             </div>
@@ -175,6 +175,14 @@
                 [
                     "https://developer.mozilla.org/en-US/docs/Web/API/View_Transitions_API",
                     "MDN: The View Transition API"
+                ],
+                [
+                    "https://developer.mozilla.org/en-US/docs/Web/API/Element/animate",
+                    "MDN: Element: animate() method"
+                ],
+                [
+                    "https://developer.mozilla.org/en-US/docs/Web/API/Animation",
+                    "MDN: The Animation object"
                 ],
                 [
                     "https://opengameart.org/content/playing-cards-pack",
@@ -215,7 +223,7 @@
                 el_target_2.innerHTML = html;
 
                 const animation = el_target_1.animate(fade_out_scale, {
-                    duration: 300,
+                    duration: 400,
                     iterations: 1,
                     fill: 'forwards',
                 });

@@ -1,35 +1,38 @@
-.section.text {
-    text-align: justify;
-}
-
 .dots {
+    align-self: flex-end;
+    user-select: none;
+
     & .dot {
         appearance: none;
         background-color: var(--vine);
         border-radius: 10px;
         border-style: none;
         cursor: pointer;
-        height: 10px;
-        transition: transform 100ms linear;
-        width: 10px;
+        height: 20px;
+        transition-duration: 100ms;
+        transition-property: transform, background-color;
+        transition-timing-function: linear;
+        width: 20px;
     }
 
     & .dot:hover {
+        background-color: var(--bright);
         transform: scale(1.4);
     }
 }
 
 .the-card-container {
-    align-items: center;
+    align-items: flex-start;
     display: flex;
     justify-content: center;
-    min-height: 320px;
+    min-height: 315px;
     min-width: 280px;
-    padding: 1rem 2rem;
     position: relative;
+    user-select: none;
 
     & .the-card {
         min-width: 280px;
+        pointer-events: none;
         position: absolute;
 
         & > img {
@@ -42,7 +45,7 @@
         background-image: url('./card_back.png');
         background-position: center;
         min-width: 280px;
-        min-height: 270px;
+        min-height: 280px;
         background-repeat: no-repeat;
         background-size: cover;
         image-rendering: pixelated;
