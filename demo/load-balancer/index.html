@@ -138,6 +138,7 @@
                         <div class="producer item">
                             <label
                                 id="debug_producer"
+                                aria-label="current RPS"
                                 class="info"
                                 >0</label
                             >
@@ -159,6 +160,7 @@
                         <div class="balancer item">
                             <label
                                 id="debug_balancer"
+                                aria-label="current balancer buffer size"
                                 class="info"
                                 >0</label
                             >
@@ -222,6 +224,7 @@
 
                     el_runner.dataset.runnerId = id;
                     el_runner.className = 'runner item';
+                    el_runner.ariaLabel = `runner ${id} buffer size`;
 
                     el_runner_info.id = id;
                     el_runner_info.className = 'info';
