@@ -115,12 +115,24 @@
             <h3 class="title">Hassle-free JS DOM animation in wild</h3>
 
             <div class="content">
-                <div class="section">
-                    Press any button below to see the transition in action
+                <div class="section text">
+                    <div>
+                        Click the carousel buttons to see the transition in
+                        action. This will dynamicaly change DOM state and
+                        animate it.
+                    </div>
                 </div>
 
-                <div class="section">
-                    <div id="target"></div>
+                <div class="section the-card-container">
+                    <div class="the-card back"></div>
+                    <div
+                        id="target_2"
+                        class="the-card base"
+                    ></div>
+                    <div
+                        id="target_1"
+                        class="the-card move"
+                    ></div>
                 </div>
 
                 <div class="section">
@@ -147,6 +159,13 @@
                         ></button>
                     </div>
                 </div>
+
+                <div class="section text">
+                    <div>
+                        Every time the button is pressed the new content is
+                        fetched from the server. Then the aimation takes place.
+                    </div>
+                </div>
             </div>
         </article>
 
@@ -171,42 +190,42 @@
 
         <script type="module">
             import fetch_template from '/utils/fetch-template.mjs';
-            import fade_in_scale from './src/animations/fade-in-scale.mjs';
             import fade_out_scale from './src/animations/fade-out-scale.mjs';
 
             class PAGES {
                 static PAGE_1 = 'page_1';
                 static PAGE_2 = 'page_2';
                 static PAGE_3 = 'page_3';
-                static PAGE_3 = 'page_4';
+                static PAGE_4 = 'page_4';
             }
 
             const pages = {
-                [PAGES.PAGE_1]: fetch_template('./page_1.html'),
-                [PAGES.PAGE_2]: fetch_template('./page_2.html'),
-                [PAGES.PAGE_3]: fetch_template('./page_3.html'),
-                [PAGES.PAGE_4]: fetch_template('./page_4.html'),
+                [PAGES.PAGE_1]: () => fetch_template('./page_1.html'),
+                [PAGES.PAGE_2]: () => fetch_template('./page_2.html'),
+                [PAGES.PAGE_3]: () => fetch_template('./page_3.html'),
+                [PAGES.PAGE_4]: () => fetch_template('./page_4.html'),
             };
 
-            const el_target = document.getElementById('target');
+            const el_target_1 = document.getElementById('target_1');
+            const el_target_2 = document.getElementById('target_2');
 
             async function handle_open_page(page_id) {
-                const html = await pages[page_id];
-                const animation_out = el_target.animate(fade_out_scale, {
+                const html = await pages[page_id]();
+
+                el_target_2.innerHTML = html;
+
+                const animation = el_target_1.animate(fade_out_scale, {
                     duration: 300,
                     iterations: 1,
                     fill: 'forwards',
                 });
 
-                await animation_out.finished;
+                await animation.finished;
 
-                el_target.innerHTML = html;
+                el_target_1.innerHTML = html;
+                el_target_2.innerHTML = '';
 
-                el_target.animate(fade_in_scale, {
-                    duration: 300,
-                    iterations: 1,
-                    fill: 'forwards',
-                });
+                animation.cancel();
             }
 
             document.getElementById('goto_p_1').onclick = () =>
@@ -218,7 +237,9 @@
             document.getElementById('goto_p_4').onclick = () =>
                 handle_open_page(PAGES.PAGE_4);
 
-            pages[PAGES.PAGE_1].then((html) => (el_target.innerHTML = html));
+            pages[PAGES.PAGE_1]().then(
+                (html) => (el_target_1.innerHTML = html),
+            );
         </script>
     </body>
 </html>

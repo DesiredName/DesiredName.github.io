@@ -1,3 +1,7 @@
+.section.text {
+    text-align: justify;
+}
+
 .dots {
     & .dot {
         appearance: none;
@@ -16,12 +20,32 @@
 }
 
 .the-card-container {
+    align-items: center;
+    display: flex;
+    justify-content: center;
     min-height: 320px;
     min-width: 280px;
     padding: 1rem 2rem;
+    position: relative;
 
     & .the-card {
-        image-rendering: pixelated;
         min-width: 280px;
+        position: absolute;
+
+        & > img {
+            image-rendering: pixelated;
+            min-width: 280px;
+        }
+    }
+
+    & .the-card.back {
+        background-image: url('./card_back.png');
+        background-position: center;
+        min-width: 280px;
+        min-height: 270px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        image-rendering: pixelated;
+        transform: translate(-5px, -7px);
     }
 }
