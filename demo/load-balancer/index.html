@@ -125,6 +125,14 @@
             <h3 class="title">The load balancer</h3>
 
             <div class="content">
+                <div class="div section">
+                    <div>
+                        Use <span class="code">+</span> and
+                        <span class="code">-</span> to change the RPS
+                    </div>
+                    <div>Runner buffer capacity is 5 tasks</div>
+                </div>
+
                 <div class="section">
                     <div class="balancer-grid">
                         <div class="producer item">
@@ -181,29 +189,23 @@
         </the-footer>
 
         <script type="module">
-            // UI-only
+            // debug
             import ChannelsManager from './src/channels/index.mjs';
 
             const el_console = document.getElementById('console');
-            const el_btn_start = document.getElementById('start');
-            const el_btn_stop = document.getElementById('stop');
-            const el_increase_rps = document.getElementById('increase-rps');
-            const el_decrease_rps = document.getElementById('decrease-rps');
-            const el_d_producer = document.getElementById('debug_producer');
-            const el_d_balancer = document.getElementById('debug_balancer');
-            const el_d_runners = document.getElementById('debug_runners');
-
-            el_increase_rps.addEventListener('click', () => {
-                ChannelsManager.producer.alter_rps(1);
-            });
-
-            el_decrease_rps.addEventListener('click', () => {
-                ChannelsManager.producer.alter_rps(-1);
-            });
 
             ChannelsManager.debug.on_post_message((e) => {
                 el_console.push_message({ message: JSON.stringify(e.data) });
             });
+        </script>
+
+        <script type="module">
+            // UI-info
+            import ChannelsManager from './src/channels/index.mjs';
+
+            const el_d_producer = document.getElementById('debug_producer');
+            const el_d_balancer = document.getElementById('debug_balancer');
+            const el_d_runners = document.getElementById('debug_runners');
 
             ChannelsManager.stats.on_poducer_rps((rps) => {
                 el_d_producer.textContent = rps;
@@ -235,6 +237,22 @@
                 const el_runner = document.getElementById(runner_id);
 
                 el_runner.textContent = q;
+            });
+        </script>
+
+        <script type="module">
+            // UI-only
+            import ChannelsManager from './src/channels/index.mjs';
+
+            const el_increase_rps = document.getElementById('increase-rps');
+            const el_decrease_rps = document.getElementById('decrease-rps');
+
+            el_increase_rps.addEventListener('click', () => {
+                ChannelsManager.producer.alter_rps(1);
+            });
+
+            el_decrease_rps.addEventListener('click', () => {
+                ChannelsManager.producer.alter_rps(-1);
             });
         </script>
 
