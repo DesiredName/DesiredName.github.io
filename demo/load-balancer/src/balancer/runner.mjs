@@ -17,6 +17,7 @@ const add_task = (task) => {
 const poll_task = () => {
     if (queue.length === 0) {
         clearInterval(timer_id);
+        timer_id = null;
     } else if (is_busy === false) {
         ChannelsManager.debug.post_message({
             message: `runner "${runner_id}" queue size: ${queue.length}`,

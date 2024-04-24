@@ -6,6 +6,23 @@ export default function ProducerChannelBuilder({
     stats_channel,
 }) {
     return {
+        alter_rps(delta) {
+            commands_channel.postMessage({
+                command: PRODUCER_COMMAND_TYPE.ALTER_RPS,
+                payload: delta,
+            });
+        },
+
+        on_alter_rps(callback) {
+            commands_channel.addEventListener('message', (e) => {
+                const command = PRODUCER_COMMAND_TYPE.ALTER_RPS;
+
+                if (e.data.command === command) {
+                    callback(e.data.payload);
+                }
+            });
+        },
+
         start() {
             commands_channel.postMessage({
                 command: PRODUCER_COMMAND_TYPE.START,

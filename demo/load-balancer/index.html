@@ -126,19 +126,45 @@
 
             <div class="content">
                 <div class="section">
-                    <div class="strucutre">
+                    <div class="balancer-grid">
+                        <div class="producer item">
+                            <label
+                                id="debug_producer"
+                                class="info"
+                                >0</label
+                            >
+                            <button
+                                id="increase-rps"
+                                type="button"
+                                class="button increase"
+                                disabled
+                                title="Increase RPS"
+                                aria-label="Increase RPS"
+                            ></button>
+                            <button
+                                id="decrease-rps"
+                                type="button"
+                                class="button decrease"
+                                disabled
+                                title="Decrease RPS"
+                                aria-label="Decrease RPS"
+                            ></button>
+                        </div>
+                        <div class="balancer item">
+                            <label
+                                id="debug_balancer"
+                                class="info"
+                                >0</label
+                            >
+                        </div>
                         <div
-                            id="debug_producer"
-                            class="producer"
-                        ></div>
-                        <div
-                            id="debug_balancer"
-                            class="balancer"
-                        ></div>
-                        <div
-                            id="debug_workers"
-                            class="workers"
-                        ></div>
+                            id="debug_runners"
+                            class="runners"
+                        >
+                            <div class="runner"></div>
+                            <div class="runner"></div>
+                            <div class="runner"></div>
+                        </div>
                     </div>
                 </div>
 
@@ -188,11 +214,15 @@
             const el_console = document.getElementById('console');
             const el_btn_start = document.getElementById('start');
             const el_btn_stop = document.getElementById('stop');
+            const el_increase_rps = document.getElementById('increase-rps');
+            const el_decrease_rps = document.getElementById('decrease-rps');
             const el_d_producer = document.getElementById('debug_producer');
             const el_d_balancer = document.getElementById('debug_balancer');
 
             el_btn_start.addEventListener('click', () => {
                 el_btn_start.setAttribute('disabled', true);
+                el_increase_rps.removeAttribute('disabled');
+                el_decrease_rps.removeAttribute('disabled');
                 el_btn_stop.removeAttribute('disabled');
 
                 ChannelsManager.producer.start();
@@ -200,9 +230,19 @@
 
             el_btn_stop.addEventListener('click', () => {
                 el_btn_stop.setAttribute('disabled', true);
+                el_increase_rps.setAttribute('disabled', true);
+                el_decrease_rps.setAttribute('disabled', true);
                 el_btn_start.removeAttribute('disabled');
 
                 ChannelsManager.producer.stop();
+            });
+
+            el_increase_rps.addEventListener('click', () => {
+                ChannelsManager.producer.alter_rps(1);
+            });
+
+            el_decrease_rps.addEventListener('click', () => {
+                ChannelsManager.producer.alter_rps(-1);
             });
 
             ChannelsManager.debug.on_post_message((e) => {
@@ -216,23 +256,6 @@
             ChannelsManager.stats.on_balancer_queue_size((size) => {
                 el_d_balancer.textContent = size;
             });
-
-            // switch (e.data.type) {
-            //         case DEBUG_INFO_TYPE.BALANCER_QUEUE_SIZE:
-            //             el_d_balancer.textContent = e.data.payload.size;
-            //             break;
-
-            //         case DEBUG_INFO_TYPE.BALANCER_RUNNERS_SIZE:
-            //             el_d_balancer.textContent = e.data.payload.size;
-            //             break;
-
-            //         case DEBUG_INFO_TYPE.PRODUCER_RPS:
-            //             el_d_producer.textContent = e.data.payload.rps;
-            //             break;
-
-            //         default:
-            //             break;
-            //     }
         </script>
     </body>
 </html>

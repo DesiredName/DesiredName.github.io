@@ -40,7 +40,9 @@ class TheConsole extends HTMLElement {
         this.#clear_old_messages();
         this.#content_el.appendChild(message_el);
 
-        requestIdleCallback(() => message_el.scrollIntoView({ block: 'end' }));
+        requestIdleCallback(() => {
+            message_el.scrollIntoView({ block: 'end' });
+        });
     }
 
     #clear_old_messages() {

@@ -1,6 +1,6 @@
 .counter {
     & .animation {
-        color: #3a3;
+        color: var(--greenish);
         font-size: 3rem;
     }
 

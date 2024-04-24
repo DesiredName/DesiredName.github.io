@@ -17,7 +17,7 @@ export default class RunnersManager {
         let target_id = -1;
 
         this.#runners.forEach(({ id, q }) => {
-            if (q < min) {
+            if (q < thrshold && q < min) {
                 min = q;
                 target_id = id;
             }
@@ -64,6 +64,6 @@ export default class RunnersManager {
     static #mark_as_free(runner_id) {
         const entry = this.#runners_x_id.get(runner_id);
 
-        entry.q--;
+        entry.q = Math.max(0, entry.q - 1);
     }
 }

@@ -15,6 +15,7 @@ export default class QueueManager {
     }
 
     static get_task() {
+        ChannelsManager.stats.balancer_queue_size(this.#queue.length);
         return this.#queue.pop();
     }
 }

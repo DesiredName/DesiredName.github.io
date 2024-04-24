@@ -1,0 +1,94 @@
+.balancer-grid {
+    background-color: var(--dark);
+    display: grid;
+    grid-template-areas: '. producer .' ' . balancer .' 'runners runners runners';
+    grid-template-columns: auto 240px auto;
+    justify-content: center;
+    min-height: 320px;
+    min-width: 320px;
+
+    .item {
+        background-color: var(--brownish);
+        border-radius: 10px;
+        height: 80px;
+        min-height: 80px;
+        min-width: 110px;
+        position: relative;
+    }
+
+    .item::before {
+        display: inline-block;
+        width: 100%;
+    }
+
+    .item .button {
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 20px;
+        border-radius: 10px;
+        border: 2px dotted var(--bright);
+        color: var(--vine);
+        font-size: 2rem;
+        height: 32px;
+        opacity: 1;
+        padding: 0;
+        position: absolute;
+        text-align: center;
+        top: 24px;
+        width: 32px;
+    }
+
+    .item .button.increase {
+        background-image: url('/assets/icons/plus.svg');
+        left: -40px;
+    }
+    .item .button.decrease {
+        background-image: url('/assets/icons/minus.svg');
+        right: -40px;
+    }
+
+    .item .info {
+        color: #31fb31;
+        font-size: 3rem;
+        text-align: center;
+    }
+
+    .producer {
+        grid-area: producer;
+    }
+
+    .producer::before {
+        content: 'producer';
+    }
+
+    .producer.item .info::after {
+        content: '/ rps';
+    }
+
+    .balancer {
+        grid-area: balancer;
+    }
+
+    .balancer::before {
+        content: 'balancer';
+    }
+
+    .balancer.item .info::after {
+        content: '/ buffer';
+    }
+
+    .runners {
+        border: 1px solid var(--bright);
+        border-radius: 10px;
+        border-style: dotted;
+        grid-area: runners;
+    }
+
+    .runners::before {
+        content: 'runners';
+    }
+
+    .runner::before {
+        content: attr(runner-id);
+    }
+}
