@@ -3,7 +3,6 @@ import { RUNNER_COMMAND_TYPE } from './commands.mjs';
 export default function BalancerChannelBuilder({
     commands_channel,
     debug_channel,
-    stats_channel,
 }) {
     return {
         execute_task(payload) {

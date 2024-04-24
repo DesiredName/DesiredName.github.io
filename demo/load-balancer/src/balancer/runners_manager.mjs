@@ -25,11 +25,9 @@ export default class RunnersManager {
         let target_id = -1;
 
         this.#runners.forEach(({ id, q }) => {
-            if (q < thrshold) {
-                if (q < min) {
-                    min = q;
-                    target_id = id;
-                }
+            if (q < thrshold && q < min) {
+                min = q;
+                target_id = id;
             }
         });
 

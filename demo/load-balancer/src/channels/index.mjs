@@ -13,17 +13,14 @@ export default class ChannelsManager {
     static producer = ProducerChannelBuilder({
         commands_channel,
         debug_channel,
-        stats_channel,
     });
     static balancer = BalancerChannelBuilder({
         commands_channel,
         debug_channel,
-        stats_channel,
     });
     static runner = RunnerChannelBuilder({
         commands_channel,
         debug_channel,
-        stats_channel,
     });
     static stats = StatsChannelBuilder(stats_channel);
 }

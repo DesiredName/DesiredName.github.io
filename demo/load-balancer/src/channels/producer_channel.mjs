@@ -3,7 +3,6 @@ import { PRODUCER_COMMAND_TYPE } from './commands.mjs';
 export default function ProducerChannelBuilder({
     commands_channel,
     debug_channel,
-    stats_channel,
 }) {
     return {
         alter_rps(delta) {

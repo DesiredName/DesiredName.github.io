@@ -3,7 +3,6 @@ import { RUNNER_COMMAND_TYPE } from './commands.mjs';
 export default function RunnerChannelBuilder({
     commands_channel,
     debug_channel,
-    stats_channel,
 }) {
     return {
         task_complete(payload) {

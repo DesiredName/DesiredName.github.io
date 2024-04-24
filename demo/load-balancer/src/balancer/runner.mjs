@@ -9,7 +9,7 @@ let timer_id = null;
 const add_task = (task) => {
     queue = [task].concat(queue);
 
-    if (timer_id === null) {
+    if (timer_id == null) {
         timer_id = setInterval(poll_task, 100);
     }
 };
@@ -19,14 +19,13 @@ const poll_task = () => {
         clearInterval(timer_id);
         timer_id = null;
     } else if (is_busy === false) {
-        ChannelsManager.debug.post_message({
-            message: `runner "${runner_id}" queue size: ${queue.length}`,
-        });
-
         is_busy = true;
-
         execute_task();
     }
+
+    ChannelsManager.debug.post_message({
+        message: `runner "${runner_id}" queue size: ${queue.length}`,
+    });
 
     ChannelsManager.stats.runner_queue_size({
         runner_id,
@@ -39,14 +38,14 @@ const execute_task = () => {
         /* emulate some random running task */
         const _ = queue.pop();
 
-        /* set available for the next task */
-        is_busy = false;
-
         /* notify balancer the slot is empty */
         ChannelsManager.runner.task_complete({
             runner_id,
             status: 'ok',
         });
+
+        /* set available for the next task */
+        is_busy = false;
     }, 500 * Math.random());
 };
 
