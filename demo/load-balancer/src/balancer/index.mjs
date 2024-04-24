@@ -9,7 +9,7 @@ ChannelsManager.producer.on_post_task((task) => {
     QueueManager.add_task(task);
 
     if (timer_id == null) {
-        timer_id = setInterval(poll_task, 500);
+        timer_id = setInterval(poll_task, 0);
     }
 });
 

@@ -2,6 +2,7 @@
     align-items: center;
     background-color: var(--dark);
     display: grid;
+    grid-gap: 10px;
     grid-template-areas: '. producer .' ' . balancer .' 'runners runners runners';
     grid-template-columns: auto 240px auto;
     grid-template-rows: 1fr 1fr auto;

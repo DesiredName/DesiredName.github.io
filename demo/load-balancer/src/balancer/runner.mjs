@@ -18,25 +18,20 @@ const poll_task = () => {
     if (queue.length === 0) {
         clearInterval(timer_id);
         timer_id = null;
-
-        ChannelsManager.stats.runner_queue_size({
-            runner_id,
-            q: queue.length,
-        });
     } else if (is_busy === false) {
         ChannelsManager.debug.post_message({
             message: `runner "${runner_id}" queue size: ${queue.length}`,
-        });
-
-        ChannelsManager.stats.runner_queue_size({
-            runner_id,
-            q: queue.length,
         });
 
         is_busy = true;
 
         execute_task();
     }
+
+    ChannelsManager.stats.runner_queue_size({
+        runner_id,
+        q: queue.length,
+    });
 };
 
 const execute_task = () => {
@@ -52,11 +47,13 @@ const execute_task = () => {
             runner_id,
             status: 'ok',
         });
-    }, 500 * (1 + Math.random()));
+    }, 500 * Math.random());
 };
 
 ChannelsManager.balancer.on_execute_task((payload) => {
-    add_task(payload);
+    if (runner_id === payload.runner_id) {
+        add_task(payload.task);
+    }
 });
 
 ChannelsManager.debug.post_message(`Runner "${runner_id}" started`);

@@ -11,6 +11,10 @@ export default class RunnersManager {
             this.#spawn(count--);
         }
 
+        ChannelsManager.runner.on_task_complete((payload) => {
+            this.#mark_as_free(payload.runner_id);
+        });
+
         ChannelsManager.stats.runners_spawned(
             Array.from(this.#runners_x_id.keys()),
         );
@@ -21,14 +25,13 @@ export default class RunnersManager {
         let target_id = -1;
 
         this.#runners.forEach(({ id, q }) => {
-            if (q < thrshold)
+            if (q < thrshold) {
                 if (q < min) {
                     min = q;
                     target_id = id;
                 }
+            }
         });
-
-        console.log(this.#runners_x_id.get(target_id));
 
         return target_id;
     }
@@ -40,7 +43,7 @@ export default class RunnersManager {
 
         const entry = this.#runners_x_id.get(runner_id);
 
-        entry.q++;
+        entry.q = entry.q + 1;
 
         ChannelsManager.balancer.execute_task({
             runner_id,
@@ -59,10 +62,6 @@ export default class RunnersManager {
             q: 0,
             runner,
         };
-
-        ChannelsManager.runner.on_task_complete((payload) => {
-            this.#mark_as_free(payload.runner_id);
-        });
 
         this.#runners.push(entry);
         this.#runners_x_id.set(id, entry);
