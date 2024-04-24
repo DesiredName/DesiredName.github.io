@@ -33,5 +33,41 @@ export default function StatsChannelBuilder(stats_channel) {
                 }
             });
         },
+
+        //
+
+        runners_spawned(runners_id) {
+            stats_channel.postMessage({
+                command: STATS_INFO_TYPE.RUNNERS_RUNNERS_SPWANED,
+                payload: runners_id,
+            });
+        },
+
+        on_runners_spawned(callback) {
+            stats_channel.addEventListener('message', (e) => {
+                if (
+                    e.data.command === STATS_INFO_TYPE.RUNNERS_RUNNERS_SPWANED
+                ) {
+                    callback(e.data.payload);
+                }
+            });
+        },
+
+        //
+
+        runner_queue_size(payload) {
+            stats_channel.postMessage({
+                command: STATS_INFO_TYPE.RUNNER_QUEUE_SIZE,
+                payload,
+            });
+        },
+
+        on_runner_queue_size(callback) {
+            stats_channel.addEventListener('message', (e) => {
+                if (e.data.command === STATS_INFO_TYPE.RUNNER_QUEUE_SIZE) {
+                    callback(e.data.payload);
+                }
+            });
+        },
     };
 }

@@ -18,9 +18,19 @@ const poll_task = () => {
     if (queue.length === 0) {
         clearInterval(timer_id);
         timer_id = null;
+
+        ChannelsManager.stats.runner_queue_size({
+            runner_id,
+            q: queue.length,
+        });
     } else if (is_busy === false) {
         ChannelsManager.debug.post_message({
             message: `runner "${runner_id}" queue size: ${queue.length}`,
+        });
+
+        ChannelsManager.stats.runner_queue_size({
+            runner_id,
+            q: queue.length,
         });
 
         is_busy = true;

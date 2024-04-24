@@ -4,6 +4,7 @@ export default class QueueManager {
     static #queue = [];
 
     static get length() {
+        ChannelsManager.stats.balancer_queue_size(this.#queue.length);
         return this.#queue.length;
     }
 

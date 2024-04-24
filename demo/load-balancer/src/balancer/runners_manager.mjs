@@ -10,6 +10,10 @@ export default class RunnersManager {
         while (count > 0) {
             this.#spawn(count--);
         }
+
+        ChannelsManager.stats.runners_spawned(
+            Array.from(this.#runners_x_id.keys()),
+        );
     }
 
     static get_free_runner_id() {
@@ -17,11 +21,14 @@ export default class RunnersManager {
         let target_id = -1;
 
         this.#runners.forEach(({ id, q }) => {
-            if (q < thrshold && q < min) {
-                min = q;
-                target_id = id;
-            }
+            if (q < thrshold)
+                if (q < min) {
+                    min = q;
+                    target_id = id;
+                }
         });
+
+        console.log(this.#runners_x_id.get(target_id));
 
         return target_id;
     }

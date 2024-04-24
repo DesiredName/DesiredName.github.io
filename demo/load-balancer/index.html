@@ -137,7 +137,6 @@
                                 id="increase-rps"
                                 type="button"
                                 class="button increase"
-                                disabled
                                 title="Increase RPS"
                                 aria-label="Increase RPS"
                             ></button>
@@ -145,7 +144,6 @@
                                 id="decrease-rps"
                                 type="button"
                                 class="button decrease"
-                                disabled
                                 title="Decrease RPS"
                                 aria-label="Decrease RPS"
                             ></button>
@@ -160,11 +158,7 @@
                         <div
                             id="debug_runners"
                             class="runners"
-                        >
-                            <div class="runner"></div>
-                            <div class="runner"></div>
-                            <div class="runner"></div>
-                        </div>
+                        ></div>
                     </div>
                 </div>
 
@@ -172,22 +166,6 @@
                     id="console"
                     class="section"
                 ></the-console>
-            </div>
-
-            <div class="buttons inline">
-                <button
-                    id="start"
-                    class="button"
-                >
-                    Start
-                </button>
-                <button
-                    id="stop"
-                    class="button"
-                    disabled
-                >
-                    Stop
-                </button>
             </div>
         </article>
 
@@ -203,11 +181,6 @@
         </the-footer>
 
         <script type="module">
-            new Worker('./src/balancer/index.mjs', { type: 'module' });
-            new Worker('./src/producer.mjs', { type: 'module' });
-        </script>
-
-        <script type="module">
             // UI-only
             import ChannelsManager from './src/channels/index.mjs';
 
@@ -218,24 +191,7 @@
             const el_decrease_rps = document.getElementById('decrease-rps');
             const el_d_producer = document.getElementById('debug_producer');
             const el_d_balancer = document.getElementById('debug_balancer');
-
-            el_btn_start.addEventListener('click', () => {
-                el_btn_start.setAttribute('disabled', true);
-                el_increase_rps.removeAttribute('disabled');
-                el_decrease_rps.removeAttribute('disabled');
-                el_btn_stop.removeAttribute('disabled');
-
-                ChannelsManager.producer.start();
-            });
-
-            el_btn_stop.addEventListener('click', () => {
-                el_btn_stop.setAttribute('disabled', true);
-                el_increase_rps.setAttribute('disabled', true);
-                el_decrease_rps.setAttribute('disabled', true);
-                el_btn_start.removeAttribute('disabled');
-
-                ChannelsManager.producer.stop();
-            });
+            const el_d_runners = document.getElementById('debug_runners');
 
             el_increase_rps.addEventListener('click', () => {
                 ChannelsManager.producer.alter_rps(1);
@@ -256,6 +212,36 @@
             ChannelsManager.stats.on_balancer_queue_size((size) => {
                 el_d_balancer.textContent = size;
             });
+
+            ChannelsManager.stats.on_runners_spawned((runners_id) => {
+                runners_id.forEach((id) => {
+                    const el_runner = document.createElement('div');
+                    const el_runner_info = document.createElement('div');
+
+                    el_runner.dataset.runnerId = id;
+                    el_runner.className = 'runner item';
+
+                    el_runner_info.id = id;
+                    el_runner_info.className = 'info';
+                    el_runner_info.textContent = '0';
+
+                    el_runner.appendChild(el_runner_info);
+
+                    el_d_runners.appendChild(el_runner);
+                });
+            });
+
+            ChannelsManager.stats.on_runner_queue_size(({ runner_id, q }) => {
+                const el_runner = document.getElementById(runner_id);
+
+                el_runner.textContent = q;
+            });
+        </script>
+
+        <script type="module">
+            // Launch
+            new Worker('./src/balancer/index.mjs', { type: 'module' });
+            new Worker('./src/producer.mjs', { type: 'module' });
         </script>
     </body>
 </html>

@@ -23,48 +23,6 @@ export default function ProducerChannelBuilder({
             });
         },
 
-        start() {
-            commands_channel.postMessage({
-                command: PRODUCER_COMMAND_TYPE.START,
-            });
-        },
-
-        on_start(callback) {
-            commands_channel.addEventListener('message', (e) => {
-                const command = PRODUCER_COMMAND_TYPE.START;
-
-                if (e.data.command === command) {
-                    debug_channel.postMessage({
-                        command,
-                        payload: 'producer has started',
-                    });
-
-                    callback();
-                }
-            });
-        },
-
-        stop() {
-            commands_channel.postMessage({
-                command: PRODUCER_COMMAND_TYPE.STOP,
-            });
-        },
-
-        on_stop(callback) {
-            commands_channel.addEventListener('message', (e) => {
-                const command = PRODUCER_COMMAND_TYPE.STOP;
-
-                if (e.data.command === command) {
-                    debug_channel.postMessage({
-                        command,
-                        payload: 'producer has stopped',
-                    });
-
-                    callback();
-                }
-            });
-        },
-
         post_task(payload) {
             const command = PRODUCER_COMMAND_TYPE.TASK;
 
