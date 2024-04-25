@@ -15,6 +15,12 @@
         />
         <link
             rel="preload"
+            href="/components/the-console/index.mjs"
+            as="script"
+            crossorigin
+        />
+        <link
+            rel="preload"
             href="/components/the-footer/index.mjs"
             as="script"
             crossorigin
@@ -43,6 +49,10 @@
         <script
             type="module"
             src="/components/return-button/index.mjs"
+        ></script>
+        <script
+            type="module"
+            src="/components/the-console/index.mjs"
         ></script>
         <script
             type="module"
@@ -117,8 +127,8 @@
             <div class="content">
                 <div class="section">
                     <div>
-                        Click the carousel buttons below to see the transition
-                        in action.
+                        Every time the carousel is changed the new content is
+                        fetched from the server. Then the aimation takes place.
                     </div>
                 </div>
 
@@ -137,34 +147,30 @@
                         <button
                             id="goto_p_1"
                             class="dot"
-                            arai-label="Transition to card 1 content"
+                            aria-label="Transition to card 1 content"
                         ></button>
                         <button
                             id="goto_p_2"
                             class="dot"
-                            arai-label="Transition to card 2 content"
+                            aria-label="Transition to card 2 content"
                         ></button>
                         <button
                             id="goto_p_3"
                             class="dot"
-                            arai-label="Transition to card 3 content"
+                            aria-label="Transition to card 3 content"
                         ></button>
                         <button
                             id="goto_p_4"
                             class="dot"
-                            arai-label="Transition to card 4 content"
+                            aria-label="Transition to card 4 content"
                         ></button>
                     </div>
                 </div>
 
-                <div class="section">
-                    <div>
-                        Every time the button is pressed the new content is
-                        fetched from the server. Then the aimation takes place.
-                        The new content is cached by the service worker for
-                        later use.
-                    </div>
-                </div>
+                <the-console
+                    id="console"
+                    class="section"
+                ></the-console>
             </div>
         </article>
 
@@ -213,9 +219,15 @@
             const el_target_2 = document.getElementById('target_2');
 
             async function handle_open_page(page_id) {
+                print_message('----------');
+                print_message('transition has started');
+
                 const html = await pages[page_id]();
 
+                print_message(`"${page_id}" was loaded`);
+
                 el_target_2.innerHTML = html;
+                print_message(`HTML content has changed`);
 
                 const animation = el_target_1.animate(fade_out_scale, {
                     duration: 400,
@@ -223,13 +235,26 @@
                     fill: 'forwards',
                 });
 
-                await animation.finished;
+                await animation.ready.then(() => {
+                    print_message('animation is ready to start');
+                });
+
+                await animation.finished.then(() => {
+                    print_message('animation is complete');
+                });
 
                 el_target_1.innerHTML = html;
                 el_target_2.innerHTML = '';
 
                 animation.cancel();
+                print_message('transition is done');
             }
+
+            const print_message = (message) => {
+                document.getElementById('console').push_message({
+                    message,
+                });
+            };
 
             document.getElementById('goto_p_1').onclick = () =>
                 handle_open_page(PAGES.PAGE_1);
@@ -240,9 +265,7 @@
             document.getElementById('goto_p_4').onclick = () =>
                 handle_open_page(PAGES.PAGE_4);
 
-            pages[PAGES.PAGE_1]().then(
-                (html) => (el_target_1.innerHTML = html),
-            );
+            handle_open_page(PAGES.PAGE_1);
         </script>
     </body>
 </html>
