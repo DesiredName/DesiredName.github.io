@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Preload block -->
+        <link
+            rel="preload"
+            href="/assets/demo-commons.css"
+            as="style"
+        />
+        <link
+            rel="preload"
+            href="/components/return-button/index.mjs"
+            as="script"
+            crossorigin
+        />
+        <link
+            rel="preload"
+            href="/components/the-footer/index.mjs"
+            as="script"
+            crossorigin
+        />
+
+        <title>Transitions with View Transitions API</title>
+
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        />
+        <link
+            rel="stylesheet"
+            href="/assets/demo-commons.css"
+        />
+        <link
+            rel="manifest"
+            href="/site.webmanifest"
+            crossorigin="use-credentials"
+        />
+        <link
+            rel="stylesheet"
+            href="./assets/style.css"
+        />
+        <script
+            type="module"
+            src="/components/return-button/index.mjs"
+        ></script>
+        <script
+            type="module"
+            src="/components/the-footer/index.mjs"
+        ></script>
+
+        <!-- Security -->
+        <meta
+            http-equiv="Content-Security-Policy"
+            content="default-src 'self' 'unsafe-eval' 'unsafe-inline';"
+        />
+
+        <!-- SEO -->
+        <link
+            rel="canonical"
+            href="https://desiredname.github.io/"
+        />
+        <meta
+            name="theme-color"
+            content="#222222"
+        />
+        <meta
+            name="description"
+            content="An example of View Transitions API use"
+        />
+        <meta
+            name="robots"
+            content="index, nofollow"
+        />
+        <meta
+            name="author"
+            content="Krasnov Anton"
+        />
+        <meta
+            name="creator"
+            content="Krasnov Anton"
+        />
+        <meta
+            property="og:locale"
+            content="en_US"
+        />
+        <meta
+            property="og:title"
+            content="Transitions with View Transitions API"
+        />
+        <meta
+            name="og:description"
+            content="An example of View Transitions API use"
+        />
+        <meta
+            property="og:image"
+            content="https://desiredname.github.io/title.png"
+        />
+        <meta
+            property="og:type"
+            content="website"
+        />
+        <meta
+            property="og:url"
+            content="https://www.linkedin.com/in/anton-krasnov-in-prague/"
+        />
+    </head>
+
+    <body>
+        <div class="return-button-container">
+            <return-button></return-button>
+        </div>
+
+        <article class="container">
+            <h3 class="title">Transitions with View Transitions API</h3>
+
+            <div class="content">
+                <div class="section">
+                    <div>
+                        IMPORTANT: This will work natively only in Chromium
+                        browsers!
+                    </div>
+                    <br />
+                    <div>
+                        If you are using another browser, this API behaviour is
+                        emulated with Element.animate
+                    </div>
+                </div>
+
+                <div class="section the-form-container">
+                    <div id="target"></div>
+                </div>
+
+                <the-console
+                    id="console"
+                    class="section"
+                ></the-console>
+            </div>
+        </article>
+
+        <the-footer
+            title="Useful links"
+            links='[
+                [
+                    "https://developer.mozilla.org/en-US/docs/Web/API/View_Transitions_API",
+                    "MDN: View Transitions API"
+                ],
+                [
+                    "https://web.dev/blog/web-platform-03-2023#the_view_transitions_api",
+                    "WebDev: New to the web platform in March"
+                ]
+            ]'
+        >
+        </the-footer>
+
+        <script type="module">
+            import RegistrationForm from './src/registration-form.mjs';
+            import STEPS from './src/registration-steps.mjs';
+
+            const el_target = document.getElementById('target');
+
+            // init form-helper
+            RegistrationForm.init(el_target);
+
+            // define global hook for this
+            window.onsubmit = RegistrationForm.handle_step_forward;
+            window.onreset = RegistrationForm.handle_step_back;
+
+            // show first page by default without animation
+            RegistrationForm.handle_open_page(STEPS.STEP_1, true);
+        </script>
+    </body>
+</html>

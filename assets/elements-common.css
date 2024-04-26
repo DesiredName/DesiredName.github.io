@@ -158,6 +158,11 @@
         border: 1px solid var(--bright);
         cursor: not-allowed;
     }
+
+    &.full-width {
+        text-align: center;
+        width: 100%;
+    }
 }
 
 /**/

@@ -1,0 +1,13 @@
+.the-form-container {
+    align-items: flex-start;
+    border: 1px solid var(--bright);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    min-height: 315px;
+    min-width: 280px;
+    overflow: hidden;
+    padding-top: 2rem;
+    position: relative;
+    user-select: none;
+}
