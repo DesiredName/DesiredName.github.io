@@ -278,7 +278,3 @@
 .input.range-input::-ms-track {
     background-color: var(--brownish);
 }
-
-/* selec */
-.input.select-input {
-}

@@ -1,6 +1,7 @@
 *,
 *::after,
 *::before {
+    --black: #111;
     --dark: #222;
     --bright: #ccc;
     --brownish: #a17d7d66;

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Preload block -->
+        <link
+            rel="preload"
+            href="/assets/demo-commons.css"
+            as="style"
+        />
+        <link
+            rel="preload"
+            href="/components/return-button/index.mjs"
+            as="script"
+            crossorigin
+        />
+        <link
+            rel="preload"
+            href="/components/the-footer/index.mjs"
+            as="script"
+            crossorigin
+        />
+
+        <title>Priority Queue - tasks scheduling</title>
+
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        />
+        <link
+            rel="stylesheet"
+            href="/assets/demo-commons.css"
+        />
+        <link
+            rel="manifest"
+            href="/site.webmanifest"
+            crossorigin="use-credentials"
+        />
+        <link
+            rel="stylesheet"
+            href="./assets/style.css"
+        />
+        <script
+            type="module"
+            src="/components/return-button/index.mjs"
+        ></script>
+        <script
+            type="module"
+            src="/components/the-footer/index.mjs"
+        ></script>
+
+        <!-- Security -->
+        <meta
+            http-equiv="Content-Security-Policy"
+            content="default-src 'self' 'unsafe-eval' 'unsafe-inline';"
+        />
+
+        <!-- SEO -->
+        <link
+            rel="canonical"
+            href="https://desiredname.github.io/"
+        />
+        <meta
+            name="theme-color"
+            content="#222222"
+        />
+        <meta
+            name="description"
+            content="Priority queue - simple yet effective way to schedule tasks"
+        />
+        <meta
+            name="robots"
+            content="index, nofollow"
+        />
+        <meta
+            name="author"
+            content="Krasnov Anton"
+        />
+        <meta
+            name="creator"
+            content="Krasnov Anton"
+        />
+        <meta
+            property="og:locale"
+            content="en_US"
+        />
+        <meta
+            property="og:title"
+            content="Priority Queue - tasks scheduling"
+        />
+        <meta
+            name="og:description"
+            content="Priority queue - simple yet effective way to schedule tasks"
+        />
+        <meta
+            property="og:image"
+            content="https://desiredname.github.io/title.png"
+        />
+        <meta
+            property="og:type"
+            content="website"
+        />
+        <meta
+            property="og:url"
+            content="https://www.linkedin.com/in/anton-krasnov-in-prague/"
+        />
+    </head>
+
+    <body>
+        <div class="return-button-container">
+            <return-button></return-button>
+        </div>
+
+        <article class="container">
+            <h3 class="title">Priority Queue - scheduling</h3>
+
+            <div class="content">
+                <div
+                    class="section"
+                    style="text-align: justify"
+                >
+                    The order of tasks is determined by the BS algorithm.
+                    <br />
+                    <br />
+                    Tasks with the same priority value are arranged in insertion
+                    order.
+                    <br />
+                    <br />
+                    The task with the highest priority is always at the
+                    beginning of the queue and leaves it first.
+                </div>
+
+                <div class="section">
+                    <div class="the-blocks"></div>
+                </div>
+            </div>
+        </article>
+
+        <the-footer
+            title="Useful links"
+            links='[
+                [
+                    "https://www.geeksforgeeks.org/priority-queue-set-1-introduction",
+                    "Geeks: What is Priority Queue"
+                ], [
+                    "https://www.geeksforgeeks.org/applications-priority-queue",
+                    "Geeks: Applications of Priority Queue"
+                ], [
+                    "https://en.wikipedia.org/wiki/Binary_search_algorithm",
+                    "Wiki: Binary search algorythm"
+                ]
+            ]'
+        >
+        </the-footer>
+
+        <script type="module">
+            import id_gen from '/utils/id-gen.mjs';
+            import dom from '/utils/dom.mjs';
+
+            import PQ from './src/priority-queue.mjs';
+            import {
+                show_block,
+                hide_block,
+                anim_params,
+            } from './src/animations.mjs';
+
+            const pq = new PQ();
+            const id = id_gen();
+            const task = () => ({
+                p: Math.floor(Math.random() * 11),
+                task: { id: id() },
+            });
+            const el_blocks_container = dom('.the-blocks');
+
+            pq.addEventListener('change', (e) => {
+                const task_x_priority = e.detail.reduce(
+                    (acc, entry) => acc.set(entry.task.id, entry.p),
+                    new Map(),
+                );
+
+                update_displayed_queue(task_x_priority);
+            });
+
+            function update_displayed_queue(task_x_priority) {
+                const REMOVING_CLASS = 'removing';
+                const blocks = el_blocks_container.children(
+                    `.the-block:not(.${REMOVING_CLASS})`,
+                );
+
+                const add_block = (id, p) => {
+                    const block = document.createElement('div');
+
+                    block.id = id;
+                    block.className = 'the-block';
+                    block.style.order = -p;
+                    block.dataset.order = p;
+                    block.animate(show_block, anim_params);
+
+                    el_blocks_container.add_children([block]);
+                };
+
+                const update_block = (block, p) => {
+                    block.style.order = -p;
+                    block.dataset.order = p;
+                };
+
+                const remove_block = (block) => {
+                    block.classList.add(REMOVING_CLASS);
+                    block.animate(hide_block, anim_params).finished.then(() => {
+                        block.remove();
+                    });
+                };
+
+                for (const block of blocks) {
+                    const id = Number(block.id);
+
+                    if (task_x_priority.has(id)) {
+                        update_block(block, task_x_priority.get(id));
+                        task_x_priority.delete(id);
+                    } else {
+                        remove_block(block);
+                    }
+                }
+
+                for (const [id, p] of task_x_priority) {
+                    add_block(id, p);
+                }
+            }
+
+            setInterval(() => {
+                if (
+                    (Math.random() * 100 > 50 && pq.is_full !== true) ||
+                    pq.is_empty
+                ) {
+                    pq.enqueue(task());
+                } else {
+                    pq.dequeue();
+                }
+            }, 1000);
+        </script>
+    </body>
+</html>

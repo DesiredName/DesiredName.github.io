@@ -1,0 +1,37 @@
+.the-blocks {
+    align-items: center;
+    background-color: var(--black);
+    display: flex;
+    flex-flow: column;
+    height: 470px;
+    overflow: hidden;
+    position: relative;
+    padding: 1rem;
+
+    &::before {
+        color: var(--greenish);
+        content: 'the highest priority';
+        position: absolute;
+        top: 0;
+    }
+
+    &::after {
+        color: var(--greenish);
+        content: 'the lowest priority';
+        position: absolute;
+        bottom: 0;
+    }
+
+    & .the-block {
+        background-color: var(--brownish);
+        border-radius: 0.3rem;
+        margin-top: 1rem;
+        min-width: 200px;
+        padding: 0.5rem 2rem;
+
+        &::before {
+            content: 'task: ' attr(id) '\apriority: 'attr(data-order);
+            white-space: pre;
+        }
+    }
+}
