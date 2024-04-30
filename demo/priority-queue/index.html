@@ -164,7 +164,7 @@
                 anim_params,
             } from './src/animations.mjs';
 
-            const pq = new PQ();
+            window.pq = new PQ();
             const id = id_gen();
             const task = () => ({
                 p: Math.floor(Math.random() * 11),
@@ -227,16 +227,16 @@
                 }
             }
 
-            setInterval(() => {
-                if (
-                    (Math.random() * 100 > 50 && pq.is_full !== true) ||
-                    pq.is_empty
-                ) {
-                    pq.enqueue(task());
-                } else {
-                    pq.dequeue();
-                }
-            }, 1000);
+            // setInterval(() => {
+            //     if (
+            //         (Math.random() * 100 > 50 && pq.is_full !== true) ||
+            //         pq.is_empty
+            //     ) {
+            //         pq.enqueue(task());
+            //     } else {
+            //         pq.dequeue();
+            //     }
+            // }, 1000);
         </script>
     </body>
 </html>
