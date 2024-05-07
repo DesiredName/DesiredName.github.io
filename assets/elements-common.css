@@ -236,6 +236,13 @@
 
 /**/
 
+.input.file-input::file-selector-button,
+.input.file-input::-webkit-file-upload-button {
+    display: none;
+}
+
+/**/
+
 .input.range-input {
     appearance: none;
     -webkit-appearance: none;

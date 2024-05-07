@@ -129,71 +129,75 @@
             <h3 class="title">IndexedDB: MongoDB your browser</h3>
 
             <div class="content">
-                <div class="section form the-post">
-                    <div class="form-row">
-                        <div class="form-control">
-                            <label
-                                for="title"
-                                class="control-label"
-                                >Title:
-                                <input
-                                    id="title"
-                                    type="text"
-                                    class="control-input input"
-                                    placeholder="post title"
-                                    aria-label="post title"
-                                />
-                            </label>
+                <div class="section the-post">
+                    <div class="form">
+                        <div class="form-row">
+                            <div class="form-control">
+                                <label
+                                    for="title"
+                                    class="control-label"
+                                    >Title:
+                                    <input
+                                        id="title"
+                                        type="text"
+                                        class="control-input input"
+                                        placeholder="post title"
+                                        aria-label="post title"
+                                        maxlength="40"
+                                    />
+                                </label>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-control">
-                            <label
-                                for="description"
-                                class="control-label"
-                                >Description:
-                                <textarea
-                                    id="description"
-                                    type="text"
-                                    class="control-input input textarea-input"
-                                    placeholder="post description"
-                                    aria-label="post description"
-                                ></textarea>
-                            </label>
+                        <div class="form-row">
+                            <div class="form-control">
+                                <label
+                                    for="description"
+                                    class="control-label"
+                                    >Description:
+                                    <textarea
+                                        id="description"
+                                        type="text"
+                                        class="control-input input textarea-input"
+                                        placeholder="post description"
+                                        aria-label="post description"
+                                        maxlength="100"
+                                    ></textarea>
+                                </label>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-control">
-                            <label
-                                for="image"
-                                class="control-label"
-                                >Image:
-                                <input
-                                    id="image"
-                                    type="file"
-                                    accept="image/*"
-                                    class="control-input input"
-                                    aria-label="post image"
-                                />
-                            </label>
+                        <div class="form-row">
+                            <div class="form-control">
+                                <label
+                                    for="image"
+                                    class="control-label"
+                                    >Image:
+                                    <input
+                                        id="image"
+                                        type="file"
+                                        accept="image/*"
+                                        class="control-input input file-input"
+                                        aria-label="post image"
+                                    />
+                                </label>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-control">
-                            <button
-                                type="button"
-                                id="save_post"
-                                class="control-input button full-width"
-                            >
-                                Save
-                            </button>
-                            <button
-                                type="button"
-                                id="save_post"
-                                class="control-input button full-width"
-                            >
-                                Clear
-                            </button>
+                        <div class="form-row">
+                            <div class="form-control">
+                                <button
+                                    type="button"
+                                    id="save_post"
+                                    class="control-input button full-width"
+                                >
+                                    Save
+                                </button>
+                                <button
+                                    type="button"
+                                    id="save_post"
+                                    class="control-input button full-width"
+                                >
+                                    Clear
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>

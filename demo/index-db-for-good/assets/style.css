@@ -1,6 +1,14 @@
-.form.the-post .form-control .control-input.input,
-.form.the-post .form-control .control-input.textarea-input {
-    flex-basis: 20rem;
+.content .the-post .form-control .control-input.input,
+.content .the-post .form-control .control-input.textarea-input {
+    flex-basis: 18rem;
+}
+@media screen and (max-width: 440px) {
+    .content .the-post .form-control .control-input.input,
+    .content .the-post .form-control .control-input.textarea-input {
+        flex: 1;
+        min-width: 0;
+        width: 0;
+    }
 }
 
 .content .the-posts {
@@ -12,7 +20,6 @@
 
     & the-post {
         display: block;
-        min-height: 300px;
     }
 
     & the-post:not(:last-child) {

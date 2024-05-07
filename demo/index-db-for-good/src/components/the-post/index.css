@@ -12,10 +12,11 @@
     transition: opacity 500ms 300ms linear;
 
     & .the-delete {
+        background-color: var(--semi-transparent);
         border-radius: 1rem;
         cursor: pointer;
         height: 1rem;
-        padding: 0rem;
+        padding: 0.5rem;
         position: absolute;
         right: 1rem;
         top: 1rem;

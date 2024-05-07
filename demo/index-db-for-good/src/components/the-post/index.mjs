@@ -61,15 +61,22 @@ class ThePost extends HTMLElement {
     async #update_post() {
         await this.#is_loaded;
 
-        this.#el_image.addEventListener(
-            'load',
-            () => (this.#el_container.style.opacity = 1),
-            { once: true },
-        );
-
         this.#el_title.textContent = this.#post.title;
         this.#el_description.textContent = this.#post.description;
-        this.#el_image.src = URL.createObjectURL(this.#post.image);
+
+        const image = this.#post.image;
+
+        if (image == null) {
+            this.#el_container.style.opacity = 1;
+        } else {
+            this.#el_image.addEventListener(
+                'load',
+                () => (this.#el_container.style.opacity = 1),
+                { once: true },
+            );
+
+            this.#el_image.src = URL.createObjectURL(this.#post.image);
+        }
     }
 }
 
