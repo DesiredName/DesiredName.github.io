@@ -24,7 +24,9 @@ export default class CacheDB {
     }
 
     static async delete_image(image_id) {
-        return await CacheDB.#cache.delete(image_id.toString());
+        if (image_id != null) {
+            return await CacheDB.#cache.delete(image_id.toString());
+        }
     }
 
     static #to_storage_image(image) {
