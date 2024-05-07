@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Preload block -->
+        <link
+            rel="preload"
+            href="/assets/demo-commons.css"
+            as="style"
+        />
+        <link
+            rel="preload"
+            href="/components/return-button/index.mjs"
+            as="script"
+            crossorigin
+        />
+        <link
+            rel="preload"
+            href="/components/the-console/index.mjs"
+            as="script"
+            crossorigin
+        />
+        <link
+            rel="preload"
+            href="/components/the-footer/index.mjs"
+            as="script"
+            crossorigin
+        />
+
+        <title>IndexedDB - embrace the storage powers</title>
+
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        />
+        <link
+            rel="stylesheet"
+            href="/assets/demo-commons.css"
+        />
+        <link
+            rel="manifest"
+            href="/site.webmanifest"
+            crossorigin="use-credentials"
+        />
+        <link
+            rel="stylesheet"
+            href="./assets/style.css"
+        />
+        <script
+            type="module"
+            src="/components/return-button/index.mjs"
+        ></script>
+        <script
+            type="module"
+            src="/components/the-console/index.mjs"
+        ></script>
+        <script
+            type="module"
+            src="/components/the-footer/index.mjs"
+        ></script>
+        <script
+            type="module"
+            src="./src/components/the-post/index.mjs"
+        ></script>
+
+        <!-- Security -->
+        <meta
+            http-equiv="Content-Security-Policy"
+            content="default-src 'self' 'unsafe-eval' 'unsafe-inline'; img-src http: https: blob:;"
+        />
+
+        <!-- SEO -->
+        <link
+            rel="canonical"
+            href="https://desiredname.github.io/"
+        />
+        <meta
+            name="theme-color"
+            content="#222222"
+        />
+        <meta
+            name="description"
+            content="IndexedDB is part of PWA ecosystem and a powerful tool to store data in the browser"
+        />
+        <meta
+            name="robots"
+            content="index, nofollow"
+        />
+        <meta
+            name="author"
+            content="Krasnov Anton"
+        />
+        <meta
+            name="creator"
+            content="Krasnov Anton"
+        />
+        <meta
+            property="og:locale"
+            content="en_US"
+        />
+        <meta
+            property="og:title"
+            content="IndexedDB - embrace the storage powers"
+        />
+        <meta
+            name="og:description"
+            content="IndexedDB is part of PWA ecosystem and a powerful tool to store data in the browser"
+        />
+        <meta
+            property="og:image"
+            content="https://desiredname.github.io/title.png"
+        />
+        <meta
+            property="og:type"
+            content="website"
+        />
+        <meta
+            property="og:url"
+            content="https://www.linkedin.com/in/anton-krasnov-in-prague/"
+        />
+    </head>
+
+    <body>
+        <div class="return-button-container">
+            <return-button></return-button>
+        </div>
+
+        <article class="container">
+            <h3 class="title">IndexedDB - embrace the storage powers</h3>
+
+            <div class="content">
+                <div class="section form the-post">
+                    <div class="form-row">
+                        <div class="form-control">
+                            <label
+                                for="title"
+                                class="control-label"
+                                >Title:
+                                <input
+                                    id="title"
+                                    type="text"
+                                    class="control-input input"
+                                    placeholder="post title"
+                                    aria-label="post title"
+                                />
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-control">
+                            <label
+                                for="description"
+                                class="control-label"
+                                >Description:
+                                <textarea
+                                    id="description"
+                                    type="text"
+                                    class="control-input input textarea-input"
+                                    placeholder="post description"
+                                    aria-label="post description"
+                                ></textarea>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-control">
+                            <label
+                                for="image"
+                                class="control-label"
+                                >Image:
+                                <input
+                                    id="image"
+                                    type="file"
+                                    accept="image/*"
+                                    class="control-input input"
+                                    aria-label="post image"
+                                />
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-control">
+                            <button
+                                type="button"
+                                id="save_post"
+                                class="control-input button full-width"
+                            >
+                                Save
+                            </button>
+                            <button
+                                type="button"
+                                id="save_post"
+                                class="control-input button full-width"
+                            >
+                                Clear
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    id="the-posts"
+                    class="section the-posts"
+                ></div>
+
+                <the-console
+                    id="console"
+                    class="section"
+                ></the-console>
+            </div>
+        </article>
+
+        <the-footer
+            title="Useful links"
+            links='[
+                [
+                    "https://en.wikipedia.org/wiki/Load_balancing_(computing)",
+                    "Wiki: Load balancing"
+                ]
+            ]'
+        >
+        </the-footer>
+
+        <script type="module">
+            import Storage from './src/storage.mjs';
+
+            const el_console = document.getElementById('console');
+            const el_title = document.getElementById('title');
+            const el_description = document.getElementById('description');
+            const el_image = document.getElementById('image');
+            const el_save = document.getElementById('save_post');
+            const el_posts_container = document.getElementById('the-posts');
+            const storage = await Storage.init();
+
+            async function handle_load_posts() {
+                const posts = await storage.load_posts();
+                posts.forEach((post) => append_post(post));
+
+                const message = `posts loaded: ${posts.length} item(s) dicovered`;
+                el_console.push_message({ message }, { timestamp: true });
+            }
+
+            async function handle_save_post() {
+                const post = await storage.save_post({
+                    title: el_title.value,
+                    description: el_description.value,
+                    image: el_image.files[0],
+                });
+
+                append_post(post);
+                clear_form();
+
+                const message = `post saved: ${post.id}`;
+                el_console.push_message({ message }, { timestamp: true });
+            }
+
+            async function handle_delete_post(e) {
+                const ok = await storage.delete_post(e.detail);
+                e.target.remove();
+
+                const message = `post removed: ${e.detail.post_id}`;
+                el_console.push_message({ message }, { timestamp: true });
+            }
+
+            // helpers
+
+            function clear_form() {
+                el_title.value = '';
+                el_description.value = '';
+                el_image.value = null;
+            }
+
+            function append_post(post) {
+                const el_post = document.createElement('the-post');
+
+                el_post.post = post;
+                el_post.addEventListener('delete', (e) =>
+                    handle_delete_post(e),
+                );
+
+                el_posts_container.prepend(el_post);
+                el_post.scrollIntoView({ block: 'start' });
+            }
+
+            // UI
+
+            el_save.addEventListener('click', handle_save_post, {
+                passive: true,
+            });
+
+            handle_load_posts();
+
+            //
+
+            el_console.push_message({ message: 'ready' }, { timestamp: true });
+        </script>
+    </body>
+</html>

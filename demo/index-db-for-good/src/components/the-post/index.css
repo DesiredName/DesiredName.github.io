@@ -1,0 +1,53 @@
+.the-post {
+    --semi-transparent: rgba(255, 255, 255, 0.8);
+
+    align-items: stretch;
+    display: flex;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 0.5rem;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    min-height: 300px;
+    overflow: hidden;
+    position: relative;
+    transition: opacity 500ms linear;
+
+    &.loaded {
+        opacity: 1;
+    }
+
+    & .the-delete {
+        border-radius: 1rem;
+        cursor: pointer;
+        height: 1rem;
+        padding: 0rem;
+        position: absolute;
+        right: 1rem;
+        top: 1rem;
+        transition-property: transform, background-color, padding;
+        transition-duration: 300ms;
+        width: 1rem;
+    }
+
+    & .the-delete:hover {
+        background-color: var(--vine);
+        padding: 1rem;
+        transform: scale(1.3);
+    }
+
+    & .the-title {
+        background-color: var(--semi-transparent);
+        color: var(--black);
+        font-size: 2rem;
+        text-align: left;
+        padding: 0.3rem;
+    }
+
+    & .the-description {
+        background-color: var(--semi-transparent);
+        color: var(--dark);
+        text-align: left;
+        padding: 0.3rem;
+    }
+}

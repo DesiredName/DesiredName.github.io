@@ -1,0 +1,19 @@
+.form.the-post .form-control .control-input.input,
+.form.the-post .form-control .control-input.textarea-input {
+    flex-basis: 20rem;
+}
+
+.content .the-posts {
+    max-height: 350px;
+    overflow: hidden auto;
+    scrollbar-width: thin;
+
+    & the-post {
+        display: block;
+        min-height: 300px;
+    }
+
+    & the-post:not(:last-child) {
+        margin-bottom: 1rem;
+    }
+}
