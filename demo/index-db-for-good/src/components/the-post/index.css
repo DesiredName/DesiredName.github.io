@@ -3,19 +3,13 @@
 
     align-items: stretch;
     display: flex;
-    background-repeat: no-repeat;
-    background-size: cover;
     border-radius: 0.5rem;
     flex-flow: column nowrap;
     justify-content: space-between;
-    min-height: 300px;
+    max-height: 300px;
     overflow: hidden;
     position: relative;
-    transition: opacity 500ms linear;
-
-    &.loaded {
-        opacity: 1;
-    }
+    transition: opacity 500ms 300ms linear;
 
     & .the-delete {
         border-radius: 1rem;

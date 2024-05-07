@@ -7,6 +7,7 @@ class ThePost extends HTMLElement {
     #el_container;
     #el_delete;
     #el_title;
+    #el_image;
     #el_description;
 
     #post = {};
@@ -37,6 +38,7 @@ class ThePost extends HTMLElement {
         this.#el_container = shadow.querySelector('.the-post');
         this.#el_delete = shadow.querySelector('.the-delete');
         this.#el_title = shadow.querySelector('.the-title');
+        this.#el_image = shadow.querySelector('.the-image');
         this.#el_description = shadow.querySelector('.the-description');
 
         this.#el_delete.addEventListener(
@@ -59,13 +61,15 @@ class ThePost extends HTMLElement {
     async #update_post() {
         await this.#is_loaded;
 
-        const dataUrl = URL.createObjectURL(this.#post.image);
+        this.#el_image.addEventListener(
+            'load',
+            () => (this.#el_container.style.opacity = 1),
+            { once: true },
+        );
 
-        this.#el_container.style.backgroundImage = `url(${dataUrl})`;
         this.#el_title.textContent = this.#post.title;
         this.#el_description.textContent = this.#post.description;
-
-        this.#el_container.style.opacity = 1;
+        this.#el_image.src = URL.createObjectURL(this.#post.image);
     }
 }
 
