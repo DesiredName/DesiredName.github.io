@@ -186,13 +186,15 @@
                                 <button
                                     type="button"
                                     id="save_post"
+                                    aria-label="save post"
                                     class="control-input button full-width"
                                 >
                                     Save
                                 </button>
                                 <button
                                     type="button"
-                                    id="save_post"
+                                    id="clear_post"
+                                    aria-label="clear post fields"
                                     class="control-input button full-width"
                                 >
                                     Clear
@@ -249,6 +251,7 @@
             const el_description = document.getElementById('description');
             const el_image = document.getElementById('image');
             const el_save = document.getElementById('save_post');
+            const el_clear = document.getElementById('clear_post');
             const el_posts_container = document.getElementById('the-posts');
             const storage = await Storage.init();
 
@@ -305,6 +308,10 @@
             // UI
 
             el_save.addEventListener('click', handle_save_post, {
+                passive: true,
+            });
+
+            el_clear.addEventListener('click', clear_form, {
                 passive: true,
             });
 
