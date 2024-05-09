@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Preload block -->
+        <link
+            rel="preload"
+            href="/assets/demo-commons.css"
+            as="style"
+        />
+        <link
+            rel="preload"
+            href="/components/return-button/index.mjs"
+            as="script"
+            crossorigin
+        />
+        <link
+            rel="preload"
+            href="/components/the-footer/index.mjs"
+            as="script"
+            crossorigin
+        />
+
+        <!-- Custom fonts -->
+        <link
+            rel="preconnect"
+            href="https://fonts.googleapis.com"
+        />
+        <link
+            rel="preconnect"
+            href="https://fonts.gstatic.com"
+            crossorigin
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Smokum&display=swap"
+            rel="stylesheet"
+        />
+
+        <title>@media print to print</title>
+
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        />
+        <link
+            rel="stylesheet"
+            href="/assets/demo-commons.css"
+        />
+        <link
+            rel="manifest"
+            href="/site.webmanifest"
+            crossorigin="use-credentials"
+        />
+        <link
+            rel="stylesheet"
+            href="./assets/style.css"
+        />
+        <script
+            type="module"
+            src="/components/return-button/index.mjs"
+        ></script>
+        <script
+            type="module"
+            src="/components/the-footer/index.mjs"
+        ></script>
+
+        <!-- Security -->
+        <meta
+            http-equiv="Content-Security-Policy"
+            content="default-src 'self' 'unsafe-eval' 'unsafe-inline'; font-src https:"
+        />
+
+        <!-- SEO -->
+        <link
+            rel="canonical"
+            href="https://desiredname.github.io/"
+        />
+        <meta
+            name="theme-color"
+            content="#222222"
+        />
+        <meta
+            name="description"
+            content="@media CSS-rules helps to prepare the page for printing"
+        />
+        <meta
+            name="robots"
+            content="index, nofollow"
+        />
+        <meta
+            name="author"
+            content="Krasnov Anton"
+        />
+        <meta
+            name="creator"
+            content="Krasnov Anton"
+        />
+        <meta
+            property="og:locale"
+            content="en_US"
+        />
+        <meta
+            property="og:title"
+            content="@media print to print"
+        />
+        <meta
+            name="og:description"
+            content="@media CSS-rules helps to prepare the page for printing"
+        />
+        <meta
+            property="og:image"
+            content="https://desiredname.github.io/title.png"
+        />
+        <meta
+            property="og:type"
+            content="website"
+        />
+        <meta
+            property="og:url"
+            content="https://www.linkedin.com/in/anton-krasnov-in-prague/"
+        />
+    </head>
+
+    <body>
+        <div class="print landscape">
+            <h1 class="h1">
+                Millenium Hawk: YT-1300F light freighter / smuggling ship
+            </h1>
+            <img
+                class="blueprint"
+                src="./assets/blueprint.gif"
+                alt="Millenium Hawk blueprint"
+            />
+            <table class="description">
+                <thead>
+                    <th>#</th>
+                    <th>Defenses</th>
+                    <th>Weapons</th>
+                    <th>Engine</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Duralloy plating 1× ray shield generators</td>
+                        <td>2x Arakyd Tomral RM-76 heavy laser cannons</td>
+                        <td rowspan="4">Sublight engine thrusters (10×)</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Torplex deflector shield projector</td>
+                        <td>2× CEC AG2G quad-bolt cannons</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>
+                            Nordoxicon Unlimited Anti-concussion field generator
+                        </td>
+                        <td>8× Arakyd ST2 concussion missile racks</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Novaldex stasis-type shield generator</td>
+                        <td>BlasTech Ax-108 "Ground Buzzer" blaster cannon</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="print portrait">
+            <h1 class="h1">WANTED</h1>
+            <h3 class="h3">DEAD OR ALIVE</h3>
+            <hr class="hr" />
+            <img
+                class="img"
+                src="./assets/wanted.png"
+            />
+            <h2 class="h2">$10,000</h2>
+            <hr class="hr" />
+            <h3 class="h3">Roger J. jr</h3>
+            <p class="description">NOTORIOUS ROBBER OF TRAINS AND BANKS</p>
+            <p class="description">ALWAYS HEAVILY ARMED</p>
+        </div>
+
+        <div class="return-button-container">
+            <return-button></return-button>
+        </div>
+
+        <article class="container">
+            <h2 class="title">CSS Beauty: @media print to print</h2>
+
+            <div class="content">
+                <div class="section">
+                    The @media print CSS-rule helps to change the look and data
+                    of your page when printed. Check out the
+                    <span class="code">Portrait</span> and
+                    <span class="code">Landscape</span> modes in the print
+                    dialog to see the difference.
+                </div>
+            </div>
+
+            <div
+                class="buttons"
+                onclick="handle_print()"
+            >
+                <button class="button">Print</button>
+            </div>
+        </article>
+
+        <the-footer
+            class="the-footer"
+            title="Useful links"
+            links='[
+                [
+                    "https://developer.mozilla.org/en-US/docs/Web/CSS/@media",
+                    "MDN: @media docs"
+                ], [
+                    "https://developer.mozilla.org/en-US/docs/Web/CSS/@page",
+                    "MDN: @page docs"
+                ], [
+                    "https://developer.mozilla.org/en-US/docs/Web/API/Window/print",
+                    "MDN: Window.print method"
+                ]
+            ]'
+        >
+        </the-footer>
+
+        <script>
+            function handle_print() {
+                window.print();
+            }
+        </script>
+    </body>
+</html>

@@ -3,7 +3,7 @@
 	<url>
 		<loc>https://www.desiredname.github.io</loc>
 		<priority>1.00</priority>
-		<lastmod>2024-05-07</lastmod>
+		<lastmod>2024-05-09</lastmod>
 	</url>
 	<url>
 		<loc>https://www.desiredname.github.io/no-connection.html</loc>
@@ -89,5 +89,10 @@
 		<loc>https://www.desiredname.github.io/demo/index-db-for-good</loc>
 		<priority>0.33</priority>
 		<lastmod>2024-05-07</lastmod>
+	</url>
+	<url>
+		<loc>https://www.desiredname.github.io/demo/print-media</loc>
+		<priority>0.33</priority>
+		<lastmod>2024-05-09</lastmod>
 	</url>
 </urlset>

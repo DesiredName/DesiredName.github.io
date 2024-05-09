@@ -1,0 +1,96 @@
+.buttons .button {
+    text-align: center;
+}
+
+.print.landscape {
+    align-items: center;
+    display: none;
+    flex-flow: column;
+    justify-content: space-between;
+    height: 100vh;
+
+    .h1 {
+        font-size: 2rem;
+    }
+
+    .blueprint {
+        max-height: 60vh;
+    }
+
+    .description th {
+        font-weight: bold;
+        min-width: 2rem;
+        text-align: left;
+    }
+
+    .description td {
+        border-bottom: 1px solid;
+    }
+}
+
+.print.portrait {
+    align-items: center;
+    display: none;
+    flex-flow: column;
+    justify-content: center;
+    margin: auto;
+    width: 700px;
+
+    &,
+    & * {
+        font-family: 'Smokum', serif;
+        font-weight: 400;
+        font-style: normal;
+    }
+
+    .h1 {
+        font-size: 6rem;
+    }
+
+    .h2 {
+        font-size: 4rem;
+    }
+
+    .h3 {
+        font-size: 3rem;
+    }
+
+    .img {
+        min-width: 320px;
+    }
+
+    .description {
+        font-size: 2rem;
+        margin-top: 1rem;
+    }
+
+    .hr {
+        border-bottom: 4px double;
+        border-left: none;
+        border-right: none;
+        border-top: 1px solid;
+        height: 10px;
+        margin: 2rem 0;
+        width: 100%;
+    }
+}
+
+@media print {
+    .container,
+    .return-button-container,
+    .the-footer {
+        display: none;
+    }
+}
+
+@media print and (orientation: portrait) {
+    .print.portrait {
+        display: flex;
+    }
+}
+
+@media print and (orientation: landscape) {
+    .print.landscape {
+        display: flex;
+    }
+}
