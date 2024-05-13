@@ -1,0 +1,51 @@
+.container .array-input {
+    font-size: 3rem;
+    margin-bottom: -3rem;
+    text-align: justify;
+    width: 100%;
+
+    &:after {
+        content: '';
+        display: inline-block;
+        width: 100%;
+    }
+}
+
+.container .bars {
+    background-color: var(--black);
+    height: 200px;
+    position: relative;
+
+    .bar {
+        background-color: var(--vine);
+        min-width: 20px;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        transition-property: transform;
+        transition-duration: 500ms;
+        transform: translateX(0);
+    }
+
+    .bar.target {
+        background-color: var(--bright);
+    }
+
+    .bar.target-swap-left {
+        background-color: magenta;
+    }
+
+    .bar.target-swap-right {
+        background-color: green;
+    }
+
+    .bar::after {
+        content: attr(data-value);
+        display: block;
+        position: absolute;
+        top: 100%;
+        text-align: center;
+        left: 0;
+        right: 0;
+    }
+}

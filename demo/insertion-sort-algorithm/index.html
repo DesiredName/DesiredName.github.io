@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Preload block -->
+        <link
+            rel="preload"
+            href="/assets/demo-commons.css"
+            as="style"
+        />
+        <link
+            rel="preload"
+            href="/components/return-button/index.mjs"
+            as="script"
+            crossorigin
+        />
+        <link
+            rel="preload"
+            href="/components/the-footer/index.mjs"
+            as="script"
+            crossorigin
+        />
+
+        <title>Algos: Insertion Sort</title>
+
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        />
+        <link
+            rel="stylesheet"
+            href="/assets/demo-commons.css"
+        />
+        <link
+            rel="manifest"
+            href="/site.webmanifest"
+            crossorigin="use-credentials"
+        />
+        <link
+            rel="stylesheet"
+            href="./assets/style.css"
+        />
+        <script
+            type="module"
+            src="/components/return-button/index.mjs"
+        ></script>
+        <script
+            type="module"
+            src="/components/the-footer/index.mjs"
+        ></script>
+
+        <!-- Security -->
+        <meta
+            http-equiv="Content-Security-Policy"
+            content="default-src 'self' 'unsafe-eval' 'unsafe-inline'; font-src https:; style-src-elem 'self' https:;"
+        />
+
+        <!-- SEO -->
+        <link
+            rel="canonical"
+            href="https://desiredname.github.io/"
+        />
+        <meta
+            name="theme-color"
+            content="#222222"
+        />
+        <meta
+            name="description"
+            content="Insertion Sort is very simple, adaptive and cost-efficient with nearly sorted data"
+        />
+        <meta
+            name="robots"
+            content="index, nofollow"
+        />
+        <meta
+            name="author"
+            content="Krasnov Anton"
+        />
+        <meta
+            name="creator"
+            content="Krasnov Anton"
+        />
+        <meta
+            property="og:locale"
+            content="en_US"
+        />
+        <meta
+            property="og:title"
+            content="Algos: Insertion Sort"
+        />
+        <meta
+            name="og:description"
+            content="Insertion Sort is very simple, adaptive and cost-efficient with nearly sorted data"
+        />
+        <meta
+            property="og:image"
+            content="https://desiredname.github.io/title.png"
+        />
+        <meta
+            property="og:type"
+            content="website"
+        />
+        <meta
+            property="og:url"
+            content="https://www.linkedin.com/in/anton-krasnov-in-prague/"
+        />
+    </head>
+
+    <body>
+        <div class="return-button-container">
+            <return-button></return-button>
+        </div>
+
+        <article class="container">
+            <h2 class="title">Algos: Insertion Sort</h2>
+
+            <div class="content">
+                <div class="section">
+                    <div
+                        id="array-input"
+                        class="array-input"
+                        aria-label="unsorted input array"
+                    ></div>
+                </div>
+
+                <div class="section">
+                    <div
+                        id="bars-container"
+                        class="bars"
+                        aria-label="sort result with animation"
+                    >
+                        <div
+                            id="bar-0"
+                            class="bar"
+                        ></div>
+                        <div
+                            id="bar-1"
+                            class="bar"
+                        ></div>
+                        <div
+                            id="bar-2"
+                            class="bar"
+                        ></div>
+                        <div
+                            id="bar-3"
+                            class="bar"
+                        ></div>
+                        <div
+                            id="bar-4"
+                            class="bar"
+                        ></div>
+                        <div
+                            id="bar-5"
+                            class="bar"
+                        ></div>
+                        <div
+                            id="bar-6"
+                            class="bar"
+                        ></div>
+                        <div
+                            id="bar-7"
+                            class="bar"
+                        ></div>
+                        <div
+                            id="bar-8"
+                            class="bar"
+                        ></div>
+                        <div
+                            id="bar-9"
+                            class="bar"
+                        ></div>
+                    </div>
+                </div>
+
+                <br />
+
+                <div class="section buttons">
+                    <button
+                        aria-label="generate new input array and run algorithm"
+                        class="button full-width"
+                        onclick="handle_run()"
+                    >
+                        Generate and run
+                    </button>
+                </div>
+            </div>
+        </article>
+
+        <the-footer
+            class="the-footer"
+            title="Useful links"
+            links='[
+                [
+                    "https://developer.mozilla.org/en-US/docs/Web/CSS/@media",
+                    "MDN: @media docs"
+                ]
+            ]'
+        >
+        </the-footer>
+
+        <script>
+            const el_input = document.getElementById('array-input');
+            const el_bars_container = document.getElementById('bars-container');
+            const el_bars = Array.from(document.getElementsByClassName('bar'));
+
+            const length = 10;
+
+            const scaleY = 14;
+            const scaleX = 20;
+            const offset =
+                el_bars_container.getBoundingClientRect().width / length -
+                scaleX;
+
+            let input = [];
+
+            function generate_input() {
+                input = [];
+
+                for (let i = 0; i < length; i++) {
+                    input.push(Math.ceil(Math.random() * 9));
+                }
+
+                el_input.textContent = input.join(' ');
+            }
+
+            function assign_bars_value() {
+                for (let i = 0; i < length; i++) {
+                    const el_bar = el_bars[i];
+
+                    el_bar.dataset['value'] = input[i];
+                    el_bar.style.height = input[i] * scaleY + 'px';
+                    el_bar.style.transform =
+                        'translateX(' +
+                        (offset / 2 + i * (offset + scaleX)) +
+                        'px)';
+                }
+            }
+
+            function prepare_steps() {
+                const steps = [];
+                for (let i = 0; i <= length; i++) {
+                    for (let j = i - 1; j >= 1; j--) {
+                        if (input[j - 1] <= input[j]) {
+                            break;
+                        } else {
+                            [input[j - 1], input[j]] = [input[j], input[j - 1]];
+                            steps.push({
+                                swap: [j - 1, j],
+                                input: input.slice(),
+                                target_index: i - 1,
+                                target_swap_right_index: j,
+                                target_swap_left_index: j - 1,
+                            });
+                        }
+                    }
+                }
+
+                return steps;
+            }
+
+            async function handle_run() {
+                generate_input();
+                assign_bars_value();
+
+                const steps = prepare_steps();
+
+                for await (const step of steps) {
+                    const target = el_bars[step.target_index];
+                    const target_swap_left =
+                        el_bars[step.target_swap_left_index];
+                    const target_right_left =
+                        el_bars[step.target_swap_right_index];
+
+                    target.classList.add('target');
+                    target_swap_left.classList.add('target-swap-left');
+                    target_right_left.classList.add('target-swap-right');
+
+                    const [left, right] = step.swap;
+
+                    [el_bars[left], el_bars[right]] = [
+                        el_bars[right],
+                        el_bars[left],
+                    ];
+
+                    for (let i = 0; i < length; i++) {
+                        const el_bar = el_bars[i];
+
+                        el_bar.dataset['value'] = step.input[i];
+                        el_bar.style.height = step.input[i] * scaleY + 'px';
+                        el_bar.style.transform =
+                            'translateX(' +
+                            (offset / 2 + i * (offset + scaleX)) +
+                            'px)';
+                    }
+
+                    await new Promise((res) => setTimeout(res, 500));
+
+                    target.classList.remove('target');
+                    target_swap_left.classList.remove('target-swap-left');
+                    target_right_left.classList.remove('target-swap-right');
+                }
+            }
+
+            generate_input();
+            assign_bars_value();
+        </script>
+    </body>
+</html>
