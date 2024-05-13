@@ -116,6 +116,11 @@
 
             <div class="content">
                 <div class="section">
+                    Simple yet effective algorithm to sort nearly sorted data.
+                    Stable, with O(1) space complexity.
+                </div>
+
+                <div class="section">
                     <div
                         id="array-input"
                         class="array-input"
@@ -172,13 +177,21 @@
                     </div>
                 </div>
 
-                <br />
+                <div class="section">
+                    <div
+                        id="required-steps-count"
+                        class="required-steps-count"
+                        aria-label="steps required for algorithm to sort data"
+                    >
+                        Required steps
+                    </div>
+                </div>
 
                 <div class="section buttons">
                     <button
                         aria-label="generate new input array and run algorithm"
                         class="button full-width"
-                        onclick="handle_run()"
+                        onclick="handle_run(event)"
                     >
                         Generate and run
                     </button>
@@ -191,8 +204,8 @@
             title="Useful links"
             links='[
                 [
-                    "https://developer.mozilla.org/en-US/docs/Web/CSS/@media",
-                    "MDN: @media docs"
+                    "https://en.wikipedia.org/wiki/Insertion_sort",
+                    "Wiki: Insertion Sort algorithm"
                 ]
             ]'
         >
@@ -202,29 +215,30 @@
             const el_input = document.getElementById('array-input');
             const el_bars_container = document.getElementById('bars-container');
             const el_bars = Array.from(document.getElementsByClassName('bar'));
+            const el_req = document.getElementById('required-steps-count');
 
-            const length = 10;
-
-            const scaleY = 14;
-            const scaleX = 20;
-            const offset =
-                el_bars_container.getBoundingClientRect().width / length -
-                scaleX;
-
+            const input_length = 10;
             let input = [];
 
             function generate_input() {
                 input = [];
 
-                for (let i = 0; i < length; i++) {
+                for (let i = 0; i < input_length; i++) {
                     input.push(Math.ceil(Math.random() * 9));
                 }
 
                 el_input.textContent = input.join(' ');
             }
 
-            function assign_bars_value() {
-                for (let i = 0; i < length; i++) {
+            function assign_bars_value(input) {
+                const scaleY = 14;
+                const scaleX = 20;
+                const offset =
+                    el_bars_container.getBoundingClientRect().width /
+                        input_length -
+                    scaleX;
+
+                for (let i = 0; i < input_length; i++) {
                     const el_bar = el_bars[i];
 
                     el_bar.dataset['value'] = input[i];
@@ -238,7 +252,8 @@
 
             function prepare_steps() {
                 const steps = [];
-                for (let i = 0; i <= length; i++) {
+
+                for (let i = 1; i <= input_length; i++) {
                     for (let j = i - 1; j >= 1; j--) {
                         if (input[j - 1] <= input[j]) {
                             break;
@@ -258,11 +273,16 @@
                 return steps;
             }
 
-            async function handle_run() {
+            async function handle_run(event) {
+                const target = event.target;
+
+                target.setAttribute('disabled', true);
+
                 generate_input();
-                assign_bars_value();
+                assign_bars_value(input);
 
                 const steps = prepare_steps();
+                el_req.dataset['requiredSteps'] = steps.length;
 
                 for await (const step of steps) {
                     const target = el_bars[step.target_index];
@@ -282,16 +302,7 @@
                         el_bars[left],
                     ];
 
-                    for (let i = 0; i < length; i++) {
-                        const el_bar = el_bars[i];
-
-                        el_bar.dataset['value'] = step.input[i];
-                        el_bar.style.height = step.input[i] * scaleY + 'px';
-                        el_bar.style.transform =
-                            'translateX(' +
-                            (offset / 2 + i * (offset + scaleX)) +
-                            'px)';
-                    }
+                    assign_bars_value(step.input);
 
                     await new Promise((res) => setTimeout(res, 500));
 
@@ -299,10 +310,11 @@
                     target_swap_left.classList.remove('target-swap-left');
                     target_right_left.classList.remove('target-swap-right');
                 }
+                target.removeAttribute('disabled');
             }
 
             generate_input();
-            assign_bars_value();
+            assign_bars_value(input);
         </script>
     </body>
 </html>

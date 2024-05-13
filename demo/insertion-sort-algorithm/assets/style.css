@@ -11,6 +11,13 @@
     }
 }
 
+.required-steps-count {
+    padding: 1rem 0;
+    &::after {
+        content: attr(data-required-steps);
+    }
+}
+
 .container .bars {
     background-color: var(--black);
     height: 200px;
