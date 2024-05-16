@@ -37,9 +37,7 @@ export default class Dictionary {
         for (let i = 0; i < word.length; i++) {
             const c = word[i];
 
-            if (current_node.token === c) {
-                continue;
-            } else if (current_node.links.has(c)) {
+            if (current_node.links.has(c)) {
                 current_node = current_node.links.get(c);
             } else {
                 const new_node = build_node(c);
