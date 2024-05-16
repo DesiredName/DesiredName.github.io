@@ -50,14 +50,16 @@ export default class Dictionary {
     }
 
     #lookup_start_node(input) {
+        const lookup = input.trim().toLowerCase();
+
         let current_node = this.#root;
 
-        for (let i = 0; i < input.length; i++) {
-            const c = input[i];
+        for (let i = 0; i < lookup.length; i++) {
+            const c = lookup[i];
             const next_node = current_node.links.get(c);
 
             if (next_node == null) {
-                if (i < input.length) {
+                if (i < lookup.length) {
                     current_node = null;
                 }
 
