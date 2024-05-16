@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Preload block -->
+        <link
+            rel="preload"
+            href="/assets/demo-commons.css"
+            as="style"
+        />
+        <link
+            rel="preload"
+            href="/components/return-button/index.mjs"
+            as="script"
+            crossorigin
+        />
+        <link
+            rel="preload"
+            href="/components/the-footer/index.mjs"
+            as="script"
+            crossorigin
+        />
+
+        <title>DS: Dictionary tree</title>
+
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        />
+        <link
+            rel="stylesheet"
+            href="/assets/demo-commons.css"
+        />
+        <link
+            rel="manifest"
+            href="/site.webmanifest"
+            crossorigin="use-credentials"
+        />
+        <link
+            rel="stylesheet"
+            href="./assets/style.css"
+        />
+        <script
+            type="module"
+            src="/components/return-button/index.mjs"
+        ></script>
+        <script
+            type="module"
+            src="/components/the-footer/index.mjs"
+        ></script>
+
+        <!-- Security -->
+        <meta
+            http-equiv="Content-Security-Policy"
+            content="default-src 'self' 'unsafe-eval' 'unsafe-inline';"
+        />
+
+        <!-- SEO -->
+        <link
+            rel="canonical"
+            href="https://desiredname.github.io/"
+        />
+        <meta
+            name="theme-color"
+            content="#222222"
+        />
+        <meta
+            name="description"
+            content="An example of tree DS use for dictionry entries lookup"
+        />
+        <meta
+            name="robots"
+            content="index, nofollow"
+        />
+        <meta
+            name="author"
+            content="Krasnov Anton"
+        />
+        <meta
+            name="creator"
+            content="Krasnov Anton"
+        />
+        <meta
+            property="og:locale"
+            content="en_US"
+        />
+        <meta
+            property="og:title"
+            content="DS: Dictionary tree"
+        />
+        <meta
+            name="og:description"
+            content="An example of tree DS use for dictionry entries lookup"
+        />
+        <meta
+            property="og:image"
+            content="https://desiredname.github.io/title.png"
+        />
+        <meta
+            property="og:type"
+            content="website"
+        />
+        <meta
+            property="og:url"
+            content="https://www.linkedin.com/in/anton-krasnov-in-prague/"
+        />
+    </head>
+
+    <body>
+        <div class="return-button-container">
+            <return-button></return-button>
+        </div>
+
+        <article class="container">
+            <h3 class="title">DS: Dictionary tree</h3>
+
+            <div class="content">
+                <div
+                    class="section description"
+                    aria-label="data structure and algorithm description"
+                >
+                    A tree type data structure can be applied in a variety of
+                    situations. One of its application options is to search for
+                    possible word endings while typing.
+                </div>
+                <div class="section description"></div>
+                <div class="section description"></div>
+                <br />
+                <div class="section form">
+                    <div class="form-row">
+                        <div class="form-control">
+                            <label
+                                for="input"
+                                class="control-label"
+                            >
+                                Add dictionary data here:
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-control">
+                            <textarea
+                                id="input"
+                                aria-label="the raw dictionary input"
+                                class="input textarea-input control-input"
+                                rows="10"
+                            >
+                            The peculiarity of such a solution is the fact that saving, i.e. memoization of data, will always be performed by default. The more words added to the tree, the more suggestions it will be able to offer.
+
+                            Storing data in such a structure is very efficient both in terms of space complexity and time complexity.
+                            </textarea>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-row">
+                        <div class="form-control">
+                            <lable
+                                class="control-label"
+                                for="test-type"
+                            >
+                                Type text below to test dictionary suggestions:
+                            </lable>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-control">
+                            <span
+                                id="test-type"
+                                class="test-type-container"
+                                aria-label="type here to test dictionary suggestions"
+                                contenteditable="true"
+                                data-suggestion=""
+                            ></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <the-footer
+            title="The credits"
+            links='[
+                [
+                    "https://en.wikipedia.org/wiki/Tree_(data_structure)",
+                    "Wiki: Tree data structure"
+                ], [
+                    "https://en.wikipedia.org/wiki/Depth-first_search",
+                    "Wiki: Depth first search"
+                ]
+            ]'
+        >
+        </the-footer>
+
+        <script type="module">
+            import Dictionary from './src/dictionary.mjs';
+
+            const el_input = document.getElementById('input');
+            const el_test_type = document.getElementById('test-type');
+            const dict = new Dictionary();
+
+            dict.consume_raw_input(el_input.value);
+
+            el_input.addEventListener('change', (e) => {
+                const row_input = e.target.value;
+
+                dict.consume_raw_input(row_input);
+            });
+
+            el_test_type.addEventListener('input', (e) => {
+                const row_input = e.target.textContent;
+                const suggestions = dict.lookup_suggestions(row_input);
+
+                el_test_type.dataset['suggestion'] =
+                    suggestions.length > 0
+                        ? suggestions.join('\n')
+                        : 'no match';
+            });
+        </script>
+    </body>
+</html>

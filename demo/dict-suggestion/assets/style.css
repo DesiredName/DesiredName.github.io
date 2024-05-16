@@ -1,0 +1,32 @@
+.content .test-type-container {
+    background-color: var(--black);
+    display: block;
+    height: 2rem;
+    padding: 0.5rem 1rem;
+    position: relative;
+    text-align: left;
+    width: 100%;
+
+    &:not(:empty):focus::after {
+        background-color: var(--bright);
+        border-radius: 10px;
+        color: var(--vine);
+        content: attr(data-suggestion);
+        display: block;
+        font-style: italic;
+        font-size: 1.2rem;
+        padding: 0.5rem;
+        position: absolute;
+        top: 100%;
+        white-space: pre;
+    }
+}
+
+.content .section .input.textarea-input {
+    text-align: justify;
+    white-space: pre-line;
+
+    &::first-letter {
+        padding-left: 1rem;
+    }
+}
