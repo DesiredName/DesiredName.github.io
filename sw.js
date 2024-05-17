@@ -1,4 +1,4 @@
-const CACHE_ID = '161';
+const CACHE_ID = '162';
 const OFFLINE_URL = '/no-connection.html';
 
 console.log(`starting service worker #${CACHE_ID}`);

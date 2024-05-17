@@ -12,12 +12,11 @@ export default class Dictionary {
             .toLowerCase()
             .match(/(\p{L}|\d)*/gu);
 
-        filtered.forEach((word) => this.#add_word(word));
+        filtered.forEach((word) => this.consume_word(word));
     }
 
     consume_word(word) {
         this.#add_word(word);
-        console.log(this.#root);
     }
 
     lookup_suggestions(input) {
