@@ -1,0 +1,58 @@
+.the-output {
+    background-color: var(--black);
+    display: flex;
+    flex-flow: row;
+    justify-content: space-around;
+    min-height: 200px;
+    overflow: hidden;
+    padding: 1rem;
+
+    & .nodes {
+        margin-right: 1rem;
+        position: relative;
+
+        &::before {
+            display: block;
+            content: 'linked list';
+        }
+    }
+
+    & .items::before {
+        display: block;
+        content: 'map';
+        position: relative;
+    }
+
+    & .nodes .node,
+    & .items .item {
+        animation-name: appear;
+        animation-duration: 300ms;
+        animation-timing-function: linear;
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
+        background-color: var(--brownish);
+        border-radius: 0.3rem;
+        flex: 1;
+        font-size: 0.8rem;
+        padding: 0.3rem;
+        white-space: wrap;
+        word-wrap: break-word;
+        word-break: break-word;
+
+        &:not(:last-child) {
+            margin-bottom: 1rem;
+        }
+    }
+}
+
+@keyframes appear {
+    0% {
+        opacity: 0;
+        transform: translateY(-100px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: none;
+    }
+}

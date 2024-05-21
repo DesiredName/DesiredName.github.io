@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Preload block -->
+        <link
+            rel="preload"
+            href="/assets/demo-commons.css"
+            as="style"
+        />
+        <link
+            rel="preload"
+            href="/components/return-button/index.mjs"
+            as="script"
+            crossorigin
+        />
+        <link
+            rel="preload"
+            href="/components/the-footer/index.mjs"
+            as="script"
+            crossorigin
+        />
+
+        <title>Patterns: LRU cache technique</title>
+
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        />
+        <link
+            rel="stylesheet"
+            href="/assets/demo-commons.css"
+        />
+        <link
+            rel="manifest"
+            href="/site.webmanifest"
+            crossorigin="use-credentials"
+        />
+        <link
+            rel="stylesheet"
+            href="./assets/style.css"
+        />
+        <script
+            type="module"
+            src="/components/return-button/index.mjs"
+        ></script>
+        <script
+            type="module"
+            src="/components/the-footer/index.mjs"
+        ></script>
+
+        <!-- Security -->
+        <meta
+            http-equiv="Content-Security-Policy"
+            content="default-src 'self' 'unsafe-eval' 'unsafe-inline';"
+        />
+
+        <!-- SEO -->
+        <link
+            rel="canonical"
+            href="https://desiredname.github.io/"
+        />
+        <meta
+            name="theme-color"
+            content="#222222"
+        />
+        <meta
+            name="description"
+            content="LRU cache replacement technique to keep most recenlty used data as long a it is needed"
+        />
+        <meta
+            name="robots"
+            content="index, nofollow"
+        />
+        <meta
+            name="author"
+            content="Krasnov Anton"
+        />
+        <meta
+            name="creator"
+            content="Krasnov Anton"
+        />
+        <meta
+            property="og:locale"
+            content="en_US"
+        />
+        <meta
+            property="og:title"
+            content="Patterns: LRU cache technique"
+        />
+        <meta
+            name="og:description"
+            content="LRU cache replacement technique to keep most recenlty used data as long a it is needed"
+        />
+        <meta
+            property="og:image"
+            content="https://desiredname.github.io/title.png"
+        />
+        <meta
+            property="og:type"
+            content="website"
+        />
+        <meta
+            property="og:url"
+            content="https://www.linkedin.com/in/anton-krasnov-in-prague/"
+        />
+    </head>
+
+    <body>
+        <div class="return-button-container">
+            <return-button></return-button>
+        </div>
+
+        <article class="container">
+            <h3 class="title">LRU cache technique</h3>
+
+            <div class="content">
+                <div class="section">
+                    The LRU cache replacement pattern is tricky to build and can
+                    be implemented in a few ways, depending on the context.
+                </div>
+                <div class="section">
+                    The implementation here combines a Map object to have O(1)
+                    search time and double linked list to track how 'recent' the
+                    item is.
+                </div>
+
+                <div class="section">
+                    <div class="form">
+                        <div class="form-row">
+                            <div class="form-control">
+                                <label
+                                    for="capacity"
+                                    class="control-label"
+                                    >Set cache capacity
+                                    <input
+                                        id="capacity"
+                                        aria-label="Sets the maximum capacity of the LRU cache"
+                                        type="number"
+                                        class="input control-input"
+                                        value="3"
+                                        min="0"
+                                        max="10"
+                                    />
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-control buttons inline">
+                                <button
+                                    id="add_random_item"
+                                    class="button full-width"
+                                    aria-label="Adds new random item to LRU cache"
+                                >
+                                    Add random item
+                                </button>
+                                <button
+                                    id="update_random_item"
+                                    class="button full-width"
+                                    aria-label="Updated random item in LRU cache"
+                                >
+                                    Update random item
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div
+                        id="output"
+                        class="the-output"
+                    >
+                        <div
+                            id="output_nodes"
+                            class="nodes"
+                        ></div>
+                        <div
+                            id="output_items"
+                            class="items"
+                        ></div>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <the-footer
+            title="Useful links"
+            links='[
+                [
+                    "https://en.wikipedia.org/wiki/Cache_replacement_policies",
+                    "Wiki: Cache replacement policies"
+                ], [
+                    "https://en.wikipedia.org/wiki/Linked_list",
+                    "Wiki: Linked list"
+                ]
+            ]'
+        >
+        </the-footer>
+
+        <script type="module">
+            import LRUCache from './src/lru-cache.mjs';
+            import * as lru_dom_operations from './src/lru-dom-operations.mjs';
+
+            const el_output = document.getElementById('output');
+            const el_output_nodes = document.getElementById('output_nodes');
+            const el_output_items = document.getElementById('output_items');
+            const el_capacity = document.getElementById('capacity');
+            const el_add_random_item =
+                document.getElementById('add_random_item');
+            const el_update_random_item =
+                document.getElementById('update_random_item');
+
+            // set cache
+            let id = 0;
+            const lru = new LRUCache(el_capacity.value);
+
+            // ui
+            el_capacity.addEventListener('change', () => {
+                lru.capacity = el_capacity.value;
+            });
+
+            el_add_random_item.addEventListener('click', () => {
+                lru.add(id, { key: id++, updates: 0 });
+            });
+
+            el_update_random_item.addEventListener('click', () => {
+                const random_id = Math.floor(Math.random() * id);
+                const node = lru.get(random_id);
+
+                if (node == null) {
+                    lru.add(random_id, { key: random_id, updates: 0 });
+                } else {
+                    node.item.updates = node.item.updates + 1;
+                    lru.update(node);
+                }
+            });
+
+            lru.addEventListener('add', (e) => {
+                lru_dom_operations.add_node(
+                    el_output_nodes,
+                    el_output_items,
+                    e.detail.node,
+                );
+            });
+
+            lru.addEventListener('update', (e) => {
+                lru_dom_operations.update_node(
+                    el_output_nodes,
+                    el_output_items,
+                    e.detail.node,
+                );
+            });
+
+            lru.addEventListener('delete', (e) => {
+                lru_dom_operations.delete_node(
+                    el_output_nodes,
+                    el_output_items,
+                    e.detail.node,
+                );
+            });
+        </script>
+    </body>
+</html>

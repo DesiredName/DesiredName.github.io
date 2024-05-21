@@ -72,6 +72,7 @@ body {
         }
 
         &.inline {
+            align-items: stretch;
             align-content: start;
             flex-flow: row nowrap;
 
