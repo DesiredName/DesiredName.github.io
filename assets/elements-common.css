@@ -186,6 +186,7 @@
     &:disabled {
         background-color: var(--bright);
         border: none;
+        color: var(--dark);
         cursor: not-allowed;
         opacity: 0.3;
     }

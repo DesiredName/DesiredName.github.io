@@ -1,0 +1,25 @@
+.the-hf-encoded-array {
+    background-color: var(--black);
+    display: flex;
+    flex-flow: row nowrap;
+    overflow-y: hidden;
+    overflow-x: scroll;
+    scrollbar-width: thin;
+    max-width: 100%;
+    min-width: 100%;
+
+    & .node {
+        border-right: 1px solid var(--bright);
+        display: flex;
+        flex-flow: column wrap;
+        padding: 1rem 0.3rem;
+
+        & .char-code {
+            color: var(--vine);
+        }
+    }
+}
+
+.the-hf-statistics {
+    text-align: left;
+}

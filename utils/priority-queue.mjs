@@ -9,10 +9,15 @@ export default function PriorityQueueBuilder(
 ) {
     return {
         q: [],
+
+        size() {
+            return this.q.length;
+        },
+
         comparer:
             variant === PriorityQueueOrdering.MIN_FIRST
-                ? (v1, v2) => v1[compare_prop_name] > v2[compare_prop_name]
-                : (v1, v2) => v1[compare_prop_name] < v2[compare_prop_name],
+                ? (v1, v2) => v1[compare_prop_name] < v2[compare_prop_name]
+                : (v1, v2) => v1[compare_prop_name] > v2[compare_prop_name],
 
         enqueue(entity) {
             const bin_search = (queue, left, right) => {

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Preload block -->
+        <link
+            rel="preload"
+            href="/assets/demo-commons.css"
+            as="style"
+        />
+        <link
+            rel="preload"
+            href="/components/return-button/index.mjs"
+            as="script"
+            crossorigin
+        />
+        <link
+            rel="preload"
+            href="/components/the-footer/index.mjs"
+            as="script"
+            crossorigin
+        />
+
+        <!-- Custom fonts -->
+        <link
+            rel="preload"
+            href="https://fonts.googleapis.com"
+        />
+        <link
+            rel="preload"
+            href="https://fonts.gstatic.com"
+            crossorigin
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Smokum&display=swap"
+            rel="stylesheet"
+        />
+
+        <title>Algos: Huffman encoding</title>
+
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        />
+        <link
+            rel="stylesheet"
+            href="/assets/demo-commons.css"
+        />
+        <link
+            rel="manifest"
+            href="/site.webmanifest"
+            crossorigin="use-credentials"
+        />
+        <link
+            rel="stylesheet"
+            href="./assets/style.css"
+        />
+        <script
+            type="module"
+            src="/components/return-button/index.mjs"
+        ></script>
+        <script
+            type="module"
+            src="/components/the-footer/index.mjs"
+        ></script>
+
+        <!-- Security -->
+        <meta
+            http-equiv="Content-Security-Policy"
+            content="default-src 'self' 'unsafe-eval' 'unsafe-inline'; font-src https:; style-src-elem 'self' https:;"
+        />
+
+        <!-- SEO -->
+        <link
+            rel="canonical"
+            href="https://desiredname.github.io/"
+        />
+        <meta
+            name="theme-color"
+            content="#222222"
+        />
+        <meta
+            name="description"
+            content="Huffman-encoding is a lossless-compression algorithm"
+        />
+        <meta
+            name="robots"
+            content="index, nofollow"
+        />
+        <meta
+            name="author"
+            content="Krasnov Anton"
+        />
+        <meta
+            name="creator"
+            content="Krasnov Anton"
+        />
+        <meta
+            property="og:locale"
+            content="en_US"
+        />
+        <meta
+            property="og:title"
+            content="Algo: Huffman tree"
+        />
+        <meta
+            name="og:description"
+            content="Huffman-encoding is a lossless-compression algorithm"
+        />
+        <meta
+            property="og:image"
+            content="https://desiredname.github.io/title.png"
+        />
+        <meta
+            property="og:type"
+            content="website"
+        />
+        <meta
+            property="og:url"
+            content="https://www.linkedin.com/in/anton-krasnov-in-prague/"
+        />
+    </head>
+
+    <body>
+        <div class="return-button-container">
+            <return-button></return-button>
+        </div>
+
+        <article class="container">
+            <h2 class="title">Huffman encoding</h2>
+
+            <div class="content">
+                <div
+                    class="section"
+                    style="text-align: justify"
+                >
+                    This algorithm compresses string to a binary array
+                    representing the original string. Utilizes the
+                    <span class="code">Priority Queue</span> and the
+                    <span class="code">Tree</span> data structures to compute
+                    the output bits array.
+                </div>
+
+                <div class="section">
+                    <div class="form">
+                        <div class="form-row">
+                            <div class="form-control">
+                                <label
+                                    for="input_string"
+                                    class="control-label"
+                                >
+                                    Input text:
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-control">
+                                <textarea
+                                    id="input_string"
+                                    aria-label="Input text to encode here"
+                                    class="input textarea-input control-input"
+                                    style="resize: vertical"
+                                    rows="8"
+                                >
+The frequency of
+occurrence of every symbol is calculated, then those with
+the highest frequency of occurrence are assigned the
+shortest bit code. This way the string is compressed in the
+most optimal way. However, if the string is too short or the
+occurrence frequencies of chars are almost the same, the
+compressed size can be the same or larger then the size of
+an original string.
+                            </textarea
+                                >
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-control buttons">
+                                <button
+                                    id="encode"
+                                    aria-label="Encode string using Huffman encoding algorithm"
+                                    class="button full-width"
+                                >
+                                    Encode
+                                </button>
+                            </div>
+                        </div>
+
+                        <br />
+
+                        <div class="form-row">
+                            <div class="form-control">
+                                <label class="control-label">
+                                    Encoded array of bits:
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div
+                                id="encoded_array"
+                                aria-label="Encoded bits array"
+                                class="the-hf-encoded-array"
+                            ></div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-control">
+                                <label class="control-label">
+                                    Statistics:
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div
+                                id="encoded_statistics"
+                                aria-label="The statistics of encoded output"
+                                class="the-hf-statistics"
+                            ></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <the-footer
+            class="the-footer"
+            title="Useful links"
+            links='[
+                ["https://en.wikipedia.org/wiki/Huffman_coding", "Wiki: Huffman Coding"]
+            ]'
+        >
+        </the-footer>
+
+        <script type="module">
+            import { HuffmanEncode } from './src/huffman.mjs';
+
+            const el_input = document.getElementById('input_string');
+            const el_encode = document.getElementById('encode');
+            const el_output = document.getElementById('encoded_array');
+            const el_stats = document.getElementById('encoded_statistics');
+
+            const cde = (type, { className, text }) => {
+                const el = document.createElement(type);
+
+                el.className = className;
+                el.textContent = text;
+
+                return el;
+            };
+
+            el_encode.addEventListener('click', () => {
+                clear_children();
+                apply_encoding();
+            });
+
+            function apply_encoding() {
+                const value = el_input.value;
+                const { token, huffman_codes, size } = HuffmanEncode(value);
+
+                output_codes(token, huffman_codes);
+                output_stats(size);
+            }
+
+            function output_codes(token, huffman_codes) {
+                for (let char of token) {
+                    const code_entry = huffman_codes.get(char);
+                    const el_node = cde('div', { className: 'node' });
+                    const el_char = cde('div', {
+                        text: char.match(/\s/) ? '_' : char,
+                    });
+                    const el_code = cde('div', {
+                        className: 'char-code',
+                        text: code_entry.join(''),
+                    });
+
+                    el_node.appendChild(el_char);
+                    el_node.appendChild(el_code);
+                    el_output.appendChild(el_node);
+                }
+            }
+
+            function output_stats(size) {
+                const stats_text = [];
+                const total_encoded_size =
+                    size.token_table_size + size.token_encoded_size;
+
+                stats_text.push(
+                    'Encoded codes table size: ' +
+                        size.token_table_size +
+                        ' bits',
+                );
+                stats_text.push(
+                    'Encoded array size: ' + size.token_encoded_size + ' bits',
+                );
+                stats_text.push('----');
+                stats_text.push(
+                    'Encoded total size: ' + total_encoded_size + ' bits',
+                );
+                stats_text.push(
+                    'Original string size: ' + size.token_size + ' bits',
+                );
+                stats_text.push('----');
+                stats_text.push(
+                    'Compression ratio: ' +
+                        (size.token_size / total_encoded_size).toFixed(3),
+                );
+
+                el_stats.innerText = stats_text.join('\n');
+            }
+
+            function clear_children() {
+                el_output.innerHTML = '';
+                el_stats.innerText = '';
+            }
+
+            apply_encoding();
+        </script>
+    </body>
+</html>
