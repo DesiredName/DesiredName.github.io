@@ -309,11 +309,15 @@
                 }
             });
 
-            function prepare_file_data(file) {
-                const allowed_mime =
-                    /(application\/pdf|audio\/.*|text\/.*|image\/.*)/gi;
+            const allowed_mime =
+                /(application\/pdf|audio\/.*|text\/.*|image\/.*)/gi;
 
+            function prepare_file_data(file) {
                 if (file != null) {
+                    if (file.name === '') {
+                        return undefined;
+                    }
+
                     if (file.size === 0) {
                         print_message(
                             `File "${file.type}" is empty and will not be shared`,
