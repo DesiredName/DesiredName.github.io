@@ -318,21 +318,35 @@
 
                 // Files need a treatment!
                 let file = form_data.get('files');
+                const allowed_mime =
+                    /(application\/pdf|audio\/.*|text\/.*|image\/.*)/gi;
                 if (file.size === 0) {
                     file = null;
+                }
+
+                if ((file.type.match(allowed_mime)?.length ?? 0) === 0) {
+                    print_message(
+                        `File type "${file.type}" is not supported by WebShare API`,
+                    );
+                    return;
                 }
 
                 const data = {
                     title: form_data.get('title'),
                     text: form_data.get('text'),
-                    url: new URL(form_data.get('url')),
+                    url: form_data.get('url'),
                     files: file == null ? undefined : [file],
                 };
 
-                if (navigator.canShare(data)) {
-                    print_message('This data can be shared ❤‍🔥');
-                    navigator.share(data);
-                } else {
+                try {
+                    if (navigator.canShare(data)) {
+                        print_message('This data can be shared ❤‍🔥');
+                        navigator.share(data);
+                    } else {
+                        print_message('This data can not be shared');
+                    }
+                } catch (ex) {
+                    console.error(ex);
                     print_message('This data can not be shared');
                 }
             }
