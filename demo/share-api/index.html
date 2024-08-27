@@ -324,7 +324,7 @@
 
                     if ((file.type.match(allowed_mime)?.length ?? 0) === 0) {
                         print_message(
-                            `File type "${file.type}" is not supported by WebShare API`,
+                            `File type "${file.type}" is not supported by WebShare API and will not be shared`,
                         );
 
                         return undefined;
