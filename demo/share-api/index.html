@@ -245,13 +245,13 @@
                         <div class="form-row">
                             <div class="form-control">
                                 <label
-                                    for="files"
+                                    for="file"
                                     class="control-label"
                                 >
-                                    files:
+                                    file:
                                     <input
-                                        id="files"
-                                        name="files"
+                                        id="file"
+                                        name="file"
                                         type="file"
                                         class="input control-input file-input"
                                         aria-label="This adds files to the data been shared"
@@ -309,6 +309,28 @@
                 }
             });
 
+            function prepare_file_data(file) {
+                const allowed_mime =
+                    /(application\/pdf|audio\/.*|text\/.*|image\/.*)/gi;
+
+                if (file != null) {
+                    if (file.size === 0) {
+                        print_message(
+                            `File "${file.type}" is empty and will not be shared`,
+                        );
+
+                        file = null;
+                    } else if (
+                        (file.type.match(allowed_mime)?.length ?? 0) === 0
+                    ) {
+                        print_message(
+                            `File type "${file.type}" is not supported by WebShare API`,
+                        );
+                        return;
+                    }
+                }
+            }
+
             function handleOnSubmit(event) {
                 event.preventDefault();
 
@@ -317,19 +339,7 @@
                 );
 
                 // Files need a treatment!
-                let file = form_data.get('files');
-                const allowed_mime =
-                    /(application\/pdf|audio\/.*|text\/.*|image\/.*)/gi;
-                if (file.size === 0) {
-                    file = null;
-                }
-
-                if ((file.type.match(allowed_mime)?.length ?? 0) === 0) {
-                    print_message(
-                        `File type "${file.type}" is not supported by WebShare API`,
-                    );
-                    return;
-                }
+                let file = prepare_file_data(form_data.get('file'));
 
                 const data = {
                     title: form_data.get('title'),
