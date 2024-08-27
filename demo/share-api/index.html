@@ -319,16 +319,21 @@
                             `File "${file.type}" is empty and will not be shared`,
                         );
 
-                        file = null;
-                    } else if (
-                        (file.type.match(allowed_mime)?.length ?? 0) === 0
-                    ) {
+                        return undefined;
+                    }
+
+                    if ((file.type.match(allowed_mime)?.length ?? 0) === 0) {
                         print_message(
                             `File type "${file.type}" is not supported by WebShare API`,
                         );
-                        return;
+
+                        return undefined;
                     }
+
+                    return file;
                 }
+
+                return undefined;
             }
 
             function handleOnSubmit(event) {
