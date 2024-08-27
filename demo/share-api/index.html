@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Preload block -->
+        <link
+            rel="preload"
+            href="/assets/demo-commons.css"
+            as="style"
+        />
+        <link
+            rel="preload"
+            href="/components/return-button/index.mjs"
+            as="script"
+            crossorigin
+        />
+        <link
+            rel="preload"
+            href="/components/the-console/index.mjs"
+            as="script"
+            crossorigin
+        />
+        <link
+            rel="preload"
+            href="/components/the-footer/index.mjs"
+            as="script"
+            crossorigin
+        />
+
+        <!-- Custom fonts -->
+        <link
+            rel="preload"
+            href="https://fonts.googleapis.com"
+            as="font"
+        />
+        <link
+            rel="preload"
+            href="https://fonts.gstatic.com"
+            as="script"
+            crossorigin
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Smokum&display=swap"
+            rel="stylesheet"
+        />
+
+        <title>The WebShare API</title>
+
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        />
+        <link
+            rel="stylesheet"
+            href="/assets/demo-commons.css"
+        />
+        <link
+            rel="manifest"
+            href="/site.webmanifest"
+            crossorigin="use-credentials"
+        />
+        <link
+            rel="stylesheet"
+            href="./assets/style.css"
+        />
+        <script
+            type="module"
+            src="/components/return-button/index.mjs"
+        ></script>
+        <script
+            type="module"
+            src="/components/the-console/index.mjs"
+        ></script>
+        <script
+            type="module"
+            src="/components/the-footer/index.mjs"
+        ></script>
+
+        <!-- Security -->
+        <meta
+            http-equiv="Content-Security-Policy"
+            content="default-src 'self' 'unsafe-eval' 'unsafe-inline'; font-src https:; style-src-elem 'self' https:;"
+        />
+
+        <!-- SEO -->
+        <link
+            rel="canonical"
+            href="https://desiredname.github.io/"
+        />
+        <meta
+            name="theme-color"
+            content="#222222"
+        />
+        <meta
+            name="description"
+            content="Web Share API is a modern way to to share data to an arbitrary target selected by the user"
+        />
+        <meta
+            name="robots"
+            content="index, nofollow"
+        />
+        <meta
+            name="author"
+            content="Krasnov Anton"
+        />
+        <meta
+            name="creator"
+            content="Krasnov Anton"
+        />
+        <meta
+            property="og:locale"
+            content="en_US"
+        />
+        <meta
+            property="og:title"
+            content="@media print to print"
+        />
+        <meta
+            name="og:description"
+            content="Web Share API is a modern way to to share data to an arbitrary target selected by the user"
+        />
+        <meta
+            property="og:image"
+            content="https://desiredname.github.io/title.png"
+        />
+        <meta
+            property="og:type"
+            content="website"
+        />
+        <meta
+            property="og:url"
+            content="https://www.linkedin.com/in/anton-krasnov-in-prague/"
+        />
+    </head>
+
+    <body>
+        <div class="return-button-container">
+            <return-button></return-button>
+        </div>
+        <article class="container">
+            <h3 class="title">Sharing arbitrary data using WebShare API</h3>
+
+            <div class="content">
+                <div
+                    class="section no-support"
+                    id="no-support"
+                >
+                    <p>
+                        Unfortunately, your browser does not support the
+                        WebShare API. Try opening it in a browser that support
+                        this API.
+                    </p>
+                    <p>
+                        <a
+                            class="link"
+                            href="https://caniuse.com/?search=Web%20Share%20API"
+                            target="_blank"
+                            >Can I Use page</a
+                        >
+                    </p>
+                </div>
+
+                <div class="section">
+                    The WebShare API allows users to exchange data using the
+                    inbuilt OS mechanisms. The shared data first should be
+                    checked with
+                    <a
+                        href="#"
+                        class="link"
+                        >navigator.canShare</a
+                    >
+                    call. This will return a bool value. In case it is
+                    <span class="code"> 'true'</span>, we can procceed with
+                    <a
+                        href="#"
+                        class="link"
+                        >navigator.share</a
+                    >
+                    call.
+                </div>
+
+                <div class="section">
+                    <form
+                        id="share-data-form"
+                        class="form"
+                        onsubmit="handleOnSubmit(event)"
+                    >
+                        <div class="form-row">
+                            <div class="form-control">
+                                <label
+                                    for="title"
+                                    class="control-label"
+                                >
+                                    title:
+                                    <input
+                                        id="title"
+                                        name="title"
+                                        type="text"
+                                        class="input control-input"
+                                        aria-label="This defines the title of data been shared"
+                                        placeholder="The title of the shared data"
+                                        value="Hello from WebShare API"
+                                    />
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-control">
+                                <label
+                                    for="text"
+                                    class="control-label"
+                                >
+                                    text:
+                                    <input
+                                        id="text"
+                                        name="text"
+                                        type="text"
+                                        class="input control-input"
+                                        aria-label="This defines the descriptive text of data been shared"
+                                        placeholder="The description of the shared data"
+                                        value="WebShare API is a handy tool in our toolbelt"
+                                    />
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-control">
+                                <label
+                                    for="url"
+                                    class="control-label"
+                                >
+                                    url:
+                                    <input
+                                        id="url"
+                                        name="url"
+                                        type="text"
+                                        class="input control-input"
+                                        aria-label="This defines the url that might be shared"
+                                        placeholder="The url of the shared data"
+                                        value="https://google.com"
+                                    />
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-control">
+                                <label
+                                    for="files"
+                                    class="control-label"
+                                >
+                                    files:
+                                    <input
+                                        id="files"
+                                        name="files"
+                                        type="file"
+                                        class="input control-input file-input"
+                                        aria-label="This adds files to the data been shared"
+                                    />
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-control buttons">
+                                <button
+                                    class="button full-width"
+                                    type="submit"
+                                >
+                                    Share data now!
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <the-console
+                    id="console"
+                    class="section"
+                ></the-console>
+            </div>
+        </article>
+
+        <the-footer
+            title="Useful links"
+            links='[
+                [
+                    "https://developer.mozilla.org/en-US/docs/Web/API/Web_Share_API",
+                    "Web Share API reference on MDN"
+                ]
+            ]'
+        >
+        </the-footer>
+
+        <script>
+            const print_message = (message) => {
+                document
+                    .getElementById('console')
+                    .push_message({ message }, { timestamp: true });
+            };
+
+            requestIdleCallback(() => {
+                if ('canShare' in navigator === true) {
+                    print_message('WebShare API is ready');
+                } else {
+                    document
+                        .getElementById('no-support')
+                        .classList.add('is-active');
+
+                    print_message('WebShare API is not supported!');
+                }
+            });
+
+            function handleOnSubmit(event) {
+                event.preventDefault();
+
+                const form_data = new FormData(
+                    document.getElementById('share-data-form'),
+                );
+
+                // Files need a treatment!
+                let file = form_data.get('files');
+                if (file.size === 0) {
+                    file = null;
+                }
+
+                const data = {
+                    title: form_data.get('title'),
+                    text: form_data.get('text'),
+                    url: new URL(form_data.get('url')),
+                    files: file == null ? undefined : [file],
+                };
+
+                if (navigator.canShare(data)) {
+                    print_message('This data can be shared ❤‍🔥');
+                    navigator.share(data);
+                } else {
+                    print_message('This data can not be shared');
+                }
+            }
+        </script>
+    </body>
+</html>

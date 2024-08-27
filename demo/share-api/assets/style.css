@@ -1,0 +1,14 @@
+.no-support {
+    display: none;
+    background-color: var(--brownish);
+    padding: 2rem 3rem;
+    border-radius: 1rem;
+}
+
+.no-support.is-active {
+    display: block;
+}
+
+.container .content .section .form .form-control .control-input {
+    flex-basis: 18rem;
+}

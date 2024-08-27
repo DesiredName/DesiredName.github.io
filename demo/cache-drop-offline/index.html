@@ -216,14 +216,9 @@
                 true;
 
             const print_message = (message) => {
-                document.getElementById('console').push_message(
-                    {
-                        message,
-                    },
-                    {
-                        timestamp: true,
-                    },
-                );
+                document
+                    .getElementById('console')
+                    .push_message({ message }, { timestamp: true });
             };
 
             const cache_name = 'offline-example';
