@@ -1,1 +1,13 @@
+/*.log
 *.mp4
+gradle
+app
+build
+.gradle
+gradle*
+build.gradle
+android.keystore
+app-release*
+manifest-checksum*
+settings.gradle
+twa-manifest*
